@@ -1,11 +1,7 @@
 $: << 'lib'
 
-require 'transformator'
-
-require 'transformator/anima'
-require 'transformator/virtus'
-require 'transformator/rack'
-
+require 'pp'
+require 'mutator'
 
 # require spec support files and shared behavior
 Dir[File.expand_path('../{support,shared}/**/*.rb', __FILE__)].each { |f| require f }

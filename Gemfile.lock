@@ -68,7 +68,7 @@ GIT
 PATH
   remote: .
   specs:
-    transformator (0.0.1)
+    mutator (0.0.1)
       abstract_class (~> 0.0.1)
       backports (~> 2.6)
       descendants_tracker (~> 0.0.1)
@@ -153,6 +153,7 @@ DEPENDENCIES
   i18n
   immutable!
   map (~> 6.2.0)
+  mutator!
   pelusa!
   rack
   rake
@@ -161,5 +162,4 @@ DEPENDENCIES
   roodi (~> 2.1.0)
   rspec (~> 2.11)
   shotgun
-  transformator!
   yardstick (~> 0.6.0)
