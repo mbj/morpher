@@ -1,4 +1,4 @@
-class Transofmrator
+class Transformator
 
   # Abstract base class for transformator builders
   class Builder

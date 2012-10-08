@@ -1,3 +1,5 @@
+require 'rack/utils'
+
 class Transformator
   class Params 
 

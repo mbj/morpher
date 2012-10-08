@@ -152,3 +152,20 @@ private
   abstract_method :load
   private :load
 end
+
+require 'transformator/error'
+require 'transformator/builder'
+require 'transformator/params'
+require 'transformator/chain'
+require 'transformator/string'
+require 'transformator/primitive'
+require 'transformator/primitive/string'
+require 'transformator/attributes'
+require 'transformator/attribute'
+require 'transformator/attribute/params'
+require 'transformator/fixnum'
+require 'transformator/fixnum/string'
+require 'transformator/params'
+require 'transformator/string'
+require 'transformator/string/non_empty'
+require 'transformator/primitive'

@@ -30,7 +30,7 @@ class Transformator
       #
       def initialize(transformator, name, &block)
         @name = name
-        @transformator = Chain::Builder.new([transformator], &block)
+        @transformator = transformator
       end
 
     end

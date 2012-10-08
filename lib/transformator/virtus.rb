@@ -1,3 +1,5 @@
+require 'anima'
+
 class Transformator
   # Transformator to virtus objects
   #
