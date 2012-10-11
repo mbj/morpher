@@ -68,7 +68,7 @@ GIT
 PATH
   remote: .
   specs:
-    mutator (0.0.1)
+    ducktrap (0.0.1)
       abstract_class (~> 0.0.1)
       backports (~> 2.6)
       descendants_tracker (~> 0.0.1)
@@ -142,6 +142,7 @@ DEPENDENCIES
   anima!
   arrayfields (~> 4.7.4)
   descendants_tracker!
+  ducktrap!
   equalizer!
   fattr (~> 2.2.0)
   flay (~> 1.4.2)
@@ -153,7 +154,6 @@ DEPENDENCIES
   i18n
   immutable!
   map (~> 6.2.0)
-  mutator!
   pelusa!
   rack
   rake

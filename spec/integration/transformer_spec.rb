@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe 'simple mutator' do
-  subject { mutator.run(input) }
+describe 'simple ducktrap' do
+  subject { ducktrap.run(input) }
 
   let(:model) do
     Class.new do
@@ -15,27 +15,20 @@ describe 'simple mutator' do
   end
 
 
-  let(:mutator) do
+  let(:ducktrap) do
     model = self.model
-    Mutator::Block.new do |block|
+
+    Ducktrap.build do |block|
       block.params_from_url_encoded
       block.attributes do
         attribute_from_params :name do |name|
-          name.whitelist_strict do |whitelist|
-            whitelist.primitive(String)
-            whitelist.primitive(NilClass)
-          end
+          name.primitive(String)
         end
 
         attribute_from_params :amount do |amount|
-          amount.whitelist_strict do |whitelist|
-            whitelist.fixnum_from_string
-            whitelist.nil_from_empty_string
-            whitelist.primitive(NilClass)
-          end
+          amount.primitive(String)
         end
       end
-      block.anima(model) 
     end
   end
 
@@ -44,10 +37,25 @@ describe 'simple mutator' do
 
     it { should be_successful }
 
-    its(:result) { should eql(model.new(:name => 'Markus Schirp', :amount => 1000)) }
+    its(:result) { should eql(model.new(:name => 'Markus Schirp', :amount => '1000')) }
   end
 
-  pending 'when input is missing attribute' do
+  context 'with invalid integer' do
+    let(:input) { 'name=Markus+Schirp&amount=10a0' }
+
+    it { should_not be_successful }
+
+  end
+
+  pending 'when input is empty' do
+    let(:input) { 'name=Markus+Schirp&amount=' }
+
+    it { should be_successful }
+
+    its(:result) { should eql(model.new(:name => 'Markus Schirp', :amount => nil)) }
+  end
+
+  context 'when input is missing attribute' do
     let(:input) { 'name=Markus+Schirp' }
 
     it { should be_successful }
@@ -58,6 +66,6 @@ describe 'simple mutator' do
     let(:input) { 'name[]=Markus+Schirp' }
 
     it { should_not be_successful }
-    its(:result) { should be(Mutator::Undefined) }
+    its(:result) { should be(Ducktrap::Undefined) }
   end
 end
