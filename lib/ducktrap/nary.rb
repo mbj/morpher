@@ -1,103 +1,153 @@
 class Ducktrap
-  # Abstract ducktrap that delegates to n other ducktraps
-  class NAry < Ducktrap
-    include AbstractClass, Equalizer.new(:body)
 
-    # Run ducktrap on input
-    #
-    # @param [Object] input
-    #
-    # @return [Result]
-    #
-    # @api private
-    #
-    def run(input)
-      result_klass.new(input, body)
+  # Mixin for NAry ducktraps
+  module NAry 
+
+    # Builder for nary ducktraps
+    class Builder < Ducktrap::Builder
+
+      # Add ducktrap argument
+      #
+      # @param [Ducktrap] ducktrap
+      #
+      # @return [self]
+      #
+      def add(ducktrap)
+        body << ducktrap
+        self
+      end
+
+      # Hook called when method is missing
+      #
+      # @return [Object]
+      #
+      # @api private
+      #
+      def method_missing(name, *arguments, &block)
+        builder = DSL.lookup(name) { super }
+        add(Member.new(body.size, builder.new(*arguments, &block)))
+      end
+
+      # Return build instance
+      #
+      # @return [Object]
+      #
+      # @api private
+      #
+      def object
+        @klass.new(body)
+      end
+      memoize :object
+
+      attr_reader :body
+
+      # Initialize object
+      #
+      # @param [Class] klass
+      #   the klass to build
+      #
+      # @param [Enumerable<Object>] *arguments
+      #   the arguments to pass into constructor
+      #
+      # @api private
+      #
+      def initialize(klass, body = [])
+        @body = body
+        super(klass)
+      end
     end
 
-    # Add primitive enforcement
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def primitive(primitive)
-      add(Primitive.new(primitive))
+    module ClassMethods
+      def build(*arguments, &block)
+        Builder.new(self, *arguments, &block).object
+      end
     end
 
-    # Return result class
-    #
-    # @return [Class:Result]
-    #
-    # @api private
-    #
-    def result_klass
-      self.class::RESULT
+    module InstanceMethods
+      include Equalizer.new(:body)
+
+      def pretty_dump(output=Formatter.new)
+        output.puts("#{self.class.name}:")
+        output = output.indent
+        output.puts("body:")
+        output = output.indent
+        body.each do |member|
+          member.pretty_dump(output)
+        end
+        self
+      end
+
+      # Run ducktrap on input
+      #
+      # @param [Object] input
+      #
+      # @return [Result]
+      #
+      # @api private
+      #
+      def run(input)
+        result_klass.new(self, input, body)
+      end
+
+      # Return body 
+      #
+      # @return [Enumerable<Ducktrap>]
+      #
+      # @api private
+      #
+      attr_reader :body
+
+    private
+
+      # Initialize object
+      #
+      # @param [Enumerable<Ducktrap>] body
+      #
+      # @return [undefined]
+      #
+      # @api private
+      #
+      def initialize(body=[])
+        @body = body
+        super()
+      end
     end
 
-    # Add ducktrap argument
-    #
-    # @param [Ducktrap] ducktrap
-    #
-    # @return [self]
-    #
-    def add(ducktrap)
-      body << ducktrap
+    def self.included(scope)
+      super
+      scope.extend(ClassMethods)
+      scope.send(:include, InstanceMethods)
       self
     end
+  end
 
-    # Return body 
-    #
-    # @return [Enumerable<Ducktrap>]
-    #
-    # @api private
-    #
-    attr_reader :body
+  module NAry
+    # Mixin for results of nary duckrap
+    module Result
 
-  private
+      # Return body
+      #
+      # @return [Enumerable<Ducktrap>]
+      #
+      # @api private
+      #
+      attr_reader :body
 
-    # Initialize object
-    #
-    # @param [Enumerable<Ducktrap>] body
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def initialize(body=[])
-      @body = body
-      super()
-    end
+    private
 
-    # Hook called when method is missing
-    #
-    # @return [Object]
-    #
-    # @api private
-    #
-    def method_missing(name, *arguments, &block)
-      builder = DSL.lookup(name) { super }
-      add(builder.new(*arguments, &block))
-    end
-
-    # Pics first successful mutation
-    class Any < self
-      RESULT = Result::Any
-      register :any
-    end
-
-    # Multiple input XOR 
-    class MultiXor < self
-      RESULT = Result::MultiXOR
-
-      register :mxor
-    end
-
-    # Ducktrap that returns last result of a chain and stops on first failure
-    class Block < Abstract::NAry
-      RESULT = Result::Block
-
-      register :block
+      # Initialize object
+      #
+      # @param [Object] input
+      # @param [Enumerable<Ducktrap>] body
+      #
+      # @return [undefined]
+      #
+      # @api private
+      #
+      def initialize(context, input, body)
+        @body = body
+        super(context, input)
+      end
     end
   end
 end

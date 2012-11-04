@@ -1,11 +1,11 @@
 require 'spec_helper'
 
 describe 'simple ducktrap' do
-  subject { ducktrap.run(input) }
+  subject { loader.run(input) }
 
   let(:model) do
     Class.new do
-      include Anima, Immutable, Equalizer.new(:name, :amount)
+      include Adamantium, Anima
 
       attribute :name
       attribute :amount
@@ -15,29 +15,46 @@ describe 'simple ducktrap' do
   end
 
 
-  let(:ducktrap) do
+  let(:loader) do
     model = self.model
 
-    Ducktrap.build do |block|
-      block.params_from_url_encoded
-      block.attributes do
-        attribute_from_params :name do |name|
-          name.primitive(String)
+    Ducktrap::Block.build do 
+      params_hash_from_url_encoded_string
+      attributes_hash_from_params_hash do 
+        attribute_from_params(:name) do
+          primitive(String)
         end
 
-        attribute_from_params :amount do |amount|
-          amount.primitive(String)
+        attribute_from_params(:amount) do
+          primitive(String)
         end
       end
+      anima_from_attributes_hash(model)
     end
+  end
+
+  let(:dumper) do
+    loader.inverse
   end
 
   context 'when input is fully loadable' do
     let(:input) { 'name=Markus+Schirp&amount=1000' }
 
-    it { should be_successful }
+    it 'should not result in an error' do
+      puts
+      loader.pretty_dump
+      unless subject.successful?
+        puts
+        subject.output.pretty_dump
+        fail 'ducktrap is not successful'
+      end
+    end
 
     its(:result) { should eql(model.new(:name => 'Markus Schirp', :amount => '1000')) }
+
+    it 'allows to round trip' do
+      dumper.run(subject.result).should eql(input)
+    end
   end
 
   context 'with invalid integer' do

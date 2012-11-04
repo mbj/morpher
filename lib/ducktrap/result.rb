@@ -2,24 +2,12 @@ class Ducktrap
 
   # Abstract base class for mutation result
   class Result
-    include AbstractClass, Immutable
+    include AbstractClass, Adamantium::Flat, Equalizer.new(:context, :input, :output)
 
-    # Include equalizer
-    #
-    # @return [self]
-    #
-    def self.equalize(*extra)
-      include Equalizer.new(:input, :output, *extra)
-    end
-    private_class_method :equalize
-
-    # Undefined result
-    module Undefined; freeze; end
-
-    # Test if load was successful
+    # Test if conversion was successful
     #
     # @return [true]
-    #   if loading was successful
+    #   if conversion was successful
     #
     # @return [false]
     #   otherwise
@@ -27,7 +15,7 @@ class Ducktrap
     # @api private
     #
     def successful?
-      output != Undefined
+      !output.kind_of?(Error)
     end
 
     # Return input
@@ -38,16 +26,56 @@ class Ducktrap
     #
     attr_reader :input
 
-    # Return result
+    # Return output
+    #
+    # @return [Object]
+    #
+    # @api private
+    #
+    attr_reader :output
+
+    # Return context
+    #
+    # @return [Object]
+    #
+    # @api private
+    #
+    attr_reader :context
+
+    # Return error
+    #
+    # @return [Error]
+    #
+    # @api private
+    #
+    def error
+      Error.new(context, input)
+    end
+    memoize :error
+
+    # Return output
     #
     # @return [Object]
     #
     # @api private
     #
     def output
-      result
+      process
     end
     memoize :output
+
+    def pretty_dump(io=Formatter.new)
+      io.puts(self.class.name)
+      io = io.indent
+      io.puts("input: #{input.inspect}")
+      if successful?
+        io.puts("output: #{output.inspect}")
+      else
+        io.puts("output:")
+        output.pretty_dump(io.indent)
+      end
+      self
+    end
 
   private
 
@@ -60,10 +88,8 @@ class Ducktrap
     #
     # @api private
     #
-    def initialize(input)
-      @input  = input
-      # Trigger load
-      output
+    def initialize(context, input)
+      @context, @input = context, input
     end
 
     # Calculate result
@@ -76,8 +102,8 @@ class Ducktrap
     #  
     # @api private
     #
-    abstract_method :result
-    private :result
+    abstract_method :process
+    private :process
 
   end
 end

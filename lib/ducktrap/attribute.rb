@@ -1,57 +1,37 @@
 class Ducktrap
-
-  # Abstract class for ducktrap that results in single attribute
+  # Abstract base class for ducktrap with attribute as result
   class Attribute < self
     include AbstractClass
 
-    # Return name
-    #
-    # @return [Symbol] name
-    #
-    # @api private
-    #
+    class Attribute
+      attr_reader :name
+      attr_reader :value
+      include Equalizer.new(:name, :value)
+
+      def initialize(name, value)
+        @name, @value = name, value
+      end
+    end
+
+    def run(input)
+      result_klass.new(input, self)
+    end
+
     attr_reader :name
 
-    # Return ducktrap
-    #
-    # @return [Ducktrap]
-    #
-    # @api private
-    #
-    attr_reader :ducktrap
-
-    # Run ducktrap on input
-    #
-    # @param [Object] input
-    #
-    # @return [Result::Attribute]
-    #
-    # @api private
-    #
-    def run(input)
-      self.class::RESULT.new(input, name, ducktrap)
-    end
-
-  private
-
-    # Initialize object
-    #
-    # @param [Symbol] name
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def initialize(name, &block)
+    def initialize(name, *args, &block)
       @name = name
-      @ducktrap = NAry::Block.new(&block)
+      super(*args, &block)
     end
 
-    class Params < self
-      include Equalizer.new(:name, :ducktrap)
+    class Result < Ducktrap::Result
 
-      RESULT = Result::Attribute::Params
-      register :attribute_from_params
+      attr_reader :name
+
+      def initialize(input, name)
+        @name = name
+        super(input)
+      end
     end
   end
 end

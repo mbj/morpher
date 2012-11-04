@@ -1,15 +1,12 @@
 require 'abstract_class'
 require 'equalizer'
-require 'immutable'
-require 'rack'
+require 'adamantium'
+require 'addressable/uri'
 require 'anima'
 
 # Library namespace and abstract base class for ducktraps
 class Ducktrap
-  include AbstractClass, Immutable
-
-  # Undefined result
-  module Undefined; freeze; end
+  include AbstractClass, Adamantium::Flat
 
   # Run ducktrap on input
   #
@@ -33,55 +30,40 @@ class Ducktrap
   end
   private_class_method :register
 
-  # Create new ducktrap
+  # Return result class
   #
-  # @return [Ducktrap]
-  #
-  # @api private
-  #
-  def self.build(*args, &block)
-    NAry::Block.new(*args, &block)
-  end
-
-private
-
-  # Initialize object
-  #
-  # @return [undefined]
+  # @return [Class:Result]
   #
   # @api private
   #
-  def initialize(&block)
-    instance_eval(&block) if block
+  def result_klass
+    self.class::Result
   end
+
+  def pretty_dump(output)
+    output.puts(self.class.name)
+  end
+
 end
 
-require 'ducktrap/result'
-require 'ducktrap/result/abstract'
-require 'ducktrap/result/fixnum'
-require 'ducktrap/result/fixnum/string'
-require 'ducktrap/result/params'
-require 'ducktrap/result/params/url_encoded'
-require 'ducktrap/result/params/rack'
-require 'ducktrap/result/params/rack/multipart_form_data'
-require 'ducktrap/result/block'
-require 'ducktrap/result/attribute'
-require 'ducktrap/result/attribute/params'
-require 'ducktrap/result/attributes'
-require 'ducktrap/result/primitive'
-require 'ducktrap/result/anima'
-require 'ducktrap/result/nary'
+require 'ducktrap/error'
 
-require 'ducktrap/abstract'
+require 'ducktrap/builder'
+
+require 'ducktrap/result'
+require 'ducktrap/result/static'
+
+
 require 'ducktrap/registry'
-require 'ducktrap/version'
-require 'ducktrap/primitive/string'
-require 'ducktrap/anima'
-require 'ducktrap/attributes'
-require 'ducktrap/params'
+
 require 'ducktrap/nary'
-require 'ducktrap/fixnum'
-require 'ducktrap/registry'
-require 'ducktrap/attribute'
-require 'ducktrap/primitive'
-require 'ducktrap/nil'
+require 'ducktrap/unary'
+require 'ducktrap/nullary'
+require 'ducktrap/uncategorized'
+
+require 'ducktrap/member'
+
+require 'ducktrap/block'
+require 'ducktrap/params_hash'
+require 'ducktrap/attributes_hash'
+require 'ducktrap/anima'
