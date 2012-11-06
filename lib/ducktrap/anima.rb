@@ -1,5 +1,6 @@
 class Ducktrap
   class Anima < self
+    include Equalizer.new(:model)
 
     def pretty_dump(output)
       output.puts(self.class.name)
@@ -13,13 +14,17 @@ class Ducktrap
       @model = model
     end
 
-    class AttributesHash < self
+    class AttributeHash < self
       register :anima_from_attributes_hash
 
-      def inverse; Ducktrap::AttributesHash::Anima.new(model); end
+      def inverse; Ducktrap::AttributeHash::Anima.new(model); end
 
       def run(input)
         result_klass.new(self, input, model)
+      end
+
+      def self.build(*args)
+        new(*args)
       end
 
       class Result < Ducktrap::Result

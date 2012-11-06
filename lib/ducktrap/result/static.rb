@@ -1,12 +1,14 @@
 class Ducktrap
   class Result
-    class Invalid < self
+    class Noop < self
       attr_reader :output
+
       def initialize(context, input)
         super(context, input)
-        @output = error
+        @output = input
       end
     end
+
     class Static < self
       attr_reader :output
       def initialize(context, input, output)

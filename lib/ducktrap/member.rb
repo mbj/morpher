@@ -9,6 +9,8 @@ class Ducktrap
       super(operand)
     end
 
+    def inverse; self.class.new(index, operand.inverse); end
+
     def pretty_dump(output)
       output.puts("- #{@index}: #{self.class.name}")
       output = output.indent

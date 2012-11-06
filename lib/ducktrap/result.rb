@@ -74,6 +74,8 @@ class Ducktrap
         io.puts("output:")
         output.pretty_dump(io.indent)
       end
+      io.puts("context:")
+      context.pretty_dump(io.indent)
       self
     end
 
@@ -97,7 +99,7 @@ class Ducktrap
     # @return [Object]
     #   if successful
     #
-    # @return [Undefined]
+    # @return [Error]
     #   otherwise
     #  
     # @api private

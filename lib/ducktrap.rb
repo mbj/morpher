@@ -8,11 +8,21 @@ require 'anima'
 class Ducktrap
   include AbstractClass, Adamantium::Flat
 
+  # Return inversed ducktrap
+  #
+  # @param [Object] input
+  #
+  # @return [Result]
+  #
+  # @api private
+  #
+  abstract_method :inverse
+
   # Run ducktrap on input
   #
   # @param [Object] input
   #
-  # @return [Resulft]
+  # @return [Result]
   #
   # @api private
   #
@@ -40,18 +50,18 @@ class Ducktrap
     self.class::Result
   end
 
-  def pretty_dump(output)
+  def pretty_dump(output=Formatter.new)
     output.puts(self.class.name)
   end
-
 end
 
 require 'ducktrap/error'
 
-require 'ducktrap/builder'
-
 require 'ducktrap/result'
 require 'ducktrap/result/static'
+require 'ducktrap/result/invalid'
+
+require 'ducktrap/builder'
 
 
 require 'ducktrap/registry'
@@ -61,9 +71,17 @@ require 'ducktrap/unary'
 require 'ducktrap/nullary'
 require 'ducktrap/uncategorized'
 
+require 'ducktrap/noop'
 require 'ducktrap/member'
+require 'ducktrap/named_value'
 
 require 'ducktrap/block'
 require 'ducktrap/params_hash'
-require 'ducktrap/attributes_hash'
+require 'ducktrap/params_hash/string'
+require 'ducktrap/attribute_hash'
+require 'ducktrap/attribute_collection'
+require 'ducktrap/attribute'
 require 'ducktrap/anima'
+require 'ducktrap/primitive'
+require 'ducktrap/fixnum'
+require 'ducktrap/string'

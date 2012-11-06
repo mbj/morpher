@@ -4,35 +4,12 @@ class Ducktrap
   class Block < self
     include NAry
 
-    register :block
-
     def inverse
-      self.class.new(body.map(&:inverse).reverse)
-    end
-
-    class BlockMemberError < Ducktrap::Error
-      def pretty_dump(output = Formatter.new)
-        output.puts(self.class.name)
-        output = output.indent
-        output.puts("input: #{input.inspect}")
-        output.puts("member:")
-        member.pretty_dump(output.indent)
-        output.puts("context:")
-        context.pretty_dump(output.indent)
-        output.puts("input: #{input.inspect}")
-      end
-
-      attr_reader :member
-
-      def initialize(context, input, member)
-        @member = member
-        super(context, input)
-      end
+      self.class.new(inverse_body)
     end
 
     # Result of chained ducktraps
-    class Result < Ducktrap::Result
-      include NAry::Result
+    class Result < NAry::Result
 
     private
 
@@ -52,7 +29,7 @@ class Ducktrap
           result = ducktrap.run(input)
 
           unless result.successful?
-            return BlockMemberError.new(context, original_input, result.output)
+            return NAry::MemberError.new(context, original_input, result)
           end
 
           result.output

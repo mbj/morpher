@@ -3,6 +3,7 @@ class Ducktrap
   module Nullary 
     module InstanceMethods
       include Adamantium::Flat
+
       # Run ducktrap on input
       #
       # @param [Object] input
@@ -15,35 +16,38 @@ class Ducktrap
         result_klass.new(self, input)
       end
 
+      # Return inverse 
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
+      def inverse
+        inverse_klass.instance
+      end
+
       # Return inspect string
       #
       # @return [String]
       #
       def inspect
-        self.class.name
+        "<#{self.class.name}>"
       end
       memoize :inspect
     end
 
     module ClassMethods
-      # Return ducktrap
-      #
-      # @return [self]
-      #
-      # @api private
-      #
-      def new
-        @instance ||= super
+      def instance
+        @instance ||= new
       end
+
+      alias_method :build, :instance
     end
 
     def self.included(scope)
       scope.extend(ClassMethods)
       scope.send(:include,InstanceMethods)
-    end
-
-    # Mixin to define nullary results
-    module Result
+      scope.send(:private_class_method,:new)
     end
   end
 end

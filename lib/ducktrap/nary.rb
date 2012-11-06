@@ -3,9 +3,30 @@ class Ducktrap
   # Mixin for NAry ducktraps
   module NAry 
 
+    class MemberError < Ducktrap::Error
+      include Equalizer.new(:context, :input, :member)
+
+      def pretty_dump(output = Formatter.new)
+        output.puts(self.class.name)
+        output = output.indent
+        output.puts("input: #{input.inspect}")
+        output.puts("member:")
+        member.pretty_dump(output.indent)
+        output.puts("context:")
+        context.pretty_dump(output.indent)
+      end
+
+      attr_reader :member
+
+      def initialize(context, input, member)
+        @member = member
+        super(context, input)
+      end
+    end
+
     # Builder for nary ducktraps
     class Builder < Ducktrap::Builder
-
+      
       # Add ducktrap argument
       #
       # @param [Ducktrap] ducktrap
@@ -25,7 +46,7 @@ class Ducktrap
       #
       def method_missing(name, *arguments, &block)
         builder = DSL.lookup(name) { super }
-        add(Member.new(body.size, builder.new(*arguments, &block)))
+        add(builder.build(*arguments, &block))
       end
 
       # Return build instance
@@ -64,8 +85,6 @@ class Ducktrap
     end
 
     module InstanceMethods
-      include Equalizer.new(:body)
-
       def pretty_dump(output=Formatter.new)
         output.puts("#{self.class.name}:")
         output = output.indent
@@ -87,6 +106,10 @@ class Ducktrap
       #
       def run(input)
         result_klass.new(self, input, body)
+      end
+
+      def inverse_body
+        body.map(&:inverse).reverse
       end
 
       # Return body 
@@ -117,13 +140,14 @@ class Ducktrap
       super
       scope.extend(ClassMethods)
       scope.send(:include, InstanceMethods)
+      scope.send(:include, Equalizer.new(:body))
       self
     end
   end
 
   module NAry
-    # Mixin for results of nary duckrap
-    module Result
+    # Base class for nary results
+    class Result < Ducktrap::Result
 
       # Return body
       #

@@ -34,12 +34,11 @@ class Ducktrap
       context.pretty_dump(output.indent)
       self
     end
-    memoize :pretty_dump
 
   private
 
     def initialize(context, input)
-      @context, @result = context, input
+      @context, @input = context, input
     end
   end
 end
