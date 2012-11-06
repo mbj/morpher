@@ -109,12 +109,10 @@ describe 'simple ducktrap' do
 
   end
 
-  pending 'when input is empty' do
+  context 'when input is empty' do
     let(:input) { 'name=Markus+Schirp&amount=' }
 
-    it { should be_successful }
-
-    its(:result) { should eql(model.new(:name => 'Markus Schirp', :amount => nil)) }
+    it { should_not be_successful }
   end
 
   context 'when input is missing attribute' do
@@ -123,7 +121,7 @@ describe 'simple ducktrap' do
     it { should_not be_successful }
   end
 
-  pending 'when input is in invalid format' do
+  context 'when input is in invalid format' do
     let(:input) { 'name[]=Markus+Schirp' }
 
     it { should_not be_successful }
