@@ -71,15 +71,6 @@ describe 'simple ducktrap' do
     transformer.inverse.run(result.output).output.should eql(input)
   end
 
-  it 'should work' do
-    transformer = Ducktrap::Attribute::ParamsHash.build(:foo) do
-      primitive(Symbol)
-    end
-
-    result = transformer.run({'foo' => :bar})
-    result.output.should eql(Ducktrap::NamedValue.new(:foo, :bar))
-  end
-
   let(:model) do
     Class.new do
       include Adamantium, Anima
@@ -100,9 +91,7 @@ describe 'simple ducktrap' do
     let(:input) { 'amount=1000&name=Markus+Schirp' }
 
     it 'should not result in an error' do
-      unless subject.successful?
-        fail 'ducktrap is not successful'
-      end
+      should be_successful
     end
 
     its(:output) { should eql(model.new(:name => 'Markus Schirp', :amount => '1000')) }
