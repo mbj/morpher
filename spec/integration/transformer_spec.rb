@@ -8,7 +8,7 @@ describe 'simple ducktrap' do
 
     Ducktrap::Block.build do 
       params_hash_from_url_encoded_string
-      attribute_hash_from_params_hash do 
+      attribute_hash_from_params_hash_extraction do 
         attribute_from_params_hash :name do
           primitive(String)
         end
@@ -38,7 +38,7 @@ describe 'simple ducktrap' do
 
   it 'should be equivalent from dsl and oo interface' do
     a = Ducktrap::Block.build do 
-      attribute_hash_from_params_hash do
+      attribute_hash_from_params_hash_extraction do
         attribute_from_params_hash(:foo) do
           primitive(String)
         end
@@ -49,13 +49,13 @@ describe 'simple ducktrap' do
     foo = Ducktrap::Attribute::ParamsHash.new(:foo, Ducktrap::Block.new([Ducktrap::Primitive.new(String)]))
     baz = Ducktrap::Attribute::ParamsHash.new(:baz)
 
-    b = Ducktrap::Block.new([Ducktrap::AttributeHash::ParamsHash.new([foo, baz])])
+    b = Ducktrap::Block.new([Ducktrap::AttributeHash::ParamsHashExtraction.new([foo, baz])])
 
     a.should eql(b)
   end
 
-  it 'should convert attributes from params hash and vice versa' do
-    transformer = Ducktrap::AttributeHash::ParamsHash.build do
+  it 'should convert attributes via params hash extraction and vice versa' do
+    transformer = Ducktrap::AttributeHash::ParamsHashExtraction.build do
       attribute_from_params_hash(:foo)
       attribute_from_params_hash(:baz)
     end

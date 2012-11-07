@@ -3,6 +3,8 @@ class Ducktrap
   class Builder
     include Adamantium::Flat, AbstractClass
 
+    attr_reader :klass
+
   private
 
     # Initialize object

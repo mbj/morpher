@@ -12,6 +12,15 @@ class Ducktrap
         super(operand)
       end
 
+      def pretty_dump(output)
+        output.puts(self.class.name)
+        output = output.indent
+        output.puts("key: #{key.inspect}")
+        output.puts("model: #{model.inspect}")
+        output.puts("operand:")
+        operand.pretty_dump(output.indent)
+      end
+
       class Loader < self
         def inverse
           Polymorphic::Type::Dumper.new(key, model, operand.inverse)
@@ -38,7 +47,7 @@ class Ducktrap
           def process
             result = operand.run(input)
             unless result.successful?
-              raise
+              return NAry::MemberError.new(context, input, result)
             end
 
             { 'type' => context.key, 'body' => result.output }
@@ -71,7 +80,7 @@ class Ducktrap
             mapper = context.mapper(input.fetch('type'))
             result = mapper.run(input)
             unless result.successful?
-              raise
+              return NAry::MemberError.new(context, input, result)
             end
             result.output
           end
@@ -99,7 +108,7 @@ class Ducktrap
             mapper = context.mapper(input.class)
             result = mapper.run(input)
             unless result.successful?
-              raise
+              return NAry::MemberError.new(context, input, result)
             end
             result.output
           end

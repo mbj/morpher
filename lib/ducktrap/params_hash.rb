@@ -2,13 +2,13 @@ class Ducktrap
   # Abstract base class for ducktraps that result in params hash
   class ParamsHash < self
 
-    class AttributeHash < self
+    class AttributeHashExtraction < self
       include NAry
 
-      register :params_hash_from_attribute_hash
+      register :params_hash_from_attribute_hash_extraction
 
       def inverse
-        Ducktrap::AttributeHash::ParamsHash.new(inverse_body)
+        Ducktrap::AttributeHash::ParamsHashExtraction.new(inverse_body)
       end
 
       class Result < NAry::Result
@@ -32,6 +32,8 @@ class Ducktrap
       include Unary
       include Equalizer.new(:name, :postprocessor)
 
+      register :params_hash_from_attribute
+
       attr_reader :name
       attr_reader :postprocessor
 
@@ -49,6 +51,16 @@ class Ducktrap
         output.puts("name: #{name.inspect}")
         output.puts('postprocessor:')
         postprocessor.pretty_dump(output.indent)
+      end
+
+      def self.build(name, &block)
+        postprocessor = Noop.instance
+
+        if block
+          postprocessor = Ducktrap::Block.build(&block)
+        end
+
+        new(name, postprocessor)
       end
 
       class Result < Ducktrap::Unary::Result

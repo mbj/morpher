@@ -13,6 +13,10 @@ class Ducktrap
         Ducktrap::Anima::AttributeHash.new(model)
       end
 
+      def self.build(model)
+        new(model)
+      end
+
       attr_reader :model
 
       def initialize(model)
@@ -20,13 +24,13 @@ class Ducktrap
       end
     end
 
-    class ParamsHash < self
+    class ParamsHashExtraction < self
       include NAry
 
-      register :attribute_hash_from_params_hash
+      register :attribute_hash_from_params_hash_extraction
 
       def inverse
-        Ducktrap::ParamsHash::AttributeHash.new(inverse_body)
+        Ducktrap::ParamsHash::AttributeHashExtraction.new(inverse_body)
       end
 
       class Result < NAry::Result
