@@ -5,6 +5,8 @@ class Ducktrap
     class AttributeHash < self
       include NAry
 
+      register :params_hash_from_attribute_hash
+
       def inverse
         Ducktrap::AttributeHash::ParamsHash.new(inverse_body)
       end
