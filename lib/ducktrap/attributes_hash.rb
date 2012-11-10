@@ -1,16 +1,16 @@
 class Ducktrap
 
   # Abstract base class for ducktraps that result in attribute hash
-  class AttributeHash < self
+  class AttributesHash < self
     class Anima < self
-      register :attribute_hash_from_anima
+      register :attributes_hash_from_anima
 
       def run(input)
         Result::Static.new(self, input, model.attributes(input))
       end
 
       def inverse
-        Ducktrap::Anima::AttributeHash.new(model)
+        Ducktrap::Anima::AttributesHash.new(model)
       end
 
       def self.build(model)
@@ -27,10 +27,10 @@ class Ducktrap
     class ParamsHashExtraction < self
       include NAry
 
-      register :attribute_hash_from_params_hash_extraction
+      register :attributes_hash_from_params_hash_extraction
 
       def inverse
-        Ducktrap::ParamsHash::AttributeHashExtraction.new(inverse_body)
+        Ducktrap::ParamsHash::AttributesHashExtraction.new(inverse_body)
       end
 
       class Result < NAry::Result

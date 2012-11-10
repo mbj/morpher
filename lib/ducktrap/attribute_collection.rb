@@ -1,14 +1,14 @@
 class Ducktrap
   class AttributeCollection < self
-    class AttributeHash < self
-      register :attribue_collection_form_attribute_hash
+    class AttributesHash < self
+      register :attribue_collection_form_attributes_hash
       include Nullary
 
       def run(input)
         input.values
       end
 
-      def inverse; AttributeHash::AttributeSet; end
+      def inverse; AttributesHash::AttributeSet; end
     end
 
     class ParamsHash < self

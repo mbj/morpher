@@ -2,13 +2,13 @@ class Ducktrap
   # Abstract base class for ducktraps that result in params hash
   class ParamsHash < self
 
-    class AttributeHashExtraction < self
+    class AttributesHashExtraction < self
       include NAry
 
-      register :params_hash_from_attribute_hash_extraction
+      register :params_hash_from_attributes_hash_extraction
 
       def inverse
-        Ducktrap::AttributeHash::ParamsHashExtraction.new(inverse_body)
+        Ducktrap::AttributesHash::ParamsHashExtraction.new(inverse_body)
       end
 
       class Result < NAry::Result

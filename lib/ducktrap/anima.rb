@@ -14,10 +14,10 @@ class Ducktrap
       @model = model
     end
 
-    class AttributeHash < self
+    class AttributesHash < self
       register :anima_from_attributes_hash
 
-      def inverse; Ducktrap::AttributeHash::Anima.new(model); end
+      def inverse; Ducktrap::AttributesHash::Anima.new(model); end
 
       def run(input)
         result_klass.new(self, input, model)
