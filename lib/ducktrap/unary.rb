@@ -15,11 +15,16 @@ class Ducktrap
       #
       attr_reader :operand
 
-      def pretty_dump(output)
-        output.puts(self.class.name)
-        output = output.indent
-        output.puts("operand:")
-        operand.pretty_dump(output.indent)
+      # Perform pretty dump
+      #
+      # @return [self]
+      #
+      # @api private
+      #
+      def pretty_dump(output=Formatter.new)
+        output.name(self)
+        output.nest('operand:', operand)
+        self
       end
 
     private

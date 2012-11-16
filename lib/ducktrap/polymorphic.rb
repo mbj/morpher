@@ -12,13 +12,18 @@ class Ducktrap
         super(operand)
       end
 
-      def pretty_dump(output)
-        output.puts(self.class.name)
-        output = output.indent
+      # Perform pretty dump
+      #
+      # @return [self]
+      #
+      # @api private
+      #
+      def pretty_dump(output=Formatter.new)
+        output.name(self)
         output.puts("key: #{key.inspect}")
         output.puts("model: #{model.inspect}")
-        output.puts("operand:")
-        operand.pretty_dump(output.indent)
+        output.nest('operand:', operand)
+        self
       end
 
       class Loader < self
@@ -31,7 +36,7 @@ class Ducktrap
             body = input.fetch('body')
             result = operand.run(body)
             unless result.successful?
-              return NAry::MemberError.new(context, input, result)
+              return Nary::MemberError.new(context, input, result)
             end
             result.output
           end
@@ -45,9 +50,11 @@ class Ducktrap
 
         class Result < Unary::Result
           def process
+            context = self.context
+
             result = operand.run(input)
             unless result.successful?
-              return NAry::MemberError.new(context, input, result)
+              return Nary::MemberError.new(context, input, result)
             end
 
             { 'type' => context.key, 'body' => result.output }
@@ -57,7 +64,7 @@ class Ducktrap
     end
 
     class Map < self
-      include NAry
+      include Nary
 
       class Loader < self
         def mapping
@@ -75,12 +82,12 @@ class Ducktrap
           Polymorphic::Map::Dumper.new(body.map(&:inverse))
         end
 
-        class Result < NAry::Result
+        class Result < Nary::Result
           def process
             mapper = context.mapper(input.fetch('type'))
             result = mapper.run(input)
             unless result.successful?
-              return NAry::MemberError.new(context, input, result)
+              return Nary::MemberError.new(context, input, result)
             end
             result.output
           end
@@ -103,12 +110,12 @@ class Ducktrap
           mapping.fetch(klass)
         end
 
-        class Result < NAry::Result
+        class Result < Nary::Result
           def process
             mapper = context.mapper(input.class)
             result = mapper.run(input)
             unless result.successful?
-              return NAry::MemberError.new(context, input, result)
+              return Nary::MemberError.new(context, input, result)
             end
             result.output
           end

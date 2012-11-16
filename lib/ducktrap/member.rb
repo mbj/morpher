@@ -11,11 +11,16 @@ class Ducktrap
 
     def inverse; self.class.new(index, operand.inverse); end
 
-    def pretty_dump(output)
+    # Perform pretty dump
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def pretty_dump(output=Formatter.new)
       output.puts("- #{@index}: #{self.class.name}")
-      output = output.indent
-      output.puts("operand:")
-      operand.pretty_dump(output.indent)
+      output.indent.nest('operand:', operand)
+      self
     end
 
     class MemberError < Ducktrap::Error
@@ -26,14 +31,19 @@ class Ducktrap
         super(context, input)
       end
 
-      def pretty_dump(output)
-        output.puts(self.class.name)
+      # Perform pretty dump
+      #
+      # @return [self]
+      #
+      # @api private
+      #
+      def pretty_dump(output=Formatter.new)
+        output.name(self)
         output = output.indent
         output.puts("input: #{input.inspect}")
-        output.puts("error:")
-        error.pretty_dump(output.indent)
-        output.puts("context:")
-        context.pretty_dump(output.indent)
+        output.nest('error:', error)
+        output.puts('context:', context)
+        self
       end
     end
 

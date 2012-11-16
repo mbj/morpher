@@ -74,7 +74,7 @@ describe Ducktrap::Block::Result, '#output' do
       let(:result_b) { Ducktrap::Result::Invalid.new(context, input_b) }
 
 
-      it { should eql(Ducktrap::NAry::MemberError.new(context, input, result_b)) }
+      it { should eql(Ducktrap::Nary::MemberError.new(context, input, result_b)) }
 
       it_should_behave_like 'an idempotent method'
     end
@@ -83,7 +83,7 @@ describe Ducktrap::Block::Result, '#output' do
       let(:result_a) { Ducktrap::Result::Invalid.new(context, input_a) }
       let(:result_b) { Ducktrap::Result::Invalid.new(context, input_b) }
 
-      it { should eql(Ducktrap::NAry::MemberError.new(context, input, result_a)) }
+      it { should eql(Ducktrap::Nary::MemberError.new(context, input, result_a)) }
 
       it 'should not execute later ducktraps' do
         trap_b.should_not_receive(:run)

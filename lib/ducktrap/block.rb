@@ -2,14 +2,14 @@ class Ducktrap
   # Ducktrap that returns last result of a chain and stops on first failure.
   # Acts like AND with multiple inputs.
   class Block < self
-    include NAry
+    include Nary
 
     def inverse
       self.class.new(inverse_body)
     end
 
     # Result of chained ducktraps
-    class Result < NAry::Result
+    class Result < Nary::Result
 
     private
 
@@ -29,7 +29,7 @@ class Ducktrap
           result = ducktrap.run(input)
 
           unless result.successful?
-            return NAry::MemberError.new(context, original_input, result)
+            return Nary::MemberError.new(context, original_input, result)
           end
 
           result.output

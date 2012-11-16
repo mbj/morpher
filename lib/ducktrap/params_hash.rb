@@ -3,7 +3,7 @@ class Ducktrap
   class ParamsHash < self
 
     class AttributesHashExtraction < self
-      include NAry
+      include Nary
 
       register :params_hash_from_attributes_hash_extraction
 
@@ -11,7 +11,7 @@ class Ducktrap
         Ducktrap::AttributesHash::ParamsHashExtraction.new(inverse_body)
       end
 
-      class Result < NAry::Result
+      class Result < Nary::Result
         def process
           body.each_with_object({}) do |controller, hash|
             name = controller.name
@@ -19,7 +19,7 @@ class Ducktrap
             result = controller.run(value)
 
             unless result.successful?
-              return NAry::MemberError.new(context, input, result)
+              return Nary::MemberError.new(context, input, result)
             end
 
             hash.merge!(result.output)
@@ -45,12 +45,18 @@ class Ducktrap
         Ducktrap::Attribute::ParamsHash.new(name, postprocessor.inverse)
       end
 
+      # Perform pretty dump
+      #
+      # @return [self]
+      #
+      # @api private
+      #
       def pretty_dump(output=Formatter.new)
-        output.puts(self.class.name)
+        output.name(self)
         output = output.indent
         output.puts("name: #{name.inspect}")
-        output.puts('postprocessor:')
-        postprocessor.pretty_dump(output.indent)
+        output.nest('postprocessor:', postprocessor)
+        self
       end
 
       def self.build(name, &block)
@@ -78,7 +84,7 @@ class Ducktrap
           result = postprocessor.run(value)
 
           unless result.successful?
-            return NAry::MemberError.new(context, input, result)
+            return Nary::MemberError.new(context, input, result)
           end
 
           { name.to_s => result.output }

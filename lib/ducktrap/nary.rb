@@ -1,19 +1,24 @@
 class Ducktrap
 
-  # Mixin for NAry ducktraps
-  module NAry 
+  # Mixin for Nary ducktraps
+  module Nary 
 
     class MemberError < Ducktrap::Error
       include Equalizer.new(:context, :input, :member)
 
+      # Perform pretty dump
+      #
+      # @return [self]
+      #
+      # @pai private
+      #
       def pretty_dump(output = Formatter.new)
-        output.puts(self.class.name)
+        output.name(self)
         output = output.indent
         output.puts("input: #{input.inspect}")
-        output.puts("member:")
-        member.pretty_dump(output.indent)
-        output.puts("context:")
-        context.pretty_dump(output.indent)
+        output.nest('member', member)
+        output.nest('context:', context)
+        self
       end
 
       attr_reader :member
@@ -85,14 +90,16 @@ class Ducktrap
     end
 
     module InstanceMethods
+      # Perform pretty dump
+      #
+      # @return [self]
+      #
+      # @api private
+      #
       def pretty_dump(output=Formatter.new)
-        output.puts("#{self.class.name}:")
-        output = output.indent
-        output.puts("body:")
-        output = output.indent
-        body.each do |member|
-          member.pretty_dump(output)
-        end
+        output.name(self)
+        indent = output.indent
+        output.body(body)
         self
       end
 
@@ -145,7 +152,7 @@ class Ducktrap
     end
   end
 
-  module NAry
+  module Nary
     # Base class for nary results
     class Result < Ducktrap::Result
 

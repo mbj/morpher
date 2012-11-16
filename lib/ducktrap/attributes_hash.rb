@@ -25,7 +25,7 @@ class Ducktrap
     end
 
     class ParamsHashExtraction < self
-      include NAry
+      include Nary
 
       register :attributes_hash_from_params_hash_extraction
 
@@ -33,12 +33,12 @@ class Ducktrap
         Ducktrap::ParamsHash::AttributesHashExtraction.new(inverse_body)
       end
 
-      class Result < NAry::Result
+      class Result < Nary::Result
         def process
           results.each_with_object({}) do |result, hash|
             output = result.output
             unless result.successful?
-              return NAry::MemberError.new(context, input, result)
+              return Nary::MemberError.new(context, input, result)
             end
 
             hash[output.name]=output.value
@@ -50,23 +50,6 @@ class Ducktrap
           body.each do |context|
             yield context.run(input)
           end
-        end
-      end
-    end
-
-    class AttributeCollection < self
-      include Nullary
-      register :attributes_hash_from_attribute_set
-
-      def run(input)
-        input.each_with_object({}) do |attribute, hash|
-          name = attribute.name
-
-          if hash.key?(name)
-            return DuplicateNameError.new(name)
-          end
-
-          hash[name] = attribute.value
         end
       end
     end

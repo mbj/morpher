@@ -8,11 +8,16 @@ class Ducktrap
       result_klass.new(self, input)
     end
 
+    # Perform pretty dump
+    #
+    # @return [self]
+    #
+    # @api private
+    #
     def pretty_dump(output=Formatter.new)
-      output.puts(self.class.name)
-      output = output.indent
-      output.puts('postprocessor:')
-      postprocessor.pretty_dump(output.indent)
+      output.name(self)
+      output.nest('postprocessor:', postprocessor)
+      self
     end
 
     attr_reader :name

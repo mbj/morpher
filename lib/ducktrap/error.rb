@@ -1,25 +1,4 @@
 class Ducktrap
-  class Formatter
-    include Adamantium::Flat
-    def initialize(level=0)
-      @output, @level = $stdout, level
-    end
-
-    def prefix
-      "  " * @level
-    end
-    memoize :prefix
-    
-    def puts(string)
-      @output.write(prefix)
-      @output.puts(string)
-    end
-
-    def indent
-      self.class.new(@level+1)
-    end
-  end
-
   class Error 
     include Adamantium::Flat, Equalizer.new(:context, :input)
 

@@ -64,6 +64,12 @@ class Ducktrap
     end
     memoize :output
 
+    # Perform a pretty dump
+    #
+    # @param [Formatter] io
+    #
+    # @return [self]
+    #
     def pretty_dump(io=Formatter.new)
       io.puts(self.class.name)
       io = io.indent
@@ -71,11 +77,9 @@ class Ducktrap
       if successful?
         io.puts("output: #{output.inspect}")
       else
-        io.puts("output:")
-        output.pretty_dump(io.indent)
+        io.nest('output:', output)
       end
-      io.puts("context:")
-      context.pretty_dump(io.indent)
+      io.nest('contest:', context)
       self
     end
 
