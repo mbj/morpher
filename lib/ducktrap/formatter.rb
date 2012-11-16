@@ -47,7 +47,7 @@ class Ducktrap
     # @api private
     #
     def nest(label, nested)
-      write(label)
+      puts(label)
       indent.pretty_dump(nested)
       self
     end
@@ -61,7 +61,7 @@ class Ducktrap
     # @api private
     #
     def body(body)
-      write('body:')
+      puts('body:')
       body.each do |member|
         member.pretty_dump(indent)
       end
