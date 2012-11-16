@@ -48,7 +48,7 @@ class Ducktrap
     #
     def nest(label, nested)
       puts(label)
-      indent.pretty_dump(nested)
+      nested.pretty_dump(indent)
       self
     end
 
