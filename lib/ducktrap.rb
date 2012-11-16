@@ -55,26 +55,20 @@ class Ducktrap
   end
 end
 
+require 'ducktrap/formatter'
 require 'ducktrap/error'
-
 require 'ducktrap/result'
 require 'ducktrap/result/static'
 require 'ducktrap/result/invalid'
-
 require 'ducktrap/builder'
-
-
 require 'ducktrap/registry'
-
 require 'ducktrap/nary'
 require 'ducktrap/unary'
 require 'ducktrap/nullary'
 require 'ducktrap/uncategorized'
-
 require 'ducktrap/noop'
 require 'ducktrap/member'
 require 'ducktrap/named_value'
-
 require 'ducktrap/block'
 require 'ducktrap/collection'
 require 'ducktrap/params_hash'
