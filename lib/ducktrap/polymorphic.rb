@@ -31,7 +31,7 @@ class Ducktrap
             body = input.fetch('body')
             result = operand.run(body)
             unless result.successful?
-              raise
+              return NAry::MemberError.new(context, input, result)
             end
             result.output
           end
