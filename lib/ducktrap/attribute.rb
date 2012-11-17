@@ -169,6 +169,9 @@ class Ducktrap
         # Return key
         #
         # @return [String]
+        #
+        # @api private
+        #
         def key
           name.to_s
         end

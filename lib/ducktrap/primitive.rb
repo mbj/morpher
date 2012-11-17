@@ -1,15 +1,4 @@
 class Ducktrap
-  class Inverse < self
-    def run(input)
-      Result::Noop.new(self, input)
-    end
-
-    attr_reader :inverse
-
-    def initialize(inverse)
-      @inverse = inverse
-    end
-  end
 
   class Primitive < self
     include Equalizer.new(:primitive)

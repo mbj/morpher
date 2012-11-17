@@ -57,6 +57,7 @@ end
 
 require 'ducktrap/formatter'
 require 'ducktrap/error'
+require 'ducktrap/inverse'
 require 'ducktrap/result'
 require 'ducktrap/result/static'
 require 'ducktrap/result/invalid'

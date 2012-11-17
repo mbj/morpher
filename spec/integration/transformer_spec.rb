@@ -82,7 +82,6 @@ describe 'simple ducktrap' do
     end
   end
 
-
   let(:dumper) do
     loader.inverse
   end
@@ -94,7 +93,7 @@ describe 'simple ducktrap' do
       should be_successful
     end
 
-    its(:output) { should eql(model.new(:name => 'Markus Schirp', :amount => '1000')) }
+    its(:output) { should eql(model.new(:name => 'Markus Schirp', :amount => 1000)) }
 
     it 'allows to round trip' do
       result = dumper.run(subject.output)

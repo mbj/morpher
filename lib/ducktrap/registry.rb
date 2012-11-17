@@ -14,6 +14,10 @@ class Ducktrap
     # @api private
     #
     def register(name, ducktrap)
+      if @index.key?(name)
+        raise "name: #{name.inspect} does already exist" 
+      end
+
       @index[name] = ducktrap
 
       self
