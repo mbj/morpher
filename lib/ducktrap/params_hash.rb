@@ -2,16 +2,33 @@ class Ducktrap
   # Abstract base class for ducktraps that result in params hash
   class ParamsHash < self
 
+    # Attribute hash extraction
     class AttributesHashExtraction < self
       include Nary
 
       register :params_hash_from_attributes_hash_extraction
 
+      # Retuirn inverse
+      #
+      # @return [Ducktrap] 
+      #
+      # @api private
+      #
       def inverse
         Ducktrap::AttributesHash::ParamsHashExtraction.new(inverse_body)
       end
 
+      # Result of attribute hash extraction
       class Result < Nary::Result
+
+      private
+
+        # Calcluate result
+        #
+        # @return [Object]
+        #
+        # @api private
+        #
         def process
           body.each_with_object({}) do |controller, hash|
             name = controller.name
@@ -59,6 +76,14 @@ class Ducktrap
         self
       end
 
+      # build attribute hash extraction
+      #
+      # @param [Symbol] name
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
       def self.build(name, &block)
         postprocessor = Noop.instance
 
@@ -69,16 +94,37 @@ class Ducktrap
         new(name, postprocessor)
       end
 
+      # Result of attribute
       class Result < Ducktrap::Unary::Result
 
-        def name
-          context.name
+      private
+
+        # Return key
+        #
+        # @return [String]
+        #
+        # @api private
+        #
+        def key
+          context.name.to_s
         end
 
+        # Return postprocessor
+        #
+        # @return  [Ducktrap]
+        #
+        # @api private
+        #
         def postprocessor
           context.postprocessor
         end
 
+        # Return result
+        #
+        # @return [Object]
+        #
+        # @api private
+        #
         def process
           value = input.value
           result = postprocessor.run(value)
@@ -87,7 +133,7 @@ class Ducktrap
             return Nary::MemberError.new(context, input, result)
           end
 
-          { name.to_s => result.output }
+          { key => result.output }
         end
       end
     end

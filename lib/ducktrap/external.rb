@@ -26,6 +26,19 @@ class Ducktrap
       Result::Static.new(self, input, @block.call(input))
     end
 
+    # Perform pretty dump
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def pretty_dump(output=Formatter.new)
+      output.name(self)
+      output.puts("block:   #{block.inspect}")
+      output.puts("inverse: #{inverse_block.inspect}")
+      self
+    end
+
     # Return block
     #
     # @return [Proc]
@@ -90,6 +103,16 @@ class Ducktrap
         self
       end
 
+      # Return ducktrap
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
+      def object
+        klass.new(block, inverse_block)
+      end
+
     private
 
       # Return block
@@ -99,7 +122,7 @@ class Ducktrap
       # @api private
       #
       def block
-        @block || raise("No forward block specified!")
+        @block || raise('No forward block specified!')
       end
 
       # Return inverse block
@@ -109,17 +132,7 @@ class Ducktrap
       # @api private
       #
       def inverse_block
-        @inverse_block || raise("No inverse block specified!")
-      end
-
-      # Return ducktrap
-      #
-      # @return [Ducktrap]
-      #
-      # @api private
-      #
-      def object
-        klass.new(block, inverse_block)
+        @inverse_block || raise('No inverse block specified!')
       end
 
     end

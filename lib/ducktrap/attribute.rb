@@ -4,6 +4,14 @@ class Ducktrap
     include AbstractClass
     include Equalizer.new(:name)
 
+    # Return result for input
+    #
+    # @param [Object] input
+    #
+    # @return [Result]
+    #
+    # @api rpivate
+    #
     def run(input)
       result_klass.new(self, input)
     end
@@ -20,13 +28,45 @@ class Ducktrap
       self
     end
 
+    # Return name of attribute
+    #
+    # @return [Symbol] 
+    #
+    # @api private
+    #
     attr_reader :name
+
+    # Return postprocessor
+    #
+    # @return [Ducktrap]
+    #
+    # @api private
+    #
     attr_reader :postprocessor
 
+  private
+
+    # Initialize object
+    #
+    # @param [Symbol] name
+    # @param [Ducktrap] postprocessor
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
     def initialize(name, postprocessor=Noop.instance)
       @name, @postprocessor = name, postprocessor
     end
 
+    # Build object
+    #
+    # @param [Symbol] name
+    #
+    # @return [Ducktrap]
+    #
+    # @api private
+    #
     def self.build(name, &block)
       postprocessor = Noop.instance
 
@@ -37,10 +77,21 @@ class Ducktrap
       new(name, postprocessor)
     end
 
+    # Result of attribute extractor
     class Result < Ducktrap::Result
 
-      attr_reader :name
+    private
 
+      # Return calculated value
+      #
+      # @return [Object]
+      #   if is successful
+      #
+      # @return [Error]
+      #   otherwise
+      #
+      # @api private
+      #
       def process
         value = process_value
         if(value.kind_of?(Error))
@@ -53,38 +104,85 @@ class Ducktrap
           return Error.new(context, value)
         end
 
-        NamedValue.new(name, value)
+        NamedValue.new(name, result.output)
       end
 
+      # Return postprocessor
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
       def postprocessor
         context.postprocessor
       end
 
+      # Return name of attribute
+      #
+      # @return [Symbol]
+      #
+      # @api private
+      #
       def name
         context.name
       end
-
     end
 
+    # Ducktrap that resturns attribute from params hash 
     class ParamsHash < self
       register :attribute_from_params_hash
 
+      # Return inverse ducktrap
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
       def inverse 
         Ducktrap::ParamsHash::Attribute.new(name, postprocessor.inverse)
       end
 
+      # Error on missing keys
       class MissingKeyError < Ducktrap::Error
+
+        # Initialize object
+        #
+        # @param [Ducktrap] context
+        # @param [Object] input
+        # @param [Symbol] key
+        #
+        # @return [undefined]
+        #
+        # @api private
+        #
         def initialize(context, input, key)
           @key = key
           super(context, input)
         end
       end
 
+      # Result for params hash extractor
       class Result < Ducktrap::Attribute::Result
+
+      private
+
+        # Return key
+        #
+        # @return [String]
         def key
           name.to_s
         end
 
+        # Return processed value
+        #
+        # @return [Object]
+        #   if successful
+        #
+        # @return [Error]
+        #   otherwise
+        #
+        # @api private
+        #
         def process_value
           input.fetch(key) do
             return MissingKeyError.new(context, input, key)
