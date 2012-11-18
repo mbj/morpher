@@ -17,10 +17,10 @@ class Ducktrap
       @klass = klass
       return unless block
 
-      if block.arity.zero?
-        instance_eval(&block)
-      else
+      if block.arity == 1
         block.call(self)
+      else
+        instance_eval(&block)
       end
     end
   end

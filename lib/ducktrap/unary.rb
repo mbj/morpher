@@ -3,8 +3,17 @@ class Ducktrap
   module Unary 
 
     module InstanceMethods
+
+      # Return result for input
+      #
+      # @param [Object] input
+      #
+      # @return [Result]
+      #
+      # @api private
+      #
       def run(input)
-        result_klass.new(self, input, operand)
+        result_klass.new(self, input)
       end
 
       # Return ducktrap
@@ -59,10 +68,23 @@ class Ducktrap
     end
 
     class Result < Ducktrap::Result
-      attr_reader :operand
 
-      def initialize(context, input, operand)
-        @operand = operand
+      # Return operand
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
+      def operand
+        context.operand
+      end
+
+      # Initialize object
+      #
+      # @param [Ducktrap] context
+      # @param [Object] input
+      #
+      def initialize(context, input)
         super(context, input)
       end
     end
