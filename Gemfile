@@ -7,5 +7,5 @@ gem 'descendants_tracker', :git => 'https://github.com/dkubb/descendants_tracker
 gem 'equalizer',           :git => 'https://github.com/dkubb/equalizer.git'
 gem 'anima',               :git => 'https://github.com/mbj/anima.git'
 
-gem 'devtools',            :path => '../devtools' # :git => 'https://github.com/mbj/devtools', :branch => 'rspec-2-mutant'
+gem 'devtools',            :git => 'https://github.com/mbj/devtools', :branch => 'rspec-2-mutant'
 eval File.read('Gemfile.devtools')
