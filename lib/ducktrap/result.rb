@@ -2,7 +2,7 @@ class Ducktrap
 
   # Abstract base class for mutation result
   class Result
-    include AbstractClass, Adamantium::Flat, Equalizer.new(:context, :input, :output)
+    include AbstractType, Adamantium::Flat, Equalizer.new(:context, :input, :output)
 
     # Test if conversion was successful
     #

@@ -33,7 +33,7 @@ class Ducktrap
 
     # Abstract class to convert param hashes to string
     class ParamsHash < self
-      include Nullary, AbstractClass
+      include Nullary, AbstractType
 
       # Base class for params hash results that are serialized to strings
       class Result < Ducktrap::Result

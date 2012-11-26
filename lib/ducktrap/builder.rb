@@ -1,7 +1,7 @@
 class Ducktrap
   # Abstract base class for builders
   class Builder
-    include Adamantium::Flat, AbstractClass
+    include Adamantium::Flat, AbstractType
 
     attr_reader :klass
 

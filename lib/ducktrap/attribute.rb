@@ -1,7 +1,7 @@
 class Ducktrap
   # Abstract base class for ducktrap with attribute as result
   class Attribute < self
-    include AbstractClass
+    include AbstractType
     include Equalizer.new(:name)
 
     # Return result for input

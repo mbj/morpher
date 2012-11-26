@@ -1,5 +1,5 @@
 require 'backports'
-require 'abstract_class'
+require 'abstract_type'
 require 'equalizer'
 require 'adamantium'
 require 'addressable/uri'
@@ -7,7 +7,7 @@ require 'anima'
 
 # Library namespace and abstract base class for ducktraps
 class Ducktrap
-  include AbstractClass, Adamantium::Flat
+  include AbstractType, Adamantium::Flat
 
   # Return inversed ducktrap
   #
