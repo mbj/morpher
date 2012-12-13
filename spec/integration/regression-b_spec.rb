@@ -4,9 +4,7 @@ describe Ducktrap, 'for regression b' do
 
   let(:klass) do
     Class.new do
-      include Anima
-      attribute :foo
-      equalize_on_attributes
+      include Anima.new(:foo)
     end
   end
 

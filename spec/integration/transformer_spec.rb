@@ -73,12 +73,7 @@ describe 'simple ducktrap' do
 
   let(:model) do
     Class.new do
-      include Adamantium, Anima
-
-      attribute :name
-      attribute :amount
-
-      include Equalizer.new(*attribute_set.map(&:name))
+      include Adamantium, Anima.new(:name, :amount)
     end
   end
 
