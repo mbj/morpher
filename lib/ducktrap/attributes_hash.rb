@@ -6,7 +6,7 @@ class Ducktrap
       register :attributes_hash_from_anima
 
       def run(input)
-        Result::Static.new(self, input, model.attribute_hash(input))
+        Result::Static.new(self, input, model.attributes_hash(input))
       end
 
       def inverse
