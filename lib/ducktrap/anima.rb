@@ -31,7 +31,7 @@ class Ducktrap
       private
         def process
           @model.new(input)
-        rescue ::Anima::AttributeError
+        rescue ::Anima::Error
           error
         end
 
