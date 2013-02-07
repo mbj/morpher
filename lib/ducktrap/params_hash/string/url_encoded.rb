@@ -1,4 +1,4 @@
-module Ducktrap
+class Ducktrap
   class ParamsHash
     class String
       # Ducktrap for url encoded params hash
