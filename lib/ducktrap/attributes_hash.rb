@@ -3,27 +3,9 @@ class Ducktrap
   # Abstract base class for ducktraps that result in attribute hash
   class AttributesHash < self
     class Anima < self
+      include Composition.new(:model)
+
       register :attributes_hash_from_anima
-
-      # Return anima model
-      #
-      # @return [Class:Anima]
-      #
-      # @api private
-      #
-      attr_reader :model
-
-      # Initialize object
-      #
-      # @param [Class:Anima] model
-      #
-      # @return [undefined]
-      #
-      # @api private
-      #
-      def initialize(model)
-        @model = model
-      end
 
       # Run ducktrap on input
       #
