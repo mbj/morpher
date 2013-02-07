@@ -9,7 +9,7 @@ class Ducktrap
     #
     # @return [Result]
     #
-    # @api rpivate
+    # @api private
     #
     def run(input)
       result_klass.new(self, input)

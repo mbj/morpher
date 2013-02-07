@@ -2,6 +2,12 @@ class Ducktrap
   class Error 
     include Adamantium::Flat, Composition.new(:context, :input)
 
+    # Perform pretty dump
+    #
+    # @return [self]
+    #
+    # @api private
+    #
     def pretty_dump(output = Formatter.new)
       output.puts("#{self.class}:")
       output = output.indent

@@ -54,6 +54,8 @@ class Ducktrap
     #
     # @return [self]
     #
+    # @api private
+    #
     def pretty_dump(io=Formatter.new)
       io.puts(self.class.name)
       io = io.indent

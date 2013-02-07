@@ -30,6 +30,8 @@ class Ducktrap
       #
       # @return [String]
       #
+      # @api private
+      #
       def inspect
         "<#{self.class.name}>"
       end
@@ -37,6 +39,13 @@ class Ducktrap
     end
 
     module ClassMethods
+
+      # Return instance
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
       def instance
         @instance ||= new
       end
@@ -44,6 +53,14 @@ class Ducktrap
       alias_method :build, :instance
     end
 
+    # Hook called when module is included
+    #
+    # @param [Module] scope
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
     def self.included(scope)
       scope.extend(ClassMethods)
       scope.send(:include,InstanceMethods)

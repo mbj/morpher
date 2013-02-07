@@ -48,20 +48,35 @@ class Ducktrap
         @operand = operand
         super()
       end
+
     end
 
     module ClassMethods
+
+      # Build ducktrap
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
       def build(*args, &block)
         postprocessor = Noop.instance
-
         if block
           postprocessor = Ducktrap::Block.build(&block)
         end
-
         new(postprocessor, *args)
       end
+
     end
 
+    # Hook called when module is included
+    #
+    # @param [Module] scope
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
     def self.included(scope)
       scope.send(:include, InstanceMethods)
       scope.extend(ClassMethods)
@@ -78,6 +93,7 @@ class Ducktrap
       def operand
         context.operand
       end
+
     end
   end
 end

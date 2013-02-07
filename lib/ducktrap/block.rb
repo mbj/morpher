@@ -4,6 +4,12 @@ class Ducktrap
   class Block < self
     include Nary
 
+    # Return inverse ducktrap
+    #
+    # @return [Ducktrap]
+    #
+    # @api private
+    #
     def inverse
       self.class.new(inverse_body)
     end

@@ -21,8 +21,24 @@ class Ducktrap
         self
       end
 
+      # Return member with error
+      #
+      # @return [Object]
+      #
+      # @api private
+      #
       attr_reader :member
 
+      # Initialize object
+      #
+      # @param [Ducktrap] context
+      # @param [Object] input
+      # @param [Object] member
+      #
+      # @return [undefined]
+      #
+      # @api private
+      #
       def initialize(context, input, member)
         @member = member
         super(context, input)
@@ -37,6 +53,8 @@ class Ducktrap
       # @param [Ducktrap] ducktrap
       #
       # @return [self]
+      #
+      # @api private
       #
       def add(ducktrap)
         body << ducktrap
@@ -65,6 +83,12 @@ class Ducktrap
       end
       memoize :object
 
+      # Return body
+      #
+      # @return [Enumerable<Ducktrap>]
+      #
+      # @api private
+      #
       attr_reader :body
 
       # Initialize object
@@ -84,12 +108,20 @@ class Ducktrap
     end
 
     module ClassMethods
+
+      # Build ducktrap
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
       def build(*arguments, &block)
         Builder.new(self, *arguments, &block).object
       end
     end
 
     module InstanceMethods
+
       # Perform pretty dump
       #
       # @return [self]
@@ -115,6 +147,12 @@ class Ducktrap
         result_klass.new(self, input, body)
       end
 
+      # Return inverse body
+      #
+      # @return [Enumerable<Ducktrap>]
+      #
+      # @api private
+      #
       def inverse_body
         body.map(&:inverse).reverse
       end
@@ -143,13 +181,21 @@ class Ducktrap
       end
     end
 
+    # Hook called when module was included
+    #
+    # @param [Class,Module] scope
+    #
+    # @return [undefined]
+    #
+    # @api private
+    #
     def self.included(scope)
       super
       scope.extend(ClassMethods)
       scope.send(:include, InstanceMethods)
       scope.send(:include, Equalizer.new(:body))
-      self
     end
+
   end
 
   module Nary

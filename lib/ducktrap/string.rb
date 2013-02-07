@@ -45,6 +45,9 @@ class Ducktrap
         # Return inverse class
         #
         # @return [Class:Ducktrap::ParamsHash::String::URLEncoed]
+        #
+        # @api private
+        #
         def inverse_klass
           Ducktrap::ParamsHash::String::URLEncoded
         end
@@ -63,7 +66,9 @@ class Ducktrap
           def process
             Addressable::URI.form_encode(input)
           end
+
         end
+
       end
     end
   end

@@ -32,6 +32,8 @@ class Ducktrap
     #
     # @return [self]
     #
+    # @api private
+    #
     def name(object)
       puts(object.class.name)
       self
@@ -75,6 +77,8 @@ class Ducktrap
     # @param [String] string
     #
     # @return [self]
+    #
+    # @api private
     #
     def puts(string)
       @output.write(prefix)

@@ -46,18 +46,16 @@ class Ducktrap
     end
 
     class Attribute < self
-      include Unary
-      include Equalizer.new(:name, :postprocessor)
+      include Unary, Composition.new(:name, :postprocessor)
 
       register :params_hash_from_attribute
 
-      attr_reader :name
-      attr_reader :postprocessor
-
-      def initialize(name, postprocessor = Noop.instance)
-        @name, @postprocessor = name, postprocessor
-      end
-
+      # Return inverse ducktrap
+      #
+      # @return [Duckrap]
+      #
+      # @api private
+      #
       def inverse
         Ducktrap::Attribute::ParamsHash.new(name, postprocessor.inverse)
       end

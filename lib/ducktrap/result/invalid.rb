@@ -1,11 +1,29 @@
 class Ducktrap
   class Result
     class Invalid < self
+
+      # Return output
+      #
+      # @return [Result]
+      #
+      # @api private
+      #
       attr_reader :output
+
+      # Initialize object
+      #
+      # @param [Ducktra] context
+      # @param [Object] input
+      #
+      # @return [undefined]
+      #
+      # @api private
+      #
       def initialize(context, input)
         super(context, input)
         @output = error
       end
+
     end
   end
 end

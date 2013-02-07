@@ -3,11 +3,19 @@ class Ducktrap
   class Builder
     include Adamantium::Flat, AbstractType
 
+    # Return class to build
+    #
+    # @return [Class:Ducktrap]
+    #
+    # @api private
+    #
     attr_reader :klass
 
   private
 
     # Initialize object
+    #
+    # @param [Class:Ducktrap] klass
     #
     # @return [undefined]
     #

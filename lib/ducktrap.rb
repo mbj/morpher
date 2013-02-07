@@ -37,6 +37,8 @@ class Ducktrap
   #
   # @return [self]
   #
+  # @api private
+  #
   def self.register(name)
     DSL.register(name, self)
   end
@@ -52,8 +54,15 @@ class Ducktrap
     self.class::Result
   end
 
+  # Perform pretty dump of ducktrap
+  #
+  # @return [self]
+  #
+  # @api private
+  #
   def pretty_dump(output=Formatter.new)
     output.puts(self.class.name)
+    self
   end
 end
 
@@ -76,6 +85,8 @@ require 'ducktrap/block'
 require 'ducktrap/collection'
 require 'ducktrap/params_hash'
 require 'ducktrap/params_hash/string'
+require 'ducktrap/params_hash/string/json'
+require 'ducktrap/params_hash/string/url_encoded'
 require 'ducktrap/attributes_hash'
 require 'ducktrap/attribute'
 require 'ducktrap/anima'
