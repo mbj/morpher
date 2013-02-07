@@ -2,7 +2,7 @@ class Ducktrap
 
   # Abstract base class for mutation result
   class Result
-    include AbstractType, Adamantium::Flat, Equalizer.new(:context, :input, :output)
+    include AbstractType, Adamantium::Flat, Composition.new(:context, :input)
 
     # Test if conversion was successful
     #
@@ -18,14 +18,6 @@ class Ducktrap
       !output.kind_of?(Error)
     end
 
-    # Return input
-    #
-    # @return [Object]
-    #
-    # @api private
-    #
-    attr_reader :input
-
     # Return output
     #
     # @return [Object]
@@ -33,14 +25,6 @@ class Ducktrap
     # @api private
     #
     attr_reader :output
-
-    # Return context
-    #
-    # @return [Object]
-    #
-    # @api private
-    #
-    attr_reader :context
 
     # Return error
     #
@@ -84,19 +68,6 @@ class Ducktrap
     end
 
   private
-
-    # Initialize object
-    #
-    # @param [Object] input
-    #   the input to dload
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def initialize(context, input)
-      @context, @input = context, input
-    end
 
     # Calculate result
     #

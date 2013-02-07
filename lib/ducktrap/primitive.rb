@@ -1,7 +1,7 @@
 class Ducktrap
 
   class Primitive < self
-    include Equalizer.new(:primitive)
+    include Composition.new(:primitive)
 
     register :primitive
 
@@ -22,14 +22,8 @@ class Ducktrap
 
     def inverse; Inverse.new(self); end
 
-    attr_reader :primitive
-
     def self.build(*args)
       new(*args)
-    end
-
-    def initialize(primitive)
-      @primitive = primitive
     end
   end
 end

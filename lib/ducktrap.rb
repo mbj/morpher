@@ -1,6 +1,7 @@
 require 'backports'
 require 'abstract_type'
 require 'equalizer'
+require 'composition'
 require 'adamantium'
 require 'addressable/uri'
 require 'anima'

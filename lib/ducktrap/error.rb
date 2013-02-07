@@ -1,9 +1,6 @@
 class Ducktrap
   class Error 
-    include Adamantium::Flat, Equalizer.new(:context, :input)
-
-    attr_reader :context
-    attr_reader :input
+    include Adamantium::Flat, Composition.new(:context, :input)
 
     def pretty_dump(output = Formatter.new)
       output.puts("#{self.class}:")
@@ -14,10 +11,5 @@ class Ducktrap
       self
     end
 
-  private
-
-    def initialize(context, input)
-      @context, @input = context, input
-    end
   end
 end

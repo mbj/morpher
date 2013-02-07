@@ -1,17 +1,11 @@
 class Ducktrap
   class Anima < self
-    include Equalizer.new(:model)
+    include Composition.new(:model)
 
     def pretty_dump(output)
       output.puts(self.class.name)
       output = output.indent
       output.puts("model: #{model}")
-    end
-
-    attr_reader :model
-
-    def initialize(model)
-      @model = model
     end
 
     class AttributesHash < self

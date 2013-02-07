@@ -78,15 +78,6 @@ class Ducktrap
       def operand
         context.operand
       end
-
-      # Initialize object
-      #
-      # @param [Ducktrap] context
-      # @param [Object] input
-      #
-      def initialize(context, input)
-        super(context, input)
-      end
     end
   end
 end

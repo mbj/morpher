@@ -2,7 +2,7 @@ class Ducktrap
 
   # Noop ducktrap with fixed inverse
   class Inverse < self
-    include Equalizer.new(:inverse)
+    include Composition.new(:inverse)
 
     # Return result for input
     #
@@ -24,26 +24,5 @@ class Ducktrap
       self
     end
 
-    # Return iverse
-    #
-    # @api private
-    #
-    # @return [Ducktrap]
-    #
-    attr_reader :inverse
-
-  private
-
-    # Initialize object
-    #
-    # @param [Ducktrap] inverse
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def initialize(inverse)
-      @inverse = inverse
-    end
   end
 end

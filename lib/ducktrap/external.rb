@@ -1,8 +1,8 @@
 class Ducktrap
   class External < self
-    register :extern
+    include Composition.new(:block, :inverse_block)
 
-    include Equalizer.new(:block, :inverse_block)
+    register :extern
 
     # Return inverse
     #
@@ -37,35 +37,6 @@ class Ducktrap
       output.puts("block:   #{block.inspect}")
       output.puts("inverse: #{inverse_block.inspect}")
       self
-    end
-
-    # Return block
-    #
-    # @return [Proc]
-    #
-    # @api private
-    #
-    attr_reader :block
-    
-    # Return inverse block
-    #
-    # @return [Proc]
-    #
-    # @api private
-    #
-    attr_reader :inverse_block
-
-    # Initialize object
-    #
-    # @param [Proc] block
-    # @param [Proc] inverse
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def initialize(block, inverse_block)
-      @block, @inverse_block = block, inverse_block
     end
 
     # Build external ducktrap
