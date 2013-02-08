@@ -3,7 +3,7 @@ ducktrap
 
 [![Build Status](https://secure.travis-ci.org/mbj/ducktrap.png?branch=master)](http://travis-ci.org/mbj/ducktrap)
 [![Dependency Status](https://gemnasium.com/mbj/ducktrap.png)](https://gemnasium.com/mbj/ducktrap)
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/mbj/ducktrap)
+[![Code Climate](https://codeclimate.com/github/mbj/ducktrap.png)](https://codeclimate.com/github/mbj/ducktrap)
 
 Ducktrap is a spike for a data transformation algebra. The main idea is to define the transformations with 
 composable blocks that allow to generate an inverse transformation.
