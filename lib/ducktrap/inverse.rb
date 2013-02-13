@@ -14,14 +14,15 @@ class Ducktrap
       Result::Noop.new(self, input)
     end
 
+  private
+
     # Perform pretty dump
     #
     # @return [self]
     #
-    def pretty_dump(output=Formatter.new)
+    def dump(output)
       output.name(self)
       output.nest('inverse:', inverse)
-      self
     end
 
   end

@@ -21,19 +21,6 @@ class Ducktrap
       Result::Static.new(self, input, input)
     end
 
-    # Perfrom pretty dump
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def pretty_dump(output=Formatter.new)
-      output.puts(self.class.name)
-      output = output.indent
-      output.puts("primitive: #{primitive}")
-      self
-    end
-
     # Return inverse ducktrap
     #
     # @return [Ducktrap]
@@ -41,6 +28,21 @@ class Ducktrap
     # @api private
     #
     def inverse; Inverse.new(self); end
+
+  private
+
+    # Perfrom pretty dump
+    #
+    # @param [Formatter] output
+    #
+    # @api private
+    #
+    def dump(output)
+      output.puts(self.class.name)
+      output = output.indent
+      output.puts("primitive: #{primitive}")
+      self
+    end
     
     # Build ducktrap
     #

@@ -11,8 +11,8 @@ class Ducktrap
     #
     # @api private
     #
-    def initialize(level=0)
-      @output, @level = $stdout, level
+    def initialize(output = $stderr, level = 0)
+      @output, @level = output, level
     end
 
     # Return prefix at current indentation
@@ -93,7 +93,7 @@ class Ducktrap
     # @api private
     #
     def indent
-      self.class.new(@level+1)
+      self.class.new(output, @level+1)
     end
   end
 end

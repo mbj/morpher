@@ -3,30 +3,6 @@ class Ducktrap
   class Attribute < self
     include AbstractType, Equalizer.new(:name)
 
-    # Return result for input
-    #
-    # @param [Object] input
-    #
-    # @return [Result]
-    #
-    # @api private
-    #
-    def run(input)
-      result_klass.new(self, input)
-    end
-
-    # Perform pretty dump
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def pretty_dump(output=Formatter.new)
-      output.name(self)
-      output.nest('postprocessor:', postprocessor)
-      self
-    end
-
     # Return name of attribute
     #
     # @return [Symbol] 
@@ -43,7 +19,17 @@ class Ducktrap
     #
     attr_reader :postprocessor
 
-  private
+    # Return result for input
+    #
+    # @param [Object] input
+    #
+    # @return [Result]
+    #
+    # @api private
+    #
+    def run(input)
+      result_klass.new(self, input)
+    end
 
     # Initialize object
     #
@@ -56,6 +42,21 @@ class Ducktrap
     #
     def initialize(name, postprocessor=Noop.instance)
       @name, @postprocessor = name, postprocessor
+    end
+
+  private
+
+    # Dump object
+    #
+    # @param [Formatter] output
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def dump(output)
+      output.name(self)
+      output.nest('postprocessor:', postprocessor)
     end
 
     # Build object

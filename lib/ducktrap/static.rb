@@ -10,7 +10,7 @@ class Ducktrap
     #
     # @api private
     #
-    def run(input)
+    def run(_input)
       Result::Static.new(self, value, value)
     end
 

@@ -48,27 +48,6 @@ class Ducktrap
     end
     memoize :output
 
-    # Perform a pretty dump
-    #
-    # @param [Formatter] io
-    #
-    # @return [self]
-    #
-    # @api private
-    #
-    def pretty_dump(io=Formatter.new)
-      io.puts(self.class.name)
-      io = io.indent
-      io.puts("input: #{input.inspect}")
-      if successful?
-        io.puts("output: #{output.inspect}")
-      else
-        io.nest('output:', output)
-      end
-      io.nest('contest:', context)
-      self
-    end
-
   private
 
     # Calculate result
@@ -83,6 +62,27 @@ class Ducktrap
     #
     abstract_method :process
     private :process
+
+    # Dump object
+    #
+    # @param [Formatter] output
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def dump(output)
+      output.puts(self.class.name)
+      output = output.indent
+      output.puts("input: #{input.inspect}")
+      if successful?
+        output.puts("output: #{output.inspect}")
+      else
+        output.nest('output:', output)
+      end
+      output.nest('contest:', context)
+      self
+    end
 
   end
 end

@@ -60,20 +60,6 @@ class Ducktrap
         Ducktrap::Attribute::ParamsHash.new(name, postprocessor.inverse)
       end
 
-      # Perform pretty dump
-      #
-      # @return [self]
-      #
-      # @api private
-      #
-      def pretty_dump(output=Formatter.new)
-        output.name(self)
-        output = output.indent
-        output.puts("name: #{name.inspect}")
-        output.nest('postprocessor:', postprocessor)
-        self
-      end
-
       # build attribute hash extraction
       #
       # @param [Symbol] name
@@ -90,6 +76,23 @@ class Ducktrap
         end
 
         new(name, postprocessor)
+      end
+
+    private
+
+      # Dump object
+      #
+      # @param [Formatter] output
+      #
+      # @return [undefined]
+      #
+      # @api private
+      #
+      def dump(output)
+        output.name(self)
+        output = output.indent
+        output.puts("name: #{name.inspect}")
+        output.nest('postprocessor:', postprocessor)
       end
 
       # Result of attribute

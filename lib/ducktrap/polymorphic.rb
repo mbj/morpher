@@ -33,18 +33,21 @@ class Ducktrap
         super(operand)
       end
 
-      # Perform pretty dump
+    private
+
+      # Dump object
       #
-      # @return [self]
+      # @param [Formatter] output
+      #
+      # @return [undefined]
       #
       # @api private
       #
-      def pretty_dump(output=Formatter.new)
+      def dump(output)
         output.name(self)
         output.puts("key: #{key.inspect}")
         output.puts("model: #{model.inspect}")
         output.nest('operand:', operand)
-        self
       end
 
       # Polymorphic loader

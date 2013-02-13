@@ -10,7 +10,23 @@ require 'anima'
 class Ducktrap
   include AbstractType, Adamantium::Flat
 
-  class InvalidInputError < RuntimeError; end
+  class InvalidInputError 
+    include Adamantium::Flat, Composition.new(:error)
+
+    # Return error message
+    #
+    # @return [String]
+    #
+    # @api private
+    #
+    def message
+      formatter = Formatter.new('')
+      error.pretty_dump(formatter)
+      formatter.output
+    end
+    memoize :message
+
+  end
 
   # Return inversed ducktrap
   #
@@ -83,9 +99,11 @@ class Ducktrap
   # @api private
   #
   def pretty_dump(output=Formatter.new)
-    output.puts(self.class.name)
+    dump(output)
     self
   end
+
+  abstract_method :dump
 
   # Build ducktrap
   #

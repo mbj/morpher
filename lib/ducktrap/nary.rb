@@ -6,21 +6,6 @@ class Ducktrap
     class MemberError < Ducktrap::Error
       include Equalizer.new(:context, :input, :member)
 
-      # Perform pretty dump
-      #
-      # @return [self]
-      #
-      # @pai private
-      #
-      def pretty_dump(output = Formatter.new)
-        output.name(self)
-        output = output.indent
-        output.puts("input: #{input.inspect}")
-        output.nest('member', member)
-        output.nest('context:', context)
-        self
-      end
-
       # Return member with error
       #
       # @return [Object]
@@ -42,6 +27,22 @@ class Ducktrap
       def initialize(context, input, member)
         @member = member
         super(context, input)
+      end
+
+    private
+
+      # Dump to output
+      #
+      # @return [undefined]
+      #
+      # @pai private
+      #
+      def dump(output)
+        output.name(self)
+        output = output.indent
+        output.puts("input: #{input.inspect}")
+        output.nest('member', member)
+        output.nest('context:', context)
       end
     end
 
@@ -122,17 +123,17 @@ class Ducktrap
 
     module InstanceMethods
 
-      # Perform pretty dump
+      # Initialize object
       #
-      # @return [self]
+      # @param [Enumerable<Ducktrap>] body
+      #
+      # @return [undefined]
       #
       # @api private
       #
-      def pretty_dump(output=Formatter.new)
-        output.name(self)
-        indent = output.indent
-        output.body(body)
-        self
+      def initialize(body=[])
+        @body = body
+        super()
       end
 
       # Run ducktrap on input
@@ -167,18 +168,21 @@ class Ducktrap
 
     private
 
-      # Initialize object
+      # Dump instance
       #
-      # @param [Enumerable<Ducktrap>] body
+      # @param [Formatter] formatter
       #
       # @return [undefined]
       #
       # @api private
       #
-      def initialize(body=[])
-        @body = body
-        super()
+      def dump(output)
+        output.name(self)
+        indent = output.indent
+        output.body(body)
+        self
       end
+
     end
 
     # Hook called when module was included

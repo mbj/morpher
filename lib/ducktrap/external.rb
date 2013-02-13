@@ -26,17 +26,20 @@ class Ducktrap
       Result::Static.new(self, input, @block.call(input))
     end
 
-    # Perform pretty dump
+  private
+
+    # Dump object
     #
-    # @return [self]
+    # @param [Formatter] output
+    #
+    # @return [undefined]
     #
     # @api private
     #
-    def pretty_dump(output=Formatter.new)
+    def dump(output)
       output.name(self)
       output.puts("block:   #{block.inspect}")
       output.puts("inverse: #{inverse_block.inspect}")
-      self
     end
 
     # Build external ducktrap

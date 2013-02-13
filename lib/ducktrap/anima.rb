@@ -2,17 +2,20 @@ class Ducktrap
   class Anima < self
     include Composition.new(:model)
 
+  private
+
     # Perform pretty dump
     #
-    # @return [self]
+    # @param [Formatter] output
+    #
+    # @return [undefined]
     #
     # @api private
     #
-    def pretty_dump(output=Formatter.new)
+    def dump(output)
       output.puts(self.class.name)
       output = output.indent
       output.puts("model: #{model}")
-      self
     end
 
     class AttributesHash < self

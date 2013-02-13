@@ -32,16 +32,19 @@ class Ducktrap
     #
     def inverse; self.class.new(index, operand.inverse); end
 
+  private
+
     # Perform pretty dump
     #
-    # @return [self]
+    # @param [Formatter] output
+    #
+    # @return [undefined]
     #
     # @api private
     #
-    def pretty_dump(output=Formatter.new)
+    def dump(output)
       output.puts("- #{@index}: #{self.class.name}")
       output.indent.nest('operand:', operand)
-      self
     end
 
     # Error of member ducktrap
@@ -70,13 +73,17 @@ class Ducktrap
         super(context, input)
       end
 
-      # Perform pretty dump
+    private
+
+      # Dump object
       #
-      # @return [self]
+      # @param [Formatter] output 
+      #
+      # @return [undefined]
       #
       # @api private
       #
-      def pretty_dump(output=Formatter.new)
+      def dump(output)
         output.name(self)
         output = output.indent
         output.puts("input: #{input.inspect}")

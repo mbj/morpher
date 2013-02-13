@@ -1,8 +1,19 @@
 class Ducktrap
-  # Abstract ducktrap that delegates a single ducktrap
+  # Mixin for defining unary ducktraps
   module Unary 
-
+    # Instance methods mixin for unary ducktrap
     module InstanceMethods
+
+      # Initialize object
+      #
+      # @param [Ducktrap] operand
+      #
+      # @api private
+      #
+      def initialize(operand)
+        @operand = operand
+        super()
+      end
 
       # Return result for input
       #
@@ -24,29 +35,18 @@ class Ducktrap
       #
       attr_reader :operand
 
+    private
+
       # Perform pretty dump
       #
       # @return [self]
       #
       # @api private
       #
-      def pretty_dump(output=Formatter.new)
+      def dump(output)
         output.name(self)
         output.nest('operand:', operand)
         self
-      end
-
-    private
-
-      # Initialize object
-      #
-      # @param [Ducktrap] operand
-      #
-      # @api private
-      #
-      def initialize(operand)
-        @operand = operand
-        super()
       end
 
     end
