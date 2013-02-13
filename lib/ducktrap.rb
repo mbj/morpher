@@ -86,6 +86,16 @@ class Ducktrap
     output.puts(self.class.name)
     self
   end
+
+  # Build ducktrap
+  #
+  # @return [Ducktrap]
+  #
+  # @api private
+  #
+  def self.build(&block)
+    Block.build(&block)
+  end
 end
 
 require 'ducktrap/formatter'
