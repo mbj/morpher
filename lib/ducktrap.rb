@@ -63,7 +63,7 @@ class Ducktrap
   def process(input)
     result = run(input)
     unless result.successful?
-      raise InvalidInputError
+      raise InvalidInputError, result.error
     end
     result.output
   end
