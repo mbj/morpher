@@ -10,7 +10,7 @@ require 'anima'
 class Ducktrap
   include AbstractType, Adamantium::Flat
 
-  class InvalidInputError 
+  class InvalidInputError < RuntimeError
     include Adamantium::Flat, Composition.new(:error)
 
     # Return error message
@@ -63,7 +63,7 @@ class Ducktrap
   def process(input)
     result = run(input)
     unless result.successful?
-      raise InvalidInputError
+      raise InvalidInputError, result.error
     end
     result.output
   end
