@@ -10,6 +10,8 @@ require 'anima'
 class Ducktrap
   include AbstractType, Adamantium::Flat
 
+  class InvalidInputError < RuntimeError; end
+
   # Return inversed ducktrap
   #
   # @param [Object] input
@@ -29,6 +31,26 @@ class Ducktrap
   # @api private
   #
   abstract_method :run
+
+  # Process input and raise exception on error
+  #
+  # @param [Object] input
+  #
+  # @return [Object]
+  #   if successful
+  #
+  # @raise [RuntimeError]
+  #   otherwise
+  #
+  # @api private
+  #
+  def process(input)
+    result = run(input)
+    unless result.successful?
+      raise InvalidInputError
+    end
+    result.output
+  end
 
   # Register dsl name
   #
