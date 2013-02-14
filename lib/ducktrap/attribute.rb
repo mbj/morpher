@@ -50,7 +50,7 @@ class Ducktrap
     #
     # @param [Formatter] output
     #
-    # @return [self]
+    # @return [undefined]
     #
     # @api private
     #

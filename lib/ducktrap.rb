@@ -76,7 +76,6 @@ class Ducktrap
   # Register dsl name
   #
   # @param [Symbol] name
-  # @param [Class:Ducktrap] ducktrap
   #
   # @return [self]
   #

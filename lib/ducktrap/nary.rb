@@ -97,8 +97,8 @@ class Ducktrap
       # @param [Class] klass
       #   the klass to build
       #
-      # @param [Enumerable<Object>] *arguments
-      #   the arguments to pass into constructor
+      # @param [Enumerable<Ducktrap>] body
+      #   the body of nary ducktrap
       #
       # @api private
       #
@@ -170,7 +170,7 @@ class Ducktrap
 
       # Dump instance
       #
-      # @param [Formatter] formatter
+      # @param [Formatter] output
       #
       # @return [undefined]
       #

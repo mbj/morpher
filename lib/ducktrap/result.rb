@@ -65,7 +65,7 @@ class Ducktrap
 
     # Dump object
     #
-    # @param [Formatter] output
+    # @param [Formatter] formatter
     #
     # @return [self]
     #

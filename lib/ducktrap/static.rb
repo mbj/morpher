@@ -4,7 +4,7 @@ class Ducktrap
 
     # Run ducktrap on input
     #
-    # @param [Object] input
+    # @param [Object] _input
     #
     # @return [Result]
     #
