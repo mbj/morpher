@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Ducktrap, '#process' do
-  subject { object.process(input) }
+describe Ducktrap, '#execute' do
+  subject { object.execute(input) }
 
   let(:object) { class_under_test.new }
 
@@ -14,7 +14,7 @@ describe Ducktrap, '#process' do
     end
   end
 
-  let(:result) { mock('Result', :output => output, :successful? => successful?, :error => error) }
+  let(:result) { mock('Result', :output => output, :successful? => successful?) }
 
   let(:input) { mock('Input') }
   let(:error) { mock('Error') }
@@ -30,7 +30,7 @@ describe Ducktrap, '#process' do
     let(:successful?) { false }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(Ducktrap::InvalidInputError.new(error))
+      expect { subject }.to raise_error(Ducktrap::InvalidInputError.new(result))
     end
   end
 end

@@ -65,10 +65,10 @@ class Ducktrap
   #
   # @api private
   #
-  def process(input)
+  def execute(input)
     result = run(input)
     unless result.successful?
-      raise InvalidInputError.new(result.error)
+      raise InvalidInputError.new(result)
     end
     result.output
   end
