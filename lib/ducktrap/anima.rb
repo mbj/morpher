@@ -64,7 +64,7 @@ class Ducktrap
         #
         def process
           @model.new(input)
-        rescue ::Anima::Error
+        rescue ::Anima::Error 
           error
         end
 

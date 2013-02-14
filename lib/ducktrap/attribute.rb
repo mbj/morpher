@@ -70,11 +70,9 @@ class Ducktrap
     #
     def self.build(name, &block)
       postprocessor = Noop.instance
-
       if block
         postprocessor = Ducktrap::Block.build(&block)
       end
-
       new(name, postprocessor)
     end
 
@@ -95,6 +93,7 @@ class Ducktrap
       #
       def process
         value = process_value
+
         if(value.kind_of?(Error))
           return Error.new(context, value)
         end
