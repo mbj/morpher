@@ -27,6 +27,16 @@ class Ducktrap
         result_klass.new(self, input)
       end
 
+      # Return inverse
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
+      def inverse
+        self.class.new(operand.inverse)
+      end
+
       # Return ducktrap
       #
       # @return [Ducktrap]

@@ -5,16 +5,6 @@ class Ducktrap
 
     register :collection
 
-    # Return inverse
-    #
-    # @return [Ducktrap]
-    #
-    # @api private
-    #
-    def inverse
-      self.class.new(operand.inverse)
-    end
-
     # Result for collection ducktrap
     class Result < Unary::Result
 
