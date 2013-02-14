@@ -30,7 +30,7 @@ class Ducktrap
         input.map do |element|
           result = operand.run(element)
           unless result.successful?
-            raise
+            return nested_error(result)
           end
           result.output
         end

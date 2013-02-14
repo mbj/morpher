@@ -35,7 +35,7 @@ class Ducktrap
           result = ducktrap.run(input)
 
           unless result.successful?
-            return Nary::MemberError.new(context, original_input, result)
+            return nested_error(result)
           end
 
           result.output

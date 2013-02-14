@@ -107,7 +107,7 @@ class Ducktrap
       def process
         result = operand.run(input)
         unless result.successful?
-          return MemberError.new(context, input, result.output)
+          return nested_error(result)
         end
         result.output
       end

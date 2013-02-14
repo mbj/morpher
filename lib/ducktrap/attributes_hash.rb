@@ -69,10 +69,11 @@ class Ducktrap
         #
         def process
           results.each_with_object({}) do |result, hash|
-            output = result.output
             unless result.successful?
-              return Nary::MemberError.new(context, input, result)
+              return nested_error(result)
             end
+
+            output = result.output
 
             hash[output.name]=output.value
           end

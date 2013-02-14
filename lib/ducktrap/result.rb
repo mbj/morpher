@@ -26,17 +26,6 @@ class Ducktrap
     #
     attr_reader :output
 
-    # Return error
-    #
-    # @return [Error]
-    #
-    # @api private
-    #
-    def error
-      Error.new(context, input)
-    end
-    memoize :error
-
     # Return output
     #
     # @return [Object]
@@ -62,6 +51,26 @@ class Ducktrap
     #
     abstract_method :process
     private :process
+
+    # Return error
+    #
+    # @return [Error]
+    #
+    # @api private
+    #
+    def error
+      Error.new(context, input)
+    end
+
+    # Return nested error
+    #
+    # @return [Error::Nested]
+    #
+    # @api private
+    #
+    def nested_error(error)
+      Error.new(error, input)
+    end
 
     # Dump object
     #

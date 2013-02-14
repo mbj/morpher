@@ -36,7 +36,7 @@ class Ducktrap
             result = controller.run(value)
 
             unless result.successful?
-              return Nary::MemberError.new(context, input, result)
+              return nested_error(result)
             end
 
             hash.merge!(result.output)
@@ -131,7 +131,7 @@ class Ducktrap
           result = postprocessor.run(value)
 
           unless result.successful?
-            return Nary::MemberError.new(context, input, result)
+            return nested_error(result)
           end
 
           { key => result.output }

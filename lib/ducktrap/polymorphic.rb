@@ -243,7 +243,7 @@ class Ducktrap
             mapper = context.mapper(input.class)
             result = mapper.run(input)
             unless result.successful?
-              return Nary::MemberError.new(context, input, result)
+              return nested_error(result)
             end
             result.output
           end

@@ -3,49 +3,6 @@ class Ducktrap
   # Mixin for Nary ducktraps
   module Nary 
 
-    class MemberError < Ducktrap::Error
-      include Equalizer.new(:context, :input, :member)
-
-      # Return member with error
-      #
-      # @return [Object]
-      #
-      # @api private
-      #
-      attr_reader :member
-
-      # Initialize object
-      #
-      # @param [Ducktrap] context
-      # @param [Object] input
-      # @param [Object] member
-      #
-      # @return [undefined]
-      #
-      # @api private
-      #
-      def initialize(context, input, member)
-        @member = member
-        super(context, input)
-      end
-
-    private
-
-      # Dump to output
-      #
-      # @return [undefined]
-      #
-      # @pai private
-      #
-      def dump(output)
-        output.name(self)
-        output = output.indent
-        output.puts("input: #{input.inspect}")
-        output.nest('member', member)
-        output.nest('context:', context)
-      end
-    end
-
     # Builder for nary ducktraps
     class Builder < Ducktrap::Builder
       
