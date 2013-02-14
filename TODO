@@ -1,5 +1,6 @@
 * Finally stop spiking
-* Heckle / Mutate this stuff
+* Mutate this stuff
 * Dedup all unary results!
 * Find better name for ducktrap and result
 * Transformer and Evaluator ?
+* Transform block ducktrap into a nested structure, so on errors the intermediates inputs and outputs could be stared.
