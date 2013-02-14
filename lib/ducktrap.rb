@@ -6,9 +6,12 @@ require 'adamantium'
 require 'addressable/uri'
 require 'anima'
 
+# ::Ducktrap needs this
+require 'ducktrap/pretty_dump'
+
 # Library namespace and abstract base class for ducktraps
 class Ducktrap
-  include AbstractType, Adamantium::Flat
+  include AbstractType, PrettyDump, Adamantium::Flat
 
   class InvalidInputError < RuntimeError
     include Adamantium::Flat, Composition.new(:error)

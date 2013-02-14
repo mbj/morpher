@@ -2,7 +2,7 @@ class Ducktrap
 
   # Abstract base class for mutation result
   class Result
-    include AbstractType, Adamantium::Flat, Composition.new(:context, :input)
+    include AbstractType, Adamantium::Flat, PrettyDump, Composition.new(:context, :input)
 
     # Test if conversion was successful
     #
