@@ -12,7 +12,7 @@ class Ducktrap
         #
         # @api privateo
         #
-        def inverse; Nullary::String::JSON; end
+        def inverse; String::JSON; end
 
         class Result < String::Result
 

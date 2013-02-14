@@ -5,7 +5,7 @@ class Ducktrap
     # Ducktrap to convert fixnums to string
     class Fixnum < self
       register :string_from_fixnum
-      include Nullary
+      include Singleton
 
       # Return inverse klass
       #
@@ -33,7 +33,7 @@ class Ducktrap
 
     # Abstract class to convert param hashes to string
     class ParamsHash < self
-      include Nullary, AbstractType
+      include Singleton, AbstractType
 
       # Base class for params hash results that are serialized to strings
       class Result < Ducktrap::Result

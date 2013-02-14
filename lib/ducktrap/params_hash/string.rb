@@ -2,7 +2,7 @@ class Ducktrap
   class ParamsHash
     # Base class for ducktraps that load params hashes from string
     class String < self
-      include Nullary
+      include Singleton
 
       # Base class for params hash results that are deserialized from strings
       class Result < Ducktrap::Result

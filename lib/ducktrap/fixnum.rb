@@ -1,6 +1,6 @@
 class Ducktrap
   class Fixnum < self
-    include Nullary
+    include Singleton
 
     class String < self
       register :fixnum_from_string

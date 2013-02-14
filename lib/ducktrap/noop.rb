@@ -1,6 +1,6 @@
 class Ducktrap
   class Noop < self
-    include Nullary
+    include Singleton
 
     # Run ducktrap
     #

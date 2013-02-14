@@ -1,6 +1,6 @@
 class Ducktrap
   # Mixin to define nullary ducktraps
-  module Nullary 
+  module Singleton 
     module InstanceMethods
       include Adamantium::Flat
 
