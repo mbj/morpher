@@ -1,4 +1,7 @@
 ---
+UnusedParamters:
+  accept:
+  - _input
 UncommunicativeParameterName:
   accept: []
   exclude: []
