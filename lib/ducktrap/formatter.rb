@@ -3,16 +3,25 @@ class Ducktrap
   class Formatter
     include Adamantium::Flat
 
+    # Return output
+    #
+    # @return [IO]
+    #
+    # @api private
+    #
+    attr_reader :output
+
     # Initialize formatter
     #
-    # @param [Fixnum] level
+    # @param [IO] output
+    # @param [Fixnum] indent
     #
     # @return [undefined]
     #
     # @api private
     #
-    def initialize(output = $stderr, level = 0)
-      @output, @level = output, level
+    def initialize(output = $stderr, indent = 0)
+      @output, @indent = output, indent
     end
 
     # Return prefix at current indentation
@@ -22,7 +31,7 @@ class Ducktrap
     # @api private
     #
     def prefix
-      "  " * @level
+      "  " * @indent
     end
     memoize :prefix
 
@@ -86,14 +95,14 @@ class Ducktrap
       self
     end
 
-    # Return formatter with deeper indentation level
+    # Return formatter with deeper indentation indent
     #
     # @return [Formatter]
     #
     # @api private
     #
     def indent
-      self.class.new(output, @level+1)
+      self.class.new(output, @indent+1)
     end
   end
 end

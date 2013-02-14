@@ -20,9 +20,11 @@ class Ducktrap
     # @api private
     #
     def message
-      formatter = Formatter.new('')
+      io = StringIO.new
+      formatter = Formatter.new(io)
       error.pretty_dump(formatter)
-      formatter.output
+      io.rewind
+      io.read
     end
     memoize :message
 
