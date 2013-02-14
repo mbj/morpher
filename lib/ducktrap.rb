@@ -96,19 +96,6 @@ class Ducktrap
     self.class::Result
   end
 
-  # Perform pretty dump of ducktrap
-  #
-  # @return [self]
-  #
-  # @api private
-  #
-  def pretty_dump(output=Formatter.new)
-    dump(output)
-    self
-  end
-
-  abstract_method :dump
-
   # Build ducktrap
   #
   # @return [Ducktrap]
@@ -117,6 +104,20 @@ class Ducktrap
   #
   def self.build(&block)
     Block.build(&block)
+  end
+
+private
+
+  # Dump object
+  #
+  # @param [Formatter] output
+  #
+  # @return [undefined]
+  #
+  # @api private
+  #
+  def dump(output)
+    output.name(self)
   end
 end
 

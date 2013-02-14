@@ -35,6 +35,8 @@ class Ducktrap
     #
     # @param [Formatter] output
     #
+    # @return [undefined]
+    #
     # @api private
     #
     def dump(output)

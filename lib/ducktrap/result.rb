@@ -71,16 +71,16 @@ class Ducktrap
     #
     # @api private
     #
-    def dump(output)
-      output.puts(self.class.name)
-      output = output.indent
-      output.puts("input: #{input.inspect}")
+    def dump(formatter)
+      formatter.name(self)
+      formatter = formatter.indent
+      formatter.puts("input: #{input.inspect}")
       if successful?
-        output.puts("output: #{output.inspect}")
+        formatter.puts("output: #{output.inspect}")
       else
-        output.nest('output:', output)
+        formatter.nest('output:', output)
       end
-      output.nest('contest:', context)
+      formatter.nest('context:', context)
       self
     end
 

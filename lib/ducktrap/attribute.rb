@@ -56,6 +56,7 @@ class Ducktrap
     #
     def dump(output)
       output.name(self)
+      output.labeled('name', name)
       output.nest('postprocessor:', postprocessor)
     end
 

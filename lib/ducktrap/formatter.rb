@@ -64,6 +64,20 @@ class Ducktrap
       self
     end
 
+    # Write labeled value
+    #
+    # @param [String] label
+    # @param [#inspect] value
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def labeled(label, value)
+      puts("#{label}: #{value.inspect}")
+      self
+    end
+
     # Write body
     #
     # @param [Enumerable<#pretty_dump>] body
