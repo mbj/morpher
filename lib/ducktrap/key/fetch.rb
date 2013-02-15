@@ -34,7 +34,11 @@ class Ducktrap
           value = input.fetch(context.key) do
             return nested_error(self)
           end
-          process_operand(value).output
+          result = process_operand(value)
+          unless result.successful?
+            return nested_error(result)
+          end
+          result.output
         end
 
       end

@@ -25,6 +25,21 @@ class Ducktrap
       super(operand)
     end
 
+  private
+
+    # Dump object
+    #
+    # @return [self]
+    #
+    # @api private
+    #
+    def dump(output)
+      output.name(self)
+      output.attribute(:key, key)
+      output.nest('operand:', operand)
+      self
+    end
+
     # Base class for key results
     class Result < Unary::Result
 

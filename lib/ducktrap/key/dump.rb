@@ -30,7 +30,7 @@ class Ducktrap
         def process
           result = processed_input
           unless result.successful?
-            nested_error(result)
+            return nested_error(result)
           end
           { key =>  result.output }
         end
