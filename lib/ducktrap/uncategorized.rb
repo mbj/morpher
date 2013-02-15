@@ -1,2 +1,0 @@
-class Ducktrap
-end
