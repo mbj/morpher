@@ -1,7 +1,4 @@
 ---
-UnusedParamters:
-  accept:
-  - _input
 UncommunicativeParameterName:
   accept: []
   exclude: []
@@ -29,7 +26,8 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude: []
+  exclude:
+  - Ducktrap::InvalidInputError#message
   enabled: true
 ClassVariable:
   exclude: []

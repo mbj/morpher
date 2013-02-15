@@ -4,14 +4,16 @@ class Ducktrap
   class Inverse < self
     include Composition.new(:inverse)
 
-    # Return result for input
+    # Return result
     #
-    # @return [Result::Noop]
+    # @param [Object] input
+    #
+    # @return [Result]
     #
     # @api private
     #
     def run(input)
-      Result::Noop.new(self, input)
+      Result::Static.new(self, input, input)
     end
 
   private

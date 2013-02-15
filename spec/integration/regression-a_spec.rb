@@ -12,12 +12,15 @@ describe Ducktrap, 'for regression a' do
     klass = self.klass
 
     Ducktrap::Block.build do
-      attributes_hash_from_anima(klass)
-      params_hash_from_attributes_hash_extraction do
-        params_hash_from_attribute(:foo) do
-          extern do
-            forward { :forward }
-            inverse { :inverse }
+      anima_dump(klass) do
+        collect_hash do
+          fetch_key(:foo) do
+            dump_key('foo') do
+              extern do
+                forward { :forward }
+                inverse { :inverse }
+              end
+            end
           end
         end
       end
@@ -41,10 +44,10 @@ describe Ducktrap, 'for regression a' do
   end
 
   it 'should dump from external' do
-    dumper.run(instance).output.should eql(dump)
+    dumper.execute(instance).should eql(dump)
   end
 
   it 'should load from external' do
-    loader.run(dump).output.should eql(expected_instance)
+    loader.execute(dump).should eql(expected_instance)
   end
 end

@@ -67,10 +67,11 @@ class Ducktrap
   #
   def execute(input)
     result = run(input)
+    output = result.output
     unless result.successful?
-      raise InvalidInputError.new(result)
+      raise InvalidInputError.new(output)
     end
-    result.output
+    output
   end
 
   # Register dsl name
@@ -103,7 +104,7 @@ class Ducktrap
   # @api private
   #
   def self.build(&block)
-    Block.build(&block)
+    self::Block.build(&block)
   end
 
 private
@@ -129,22 +130,22 @@ require 'ducktrap/result/static'
 require 'ducktrap/result/invalid'
 require 'ducktrap/builder'
 require 'ducktrap/registry'
-require 'ducktrap/nary'
+require 'ducktrap/nullary'
 require 'ducktrap/unary'
+require 'ducktrap/nary'
+require 'ducktrap/key'
+require 'ducktrap/key/fetch'
+require 'ducktrap/key/dump'
 require 'ducktrap/singleton'
 require 'ducktrap/uncategorized'
 require 'ducktrap/noop'
 require 'ducktrap/member'
-require 'ducktrap/named_value'
 require 'ducktrap/block'
+require 'ducktrap/collect'
 require 'ducktrap/collection'
-require 'ducktrap/params_hash'
-require 'ducktrap/params_hash/string'
-require 'ducktrap/params_hash/string/json'
-require 'ducktrap/params_hash/string/url_encoded'
-require 'ducktrap/attributes_hash'
-require 'ducktrap/attribute'
 require 'ducktrap/anima'
+require 'ducktrap/anima/load'
+require 'ducktrap/anima/dump'
 require 'ducktrap/primitive'
 require 'ducktrap/fixnum'
 require 'ducktrap/string'

@@ -21,6 +21,8 @@ class Ducktrap
       #
       # @param [Object] input
       #
+      # @return [Fixnum]
+      #
       # @api private
       #
       def run(input)

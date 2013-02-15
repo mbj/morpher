@@ -1,8 +1,9 @@
 class Ducktrap
-  # Ducktrap that returns last result of a chain and stops on first failure.
-  # Acts like AND with multiple inputs.
-  class Block < self
+  # Ducktrap that collects results with executing inner ducktraps with the same input
+  class Collect < self
     include Nary
+
+    register :collect_hash
 
     # Return inverse ducktrap
     #
@@ -11,7 +12,7 @@ class Ducktrap
     # @api private
     #
     def inverse
-      self.class.new(inverse_body)
+      Collect.new(body.map(&:inverse))
     end
 
     # Result of chained ducktraps
@@ -30,14 +31,16 @@ class Ducktrap
       # @api private
       #
       def process
-        body.inject(input) do |input, ducktrap|
+        body.each_with_object({}) do |ducktrap, hash|
           result = ducktrap.run(input)
 
           unless result.successful?
             return nested_error(result)
           end
 
-          result.output
+          output = result.output
+
+          hash.merge!(result.output)
         end
       end
     end

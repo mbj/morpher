@@ -17,7 +17,6 @@ describe Ducktrap, '#execute' do
   let(:result) { mock('Result', :output => output, :successful? => successful?) }
 
   let(:input) { mock('Input') }
-  let(:error) { mock('Error') }
   let(:output) { mock('Output') }
 
   context 'when result is successful' do
@@ -30,7 +29,7 @@ describe Ducktrap, '#execute' do
     let(:successful?) { false }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(Ducktrap::InvalidInputError.new(result))
+      expect { subject }.to raise_error(Ducktrap::InvalidInputError.new(output))
     end
   end
 end

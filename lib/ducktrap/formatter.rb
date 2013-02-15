@@ -66,15 +66,16 @@ class Ducktrap
 
     # Write labeled value
     #
-    # @param [String] label
+    # @param [#to_str] name
     # @param [#inspect] value
     #
     # @return [self]
     #
     # @api private
     #
-    def labeled(label, value)
-      puts("#{label}: #{value.inspect}")
+    def attribute(name, value)
+      indented = indent
+      indented.puts("#{name}: #{value.inspect}")
       self
     end
 

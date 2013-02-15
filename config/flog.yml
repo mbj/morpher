@@ -1,3 +1,2 @@
 ---
-threshold: 20.7 # TODO: decrease to ~ 10
-total_score: 130.7
+threshold: 18.5 # TODO: decrease to ~ 10

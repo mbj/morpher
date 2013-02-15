@@ -82,12 +82,9 @@ class Ducktrap
     #
     def dump(formatter)
       formatter.name(self)
-      formatter = formatter.indent
-      formatter.puts("input: #{input.inspect}")
+      formatter.attribute(:input, input)
       if successful?
-        formatter.puts("output: #{output.inspect}")
-      else
-        formatter.nest('output:', output)
+        formatter.attribute(:output, output)
       end
       formatter.nest('context:', context)
       self

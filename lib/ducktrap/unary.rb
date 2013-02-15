@@ -4,6 +4,14 @@ class Ducktrap
     # Instance methods mixin for unary ducktrap
     module InstanceMethods
 
+      # Return ducktrap
+      #
+      # @return [Ducktrap]
+      #
+      # @api private
+      #
+      attr_reader :operand
+
       # Initialize object
       #
       # @param [Ducktrap] operand
@@ -26,24 +34,6 @@ class Ducktrap
       def run(input)
         result_klass.new(self, input)
       end
-
-      # Return inverse
-      #
-      # @return [Ducktrap]
-      #
-      # @api private
-      #
-      def inverse
-        self.class.new(operand.inverse)
-      end
-
-      # Return ducktrap
-      #
-      # @return [Ducktrap]
-      #
-      # @api private
-      #
-      attr_reader :operand
 
     private
 
@@ -92,7 +82,11 @@ class Ducktrap
       scope.extend(ClassMethods)
     end
 
+    private_class_method :included
+
     class Result < Ducktrap::Result
+
+    private
 
       # Return operand
       #
@@ -102,6 +96,36 @@ class Ducktrap
       #
       def operand
         context.operand
+      end
+
+      # Process operand
+      #
+      # @param [Object] input
+      #
+      # @return [Object]
+      #   if successuful
+      #
+      # @return [Error]
+      #   otherwise
+      #
+      # @api private
+      #
+      def process_operand(input)
+        operand.run(input)
+      end
+
+      # Process input with operand
+      #
+      # @return [Object]
+      #   if successful
+      #
+      # @return [Error]
+      #   otherwise
+      #
+      # @api private
+      #
+      def processed_input
+        process_operand(input)
       end
 
     end

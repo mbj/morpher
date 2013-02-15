@@ -7,68 +7,24 @@ describe 'simple ducktrap' do
     model = self.model
 
     Ducktrap::Block.build do 
-      params_hash_from_url_encoded_string
-      attributes_hash_from_params_hash_extraction do 
-        attribute_from_params_hash :name do
-          primitive(String)
-        end
-
-        attribute_from_params_hash :amount do
-          fixnum_from_string
+      anima_load(model) do
+        collect_hash do
+          fetch_key('name') do
+            primitive(String)
+            dump_key(:name)
+          end
+          fetch_key('amount') do
+            primitive(String)
+            fixnum_from_string
+            dump_key(:amount)
+          end
         end
       end
-      anima_from_attributes_hash(model)
     end
   end
 
   specify 'inversing twice equals original' do
     loader.should eql(loader.inverse.inverse)
-  end
-
-  it 'should convert attribute from params hash and vice versa' do
-    transformer = Ducktrap::Attribute::ParamsHash.build(:foo) 
-
-    input = { 'foo' => 'bar' }
-
-    result = transformer.run(input)
-    result.output.should eql(Ducktrap::NamedValue.new(:foo, 'bar'))
-
-    transformer.inverse.run(result.output).output.should eql(input)
-  end
-
-  it 'should be equivalent from dsl and oo interface' do
-    a = Ducktrap::Block.build do 
-      attributes_hash_from_params_hash_extraction do
-        attribute_from_params_hash(:foo) do
-          primitive(String)
-        end
-        attribute_from_params_hash(:baz)
-      end
-    end
-
-    foo = Ducktrap::Attribute::ParamsHash.new(:foo, Ducktrap::Block.new([Ducktrap::Primitive.new(String)]))
-    baz = Ducktrap::Attribute::ParamsHash.new(:baz)
-
-    b = Ducktrap::Block.new([Ducktrap::AttributesHash::ParamsHashExtraction.new([foo, baz])])
-
-    a.should eql(b)
-  end
-
-  it 'should convert attributes via params hash extraction and vice versa' do
-    transformer = Ducktrap::AttributesHash::ParamsHashExtraction.build do
-      attribute_from_params_hash(:foo)
-      attribute_from_params_hash(:baz)
-    end
-
-    input = { 'foo' => 'bar', 'baz' => 'fuz' }
-
-    result = transformer.run(input)
-    result.output.should eql(
-      :foo => 'bar',
-      :baz => 'fuz'
-    )
-
-    transformer.inverse.run(result.output).output.should eql(input)
   end
 
   let(:model) do
@@ -82,7 +38,7 @@ describe 'simple ducktrap' do
   end
 
   context 'when input is fully loadable' do
-    let(:input) { 'amount=1000&name=Markus+Schirp' }
+    let(:input) { { 'amount' => '1000', 'name' => 'Markus Schirp' } }
 
     it 'should not result in an error' do
       should be_successful
@@ -97,26 +53,26 @@ describe 'simple ducktrap' do
   end
 
   context 'with invalid integer' do
-    let(:input) { 'amount=10a0&name=Markus+Schirp' }
+    let(:input) { { 'amount' => '10a0', 'name' => 'Markus Schirp' } }
 
     it { should_not be_successful }
 
   end
 
   context 'when input is empty' do
-    let(:input) { 'name=Markus+Schirp&amount=' }
+    let(:input) { { 'amount' => '', 'name' => 'Markus Schirp' } }
 
     it { should_not be_successful }
   end
 
   context 'when input is missing attribute' do
-    let(:input) { 'name=Markus+Schirp' }
+    let(:input) { { 'name' => 'Markus Schirp' } }
 
     it { should_not be_successful }
   end
 
   context 'when input is in invalid format' do
-    let(:input) { 'name[]=Markus+Schirp' }
+    let(:input) { { 'amount' => [], 'name' => 'Markus Schirp' } }
 
     it { should_not be_successful }
   end
