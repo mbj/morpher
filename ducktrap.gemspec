@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('backports',     '~> 2.8.2')
   gem.add_runtime_dependency('adamantium',    '~> 0.0.6')
   gem.add_runtime_dependency('equalizer',     '~> 0.0.4')
-  gem.add_runtime_dependency('abstract_type', '~> 0.0.3')
+  gem.add_runtime_dependency('abstract_type', '~> 0.0.4')
   gem.add_runtime_dependency('addressable',   '~> 2.3.2')
   gem.add_runtime_dependency('anima',         '~> 0.0.5')
 end
