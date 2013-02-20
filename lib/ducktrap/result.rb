@@ -85,6 +85,8 @@ class Ducktrap
       formatter.attribute(:input, input)
       if successful?
         formatter.attribute(:output, output)
+      else
+        formatter.nest(:error, output)
       end
       formatter.nest('context:', context)
       self

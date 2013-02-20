@@ -32,7 +32,7 @@ class Ducktrap
         #
         def process
           value = input.fetch(context.key) do
-            return nested_error(self)
+            return error
           end
           result = process_operand(value)
           unless result.successful?
