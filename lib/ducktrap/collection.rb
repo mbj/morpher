@@ -1,9 +1,19 @@
 class Ducktrap
   # Ducktrap that applies operand over collection
   class Collection < self
-    include Unary, Equalizer.new(:operand)
+    include Unary
 
     register :collection
+
+    # Return inverse transformator
+    #
+    # @return [Ducktrap]
+    #
+    # @api private
+    #
+    def inverse
+      self.class.new(operand.inverse)
+    end
 
     # Result for collection ducktrap
     class Result < Unary::Result
