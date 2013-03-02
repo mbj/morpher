@@ -1,3 +1,5 @@
 /.rbx
 /Gemfile.lock
 /tmp
+/.bundle
+/vendor
