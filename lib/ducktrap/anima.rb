@@ -1,6 +1,6 @@
 class Ducktrap
   class Anima < self
-    include Unary, Composition.new(:operand, :model)
+    include Unary, Concord.new(:operand, :model)
 
   private
 

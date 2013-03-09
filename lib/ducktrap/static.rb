@@ -1,6 +1,6 @@
 class Ducktrap
   class Static < self
-    include Nullary, Composition.new(:value, :inverse_value)
+    include Nullary, Concord.new(:value, :inverse_value)
 
     register :static
 

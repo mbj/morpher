@@ -1,7 +1,7 @@
 class Ducktrap
 
   class Primitive < self
-    include Composition.new(:primitive)
+    include Concord.new(:primitive)
 
     register :primitive
 
@@ -27,7 +27,7 @@ class Ducktrap
     #
     # @api private
     #
-    def inverse; Inverse.new(self); end
+    def inverse; self end
 
   private
 

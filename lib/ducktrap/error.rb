@@ -1,6 +1,6 @@
 class Ducktrap
   class Error 
-    include Adamantium::Flat, Composition.new(:context, :input)
+    include Adamantium::Flat, Concord.new(:context, :input)
 
     # Perform pretty dump
     #

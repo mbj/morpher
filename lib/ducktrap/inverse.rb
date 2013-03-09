@@ -2,7 +2,7 @@ class Ducktrap
 
   # Noop ducktrap with fixed inverse
   class Inverse < self
-    include Composition.new(:inverse)
+    include Concord.new(:inverse)
 
     # Return result
     #

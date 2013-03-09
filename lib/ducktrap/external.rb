@@ -1,6 +1,6 @@
 class Ducktrap
   class External < self
-    include Composition.new(:block, :inverse_block)
+    include Concord.new(:block, :inverse_block)
 
     register :extern
 

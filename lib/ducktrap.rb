@@ -1,7 +1,7 @@
 require 'backports'
 require 'abstract_type'
 require 'equalizer'
-require 'composition'
+require 'concord'
 require 'adamantium'
 require 'addressable/uri'
 require 'anima'
@@ -14,7 +14,7 @@ class Ducktrap
   include AbstractType, PrettyDump, Adamantium::Flat
 
   class InvalidInputError < RuntimeError
-    include Adamantium::Flat, Composition.new(:error)
+    include Adamantium::Flat, Concord.new(:error)
 
     # Return error message
     #

@@ -18,7 +18,7 @@ class Ducktrap
 
     # Static result with static output
     class Static < Noop
-      include Composition.new(:context, :input, :output)
+      include Concord.new(:context, :input, :output)
     end
   end
 end
