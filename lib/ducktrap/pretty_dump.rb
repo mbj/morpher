@@ -18,7 +18,7 @@ class Ducktrap
     #
     # @return [String]
     #
-    # @api privateo
+    # @api private
     #
     def pretty_inspect
       io = StringIO.new
