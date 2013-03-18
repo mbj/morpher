@@ -102,11 +102,7 @@ class Ducktrap
       #
       # @param [Object] input
       #
-      # @return [Object]
-      #   if successuful
-      #
-      # @return [Error]
-      #   otherwise
+      # @return [Result]
       #
       # @api private
       #
@@ -116,6 +112,29 @@ class Ducktrap
 
       # Process input with operand
       #
+      # @return [Result]
+      #
+      # @api private
+      #
+      def operand_result
+        process_operand(input)
+      end
+      memoize :operand_result
+
+      # Return operand output
+      #
+      # @return [Object]
+      #
+      # @api private
+      #
+      def operand_output
+        operand_result.output
+      end
+
+      # Process input
+      #
+      # @param [Object]
+      #
       # @return [Object]
       #   if successful
       #
@@ -124,9 +143,21 @@ class Ducktrap
       #
       # @api private
       #
-      def processed_input
-        process_operand(input)
+      def process
+        result = operand_result
+        unless result.successful?
+          return nested_error(result)
+        end
+        process_operand_output
       end
+
+      # Process operand output
+      #
+      # @return [Object]
+      #
+      # @api private
+      #
+      abstract_method :process_operand_output
 
     end
   end

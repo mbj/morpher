@@ -54,7 +54,7 @@ class Ducktrap
       def key
         context.key
       end
-    end
 
+    end
   end
 end

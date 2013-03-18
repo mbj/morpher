@@ -17,6 +17,8 @@ class Ducktrap
 
       class Result < Key::Result
 
+      private
+
         # Process input
         #
         # @return [Object]
@@ -27,12 +29,8 @@ class Ducktrap
         #
         # @api private
         #
-        def process
-          result = processed_input
-          unless result.successful?
-            return nested_error(result)
-          end
-          input.merge(key => result.output)
+        def process_operand_output
+          input.merge(key => operand_output)
         end
 
       end

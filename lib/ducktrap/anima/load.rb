@@ -25,12 +25,8 @@ class Ducktrap
         #
         # @api private
         #
-        def process
-          result = processed_input
-          unless result.successful?
-            return nested_error(result)
-          end
-          model.new(result.output)
+        def process_operand_output
+          model.new(operand_output)
         rescue ::Anima::Error 
           error
         end

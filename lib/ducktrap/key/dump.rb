@@ -17,22 +17,16 @@ class Ducktrap
 
       class Result < Key::Result
 
-        # Process input
+      private
+
+        # Process successful operand output
         #
         # @return [Object]
-        #   if successful
-        #
-        # @return [Error]
-        #   otherwise
         #
         # @api private
         #
-        def process
-          result = processed_input
-          unless result.successful?
-            return nested_error(result)
-          end
-          { key =>  result.output }
+        def process_operand_output
+          { key => operand_output }
         end
       end
 
