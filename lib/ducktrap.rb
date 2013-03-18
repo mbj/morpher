@@ -65,7 +65,7 @@ class Ducktrap
   #
   # @api private
   #
-  def execute(input)
+  def call(input)
     result = run(input)
     output = result.output
     unless result.successful?

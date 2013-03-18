@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Ducktrap, '#execute' do
-  subject { object.execute(input) }
+describe Ducktrap, '#call' do
+  subject { object.call(input) }
 
   let(:object) { class_under_test.new }
 

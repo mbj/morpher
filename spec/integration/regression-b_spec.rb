@@ -41,10 +41,10 @@ describe Ducktrap, 'for regression b' do
   end
 
   it 'should dump from external' do
-    dumper.execute(instance).should eql(dump)
+    dumper.call(instance).should eql(dump)
   end
 
   it 'should load from external' do
-    loader.execute(dump).should eql(instance)
+    loader.call(dump).should eql(instance)
   end
 end
