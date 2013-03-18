@@ -17,6 +17,8 @@ class Ducktrap
 
       class Result < Key::Result
 
+      private
+
         # Process input
         #
         # @return [Object]

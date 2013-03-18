@@ -6,7 +6,7 @@ describe Ducktrap::Key::Delete, '#run' do
   let(:object)  { described_class.new(inverse, key) }
   let(:key)     { mock('Key')                       }
 
-  let(:input)   { { key => mock('Value') } }
+  let(:input)   { { key => mock('Value') }.freeze }
   let(:inverse) { mock('Inverse') }
 
   its(:output)  { should eql({}) }
