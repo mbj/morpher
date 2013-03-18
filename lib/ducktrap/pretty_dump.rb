@@ -14,5 +14,19 @@ class Ducktrap
       self
     end
 
+    # Return pretty inspection
+    #
+    # @return [String]
+    #
+    # @api privateo
+    #
+    def pretty_inspect
+      io = StringIO.new
+      formatter = Formatter.new(io)
+      pretty_dump(formatter)
+      io.rewind
+      io.read
+    end
+
   end
 end

@@ -13,8 +13,8 @@ require 'ducktrap/pretty_dump'
 class Ducktrap
   include AbstractType, PrettyDump, Adamantium::Flat
 
-  class InvalidInputError < RuntimeError
-    include Adamantium::Flat, Concord.new(:error)
+  class FailedTransformationError < RuntimeError
+    include Adamantium::Flat, Concord.new(:result)
 
     # Return error message
     #
@@ -23,11 +23,7 @@ class Ducktrap
     # @api private
     #
     def message
-      io = StringIO.new
-      formatter = Formatter.new(io)
-      error.pretty_dump(formatter)
-      io.rewind
-      io.read
+      result.pretty_inspect
     end
     memoize :message
 
@@ -67,11 +63,8 @@ class Ducktrap
   #
   def call(input)
     result = run(input)
-    output = result.output
-    unless result.successful?
-      raise InvalidInputError.new(output)
-    end
-    output
+    result.assert_successful
+    result.output
   end
 
   # Register dsl name
@@ -124,7 +117,6 @@ end
 
 require 'ducktrap/formatter'
 require 'ducktrap/error'
-require 'ducktrap/inverse'
 require 'ducktrap/result'
 require 'ducktrap/result/static'
 require 'ducktrap/result/invalid'
@@ -136,6 +128,8 @@ require 'ducktrap/nary'
 require 'ducktrap/key'
 require 'ducktrap/key/fetch'
 require 'ducktrap/key/dump'
+require 'ducktrap/key/delete'
+require 'ducktrap/key/add'
 require 'ducktrap/singleton'
 require 'ducktrap/noop'
 require 'ducktrap/block'
@@ -145,6 +139,8 @@ require 'ducktrap/anima'
 require 'ducktrap/anima/load'
 require 'ducktrap/anima/dump'
 require 'ducktrap/primitive'
+require 'ducktrap/inverse'
+require 'ducktrap/forward'
 require 'ducktrap/fixnum'
 require 'ducktrap/string'
 require 'ducktrap/static'

@@ -14,9 +14,20 @@ describe Ducktrap, '#call' do
     end
   end
 
-  let(:result) { mock('Result', :output => output, :successful? => successful?) }
+  class Result
+    attr_reader :output
 
-  let(:input) { mock('Input') }
+    def initialize(output, successful)
+      @output, @successful = output, successful
+    end
+
+    def assert_successful
+      raise unless @successful
+    end
+  end
+
+  let(:result) { Result.new(output, successful?) }
+  let(:input)  { mock('Input') }
   let(:output) { mock('Output') }
 
   context 'when result is successful' do
@@ -29,7 +40,7 @@ describe Ducktrap, '#call' do
     let(:successful?) { false }
 
     it 'should raise error' do
-      expect { subject }.to raise_error(Ducktrap::InvalidInputError.new(output))
+      expect { subject }.to raise_error
     end
   end
 end

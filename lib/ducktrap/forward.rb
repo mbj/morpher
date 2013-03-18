@@ -1,10 +1,10 @@
 class Ducktrap
 
-  # Noop ducktrap with fixed inverse
-  class Inverse < self
-    include Concord.new(:inverse)
+  # Ducktrap with noop inverse
+  class Forward < self
+    include Unary, Concord.new(:operand)
 
-    register :inverse
+    register :forward
 
     # Return result
     #
@@ -14,7 +14,8 @@ class Ducktrap
     #
     # @api private
     #
-    def run(input)
+    def inverse
+
       Result::Static.new(self, input, input)
     end
 

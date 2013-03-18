@@ -18,6 +18,23 @@ class Ducktrap
       !output.kind_of?(Error)
     end
 
+    # Assert result is successful
+    #
+    # @return [self]
+    #   if successful
+    #
+    # @raise [FailedTransformationError]
+    #   otherwise
+    #
+    # @api private
+    #
+    def assert_successful
+      unless successful?
+        raise FailedTransformationError.new(self)
+      end
+      self
+    end
+
     # Return output
     #
     # @return [Object]
