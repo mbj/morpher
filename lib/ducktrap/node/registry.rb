@@ -1,5 +1,4 @@
-# Library namespace and abstract base class for ducktraps
-class Ducktrap
+module Ducktrap
 
   # Registry for ducktraps
   class Registry

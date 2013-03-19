@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
 
   # Mixin for pretty dumpable objects
   module PrettyDump

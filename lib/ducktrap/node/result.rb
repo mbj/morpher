@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
 
   # Abstract base class for mutation result
   class Result
