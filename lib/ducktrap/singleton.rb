@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   # Mixin to define nullary ducktraps
   module Singleton 
     module InstanceMethods

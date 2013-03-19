@@ -11,7 +11,7 @@ describe Ducktrap, 'for regression a' do
   let(:dumper) do
     klass = self.klass
 
-    Ducktrap::Block.build do
+    Ducktrap::Node::Block.build do
       anima_dump(klass) do
         collect_hash do
           fetch_key(:foo) do

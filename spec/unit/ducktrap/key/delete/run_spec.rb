@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap::Key::Delete, '#run' do
+describe Ducktrap::Node::Key::Delete, '#run' do
   subject { object.run(input) }
 
   let(:object)  { described_class.new(inverse, key) }

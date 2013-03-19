@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap, '#call' do
+describe Ducktrap::Node, '#call' do
   subject { object.call(input) }
 
   let(:object) { class_under_test.new }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap::Key::Add, '#run' do
+describe Ducktrap::Node::Key::Add, '#run' do
   subject { object.run(input) }
 
   let(:object)         { described_class.new(operand, key)                                       }

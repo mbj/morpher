@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Transformer with static output
     class Static < self

@@ -11,8 +11,6 @@ require 'ducktrap/pretty_dump'
 
 # Library namespace
 module Ducktrap
-  include AbstractType, PrettyDump, Adamantium::Flat
-
   class FailedTransformationError < RuntimeError
     include Adamantium::Flat, Concord.new(:result)
 

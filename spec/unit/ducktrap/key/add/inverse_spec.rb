@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap::Key::Add, '#inverse' do
+describe Ducktrap::Node::Key::Add, '#inverse' do
 
   subject { object.inverse }
 
@@ -8,5 +8,5 @@ describe Ducktrap::Key::Add, '#inverse' do
   let(:key)     { mock('Key')                       }
   let(:inverse) { mock('Inverse') }
 
-  it { should eql(Ducktrap::Key::Delete.new(inverse, key)) }
+  it { should eql(Ducktrap::Node::Key::Delete.new(inverse, key)) }
 end

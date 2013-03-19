@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   # Printer for ducktrap trees
   class Formatter
     include Adamantium::Flat

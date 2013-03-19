@@ -1,8 +1,8 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Ducktrap that collects results with executing inner ducktraps with the same input
     class Collect < self
-      include Nary
+      include NAry
 
       register :collect_hash
 
@@ -17,7 +17,7 @@ class Ducktrap
       end
 
       # Result of chained ducktraps
-      class Result < Nary::Result
+      class Result < NAry::Result
 
       private
 

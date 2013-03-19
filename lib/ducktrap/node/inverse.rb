@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Noop ducktrap with fixed inverse
     class Inverse < self

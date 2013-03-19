@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     class External < self
       include Concord.new(:block, :inverse_block)

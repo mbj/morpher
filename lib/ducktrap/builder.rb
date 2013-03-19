@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   # Abstract base class for builders
   class Builder
     include Adamantium::Flat, AbstractType

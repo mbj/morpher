@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Ducktrap that performs map operation
     class Map < self

@@ -1,6 +1,7 @@
 module Ducktrap
   # Abstract base class for transformation nodes
   class Node
+    include AbstractType, PrettyDump, Adamantium::Flat
 
     # Return inversed ducktrap
     #

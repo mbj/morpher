@@ -1,9 +1,9 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Ducktrap that returns last result of a chain and stops on first failure.
     # Acts like AND with multiple inputs.
     class Block < self
-      include Nary
+      include NAry
 
       # Return inverse ducktrap
       #
@@ -16,7 +16,7 @@ class Ducktrap
       end
 
       # Result of chained ducktraps
-      class Result < Nary::Result
+      class Result < NAry::Result
 
       private
 

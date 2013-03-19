@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node 
     # Namespace for polymorphic mappings.
     class Polymorphic < self
@@ -79,7 +79,7 @@ class Ducktrap
               body = input.fetch('body')
               result = operand.run(body)
               unless result.successful?
-                return Nary::MemberError.new(context, input, result)
+                return NAry::MemberError.new(context, input, result)
               end
               result.output
             end
@@ -116,7 +116,7 @@ class Ducktrap
 
               result = operand.run(input)
               unless result.successful?
-                return Nary::MemberError.new(context, input, result)
+                return NAry::MemberError.new(context, input, result)
               end
 
               { 'type' => context.key, 'body' => result.output }
@@ -128,7 +128,7 @@ class Ducktrap
 
       # Polymorphic map
       class Map < self
-        include Nary
+        include NAry
 
         # Loader for polymorphic mapper
         class Loader < self
@@ -169,7 +169,7 @@ class Ducktrap
           end
 
           # Result for polymorphic map loader
-          class Result < Nary::Result
+          class Result < NAry::Result
 
           private
 
@@ -183,7 +183,7 @@ class Ducktrap
               mapper = context.mapper(input.fetch('type'))
               result = mapper.run(input)
               unless result.successful?
-                return Nary::MemberError.new(context, input, result)
+                return NAry::MemberError.new(context, input, result)
               end
               result.output
             end
@@ -230,7 +230,7 @@ class Ducktrap
           end
 
           # Result for polymorpic map dumper
-          class Result < Nary::Result
+          class Result < NAry::Result
 
           private
 

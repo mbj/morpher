@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     class Disjunction < self
       include NAry

@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Result
     class Invalid < self
 

@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     class Fixnum < self
       include Singleton
@@ -15,7 +15,7 @@ class Ducktrap
         # @api private
         #
         def inverse_klass
-          Ducktrap::String::Fixnum
+          Node::String::Fixnum
         end
 
         # Return result for input

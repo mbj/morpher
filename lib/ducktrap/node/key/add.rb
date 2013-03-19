@@ -1,38 +1,40 @@
-class Ducktrap
-  class Key
-    # Ducktrap to dump value to a specific key
-    class Add < self
+module Ducktrap
+  class Node
+    class Key
+      # Ducktrap to dump value to a specific key
+      class Add < self
 
-      register :add_key
+        register :add_key
 
-      # Return inverse ducktrap
-      #
-      # @return [Ducktrap]
-      #
-      # @api private
-      #
-      def inverse
-        Delete.new(operand, key)
-      end
-
-      class Result < Key::Result
-
-      private
-
-        # Process input
+        # Return inverse ducktrap
         #
-        # @return [Object]
-        #   if successful
-        #
-        # @return [Error]
-        #   otherwise
+        # @return [Ducktrap]
         #
         # @api private
         #
-        def process_operand_output
-          input.merge(key => operand_output)
+        def inverse
+          Delete.new(operand, key)
         end
 
+        class Result < Key::Result
+
+        private
+
+          # Process input
+          #
+          # @return [Object]
+          #   if successful
+          #
+          # @return [Error]
+          #   otherwise
+          #
+          # @api private
+          #
+          def process_operand_output
+            input.merge(key => operand_output)
+          end
+
+        end
       end
     end
   end

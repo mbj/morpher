@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Noope node, returns input as output
     class Noop < self

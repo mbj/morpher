@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Abstract baseclass for ducktraps to string
     class String < self
@@ -15,7 +15,7 @@ class Ducktrap
         # @api private
         #
         def inverse_klass
-          Ducktrap::Fixnum::String
+          Node::Fixnum::String
         end
 
         # Return result for input

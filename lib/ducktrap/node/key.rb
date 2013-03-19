@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Base class for ducktraps that manipulate keys
     class Key < self

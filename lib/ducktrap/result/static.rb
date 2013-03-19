@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Result
 
     # Static result with input as output

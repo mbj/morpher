@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap::Block::Result, '#output' do
+describe Ducktrap::Node::Block::Result, '#output' do
   subject { object.output }
 
   class Mock

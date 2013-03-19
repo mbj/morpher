@@ -6,7 +6,7 @@ describe 'simple ducktrap' do
   let(:loader) do
     model = self.model
 
-    Ducktrap::Block.build do 
+    Ducktrap::Node::Block.build do 
       anima_load(model) do
         collect_hash do
           fetch_key('name') do

@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Error 
     include Adamantium::Flat, Concord.new(:context, :input)
 

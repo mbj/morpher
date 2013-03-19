@@ -1,4 +1,4 @@
-class Ducktrap
+module Ducktrap
   class Node
     # Primitive check
     class Primitive < self

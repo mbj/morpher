@@ -5,17 +5,17 @@ describe 'polymorphic mapping' do
   let(:model_b) { Class.new { def self.name; 'B'; end } }
 
   let(:dumper) do
-    map_a = Ducktrap::Static.new('a', 'ia')
-    map_b = Ducktrap::Static.new('b', 'ib')
+    map_a = Ducktrap::Node::Static.new('a', 'ia')
+    map_b = Ducktrap::Node::Static.new('b', 'ib')
 
     loaders = [
-      Ducktrap::Polymorphic::Type::Dumper.new('a', model_a, map_a),
-      Ducktrap::Polymorphic::Type::Dumper.new('b', model_b, map_b)
+      Ducktrap::Node::Polymorphic::Type::Dumper.new('a', model_a, map_a),
+      Ducktrap::Node::Polymorphic::Type::Dumper.new('b', model_b, map_b)
     ]
 
-    Ducktrap::Block.new(
+    Ducktrap::Node::Block.new(
       [
-        Ducktrap::Polymorphic::Map::Dumper.new(loaders)
+        Ducktrap::Node::Polymorphic::Map::Dumper.new(loaders)
       ]
     )
   end
