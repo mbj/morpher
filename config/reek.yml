@@ -27,7 +27,8 @@ LongParameterList:
   overrides: {}
 FeatureEnvy:
   exclude:
-  - Ducktrap::InvalidInputError#message
+  - Ducktrap::PrettyDump#pretty_inspect
+  - Ducktrap::Node#call
   enabled: true
 ClassVariable:
   exclude: []
@@ -47,8 +48,7 @@ UncommunicativeModuleName:
   - !ruby/regexp /[0-9]$/
 NestedIterators:
   ignore_iterators: []
-  exclude:
-  - Adamantium::ModuleMethods#define_memoize_method # 2 levels
+  exclude: []
   enabled: true
   max_allowed_nesting: 1
 LongMethod:
@@ -78,7 +78,7 @@ UncommunicativeVariableName:
 SimulatedPolymorphism:
   exclude: []
   enabled: true
-  max_ifs: 1
+  max_ifs: 2
 DataClump:
   exclude: []
   enabled: true
