@@ -26,6 +26,16 @@ module Ducktrap
     memoize :message
 
   end
+  
+  # Build ducktrap
+  #
+  # @return [Node]
+  #
+  # @api private
+  #
+  def self.build(&block)
+    Node::Block.build(&block)
+  end
 end
 
 require 'ducktrap/formatter'
@@ -45,6 +55,7 @@ require 'ducktrap/node/key/fetch'
 require 'ducktrap/node/key/dump'
 require 'ducktrap/node/key/delete'
 require 'ducktrap/node/key/add'
+require 'ducktrap/node/guard_nil'
 require 'ducktrap/node/noop'
 require 'ducktrap/node/block'
 require 'ducktrap/node/collect'

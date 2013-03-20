@@ -1,6 +1,4 @@
 * Finally stop spiking
-* Mutate this stuff
-* Dedup all unary results!
+* Mutation cover this stuff
 * Find better name for ducktrap and result
-* Transformer and Evaluator ?
-* Transform block ducktrap into a nested structure, so on errors the intermediates inputs and outputs could be stared.
+* Implement Node::GuardNil via XOR node.
