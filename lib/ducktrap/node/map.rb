@@ -16,12 +16,12 @@ module Ducktrap
         self.class.new(operand.inverse)
       end
 
-      # Result for collection ducktrap
-      class Result < Unary::Result
+      # Evaluator for collection ducktrap
+      class Evaluator < Unary::Evaluator
 
       private
 
-        # Calculate result
+        # Calculate evaluator
         #
         # @return [Object]
         #
@@ -29,11 +29,11 @@ module Ducktrap
         #
         def process
           input.map do |element|
-            result = operand.run(element)
-            unless result.successful?
-              return nested_error(result)
+            evaluator = operand.run(element)
+            unless evaluator.successful?
+              return nested_error(evaluator)
             end
-            result.output
+            evaluator.output
           end
         end
       end

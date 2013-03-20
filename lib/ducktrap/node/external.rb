@@ -19,12 +19,12 @@ module Ducktrap
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
       def run(input)
-        Result::Static.new(self, input, @block.call(input))
+        Evaluator::Static.new(self, input, @block.call(input))
       end
 
     private

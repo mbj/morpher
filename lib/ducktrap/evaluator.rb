@@ -1,7 +1,7 @@
 module Ducktrap
 
-  # Abstract base class for mutation result
-  class Result
+  # Abstract base class for transform evaluator
+  class Evaluator
     include AbstractType, Adamantium::Flat, PrettyDump, Concord.new(:context, :input)
 
     # Test if conversion was successful
@@ -18,7 +18,7 @@ module Ducktrap
       !output.kind_of?(Error)
     end
 
-    # Assert result is successful
+    # Assert evaluator is successful
     #
     # @return [self]
     #   if successful

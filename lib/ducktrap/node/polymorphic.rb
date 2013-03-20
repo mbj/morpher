@@ -64,12 +64,12 @@ module Ducktrap
             Polymorphic::Type::Dumper.new(key, model, operand.inverse)
           end
 
-          # Result for polymorphic loader
-          class Result < Unary::Result
+          # Evaluator for polymorphic loader
+          class Evaluator < Unary::Evaluator
 
           private
 
-            # Process result 
+            # Process evaluator 
             #
             # @return [Object]
             #
@@ -77,11 +77,11 @@ module Ducktrap
             #
             def process
               body = input.fetch('body')
-              result = operand.run(body)
-              unless result.successful?
-                return NAry::MemberError.new(context, input, result)
+              evaluator = operand.run(body)
+              unless evaluator.successful?
+                return NAry::MemberError.new(context, input, evaluator)
               end
-              result.output
+              evaluator.output
             end
 
           end
@@ -100,12 +100,12 @@ module Ducktrap
             Polymorphic::Type::Loader.new(key, model, operand.inverse)
           end
 
-          # Result for polymorphic dumper
-          class Result < Unary::Result
+          # Evaluator for polymorphic dumper
+          class Evaluator < Unary::Evaluator
 
           private
 
-            # Process result 
+            # Process evaluator 
             #
             # @return [Object]
             #
@@ -114,12 +114,12 @@ module Ducktrap
             def process
               context = self.context
 
-              result = operand.run(input)
-              unless result.successful?
-                return NAry::MemberError.new(context, input, result)
+              evaluator = operand.run(input)
+              unless evaluator.successful?
+                return NAry::MemberError.new(context, input, evaluator)
               end
 
-              { 'type' => context.key, 'body' => result.output }
+              { 'type' => context.key, 'body' => evaluator.output }
             end
 
           end
@@ -168,12 +168,12 @@ module Ducktrap
             Polymorphic::Map::Dumper.new(body.map(&:inverse))
           end
 
-          # Result for polymorphic map loader
-          class Result < NAry::Result
+          # Evaluator for polymorphic map loader
+          class Evaluator < NAry::Evaluator
 
           private
 
-            # Process result 
+            # Process evaluator 
             #
             # @return [Object]
             #
@@ -181,11 +181,11 @@ module Ducktrap
             #
             def process
               mapper = context.mapper(input.fetch('type'))
-              result = mapper.run(input)
-              unless result.successful?
-                return NAry::MemberError.new(context, input, result)
+              evaluator = mapper.run(input)
+              unless evaluator.successful?
+                return NAry::MemberError.new(context, input, evaluator)
               end
-              result.output
+              evaluator.output
             end
 
           end
@@ -229,12 +229,12 @@ module Ducktrap
             mapping.fetch(klass)
           end
 
-          # Result for polymorpic map dumper
-          class Result < NAry::Result
+          # Evaluator for polymorpic map dumper
+          class Evaluator < NAry::Evaluator
 
           private
 
-            # Process result 
+            # Process evaluator 
             #
             # @return [Object]
             #
@@ -242,11 +242,11 @@ module Ducktrap
             #
             def process
               mapper = context.mapper(input.class)
-              result = mapper.run(input)
-              unless result.successful?
-                return nested_error(result)
+              evaluator = mapper.run(input)
+              unless evaluator.successful?
+                return nested_error(evaluator)
               end
-              result.output
+              evaluator.output
             end
 
           end

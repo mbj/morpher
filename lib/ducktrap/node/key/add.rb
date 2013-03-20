@@ -16,7 +16,7 @@ module Ducktrap
           Delete.new(operand, key)
         end
 
-        class Result < Key::Result
+        class Evaluator < Key::Evaluator
 
         private
 

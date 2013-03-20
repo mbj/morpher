@@ -7,7 +7,7 @@ module Ducktrap
     #
     # @param [Object] input
     #
-    # @return [Result]
+    # @return [Evaluator]
     #
     # @api private
     #
@@ -17,7 +17,7 @@ module Ducktrap
     #
     # @param [Object] input
     #
-    # @return [Result]
+    # @return [Evaluator]
     #
     # @api private
     #
@@ -36,9 +36,9 @@ module Ducktrap
     # @api private
     #
     def call(input)
-      result = run(input)
-      result.assert_successful
-      result.output
+      evaluator = run(input)
+      evaluator.assert_successful
+      evaluator.output
     end
 
     # Register dsl name
@@ -54,14 +54,14 @@ module Ducktrap
     end
     private_class_method :register
 
-    # Return result class
+    # Return evaluator class
     #
-    # @return [Class:Result]
+    # @return [Class:Evaluator]
     #
     # @api private
     #
-    def result_klass
-      self.class::Result
+    def evaluator_klass
+      self.class::Evaluator
     end
 
     # Build ducktrap

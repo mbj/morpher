@@ -1,6 +1,6 @@
 module Ducktrap
   class Node
-    # Ducktrap that returns last result of a chain and stops on first failure.
+    # Ducktrap that returns last evaluator output of a chain and stops on first failure.
     # Acts like AND with multiple inputs.
     class Block < self
       include NAry
@@ -15,12 +15,12 @@ module Ducktrap
         self.class.new(inverse_body)
       end
 
-      # Result of chained ducktraps
-      class Result < NAry::Result
+      # Evaluator of chained ducktraps
+      class Evaluator < NAry::Evaluator
 
       private
 
-        # Calculate result
+        # Calculate evaluator
         #
         # @return [Object]
         #   if successful
@@ -32,13 +32,13 @@ module Ducktrap
         #
         def process
           body.inject(input) do |input, ducktrap|
-            result = ducktrap.run(input)
+            evaluator = ducktrap.run(input)
 
-            unless result.successful?
-              return nested_error(result)
+            unless evaluator.successful?
+              return nested_error(evaluator)
             end
 
-            result.output
+            evaluator.output
           end
         end
       end

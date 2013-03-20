@@ -8,12 +8,12 @@ module Ducktrap
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
       def run(input)
-        result_klass.new(self, input)
+        evaluator_klass.new(self, input)
       end
 
       # Return inverse 

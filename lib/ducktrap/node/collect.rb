@@ -1,6 +1,6 @@
 module Ducktrap
   class Node
-    # Ducktrap that collects results with executing inner ducktraps with the same input
+    # Ducktrap that collects evaluators with executing inner ducktraps with the same input
     class Collect < self
       include NAry
 
@@ -16,12 +16,12 @@ module Ducktrap
         Collect.new(body.map(&:inverse))
       end
 
-      # Result of chained ducktraps
-      class Result < NAry::Result
+      # Evaluator of chained ducktraps
+      class Evaluator < NAry::Evaluator
 
       private
 
-        # Calculate result
+        # Calculate evaluator
         #
         # @return [Object]
         #   if successful
@@ -33,15 +33,15 @@ module Ducktrap
         #
         def process
           body.each_with_object({}) do |ducktrap, hash|
-            result = ducktrap.run(input)
+            evaluator = ducktrap.run(input)
 
-            unless result.successful?
-              return nested_error(result)
+            unless evaluator.successful?
+              return nested_error(evaluator)
             end
 
-            output = result.output
+            output = evaluator.output
 
-            hash.merge!(result.output)
+            hash.merge!(evaluator.output)
           end
         end
       end

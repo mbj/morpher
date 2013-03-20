@@ -6,17 +6,17 @@ module Ducktrap
 
       register :forward
 
-      # Return result
+      # Return evaluator
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
       def inverse
 
-        Result::Static.new(self, input, input)
+        Evaluator::Static.new(self, input, input)
       end
 
     private

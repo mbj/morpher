@@ -18,7 +18,7 @@ module Ducktrap
           Node::String::Fixnum
         end
 
-        # Return result for input
+        # Return evaluator for input
         #
         # @param [Object] input
         #
@@ -30,10 +30,10 @@ module Ducktrap
           match = REGEXP.match(input)
 
           unless match
-            return Result::Invalid.new(self, input)
+            return Evaluator::Invalid.new(self, input)
           end
 
-          Result::Static.new(self, input, input.to_i(10))
+          Evaluator::Static.new(self, input, input.to_i(10))
         end
 
       end

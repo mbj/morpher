@@ -10,16 +10,16 @@ module Ducktrap
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
       def run(input)
         unless input.kind_of?(primitive)
-          return Result::Invalid.new(self, input)
+          return Evaluator::Invalid.new(self, input)
         end
 
-        Result::Static.new(self, input, input)
+        Evaluator::Static.new(self, input, input)
       end
 
       # Return inverse ducktrap

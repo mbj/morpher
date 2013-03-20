@@ -1,7 +1,7 @@
 module Ducktrap
-  class Result
+  class Evaluator
 
-    # Static result with input as output
+    # Static evaluator with input as output
     class Noop < self
 
       # Return output
@@ -16,7 +16,7 @@ module Ducktrap
 
     end
 
-    # Static result with static output
+    # Static evaluator with static output
     class Static < Noop
       include Concord.new(:context, :input, :output)
     end

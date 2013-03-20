@@ -96,12 +96,12 @@ module Ducktrap
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
       def run(input)
-        result_klass.new(self, input, body)
+        evaluator_klass.new(self, input, body)
       end
 
       # Return inverse body
@@ -156,8 +156,8 @@ module Ducktrap
       scope.send(:include, Equalizer.new(:body))
     end
 
-    # Base class for nary results
-    class Result < Ducktrap::Result
+    # Base class for nary evaluators
+    class Evaluator < Ducktrap::Evaluator
 
       # Return body
       #

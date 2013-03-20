@@ -4,16 +4,16 @@ module Ducktrap
     # Instance methods mixin for unary ducktrap
     module InstanceMethods
 
-      # Return result for input
+      # Return evaluator for input
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
       def run(input)
-        result_klass.new(self, input)
+        evaluator_klass.new(self, input)
       end
 
     end
@@ -47,7 +47,7 @@ module Ducktrap
 
     private_class_method :included
 
-    class Result < Ducktrap::Result
+    class Evaluator < Ducktrap::Evaluator
 
     private
 

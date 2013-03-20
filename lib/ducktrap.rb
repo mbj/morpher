@@ -12,7 +12,7 @@ require 'ducktrap/pretty_dump'
 # Library namespace
 module Ducktrap
   class FailedTransformationError < RuntimeError
-    include Adamantium::Flat, Concord.new(:result)
+    include Adamantium::Flat, Concord.new(:evaluator)
 
     # Return error message
     #
@@ -21,7 +21,7 @@ module Ducktrap
     # @api private
     #
     def message
-      result.pretty_inspect
+      evaluator.pretty_inspect
     end
     memoize :message
 
@@ -30,9 +30,9 @@ end
 
 require 'ducktrap/formatter'
 require 'ducktrap/error'
-require 'ducktrap/result'
-require 'ducktrap/result/static'
-require 'ducktrap/result/invalid'
+require 'ducktrap/evaluator'
+require 'ducktrap/evaluator/static'
+require 'ducktrap/evaluator/invalid'
 require 'ducktrap/builder'
 require 'ducktrap/registry'
 require 'ducktrap/nullary'

@@ -16,7 +16,7 @@ module Ducktrap
           Load.new(operand.inverse, model)
         end
 
-        class Result < Anima::Result
+        class Evaluator < Anima::Evaluator
 
         private
 
@@ -31,11 +31,11 @@ module Ducktrap
           # @api private
           #
           def process
-            result = process_operand(attribute_hash)
-            unless result.successful?
-              return nested_error(result)
+            evaluator = process_operand(attribute_hash)
+            unless evaluator.successful?
+              return nested_error(evaluator)
             end
-            result.output
+            evaluator.output
           end
 
           # Return attribute hash

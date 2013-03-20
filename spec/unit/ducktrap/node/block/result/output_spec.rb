@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::Block::Result, '#output' do
+describe Ducktrap::Node::Block::Evaluator, '#output' do
   subject { object.output }
 
   class Mock
@@ -56,13 +56,13 @@ describe Ducktrap::Node::Block::Result, '#output' do
     let(:output_b) { mymock(:output_b) }
 
     before do
-      trap_a.stub(:run => result_a)
-      trap_b.stub(:run => result_b)
+      trap_a.stub(:run => evaluator_a)
+      trap_b.stub(:run => evaluator_b)
     end
 
     context 'without failures' do
-      let(:result_a) { Ducktrap::Result::Static.new(context, input_a, output_a) }
-      let(:result_b) { Ducktrap::Result::Static.new(context, input_b, output_b) }
+      let(:evaluator_a) { Ducktrap::Evaluator::Static.new(context, input_a, output_a) }
+      let(:evaluator_b) { Ducktrap::Evaluator::Static.new(context, input_b, output_b) }
 
       it { should be(output_b) }
       
@@ -70,20 +70,20 @@ describe Ducktrap::Node::Block::Result, '#output' do
     end
 
     context 'with late failure' do
-      let(:result_a) { Ducktrap::Result::Static.new(context, input_a, output_a) }
-      let(:result_b) { Ducktrap::Result::Invalid.new(context, input_b) }
+      let(:evaluator_a) { Ducktrap::Evaluator::Static.new(context, input_a, output_a) }
+      let(:evaluator_b) { Ducktrap::Evaluator::Invalid.new(context, input_b) }
 
 
-      it { should eql(Ducktrap::Error.new(result_b, input)) }
+      it { should eql(Ducktrap::Error.new(evaluator_b, input)) }
 
       it_should_behave_like 'an idempotent method'
     end
 
     context 'with early failure' do
-      let(:result_a) { Ducktrap::Result::Invalid.new(context, input_a) }
-      let(:result_b) { Ducktrap::Result::Invalid.new(context, input_b) }
+      let(:evaluator_a) { Ducktrap::Evaluator::Invalid.new(context, input_a) }
+      let(:evaluator_b) { Ducktrap::Evaluator::Invalid.new(context, input_b) }
 
-      it { should eql(Ducktrap::Error.new(result_a, input)) }
+      it { should eql(Ducktrap::Error.new(evaluator_a, input)) }
 
       it 'should not execute later ducktraps' do
         trap_b.should_not_receive(:run)

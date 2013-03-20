@@ -6,15 +6,15 @@ describe Ducktrap::Node, '#call' do
   let(:object) { class_under_test.new }
 
   let(:class_under_test) do
-    result = self.result
+    evaluator = self.evaluator
     Class.new(described_class) do
       define_method :run do |input|
-        result
+        evaluator
       end
     end
   end
 
-  class Result
+  class Evaluator
     attr_reader :output
 
     def initialize(output, successful)
@@ -26,17 +26,17 @@ describe Ducktrap::Node, '#call' do
     end
   end
 
-  let(:result) { Result.new(output, successful?) }
+  let(:evaluator) { Evaluator.new(output, successful?) }
   let(:input)  { mock('Input') }
   let(:output) { mock('Output') }
 
-  context 'when result is successful' do
+  context 'when evaluator is successful' do
     let(:successful?) { true }
 
     it { should be(output) }
   end
 
-  context 'when result is NOT successful' do
+  context 'when evaluator is NOT successful' do
     let(:successful?) { false }
 
     it 'should raise error' do

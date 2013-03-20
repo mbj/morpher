@@ -18,16 +18,16 @@ module Ducktrap
           Node::Fixnum::String
         end
 
-        # Return result for input
+        # Return evaluator for input
         #
         # @param [Object] input
         #
-        # @return [Result]
+        # @return [Evaluator]
         #
         # @api private
         #
         def run(input)
-          Result::Static.new(self, input, input.to_s(10))
+          Evaluator::Static.new(self, input, input.to_s(10))
         end
 
       end
@@ -36,8 +36,8 @@ module Ducktrap
       class ParamsHash < self
         include Singleton, AbstractType
 
-        # Base class for params hash results that are serialized to strings
-        class Result < Ducktrap::Result
+        # Base class for params hash evaluators that are serialized to strings
+        class Evaluator < Ducktrap::Evaluator
         end
 
         # Ducktrap to convert param hashes to url encoded strings
@@ -54,11 +54,11 @@ module Ducktrap
           end
 
           # Resulf of url encoded string ducktrap
-          class Result < ParamsHash::Result
+          class Evaluator < ParamsHash::Evaluator
 
           private
 
-            # Return calculated result
+            # Return calculated evaluator
             #
             # @return [String]
             #

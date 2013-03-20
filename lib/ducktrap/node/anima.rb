@@ -19,7 +19,7 @@ module Ducktrap
         output.attribute(:model, model)
       end
 
-      class Result < Unary::Result
+      class Evaluator < Unary::Evaluator
 
       private
 

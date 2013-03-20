@@ -23,16 +23,16 @@ module Ducktrap
         super()
       end
 
-      # Return result for input
+      # Return evaluator for input
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
       def run(input)
-        result_klass.new(self, input)
+        evaluator_klass.new(self, input)
       end
 
     private
@@ -84,7 +84,7 @@ module Ducktrap
 
     private_class_method :included
 
-    class Result < Ducktrap::Result
+    class Evaluator < Ducktrap::Evaluator
 
     private
 
@@ -102,7 +102,7 @@ module Ducktrap
       #
       # @param [Object] input
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
@@ -112,14 +112,14 @@ module Ducktrap
 
       # Process input with operand
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #
-      def operand_result
+      def operand_evaluator
         process_operand(input)
       end
-      memoize :operand_result
+      memoize :operand_evaluator
 
       # Return operand output
       #
@@ -128,7 +128,7 @@ module Ducktrap
       # @api private
       #
       def operand_output
-        operand_result.output
+        operand_evaluator.output
       end
 
       # Process input
@@ -144,9 +144,9 @@ module Ducktrap
       # @api private
       #
       def process
-        result = operand_result
-        unless result.successful?
-          return nested_error(result)
+        evaluator = operand_evaluator
+        unless evaluator.successful?
+          return nested_error(evaluator)
         end
         process_operand_output
       end

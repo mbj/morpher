@@ -15,8 +15,8 @@ module Ducktrap
           Dump.new(operand.inverse, model)
         end
 
-        # Result of anima load ducktrap
-        class Result < Anima::Result
+        # Evaluator of anima load ducktrap
+        class Evaluator < Anima::Evaluator
 
         private
 
@@ -32,7 +32,7 @@ module Ducktrap
             error
           end
 
-        end # Result
+        end # Evaluator
       end # Load
     end
   end

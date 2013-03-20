@@ -41,8 +41,8 @@ module Ducktrap
         self
       end
 
-      # Base class for key results
-      class Result < Unary::Result
+      # Base class for key evaluators
+      class Evaluator < Unary::Evaluator
 
       private
 

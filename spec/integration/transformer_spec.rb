@@ -40,15 +40,15 @@ describe 'simple ducktrap' do
   context 'when input is fully loadable' do
     let(:input) { { 'amount' => '1000', 'name' => 'Markus Schirp' } }
 
-    it 'should not result in an error' do
+    it 'should not evaluator in an error' do
       should be_successful
     end
 
     its(:output) { should eql(model.new(:name => 'Markus Schirp', :amount => 1000)) }
 
     it 'allows to round trip' do
-      result = dumper.run(subject.output)
-      result.output.should eql(input)
+      evaluator = dumper.run(subject.output)
+      evaluator.output.should eql(input)
     end
   end
 

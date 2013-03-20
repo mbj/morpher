@@ -1,10 +1,10 @@
 module Ducktrap
-  class Result
+  class Evaluator
     class Invalid < self
 
       # Return output
       #
-      # @return [Result]
+      # @return [Evaluator]
       #
       # @api private
       #

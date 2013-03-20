@@ -16,8 +16,8 @@ module Ducktrap
           Dump.new(operand.inverse, key)
         end
 
-        # Result for fetch key ducktrap
-        class Result < Key::Result
+        # Evaluator for fetch key ducktrap
+        class Evaluator < Key::Evaluator
 
         private
 
@@ -35,11 +35,11 @@ module Ducktrap
             value = input.fetch(context.key) do
               return error
             end
-            result = process_operand(value)
-            unless result.successful?
-              return nested_error(result)
+            evaluator = process_operand(value)
+            unless evaluator.successful?
+              return nested_error(evaluator)
             end
-            result.output
+            evaluator.output
           end
 
         end

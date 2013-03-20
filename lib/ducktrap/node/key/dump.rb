@@ -16,7 +16,7 @@ module Ducktrap
           Fetch.new(operand.inverse, key)
         end
 
-        class Result < Key::Result
+        class Evaluator < Key::Evaluator
 
         private
 
