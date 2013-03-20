@@ -1,4 +1,5 @@
 module Ducktrap
+  # Evaluator that always returns errors
   class Evaluator
     class Invalid < self
 
