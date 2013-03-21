@@ -35,6 +35,16 @@ module Ducktrap
         evaluator_klass.new(self, input)
       end
 
+      # Return inverse transformation
+      # 
+      # @return [Node]
+      #
+      # @api private
+      #
+      def inverse
+        self.class.new(operand.inverse)
+      end
+
     private
 
       # Perform pretty dump

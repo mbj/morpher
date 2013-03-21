@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # Base class for anima nodes
     class Anima < self
-      include Unary, Concord.new(:operand, :model)
+      include Nullary, Concord.new(:model)
 
     private
 
@@ -19,7 +19,7 @@ module Ducktrap
         output.attribute(:model, model)
       end
 
-      class Evaluator < Unary::Evaluator
+      class Evaluator < Nullary::Evaluator
 
       private
 

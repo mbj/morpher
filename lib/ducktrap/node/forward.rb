@@ -15,8 +15,7 @@ module Ducktrap
       # @api private
       #
       def inverse
-
-        Evaluator::Static.new(self, input, input)
+        Noop.instance
       end
 
     private
@@ -28,6 +27,26 @@ module Ducktrap
       def dump(output)
         output.name(self)
         output.nest('inverse:', inverse)
+      end
+
+      class Evaluator < Unary::Evaluator
+
+      private
+
+        # Return output
+        #
+        # @return [Object]
+        #   if successful
+        #
+        # @return [Error]
+        #   otherwise
+        #
+        # @api private
+        #
+        def process
+          operand_output
+        end
+
       end
 
     end

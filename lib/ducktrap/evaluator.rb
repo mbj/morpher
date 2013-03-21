@@ -79,6 +79,18 @@ module Ducktrap
       Error.new(context, input)
     end
 
+    # Return error with message
+    #
+    # @param [Error::Message]
+    #
+    # @return [Error]
+    #
+    # @api private
+    #
+    def exception(exception)
+      Error::Exception.new(context, input, exception)
+    end
+
     # Return nested error
     #
     # @return [Error::Nested]

@@ -12,7 +12,7 @@ module Ducktrap
         # @api private
         #
         def inverse
-          Dump.new(operand.inverse, model)
+          Dump.new(model)
         end
 
         # Evaluator of anima load ducktrap
@@ -26,10 +26,10 @@ module Ducktrap
           #
           # @api private
           #
-          def process_operand_output
-            model.new(operand_output)
-          rescue ::Anima::Error 
-            error
+          def process
+            model.new(input)
+          rescue ::Anima::Error => exception
+            exception(exception)
           end
 
         end # Evaluator

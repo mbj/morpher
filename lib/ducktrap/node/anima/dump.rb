@@ -22,29 +22,12 @@ module Ducktrap
 
           # Process input
           #
-          # @return [Object]
+          # @return [Hash]
           #   if successful
-          #
-          # @return [Error]
-          #   otherwise
           #
           # @api private
           #
           def process
-            evaluator = process_operand(attribute_hash)
-            unless evaluator.successful?
-              return nested_error(evaluator)
-            end
-            evaluator.output
-          end
-
-          # Return attribute hash
-          #
-          # @return [Hash]
-          #
-          # @api private
-          #
-          def attribute_hash
             model.attributes_hash(input)
           end
 
