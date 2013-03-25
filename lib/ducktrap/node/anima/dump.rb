@@ -13,7 +13,7 @@ module Ducktrap
         # @api private
         #
         def inverse
-          Load.new(operand.inverse, model)
+          Load.new(model)
         end
 
         class Evaluator < Anima::Evaluator
