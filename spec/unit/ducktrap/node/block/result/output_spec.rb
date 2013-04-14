@@ -3,35 +3,8 @@ require 'spec_helper'
 describe Ducktrap::Node::Block::Evaluator, '#output' do
   subject { object.output }
 
-  class Mock
-    include Adamantium::Flat
-    def initialize(name)
-      @name = name
-      @frozen = false
-    end
-
-    def freeze
-      @frozen = true
-      self
-    end
-
-    def frozen? 
-      @frozen
-    end
-
-    def inspect
-      "<#{self.class.name} name=#{@name}>"
-    end
-    memoize :inspect
-  end
-
-  def mymock(name)
-    Mock.new(name)
-  end
-
-  let(:object) { described_class.new(context, input, body) }
-
-  let(:context) { mymock('Context') }
+  let(:object)  { described_class.new(context, input) }
+  let(:context) { mymock('Context', :body => body)      }
 
   let(:input)  { mymock('Input') }
 
@@ -41,6 +14,10 @@ describe Ducktrap::Node::Block::Evaluator, '#output' do
     it { should be(input) }
 
     it_should_behave_like 'an idempotent method'
+  end
+
+  def mymock(name, attributes={})
+    mock(name, attributes.merge(:frozen? => true))
   end
 
   context 'with body' do

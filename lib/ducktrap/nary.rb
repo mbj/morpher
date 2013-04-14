@@ -83,26 +83,9 @@ module Ducktrap
       #
       # @param [Enumerable<Ducktrap>] body
       #
-      # @return [undefined]
-      #
       # @api private
       #
-      def initialize(body=[])
-        @body = body
-        super()
-      end
-
-      # Run ducktrap on input
-      #
-      # @param [Object] input
-      #
-      # @return [Evaluator]
-      #
-      # @api private
-      #
-      def run(input)
-        evaluator_klass.new(self, input, body)
-      end
+      include Concord.new(:body)
 
       # Return inverse body
       #
@@ -113,14 +96,6 @@ module Ducktrap
       def inverse_body
         body.map(&:inverse).reverse
       end
-
-      # Return body 
-      #
-      # @return [Enumerable<Ducktrap>]
-      #
-      # @api private
-      #
-      attr_reader :body
 
     private
 
@@ -153,11 +128,12 @@ module Ducktrap
       super
       scope.extend(ClassMethods)
       scope.send(:include, InstanceMethods)
-      scope.send(:include, Equalizer.new(:body))
     end
 
     # Base class for nary evaluators
     class Evaluator < Ducktrap::Evaluator
+
+    private
 
       # Return body
       #
@@ -165,23 +141,10 @@ module Ducktrap
       #
       # @api private
       #
-      attr_reader :body
-
-    private
-
-      # Initialize object
-      #
-      # @param [Object] input
-      # @param [Enumerable<Ducktrap>] body
-      #
-      # @return [undefined]
-      #
-      # @api private
-      #
-      def initialize(context, input, body)
-        @body = body
-        super(context, input)
+      def body
+        context.body
       end
+
     end
   end
 end
