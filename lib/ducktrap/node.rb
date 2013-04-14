@@ -21,7 +21,9 @@ module Ducktrap
     #
     # @api private
     #
-    abstract_method :run
+    def run(input)
+      evaluator_klass.new(self, input)
+    end
 
     # Process input and raise exception on error
     #
