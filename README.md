@@ -21,6 +21,8 @@ See specs!
 Credits
 -------
 
+* [mbj](https://github.com/mbj)
+
 Contributing
 -------------
 
