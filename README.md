@@ -8,6 +8,13 @@ ducktrap
 Ducktrap is a spike for a data transformation algebra. The main idea is to define the transformations with 
 composable blocks that allow to generate an inverse transformation.
 
+It can be used at various places:
+
+* Domain to JSON and vice versa, for building rest style APIS
+* Domain to document db and vice versa, for buidling mappers
+* Form processing
+* ...
+
 Installation
 ------------
 
@@ -16,7 +23,7 @@ There is no gem release.
 Examples
 --------
 
-See specs!
+Sorry, API is stupid, so no examples for now. See specs.
 
 Credits
 -------
@@ -24,7 +31,7 @@ Credits
 * [mbj](https://github.com/mbj)
 
 Contributing
--------------
+------------
 
 * Fork the project.
 * Make your feature addition or bug fix.
@@ -37,23 +44,4 @@ Contributing
 License
 -------
 
-Copyright (c) 2012 Markus Schirp
-
-Permission is hereby granted, free of charge, to any person obtaining
-a copy of this software and associated documentation files (the
-"Software"), to deal in the Software without restriction, including
-without limitation the rights to use, copy, modify, merge, publish,
-distribute, sublicense, and/or sell copies of the Software, and to
-permit persons to whom the Software is furnished to do so, subject to
-the following conditions:
-
-The above copyright notice and this permission notice shall be
-included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
-MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
-LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
-OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
-WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+See LICENSE file.
