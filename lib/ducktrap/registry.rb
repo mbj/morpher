@@ -37,7 +37,7 @@ module Ducktrap
     #
     # @api private
     #
-    def lookup(name, &block)
+    def lookup(name)
       @index.fetch(name) do
         yield
       end
