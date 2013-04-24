@@ -7,7 +7,7 @@ UncommunicativeParameterName:
   - !ruby/regexp /^.$/
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
-LargeClass:
+TooManyMethods:
   max_methods: 10
   exclude: []
   enabled: true
@@ -29,6 +29,8 @@ FeatureEnvy:
   exclude:
   - Ducktrap::PrettyDump#pretty_inspect
   - Ducktrap::Node#call
+  - Ducktrap::Error#dump
+  - Ducktrap::Error::Exception#dump
   enabled: true
 ClassVariable:
   exclude: []
@@ -38,7 +40,7 @@ BooleanParameter:
   enabled: true
 IrresponsibleModule:
   exclude: []
-  enabled: false # TODO: Enable
+  enabled: true 
 UncommunicativeModuleName:
   accept: []
   exclude: []
@@ -50,12 +52,12 @@ NestedIterators:
   ignore_iterators: []
   exclude: []
   enabled: true
-  max_allowed_nesting: 1
-LongMethod:
+  max_allowed_nesting: 2
+TooManyStatements:
   max_statements: 7  # TODO: decrease max_statements to 5 or less
   exclude: []
   enabled: true
-Duplication:
+DuplicateMethodCall:
   allow_calls: []
   exclude: []
   enabled: false # TOOD enable
@@ -75,7 +77,7 @@ UncommunicativeVariableName:
   - !ruby/regexp /^.$/
   - !ruby/regexp /[0-9]$/
   - !ruby/regexp /[A-Z]/
-SimulatedPolymorphism:
+RepeatedConditional:
   exclude: []
   enabled: true
   max_ifs: 2
@@ -84,10 +86,13 @@ DataClump:
   enabled: true
   max_copies: 1
   min_clump_size: 3
-ControlCouple:
+ControlParameter:
   exclude: []
   enabled: true
 LongYieldList:
   max_params: 1
   exclude: []
   enabled: true
+NilCheck:
+  exclude:
+  - Ducktrap::Node::GuardNil::Evaluator#process
