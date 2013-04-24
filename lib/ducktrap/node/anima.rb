@@ -19,6 +19,7 @@ module Ducktrap
         output.attribute(:model, model)
       end
 
+      # Evaluator base class for anima nodes
       class Evaluator < Nullary::Evaluator
 
       private

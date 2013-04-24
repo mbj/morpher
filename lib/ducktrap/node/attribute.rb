@@ -1,10 +1,12 @@
 module Ducktrap
   class Node
+    # Node for specific named attribute
     class Attribute < self
       include Nullary, Concord.new(:name)
 
       register :attribute
 
+      # Evaluator for attribute nodes
       class Evaluator < Nullary::Evaluator
 
       private

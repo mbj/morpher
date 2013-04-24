@@ -94,6 +94,7 @@ module Ducktrap
 
     private_class_method :included
 
+    # Evaluator for unary nodes
     class Evaluator < Ducktrap::Evaluator
 
     private

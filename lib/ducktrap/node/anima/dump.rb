@@ -16,6 +16,7 @@ module Ducktrap
           Load.new(model)
         end
 
+        # Evaluator for anima dump nodes
         class Evaluator < Anima::Evaluator
 
         private

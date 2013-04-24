@@ -16,6 +16,7 @@ module Ducktrap
           Add.new(operand, key)
         end
 
+        # Evaluator for delete key node
         class Evaluator < Key::Evaluator
 
         private

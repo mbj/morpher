@@ -24,11 +24,14 @@ module Ducktrap
       #
       # @return [self]
       #
+      # @api private
+      #
       def dump(output)
         output.name(self)
         output.nest('inverse:', inverse)
       end
 
+      # Evaluator for forward nodes
       class Evaluator < Unary::Evaluator
 
       private

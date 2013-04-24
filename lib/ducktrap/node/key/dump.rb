@@ -16,6 +16,7 @@ module Ducktrap
           Fetch.new(operand.inverse, key)
         end
 
+        # Evaluator for dump key node
         class Evaluator < Key::Evaluator
 
         private

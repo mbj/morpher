@@ -16,7 +16,7 @@ module Ducktrap
         GuardNil.new(operand.inverse)
       end
 
-
+      # Evaluator for guard nil node
       class Evaluator < Unary::Evaluator
 
       private

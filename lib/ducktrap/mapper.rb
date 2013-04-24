@@ -1,4 +1,5 @@
 module Ducktrap
+  # An object holding references to two inverse ducktraps
   class Mapper
     include Concord.new(:loader, :dumper)
 

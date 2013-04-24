@@ -1,4 +1,6 @@
 module Ducktrap
+
+  # Error returned for invalid inputs
   class Error 
     include PrettyDump, Adamantium::Flat, Concord.new(:context, :input)
 

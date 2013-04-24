@@ -8,6 +8,8 @@ require 'anima'
 
 # Library namespace
 module Ducktrap
+
+  # Error raised on failed transformation
   class FailedTransformationError < RuntimeError
     include Adamantium::Flat, Concord.new(:evaluator)
 

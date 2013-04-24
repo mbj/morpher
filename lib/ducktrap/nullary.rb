@@ -18,6 +18,7 @@ module Ducktrap
 
     end
 
+    # Class method mixin
     module ClassMethods
 
       # Build ducktrap
@@ -47,6 +48,7 @@ module Ducktrap
 
     private_class_method :included
 
+    # Evaluator for nullary nodes
     class Evaluator < Ducktrap::Evaluator
 
     private

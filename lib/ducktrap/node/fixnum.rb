@@ -1,8 +1,10 @@
 module Ducktrap
   class Node
+    # Node with fixnum as result
     class Fixnum < self
       include Singleton
 
+      # Node with string as input
       class String < self
         register :fixnum_from_string
 
