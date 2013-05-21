@@ -11,7 +11,7 @@ module Ducktrap
 
   # Error raised on failed transformation
   class FailedTransformationError < RuntimeError
-    include Adamantium::Flat, Concord.new(:evaluator)
+    include Adamantium::Flat, Concord::Public.new(:evaluator)
 
     # Return error message
     #

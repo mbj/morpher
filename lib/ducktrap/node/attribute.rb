@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # Node for specific named attribute
     class Attribute < self
-      include Nullary, Concord.new(:name)
+      include Nullary, Concord::Public.new(:name)
 
       register :attribute
 

@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # Primitive check
     class Primitive < self
-      include Concord.new(:primitive)
+      include Concord::Public.new(:primitive)
 
       register :primitive
 

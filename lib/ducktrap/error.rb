@@ -2,7 +2,7 @@ module Ducktrap
 
   # Error returned for invalid inputs
   class Error 
-    include PrettyDump, Adamantium::Flat, Concord.new(:context, :input)
+    include PrettyDump, Adamantium::Flat, Concord::Public.new(:context, :input)
 
   private
 
@@ -23,7 +23,7 @@ module Ducktrap
 
     # Error caused by exception
     class Exception < self
-      include Concord.new(:context, :input, :exception)
+      include Concord::Public.new(:context, :input, :exception)
 
     private
 

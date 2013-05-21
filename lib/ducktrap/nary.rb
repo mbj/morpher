@@ -85,7 +85,7 @@ module Ducktrap
       #
       # @api private
       #
-      include Concord.new(:body)
+      include Concord::Public.new(:body)
 
       # Return inverse body
       #

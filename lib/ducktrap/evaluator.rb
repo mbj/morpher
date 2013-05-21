@@ -2,7 +2,7 @@ module Ducktrap
 
   # Abstract base class for transform evaluator
   class Evaluator
-    include AbstractType, Adamantium::Flat, PrettyDump, Concord.new(:context, :input)
+    include AbstractType, Adamantium::Flat, PrettyDump, Concord::Public.new(:context, :input)
 
     # Test if conversion was successful
     #

@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # External, user defined node
     class External < self
-      include Concord.new(:block, :inverse_block)
+      include Concord::Public.new(:block, :inverse_block)
 
       register :extern
 

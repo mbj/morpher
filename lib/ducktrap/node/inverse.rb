@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # Noop ducktrap with fixed inverse
     class Inverse < self
-      include Concord.new(:inverse)
+      include Concord::Public.new(:inverse)
 
       register :inverse
 

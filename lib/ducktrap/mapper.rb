@@ -1,7 +1,7 @@
 module Ducktrap
   # An object holding references to two inverse ducktraps
   class Mapper
-    include Concord.new(:loader, :dumper)
+    include Concord::Public.new(:loader, :dumper)
 
     # Build mapper
     #

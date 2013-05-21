@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # Ducktrap with noop inverse
     class Forward < self
-      include Unary, Concord.new(:operand)
+      include Unary, Concord::Public.new(:operand)
 
       register :forward
 

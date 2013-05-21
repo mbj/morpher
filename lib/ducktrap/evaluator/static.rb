@@ -18,7 +18,8 @@ module Ducktrap
 
     # Static evaluator with static output
     class Static < Noop
-      include Concord.new(:context, :input, :output)
-    end
-  end
-end
+      include Concord::Public.new(:context, :input, :output)
+    end # Static
+
+  end # Evaluator
+end # Ducktrap

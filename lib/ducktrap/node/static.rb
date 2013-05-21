@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # Transformer with static output
     class Static < self
-      include Nullary, Concord.new(:value, :inverse_value)
+      include Nullary, Concord::Public.new(:value, :inverse_value)
 
       register :static
 

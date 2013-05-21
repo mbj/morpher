@@ -2,7 +2,7 @@ module Ducktrap
   class Node
     # Base class for anima nodes
     class Anima < self
-      include Nullary, Concord.new(:model)
+      include Nullary, Concord::Public.new(:model)
 
     private
 
