@@ -44,7 +44,6 @@ module Ducktrap
     #
     def name(object)
       puts(object.class.name)
-      self
     end
 
     # Write nest with label
