@@ -1,5 +1,4 @@
 module Ducktrap
-
   # Mixin for pretty dumpable objects
   module PrettyDump
 
@@ -28,5 +27,5 @@ module Ducktrap
       io.read
     end
 
-  end
-end
+  end # PrettyDump
+end # Ducktrap
