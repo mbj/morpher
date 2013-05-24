@@ -1,7 +1,7 @@
 module Ducktrap
   # Printer for ducktrap trees
   class Formatter
-    include Adamantium::Flat
+    include Adamantium::Flat, Equalizer.new(:output, :level)
 
     # Return output
     #
@@ -10,6 +10,16 @@ module Ducktrap
     # @api private
     #
     attr_reader :output
+    protected :output
+
+    # Return indent
+    #
+    # @return [Fixnum]
+    #
+    # @api private
+    #
+    attr_reader :level
+    protected :level
 
     # Initialize formatter
     #
@@ -20,20 +30,9 @@ module Ducktrap
     #
     # @api private
     #
-    def initialize(output = $stderr, indent = 0)
-      @output, @indent = output, indent
+    def initialize(output = $stderr, level = 0)
+      @output, @level = output, level
     end
-
-    # Return prefix at current indentation
-    #
-    # @return [String]
-    #
-    # @api private
-    #
-    def prefix
-      "  " * @indent
-    end
-    memoize :prefix
 
     # Write name of class of object
     #
@@ -59,7 +58,7 @@ module Ducktrap
     #
     def nest(label, nested)
       indented = indent
-      indented.puts(label)
+      indented.puts("#{label}:")
       nested.pretty_dump(indented.indent)
       self
     end
@@ -105,8 +104,9 @@ module Ducktrap
     # @api private
     #
     def puts(string)
-      @output.write(prefix)
-      @output.puts(string)
+      output = self.output
+      output.write(prefix)
+      output.puts(string)
       self
     end
 
@@ -117,7 +117,24 @@ module Ducktrap
     # @api private
     #
     def indent
-      self.class.new(output, @indent+1)
+      self.class.new(output, level+1)
     end
+    memoize :indent
+
+  private
+
+    INDENT = '  '.freeze
+
+    # Return prefix at current indentation
+    #
+    # @return [String]
+    #
+    # @api private
+    #
+    def prefix
+      INDENT * level
+    end
+    memoize :prefix
+
   end
 end
