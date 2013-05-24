@@ -102,9 +102,9 @@ module Ducktrap
     # @api private
     #
     def puts(string)
-      output = self.output
-      output.write(prefix)
-      output.puts(string)
+      util = output
+      util.write(prefix)
+      util.puts(string)
       self
     end
 
