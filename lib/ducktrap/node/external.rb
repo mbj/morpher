@@ -40,8 +40,8 @@ module Ducktrap
       #
       def dump(output)
         output.name(self)
-        output.puts("block:   #{block.inspect}")
-        output.puts("inverse: #{inverse_block.inspect}")
+        output.attribute(:block, block)
+        output.attribute(:inverse, inverse_block)
       end
 
       # Build external ducktrap

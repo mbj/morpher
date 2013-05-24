@@ -73,8 +73,7 @@ module Ducktrap
     # @api private
     #
     def attribute(name, value)
-      indented = indent
-      indented.puts("#{name}: #{value.inspect}")
+      indent.puts("#{name}: #{value.inspect}")
       self
     end
 

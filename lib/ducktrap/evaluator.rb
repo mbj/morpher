@@ -117,7 +117,7 @@ module Ducktrap
       else
         formatter.nest(:error, output)
       end
-      formatter.nest('context:', context)
+      formatter.nest(:context, context)
       self
     end
 

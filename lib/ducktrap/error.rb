@@ -16,7 +16,6 @@ module Ducktrap
     #
     def dump(output)
       output.name(self)
-      output = output.indent
       output.attribute(:input, input)
       output.nest(:context, context)
     end
@@ -38,7 +37,6 @@ module Ducktrap
       def dump(output)
         exception = self.exception
         output.name(self)
-        output = output.indent
         output.attribute(:input, input)
         output.name(exception)
         output.attribute(:exception, exception.message)

@@ -41,9 +41,8 @@ module Ducktrap
       # @api private
       #
       def dump(output)
-        output.puts(self.class.name)
-        output = output.indent
-        output.puts("primitive: #{primitive}")
+        output.name(self)
+        output.attribute(:primitive, primitive)
         self
       end
       

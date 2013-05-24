@@ -109,7 +109,6 @@ module Ducktrap
       #
       def dump(output)
         output.name(self)
-        indent = output.indent
         output.body(body)
         self
       end
