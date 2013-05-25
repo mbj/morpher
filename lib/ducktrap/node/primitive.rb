@@ -46,6 +46,13 @@ module Ducktrap
       end
       
       class << self
+
+        # Build node
+        #
+        # @return [node]
+        #
+        # @api private
+        #
         alias_method :build, :new
       end
 
