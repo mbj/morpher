@@ -80,6 +80,6 @@ module Ducktrap
         Ducktrap.build(&@dumper)
       end
 
-    end
-  end
-end
+    end # Builder
+  end # Mapper
+end # Ducktrap
