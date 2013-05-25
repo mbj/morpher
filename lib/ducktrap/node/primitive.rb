@@ -19,12 +19,12 @@ module Ducktrap
           return Evaluator::Invalid.new(self, input)
         end
 
-        Evaluator::Static.new(self, input, input)
+        Evaluator::Noop.new(self, input)
       end
 
       # Return inverse ducktrap
       #
-      # @return [Ducktrap]
+      # @return [self]
       #
       # @api private
       #
@@ -43,18 +43,12 @@ module Ducktrap
       def dump(output)
         output.name(self)
         output.attribute(:primitive, primitive)
-        self
       end
       
-      # Build ducktrap
-      #
-      # @return [Ducktrap]
-      #
-      # @api private
-      #
-      def self.build(*args)
-        new(*args)
+      class << self
+        alias_method :build, :new
       end
-    end
-  end
-end
+
+    end # Primitive
+  end # node
+end # Ducktrap
