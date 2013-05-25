@@ -35,11 +35,11 @@ module Ducktrap
       # @api private
       #
       def dump(output)
-        exception = self.exception
+        excpt = exception
         output.name(self)
         output.attribute(:input, input)
-        output.name(exception)
-        output.attribute(:exception, exception.message)
+        output.attribute(:exception, excpt.class)
+        output.attribute(:exception_message, excpt.message)
         output.nest(:context, context)
       end
     end
