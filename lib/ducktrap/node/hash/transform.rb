@@ -43,8 +43,6 @@ module Ducktrap
                 return nested_error(evaluator)
               end
 
-              output = evaluator.output
-
               hash.merge!(evaluator.output)
             end
           end
