@@ -29,5 +29,5 @@ module Ducktrap
       end
 
     end # Static
-  end # node
+  end # Node
 end # Ducktrap
