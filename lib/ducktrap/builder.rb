@@ -1,7 +1,7 @@
 module Ducktrap
   # Abstract base class for builders
   class Builder
-    include Adamantium::Flat, AbstractType
+    include Adamantium::Flat, AbstractType, Equalizer.new(:klass)
 
     # Return class to build
     #
@@ -25,11 +25,12 @@ module Ducktrap
       @klass = klass
       return unless block
 
-      if block.arity == 1
-        block.call(self)
-      else
+      if block.arity.zero?
         instance_eval(&block)
+      else
+        block.call(self)
       end
     end
-  end
-end
+
+  end # Builder
+end # Ducktrap
