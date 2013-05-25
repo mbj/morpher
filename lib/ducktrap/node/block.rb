@@ -15,22 +15,6 @@ module Ducktrap
         self.class.new(inverse_body)
       end
 
-      # Return new instance
-      #
-      # @param [Array<Node>] nodes
-      #
-      # @return [Node]
-      #
-      # @api private
-      #
-      def self.new(nodes)
-        if nodes.one?
-          nodes.first
-        else
-          super
-        end
-      end
-
       # Evaluator of chained ducktraps
       class Evaluator < NAry::Evaluator
 
