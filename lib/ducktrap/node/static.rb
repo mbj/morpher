@@ -27,6 +27,7 @@ module Ducktrap
       def inverse
         Static.new(inverse_value, value)
       end
-    end
-  end
-end
+
+    end # Static
+  end # node
+end # Ducktrap
