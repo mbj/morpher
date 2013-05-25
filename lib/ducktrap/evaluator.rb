@@ -105,7 +105,7 @@ module Ducktrap
     #
     # @param [Formatter] formatter
     #
-    # @return [self]
+    # @return [undefined]
     #
     # @api private
     #
@@ -118,7 +118,6 @@ module Ducktrap
         formatter.nest(:error, output)
       end
       formatter.nest(:context, context)
-      self
     end
 
   end

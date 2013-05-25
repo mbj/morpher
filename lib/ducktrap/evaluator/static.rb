@@ -14,7 +14,7 @@ module Ducktrap
         input
       end
 
-    end
+    end # Noop
 
     # Static evaluator with static output
     class Static < Noop

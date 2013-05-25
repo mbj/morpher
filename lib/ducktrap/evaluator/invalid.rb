@@ -20,11 +20,11 @@ module Ducktrap
       #
       # @api private
       #
-      def initialize(context, input)
-        super(context, input)
+      def initialize(_context, _input)
+        super
         @output = error
       end
 
-    end
-  end
-end
+    end # Invalid
+  end # Evaluator
+end # Ducktrap

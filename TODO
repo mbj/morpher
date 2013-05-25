@@ -1,3 +1,4 @@
+* Remove input attr in Ducktrap::Error
 * Finally stop spiking
 * Mutation cover this stuff
 * Find better name for ducktrap and result
