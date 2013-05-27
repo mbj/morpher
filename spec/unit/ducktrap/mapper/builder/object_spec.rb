@@ -24,7 +24,11 @@ describe Ducktrap::Mapper::Builder, '#object' do
       loader.stub(:inverse => dumper)
     end
 
-    it { should eql(Ducktrap::Mapper.new(loader, dumper)) }
+    specify do 
+      loader = Ducktrap::Node::Block.new([self.loader])
+      dumper = Ducktrap::Node::Block.new([self.dumper])
+      should eql(Ducktrap::Mapper.new(loader, dumper))
+    end
   end
 
   context 'with dumper' do
@@ -41,7 +45,11 @@ describe Ducktrap::Mapper::Builder, '#object' do
       dumper.stub(:inverse => loader)
     end
 
-    it { should eql(Ducktrap::Mapper.new(loader, dumper)) }
+    specify do 
+      loader = Ducktrap::Node::Block.new([self.loader])
+      dumper = Ducktrap::Node::Block.new([self.dumper])
+      should eql(Ducktrap::Mapper.new(loader, dumper))
+    end
   end
 
   context 'with loader and dumper' do
@@ -59,7 +67,11 @@ describe Ducktrap::Mapper::Builder, '#object' do
       end
     end
 
-    it { should eql(Ducktrap::Mapper.new(loader, dumper)) }
+    specify do 
+      loader = Ducktrap::Node::Block.new([self.loader])
+      dumper = Ducktrap::Node::Block.new([self.dumper])
+      should eql(Ducktrap::Mapper.new(loader, dumper))
+    end
   end
 
   context 'without loader or dumper' do
@@ -70,5 +82,4 @@ describe Ducktrap::Mapper::Builder, '#object' do
       expect { subject }.to raise_error(RuntimeError, 'Did not specify loader or dumper or both')
     end
   end
-
 end

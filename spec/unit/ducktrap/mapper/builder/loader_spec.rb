@@ -12,5 +12,9 @@ describe Ducktrap::Mapper::Builder, '#loader' do
   let(:loader) { mock('Loader', :inverse => dumper, :frozen? => true) }
   let(:dumper) { mock('Dumper')                                       }
 
-  its(:object) { should eql(Ducktrap::Mapper.new(loader, dumper)) }
+  its(:object) do 
+    loader = Ducktrap::Node::Block.new([self.loader])
+    dumper = Ducktrap::Node::Block.new([self.dumper])
+    should eql(Ducktrap::Mapper.new(loader, dumper))
+  end
 end
