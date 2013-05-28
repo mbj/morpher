@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Ducktrap::Node, '#call' do
-  subject { object.call(input) }
+describe Ducktrap::Node, '#run' do
+  subject { object.run(input) }
 
   let(:object) { class_under_test.new }
 
   let(:class_under_test) do
     evaluator = self.evaluator
     Class.new(described_class) do
-      define_method :run do |input|
+      define_method :call do |input|
         evaluator
       end
     end

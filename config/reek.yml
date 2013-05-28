@@ -28,7 +28,7 @@ LongParameterList:
 FeatureEnvy:
   exclude:
   - Ducktrap::PrettyDump#pretty_inspect
-  - Ducktrap::Node#call
+  - Ducktrap::Node#run
   - Ducktrap::Error#dump
   - Ducktrap::Error::Exception#dump
   enabled: true

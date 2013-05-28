@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::GuardNil, '#run' do
-  subject { object.run(input) }
+describe Ducktrap::Node::GuardNil, '#call' do
+  subject { object.call(input) }
 
   let(:object)  { described_class.new(operand) }
 

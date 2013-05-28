@@ -29,7 +29,7 @@ module Ducktrap
         #
         def process
           input.map do |element|
-            evaluator = operand.run(element)
+            evaluator = operand.call(element)
             unless evaluator.successful?
               return nested_error(evaluator)
             end

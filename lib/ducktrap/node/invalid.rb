@@ -12,7 +12,7 @@ module Ducktrap
       #
       # @api private
       #
-      def run(input)
+      def call(input)
         Evaluator::Invalid.new(self, input)
       end
 

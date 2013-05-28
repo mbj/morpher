@@ -12,7 +12,7 @@ module Ducktrap
       #
       # @api private
       #
-      def run(input)
+      def call(input)
         evaluator_klass.new(self, input)
       end
 

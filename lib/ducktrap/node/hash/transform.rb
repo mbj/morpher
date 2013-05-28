@@ -37,7 +37,7 @@ module Ducktrap
           #
           def process
             body.each_with_object({}) do |ducktrap, hash|
-              evaluator = ducktrap.run(input)
+              evaluator = ducktrap.call(input)
 
               unless evaluator.successful?
                 return nested_error(evaluator)

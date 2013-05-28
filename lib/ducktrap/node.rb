@@ -21,7 +21,7 @@ module Ducktrap
     #
     # @api private
     #
-    def run(input)
+    def call(input)
       evaluator_klass.new(self, input)
     end
 
@@ -37,8 +37,8 @@ module Ducktrap
     #
     # @api private
     #
-    def call(input)
-      evaluator = run(input)
+    def run(input)
+      evaluator = call(input)
       evaluator.assert_successful
       evaluator.output
     end

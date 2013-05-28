@@ -1,11 +1,11 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::Primitive, '#run' do
+describe Ducktrap::Node::Primitive, '#call' do
   let(:object) { described_class.new(primitive) }
 
   let(:primitive) { String }
 
-  subject { object.run(input) }
+  subject { object.call(input) }
 
   context 'when input is kind of primitive' do
     let(:input) { String.new }

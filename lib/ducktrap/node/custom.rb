@@ -27,7 +27,7 @@ module Ducktrap
       #
       # @api private
       #
-      def run(input)
+      def call(input)
         Evaluator::Static.new(self, input, forward_block.call(input))
       end
 

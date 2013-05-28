@@ -31,7 +31,7 @@ module Ducktrap
       #
       # @api private
       #
-      def run(input)
+      def call(input)
         evaluator_klass.new(self, input)
       end
 
@@ -118,7 +118,7 @@ module Ducktrap
       # @api private
       #
       def process_operand(input)
-        operand.run(input)
+        operand.call(input)
       end
 
       # Process input with operand

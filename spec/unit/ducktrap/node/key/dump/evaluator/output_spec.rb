@@ -32,6 +32,6 @@ describe Ducktrap::Node::Key::Dump::Evaluator, '#output' do
 
     let(:operand) { Ducktrap::Node::Invalid.instance }
 
-    it { should eql(Ducktrap::Error.new(operand.run(value), input)) }
+    it { should eql(Ducktrap::Error.new(operand.call(value), input)) }
   end
 end

@@ -14,7 +14,7 @@ module Ducktrap
       #
       # @api private
       #
-      def run(input)
+      def call(input)
         unless input.kind_of?(primitive)
           return Evaluator::Invalid.new(self, input)
         end

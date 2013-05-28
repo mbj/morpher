@@ -24,7 +24,7 @@ module Ducktrap
       #
       # @api private
       #
-      def run(input)
+      def call(input)
         Evaluator::Noop.new(self, input)
       end
 

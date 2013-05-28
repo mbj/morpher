@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::Custom, '#run' do 
+describe Ducktrap::Node::Custom, '#call' do 
   let(:object) { described_class.new(forward, inverse) }
 
   let(:input)  { mock('Input') }
@@ -11,7 +11,7 @@ describe Ducktrap::Node::Custom, '#run' do
   let(:forward) {  lambda { |input| arguments << input; output } }
   let(:inverse) { mock('Inverse')                                }
 
-  subject { object.run(input) }
+  subject { object.call(input) }
 
   it { should eql(Ducktrap::Evaluator::Static.new(object, input, output)) }
 

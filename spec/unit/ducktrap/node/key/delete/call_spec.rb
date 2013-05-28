@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::Key::Delete, '#run' do
-  subject { object.run(input) }
+describe Ducktrap::Node::Key::Delete, '#call' do
+  subject { object.call(input) }
 
   let(:object)  { described_class.new(inverse, key) }
   let(:key)     { mock('Key')                       }

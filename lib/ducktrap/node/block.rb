@@ -32,7 +32,7 @@ module Ducktrap
         #
         def process
           body.inject(input) do |input, ducktrap|
-            evaluator = ducktrap.run(input)
+            evaluator = ducktrap.call(input)
             return nested_error(evaluator) unless evaluator.successful?
             evaluator.output
           end
