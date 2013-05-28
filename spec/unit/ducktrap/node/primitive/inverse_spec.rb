@@ -8,4 +8,6 @@ describe Ducktrap::Node::Primitive, '#inverse' do
   subject { object.inverse }
 
   it { should be(object) }
+
+  it_should_behave_like 'an #inverse method'
 end

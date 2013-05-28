@@ -6,29 +6,27 @@ module Ducktrap
 
       register :forward
 
-      # Return evaluator
+      # Return inverse node
       #
-      # @param [Object] input
-      #
-      # @return [Evaluator]
+      # @return [Inverse]
       #
       # @api private
       #
       def inverse
-        Noop.instance
+        Inverse.new(operand)
       end
 
     private
 
       # Perform pretty dump
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       #
       def dump(output)
         output.name(self)
-        output.nest('inverse:', inverse)
+        output.nest(:operand, operand)
       end
 
       # Evaluator for forward nodes
@@ -50,8 +48,8 @@ module Ducktrap
           operand_output
         end
 
-      end
+      end # Evaluator
 
-    end
-  end
-end
+    end # Forward
+  end # Node
+end # Ducktrap

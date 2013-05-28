@@ -8,4 +8,6 @@ describe Ducktrap::Node::Key::Delete, '#inverse' do
   let(:inverse) { mock('Inverse') }
 
   it { should eql(Ducktrap::Node::Key::Add.new(inverse, key)) }
+
+  it_should_behave_like 'an #inverse method'
 end

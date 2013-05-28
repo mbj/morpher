@@ -2,9 +2,19 @@ module Ducktrap
   class Node
     # Noop ducktrap with fixed inverse
     class Inverse < self
-      include Concord::Public.new(:inverse)
+      include Concord::Public.new(:operand)
 
       register :inverse
+
+      # Return inverse node
+      #
+      # @return [Forward]
+      #
+      # @api private
+      #
+      def inverse
+        Forward.new(operand)
+      end
 
       # Return evaluator
       #
@@ -28,7 +38,7 @@ module Ducktrap
       #
       def dump(output)
         output.name(self)
-        output.nest(:inverse, inverse)
+        output.nest(:operand, operand)
       end
 
     end # Inverse

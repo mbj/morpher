@@ -15,4 +15,6 @@ describe Ducktrap::Node::Block, '#inverse' do
     inverse_body = [ Ducktrap::Node::Static.new(:inverse, :forward) ]
     should eql(described_class.new(inverse_body))
   end
+
+  it_should_behave_like 'an #inverse method'
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::Inverse, '#pretty_inspect' do
+describe Ducktrap::Node::Forward, '#pretty_inspect' do
   let(:object)    { described_class.new(operand) }
   let(:primitive) { String }
 
@@ -11,7 +11,7 @@ describe Ducktrap::Node::Inverse, '#pretty_inspect' do
 
   it 'should return inspected error' do
     should eql(strip(<<-STR))
-      Ducktrap::Node::Inverse
+      Ducktrap::Node::Forward
         operand:
           Ducktrap::Node::Noop
     STR

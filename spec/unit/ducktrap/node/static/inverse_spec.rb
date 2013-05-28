@@ -9,4 +9,6 @@ describe Ducktrap::Node::Static, '#inverse' do
   subject { object.inverse }
 
   it { should eql(Ducktrap::Node::Static.new(inverse_value, value)) }
+
+  it_should_behave_like 'an #inverse method'
 end

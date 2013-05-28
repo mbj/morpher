@@ -13,7 +13,7 @@ module Ducktrap
       # @api private
       #
       def inverse
-        GuardNil.new(operand.inverse)
+        self.class.new(operand.inverse)
       end
 
       # Evaluator for guard nil node

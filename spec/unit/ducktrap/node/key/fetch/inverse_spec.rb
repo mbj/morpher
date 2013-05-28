@@ -9,4 +9,6 @@ describe Ducktrap::Node::Key::Fetch, '#inverse' do
   subject { object.inverse }
 
   it { should eql(Ducktrap::Node::Key::Dump.new(operand.inverse, key)) }
+
+  it_should_behave_like 'an #inverse method'
 end
