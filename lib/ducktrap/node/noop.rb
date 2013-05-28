@@ -4,6 +4,8 @@ module Ducktrap
     class Noop < self
       include Singleton
 
+      register :noop
+
       # Run ducktrap
       #
       # @param [Object] input

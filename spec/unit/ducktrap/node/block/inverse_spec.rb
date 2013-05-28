@@ -7,12 +7,16 @@ describe Ducktrap::Node::Block, '#inverse' do
 
   let(:body) do
     [
-      Ducktrap::Node::Static.new(:forward, :inverse)
+      Ducktrap::Node::Static.new(:forward, :inverse),
+      Ducktrap::Node::Noop.instance
     ]
   end
 
   it 'should return inverse' do
-    inverse_body = [ Ducktrap::Node::Static.new(:inverse, :forward) ]
+    inverse_body = [
+      Ducktrap::Node::Noop.instance,
+      Ducktrap::Node::Static.new(:inverse, :forward) 
+    ]
     should eql(described_class.new(inverse_body))
   end
 

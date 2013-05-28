@@ -62,7 +62,8 @@ module Ducktrap
         @body = body
         super(klass)
       end
-    end
+
+    end # Builder
 
     module ClassMethods
 
@@ -88,6 +89,8 @@ module Ducktrap
       #
       include Concord::Public.new(:body)
 
+    private
+
       # Return inverse body
       #
       # @return [Enumerable<Ducktrap>]
@@ -97,8 +100,6 @@ module Ducktrap
       def inverse_body
         body.map(&:inverse).reverse
       end
-
-    private
 
       # Dump instance
       #
@@ -111,7 +112,6 @@ module Ducktrap
       def dump(output)
         output.name(self)
         output.body(body)
-        self
       end
 
     end # InstanceMethods
@@ -125,7 +125,6 @@ module Ducktrap
     # @api private
     #
     def self.included(scope)
-      super
       scope.extend(ClassMethods)
       scope.send(:include, InstanceMethods)
     end
