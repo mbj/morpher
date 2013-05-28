@@ -1,4 +1,3 @@
-require 'backports'
 require 'abstract_type'
 require 'equalizer'
 require 'concord'
