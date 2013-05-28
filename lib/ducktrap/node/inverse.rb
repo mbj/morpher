@@ -15,20 +15,22 @@ module Ducktrap
       # @api private
       #
       def run(input)
-        Evaluator::Static.new(self, input, input)
+        Evaluator::Noop.new(self, input)
       end
 
     private
 
       # Perform pretty dump
       #
-      # @return [self]
+      # @return [undefined]
+      #
+      # @api private
       #
       def dump(output)
         output.name(self)
-        output.nest('inverse:', inverse)
+        output.nest(:inverse, inverse)
       end
 
-    end
-  end
-end
+    end # Inverse
+  end # Node
+end # Ducktrap
