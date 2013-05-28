@@ -1,7 +1,7 @@
 module Ducktrap
   # Mixin for defining unary ducktraps
   module Unary 
-    # Instance methods mixin for unary ducktrap
+    # Instance methods mixin for unary ducktraps
     module InstanceMethods
 
       # Return ducktrap
@@ -170,6 +170,6 @@ module Ducktrap
       #
       abstract_method :process_operand_output
 
-    end
-  end
-end
+    end # Evaluator
+  end # Unary
+end # Ducktrap

@@ -1,19 +1,20 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::Key::Fetch, '#pretty_inspect' do
-  let(:object) { described_class.new(operand, key) }
+describe Ducktrap::Node::Key, '#pretty_inspect' do
+  let(:object)    { described_class.new(operand, key) }
+  let(:primitive) { String }
 
-  let(:operand) { Ducktrap::Node::Static.new(:forward, :inverse) }
-  let(:key)     { :key                                           }
+  let(:operand) { Ducktrap::Node::Noop.instance }
+  let(:key)     { :key                          }
 
   subject { object.pretty_inspect }
 
-  specify do 
-    subject.should eql(strip(<<-STR))
-      Ducktrap::Node::Key::Fetch
+  it 'should return inspected error' do
+    should eql(strip(<<-STR))
+      Ducktrap::Node::Key
         key: :key
         operand:
-          Ducktrap::Node::Static
+          Ducktrap::Node::Noop
     STR
   end
 end

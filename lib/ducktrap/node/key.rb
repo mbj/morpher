@@ -30,15 +30,14 @@ module Ducktrap
 
       # Dump object
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       #
       def dump(output)
         output.name(self)
         output.attribute(:key, key)
-        output.nest('operand:', operand)
-        self
+        output.nest(:operand, operand)
       end
 
       # Base class for key evaluators
