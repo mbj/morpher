@@ -15,7 +15,7 @@ module Ducktrap
       # @api private
       #
       def call(input)
-        Evaluator::Static.new(self, input, input)
+        Evaluator::Noop.new(self, input)
       end
 
       # Return inverse ducktrap
