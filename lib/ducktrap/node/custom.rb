@@ -7,7 +7,7 @@ module Ducktrap
       register :custom
 
       # FIXME: Remove this after a while
-      register :external
+      register :extern
 
       # Return inverse
       #
