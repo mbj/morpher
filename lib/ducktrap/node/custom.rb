@@ -1,10 +1,10 @@
 module Ducktrap
   class Node
-    # External, user defined node
-    class External < self
-      include Concord::Public.new(:block, :inverse_block)
+    # Custom, user defined node
+    class Custom < self
+      include Concord::Public.new(:forward_block, :inverse_block)
 
-      register :extern
+      register :custom
 
       # Return inverse
       #
@@ -13,7 +13,7 @@ module Ducktrap
       # @api private
       #
       def inverse
-        self.class.new(inverse_block, block)
+        self.class.new(inverse_block, forward_block)
       end
 
       # Run with input
@@ -25,7 +25,7 @@ module Ducktrap
       # @api private
       #
       def run(input)
-        Evaluator::Static.new(self, input, @block.call(input))
+        Evaluator::Static.new(self, input, forward_block.call(input))
       end
 
     private
@@ -40,7 +40,7 @@ module Ducktrap
       #
       def dump(output)
         output.name(self)
-        output.attribute(:block, block)
+        output.attribute(:forward, forward_block)
         output.attribute(:inverse, inverse_block)
       end
 
@@ -64,7 +64,7 @@ module Ducktrap
         # @api private
         #
         def forward(&block)
-          @block = block
+          @forward_block = block
           self
         end
 
@@ -86,7 +86,7 @@ module Ducktrap
         # @api private
         #
         def object
-          klass.new(block, inverse_block)
+          klass.new(forward_block, inverse_block)
         end
 
       private
@@ -97,8 +97,8 @@ module Ducktrap
         #
         # @api private
         #
-        def block
-          @block || raise('No forward block specified!')
+        def forward_block
+          @forward_block || raise('No forward block specified!')
         end
 
         # Return inverse block
@@ -111,7 +111,8 @@ module Ducktrap
           @inverse_block || raise('No inverse block specified!')
         end
 
-      end
-    end
-  end
-end
+      end # Builder
+
+    end # Custom
+  end # Node
+end # Ducktrap
