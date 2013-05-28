@@ -20,43 +20,19 @@ module Ducktrap
       #
       def initialize(operand)
         @operand = operand
-        super()
-      end
-
-      # Return evaluator for input
-      #
-      # @param [Object] input
-      #
-      # @return [Evaluator]
-      #
-      # @api private
-      #
-      def call(input)
-        evaluator_klass.new(self, input)
-      end
-
-      # Return inverse transformation
-      # 
-      # @return [Node]
-      #
-      # @api private
-      #
-      def inverse
-        self.class.new(operand.inverse)
       end
 
     private
 
       # Perform pretty dump
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       #
       def dump(output)
         output.name(self)
-        output.nest('operand:', operand)
-        self
+        output.nest(:operand, operand)
       end
 
     end
