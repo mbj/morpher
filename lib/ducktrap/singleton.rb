@@ -4,28 +4,6 @@ module Ducktrap
     module InstanceMethods
       include Adamantium::Flat
 
-      # Run ducktrap on input
-      #
-      # @param [Object] input
-      #
-      # @return [Evaluator]
-      #
-      # @api private
-      #
-      def call(input)
-        evaluator_klass.new(self, input)
-      end
-
-      # Return inverse 
-      #
-      # @return [Ducktrap]
-      #
-      # @api private
-      #
-      def inverse
-        inverse_klass.instance
-      end
-
       # Return inspect string
       #
       # @return [String]
@@ -36,7 +14,8 @@ module Ducktrap
         "<#{self.class.name}>"
       end
       memoize :inspect
-    end
+
+    end # InstanceMethods
 
     module ClassMethods
 
@@ -51,7 +30,7 @@ module Ducktrap
       end
 
       alias_method :build, :instance
-    end
+    end # ClassMethods
 
     # Hook called when module is included
     #
@@ -66,5 +45,5 @@ module Ducktrap
       scope.send(:include,InstanceMethods)
       scope.send(:private_class_method,:new)
     end
-  end
-end
+  end # Singleton
+end # Ducktrap
