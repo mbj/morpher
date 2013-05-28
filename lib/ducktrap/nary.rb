@@ -1,6 +1,6 @@
 module Ducktrap
   # Mixin for Nary ducktraps
-  module NAry 
+  module Nary 
 
     # Builder for nary ducktraps
     class Builder < Ducktrap::Builder
@@ -75,7 +75,8 @@ module Ducktrap
       def build(*arguments, &block)
         Builder.new(self, *arguments, &block).object
       end
-    end
+
+    end # ClassMethods
 
     module InstanceMethods
 
@@ -113,7 +114,7 @@ module Ducktrap
         self
       end
 
-    end
+    end # InstanceMethods
 
     # Hook called when module was included
     #
@@ -128,6 +129,7 @@ module Ducktrap
       scope.extend(ClassMethods)
       scope.send(:include, InstanceMethods)
     end
+    private_class_method :included
 
     # Base class for nary evaluators
     class Evaluator < Ducktrap::Evaluator
@@ -144,6 +146,7 @@ module Ducktrap
         context.body
       end
 
-    end
-  end
-end
+    end # Evaluator
+
+  end # Nary
+end # Ducktrap

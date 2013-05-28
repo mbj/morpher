@@ -6,7 +6,7 @@ module Ducktrap
       # TODO: Find better primitive!
       #
       class Transform < self
-        include NAry
+        include Nary
 
         register :hash_transform
 
@@ -21,7 +21,7 @@ module Ducktrap
         end
 
         # Evaluator of chained ducktraps
-        class Evaluator < NAry::Evaluator
+        class Evaluator < Nary::Evaluator
 
         private
 

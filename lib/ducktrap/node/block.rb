@@ -3,7 +3,7 @@ module Ducktrap
     # Ducktrap that returns last evaluator output of a chain and stops on first failure.
     # Acts like AND with multiple inputs.
     class Block < self
-      include NAry
+      include Nary
 
       # Return inverse ducktrap
       #
@@ -16,7 +16,7 @@ module Ducktrap
       end
 
       # Evaluator of chained ducktraps
-      class Evaluator < NAry::Evaluator
+      class Evaluator < Nary::Evaluator
 
       private
 
