@@ -1,23 +1,6 @@
 module Ducktrap
   # Mixin for defining nullary ducktraps
   module Nullary 
-    # Instance methods mixin for unary ducktrap
-    module InstanceMethods
-
-      # Return evaluator for input
-      #
-      # @param [Object] input
-      #
-      # @return [Evaluator]
-      #
-      # @api private
-      #
-      def call(input)
-        evaluator_klass.new(self, input)
-      end
-
-    end
-
     # Class method mixin
     module ClassMethods
 
@@ -28,10 +11,13 @@ module Ducktrap
       # @api private
       #
       def build(*args)
+        if block_given?
+          raise "#{name}.build does not take a block"
+        end
         new(*args)
       end
 
-    end
+    end # ClassMethods
 
     # Hook called when module is included
     #
@@ -42,17 +28,14 @@ module Ducktrap
     # @api private
     #
     def self.included(scope)
-      scope.send(:include, InstanceMethods)
       scope.extend(ClassMethods)
     end
-
     private_class_method :included
 
     # Evaluator for nullary nodes
     class Evaluator < Ducktrap::Evaluator
 
-    private
+    end # Evaluator
 
-    end
-  end
-end
+  end # nullary
+end # Ducktrap
