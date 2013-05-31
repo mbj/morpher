@@ -30,7 +30,7 @@ describe Ducktrap::Nary::Builder, '#method_missing' do
     it 'should raise error' do
       message = 
         if Devtools.rbx? 
-          %q(undefined method `unknown' on an instance of Ducktrap::Nary::Builder)
+          %q(undefined method `unknown' on an instance of Ducktrap::Nary::Builder.)
         else
           %q(undefined method `unknown' for #<Ducktrap::Nary::Builder klass=Ducktrap::Node::Block>)
         end
