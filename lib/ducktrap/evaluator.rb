@@ -17,6 +17,7 @@ module Ducktrap
     def successful?
       !output.kind_of?(Error)
     end
+    memoize :successful?
 
     # Assert evaluator is successful
     #

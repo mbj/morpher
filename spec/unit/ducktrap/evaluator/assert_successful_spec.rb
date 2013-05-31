@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Ducktrap::Evaluator, '#assert_successful' do
   let(:object) { class_under_test.new(context, input) }
   
-  let(:context) { mock('Context') }
+  let(:context) { Ducktrap::Node::Noop.instance }
   let(:input)   { mock('Input')   }
 
   subject { object.assert_successful }
@@ -19,7 +19,7 @@ describe Ducktrap::Evaluator, '#assert_successful' do
     end
 
     it 'should raise error' do
-      expect { subject }.to raise_error(Ducktrap::FailedTransformationError.new(object))
+      expect { subject }.to raise_error(Ducktrap::FailedTransformationError)
     end
   end
 
