@@ -64,8 +64,10 @@ module Ducktrap
     # @api private
     #
     def self.included(scope)
-      scope.send(:include, InstanceMethods)
-      scope.extend(ClassMethods)
+      scope.module_eval do
+        include InstanceMethods, Equalizer.new(:operand)
+        extend ClassMethods
+      end
     end
 
     private_class_method :included

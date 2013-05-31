@@ -56,16 +56,6 @@ module Ducktrap
     end
     private_class_method :register
 
-    # Return evaluator class
-    #
-    # @return [Class:Evaluator]
-    #
-    # @api private
-    #
-    def evaluator_klass
-      self.class::Evaluator
-    end
-
     # Build ducktrap
     #
     # @return [Ducktrap]
@@ -90,5 +80,15 @@ module Ducktrap
       output.name(self)
     end
 
-  end
-end
+    # Return evaluator class
+    #
+    # @return [Class:Evaluator]
+    #
+    # @api private
+    #
+    def evaluator_klass
+      self.class::Evaluator
+    end
+
+  end # Node
+end # Ducktrap

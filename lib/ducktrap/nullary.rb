@@ -37,5 +37,5 @@ module Ducktrap
 
     end # Evaluator
 
-  end # nullary
+  end # Nullary
 end # Ducktrap

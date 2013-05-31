@@ -81,14 +81,6 @@ module Ducktrap
 
     module InstanceMethods
 
-      # Initialize object
-      #
-      # @param [Enumerable<Ducktrap>] body
-      #
-      # @api private
-      #
-      include Concord::Public.new(:body)
-
     private
 
       # Return inverse body
@@ -116,6 +108,8 @@ module Ducktrap
 
     end # InstanceMethods
 
+    CONCORD = Concord::Public.new(:body)
+
     # Hook called when module was included
     #
     # @param [Class,Module] scope
@@ -126,7 +120,10 @@ module Ducktrap
     #
     def self.included(scope)
       scope.extend(ClassMethods)
-      scope.send(:include, InstanceMethods)
+      scope.module_eval do
+        include InstanceMethods
+        include CONCORD
+      end
     end
     private_class_method :included
 

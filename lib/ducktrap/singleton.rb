@@ -15,6 +15,8 @@ module Ducktrap
       end
       memoize :inspect
 
+    private
+
     end # InstanceMethods
 
     module ClassMethods

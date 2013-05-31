@@ -1,5 +1,4 @@
-* Remove input attr in Ducktrap::Error
+* Remove input attr in Ducktrap::Error?
+* Remove Node.build
 * Finally stop spiking
-* Mutation cover this stuff
-* Find better name for ducktrap and result
 * Implement Node::GuardNil via XOR node.
