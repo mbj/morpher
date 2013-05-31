@@ -28,9 +28,16 @@ describe Ducktrap::Nary::Builder, '#method_missing' do
     subject { object.unknown }
 
     it 'should raise error' do
+      message = 
+        if Devtools.rbx? 
+          %q(undefined method `unknown' on an instance of Ducktrap::Nary::Builder)
+        else
+          %q(undefined method `unknown' for #<Ducktrap::Nary::Builder klass=Ducktrap::Node::Block>)
+        end
+
       expect { subject }.to raise_error(
         NoMethodError, 
-        %q(undefined method `unknown' for #<Ducktrap::Nary::Builder klass=Ducktrap::Node::Block>)
+        message
       )
     end
   end
