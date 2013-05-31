@@ -36,7 +36,7 @@ module Ducktrap
           operand_output
         end
 
-      end
-    end
-  end
-end
+      end # Evaluator
+    end # GuardNil
+  end # Node
+end # Ducktrap
