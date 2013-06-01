@@ -32,6 +32,7 @@ module Ducktrap
       end
 
       alias_method :build, :instance
+
     end # ClassMethods
 
     # Hook called when module is included
@@ -43,9 +44,12 @@ module Ducktrap
     # @api private
     #
     def self.included(scope)
-      scope.extend(ClassMethods)
-      scope.send(:include,InstanceMethods)
-      scope.send(:private_class_method,:new)
+      scope.module_eval do
+        extend ClassMethods
+        include InstanceMethods
+        private_class_method :new
+      end
     end
+
   end # Singleton
 end # Ducktrap
