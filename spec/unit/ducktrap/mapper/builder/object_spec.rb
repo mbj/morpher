@@ -67,6 +67,11 @@ describe Ducktrap::Mapper::Builder, '#object' do
       end
     end
 
+    before do
+      dumper.stub(:inverse => loader)
+      loader.stub(:inverse => dumper)
+    end
+
     specify do 
       loader = Ducktrap::Node::Block.new([self.loader])
       dumper = Ducktrap::Node::Block.new([self.dumper])
