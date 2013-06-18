@@ -19,6 +19,8 @@ module Ducktrap
     end
     memoize :successful?
 
+    alias_method :success?, :successful?
+
     # Assert evaluator is successful
     #
     # @return [self]
@@ -64,7 +66,7 @@ module Ducktrap
     #
     # @return [Error]
     #   otherwise
-    #  
+    #
     # @api private
     #
     abstract_method :process
