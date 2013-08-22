@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Ducktrap::Evaluator, '#assert_successful' do
   let(:object) { class_under_test.new(context, input) }
-  
+
   let(:context) { Ducktrap::Node::Noop.instance }
-  let(:input)   { mock('Input')   }
+  let(:input)   { double('Input')   }
 
   subject { object.assert_successful }
 

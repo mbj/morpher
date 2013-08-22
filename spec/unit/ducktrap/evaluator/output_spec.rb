@@ -5,12 +5,12 @@ describe Ducktrap::Evaluator, '#output' do
 
   subject { object.output }
 
-  let(:context) { mock('Context') }
-  let(:input)   { mock('Input') }
+  let(:context) { double('Context') }
+  let(:input)   { double('Input') }
 
   context 'when using nested error' do
 
-    let(:inner) { mock('Inner') }
+    let(:inner) { double('Inner') }
 
     let(:class_under_test) do
       inner = self.inner

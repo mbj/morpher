@@ -15,7 +15,7 @@ describe Ducktrap::Node, '#call' do
     end
   end
 
-  let(:input) { mock('Input') }
+  let(:input) { double('Input') }
 
   it { should eql(class_under_test::Evaluator.new(object, input)) }
 end

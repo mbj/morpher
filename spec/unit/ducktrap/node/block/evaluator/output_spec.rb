@@ -8,7 +8,7 @@ describe Ducktrap::Node::Block::Evaluator, '#output' do
   let(:input)   { :input                              }
 
   def mymock(name, attributes={})
-    mock(name, attributes.merge(:frozen? => true))
+    double(name, attributes.merge(:frozen? => true))
   end
 
   context 'without elements in block' do
@@ -27,7 +27,7 @@ describe Ducktrap::Node::Block::Evaluator, '#output' do
       let(:trap_b) { Ducktrap::Node::Noop.instance }
 
       it { should be(input) }
-      
+
       it_should_behave_like 'an idempotent method'
     end
 
@@ -35,7 +35,7 @@ describe Ducktrap::Node::Block::Evaluator, '#output' do
       let(:trap_a) { Ducktrap::Node::Static.new(:forward, :inverse) }
       let(:trap_b) { Ducktrap::Node::Invalid.instance }
 
-      its(:pretty_inspect) do 
+      its(:pretty_inspect) do
         should eql(strip(<<-STR))
           Ducktrap::Error
             input: :input
@@ -55,9 +55,9 @@ describe Ducktrap::Node::Block::Evaluator, '#output' do
 
     context 'with early failure' do
       let(:trap_a) { Ducktrap::Node::Invalid.instance }
-      let(:trap_b) { mock('Late Node')                }
+      let(:trap_b) { double('Late Node')                }
 
-      its(:pretty_inspect) do 
+      its(:pretty_inspect) do
         should eql(strip(<<-STR))
           Ducktrap::Error
             input: :input

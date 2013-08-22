@@ -12,10 +12,10 @@ describe Ducktrap::Node::Key::Evaluator, '#output' do
     end
   end
 
-  let(:key)     { mock('Key') }
-  let(:value)   { mock('Value') }
+  let(:key)     { double('Key') }
+  let(:value)   { double('Value') }
 
-  let(:context) { mock('Context', :key => key, :operand => operand) }
+  let(:context) { double('Context', :key => key, :operand => operand) }
   let(:operand) { Ducktrap::Node::Static.new(:forward, :inverse)    }
 
     let(:input)   { { key => value } }

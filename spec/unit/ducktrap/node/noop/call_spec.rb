@@ -5,7 +5,7 @@ describe Ducktrap::Node::Noop, '#call' do
 
   subject { object.call(input) }
 
-  let(:input) { mock('Input') }
+  let(:input) { double('Input') }
 
   it { should eql(Ducktrap::Evaluator::Noop.new(object, input)) }
 end

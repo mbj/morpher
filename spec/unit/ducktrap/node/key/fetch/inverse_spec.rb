@@ -4,7 +4,7 @@ describe Ducktrap::Node::Key::Fetch, '#inverse' do
   let(:object) { described_class.new(operand, key) }
 
   let(:operand) { Ducktrap::Node::Static.new(:forward, :inverse) }
-  let(:key)     { mock('Key')                                    }
+  let(:key)     { double('Key')                                    }
 
   subject { object.inverse }
 

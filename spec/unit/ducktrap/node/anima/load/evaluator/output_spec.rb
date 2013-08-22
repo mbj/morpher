@@ -10,7 +10,7 @@ describe Ducktrap::Node::Anima::Load::Evaluator, '#output' do
     end
   end
 
-  let(:context) { mock('Context', :model => model) }
+  let(:context) { double('Context', :model => model) }
 
   subject { object.output }
 

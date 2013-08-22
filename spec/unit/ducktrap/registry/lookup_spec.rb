@@ -5,8 +5,8 @@ describe Ducktrap::Registry, '#lookup' do
 
   let(:object) { described_class.new }
 
-  let(:name) { mock('Name') }
-  let(:node) { mock('Node') }
+  let(:name) { double('Name') }
+  let(:node) { double('Node') }
 
   let(:block) { nil }
 
@@ -19,7 +19,7 @@ describe Ducktrap::Registry, '#lookup' do
   end
 
   context 'when name is NOT registred' do
-    let(:other) { mock('Other') }
+    let(:other) { double('Other') }
     let(:block) { proc { other } }
 
     it { should be(other) }

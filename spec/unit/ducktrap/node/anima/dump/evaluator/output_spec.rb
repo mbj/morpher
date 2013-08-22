@@ -7,8 +7,8 @@ describe Ducktrap::Node::Anima::Dump::Evaluator, '#output' do
       include Anima.new(:foo)
     end
   end
-  let(:context) { mock('Context', :model => model)    }
-  let(:input) { model.new(:foo => :bar) }
+  let(:context) { double('Context', :model => model)    }
+  let(:input)   { model.new(:foo => :bar) }
 
   subject { object.output }
 

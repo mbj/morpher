@@ -27,8 +27,8 @@ describe Ducktrap::Node, '#run' do
   end
 
   let(:evaluator) { Evaluator.new(output, successful?) }
-  let(:input)  { mock('Input') }
-  let(:output) { mock('Output') }
+  let(:input)  { double('Input') }
+  let(:output) { double('Output') }
 
   context 'when evaluator is successful' do
     let(:successful?) { true }

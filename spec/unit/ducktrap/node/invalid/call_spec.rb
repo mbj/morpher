@@ -3,9 +3,9 @@ require 'spec_helper'
 describe Ducktrap::Node::Invalid, '#call' do
   let(:object) { described_class.instance }
 
-  let(:value)         { mock('Value')         }
-  let(:inverse_value) { mock('Inverse Value') }
-  let(:input)         { mock('Input')         }
+  let(:value)         { double('Value')         }
+  let(:inverse_value) { double('Inverse Value') }
+  let(:input)         { double('Input')         }
 
   subject { object.call(input) }
 

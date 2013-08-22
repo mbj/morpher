@@ -1,15 +1,15 @@
 require 'spec_helper'
 
-describe Ducktrap::Node::Custom, '#call' do 
+describe Ducktrap::Node::Custom, '#call' do
   let(:object) { described_class.new(forward, inverse) }
 
-  let(:input)  { mock('Input') }
-  let(:output) { mock('Output') }
+  let(:input)  { double('Input') }
+  let(:output) { double('Output') }
 
   let(:arguments) { [] }
 
   let(:forward) {  lambda { |input| arguments << input; output } }
-  let(:inverse) { mock('Inverse')                                }
+  let(:inverse) { double('Inverse')                                }
 
   subject { object.call(input) }
 

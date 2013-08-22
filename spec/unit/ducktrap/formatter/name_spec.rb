@@ -14,7 +14,7 @@ describe Ducktrap::Formatter, '#name' do
   before { subject }
 
   let(:target) do
-    mock(:class => mock(:name => 'Target'))
+    double(:class => double(:name => 'Target'))
   end
 
   it 'should print name of targets class' do

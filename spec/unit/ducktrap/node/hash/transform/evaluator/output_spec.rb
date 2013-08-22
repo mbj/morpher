@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Ducktrap::Node::Hash::Transform::Evaluator, '#output' do
   let(:object) { described_class.new(context, input) }
 
-  let(:context) { mock('Context', :body => body) }
+  let(:context) { double('Context', :body => body) }
 
   let(:noop) { Ducktrap::Node::Noop.instance }
 

@@ -7,8 +7,8 @@ describe Ducktrap::Mapper::Builder, '#object' do
 
   subject { object.object }
 
-  let(:loader) { mock('Loader', :frozen? => true) }
-  let(:dumper) { mock('Dumper', :frozen? => true) }
+  let(:loader) { double('Loader', :frozen? => true) }
+  let(:dumper) { double('Dumper', :frozen? => true) }
 
   context 'with loader' do
     let(:block) do
@@ -24,7 +24,7 @@ describe Ducktrap::Mapper::Builder, '#object' do
       loader.stub(:inverse => dumper)
     end
 
-    specify do 
+    specify do
       loader = Ducktrap::Node::Block.new([self.loader])
       dumper = Ducktrap::Node::Block.new([self.dumper])
       should eql(Ducktrap::Mapper.new(loader, dumper))
@@ -45,7 +45,7 @@ describe Ducktrap::Mapper::Builder, '#object' do
       dumper.stub(:inverse => loader)
     end
 
-    specify do 
+    specify do
       loader = Ducktrap::Node::Block.new([self.loader])
       dumper = Ducktrap::Node::Block.new([self.dumper])
       should eql(Ducktrap::Mapper.new(loader, dumper))
@@ -72,7 +72,7 @@ describe Ducktrap::Mapper::Builder, '#object' do
       loader.stub(:inverse => dumper)
     end
 
-    specify do 
+    specify do
       loader = Ducktrap::Node::Block.new([self.loader])
       dumper = Ducktrap::Node::Block.new([self.dumper])
       should eql(Ducktrap::Mapper.new(loader, dumper))

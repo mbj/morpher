@@ -7,7 +7,7 @@ describe Ducktrap::Nary::ClassMethods, '#build' do
 
   let(:block) { proc {} }
 
-  let(:output) { mock('Output') }
+  let(:output) { double('Output') }
 
   it 'should delegate to nary builder' do
     Ducktrap::Nary::Builder.should_receive(:new) do |first, second, third, &block|
@@ -15,7 +15,7 @@ describe Ducktrap::Nary::ClassMethods, '#build' do
       second.should be(:foo)
       third.should be(:bar)
       block.should be(self.block)
-      mock(:object => output)
+      double(:object => output)
     end
     subject.should be(output)
   end

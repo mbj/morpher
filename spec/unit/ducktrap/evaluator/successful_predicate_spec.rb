@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Ducktrap::Evaluator, '#successful?' do
   let(:object) { class_under_test.new(context, input) }
-  
-  let(:context) { mock('Context') }
-  let(:input)   { mock('Input')   }
+
+  let(:context) { double('Context') }
+  let(:input)   { double('Input')   }
 
   subject { object.successful? }
 

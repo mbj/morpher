@@ -7,7 +7,7 @@ describe Ducktrap::Builder, '.new' do
     Class.new(described_class)
   end
 
-  let(:klass) { mock('Class') }
+  let(:klass) { double('Class') }
 
   subject { object.new(klass, &block) }
 

@@ -4,7 +4,7 @@ describe Ducktrap::Formatter, '#nest' do
   subject { object.nest(label, nested) }
 
   let(:label)  { 'the-label' }
-  let(:nested) { mock }
+  let(:nested) { double }
 
   let(:object) { described_class.new(io) }
   let(:io)     { StringIO.new            }
@@ -17,7 +17,7 @@ describe Ducktrap::Formatter, '#nest' do
     io.rewind
     io.read
   end
-  
+
   let(:string) { 'the-string' }
 
   before { subject }

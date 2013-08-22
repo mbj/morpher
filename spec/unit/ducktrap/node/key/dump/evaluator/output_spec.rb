@@ -3,14 +3,14 @@ require 'spec_helper'
 describe Ducktrap::Node::Key::Dump::Evaluator, '#output' do
 
   let(:object)  { described_class.new(context, input)               }
-  let(:context) { mock('Context', :operand => operand, :key => key) }
+  let(:context) { double('Context', :operand => operand, :key => key) }
   let(:operand) { Ducktrap::Node::Noop.instance }
 
   subject { object.output }
 
-  let(:key)   { mock('Key', :frozen? => true)   }
-  let(:value) { mock('Value', :frozen? => true) }
-  
+  let(:key)   { double('Key', :frozen? => true)   }
+  let(:value) { double('Value', :frozen? => true) }
+
   let(:input) { value }
 
   context 'when operand does NOT modify value' do

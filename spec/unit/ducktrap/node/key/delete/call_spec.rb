@@ -4,10 +4,10 @@ describe Ducktrap::Node::Key::Delete, '#call' do
   subject { object.call(input) }
 
   let(:object)  { described_class.new(inverse, key) }
-  let(:key)     { mock('Key')                       }
+  let(:key)     { double('Key')                       }
 
-  let(:input)   { { key => mock('Value') }.freeze }
-  let(:inverse) { mock('Inverse') }
+  let(:input)   { { key => double('Value') }.freeze }
+  let(:inverse) { double('Inverse') }
 
   its(:output)  { should eql({}) }
 end

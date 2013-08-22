@@ -4,8 +4,8 @@ describe Ducktrap::Registry, '#register' do
   subject { object.register(name, node) }
 
   let(:object) { Ducktrap::Registry.new }
-  let(:name)   { mock('Name')           }
-  let(:node)   { mock('Node')           }
+  let(:name)   { double('Name')           }
+  let(:node)   { double('Node')           }
 
   it_should_behave_like 'a command method'
 

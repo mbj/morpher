@@ -3,12 +3,12 @@ require 'spec_helper'
 describe Ducktrap::Node::GuardNil::Evaluator, '#output' do
   let(:object) { described_class.new(context, input) }
 
-  let(:context) { mock('Context', :operand => operand) }
+  let(:context) { double('Context', :operand => operand) }
 
   subject { object.output }
 
   context 'when input is nil' do
-    let(:operand) { mock('Operand') }
+    let(:operand) { double('Operand') }
     let(:input)   { nil             }
 
     it { should be(nil) }
@@ -18,7 +18,7 @@ describe Ducktrap::Node::GuardNil::Evaluator, '#output' do
 
   context 'when input is not nil' do
     let(:operand) { Ducktrap::Node::Noop.instance   }
-    let(:input)   { mock('Input', :frozen? => true) }
+    let(:input)   { double('Input', :frozen? => true) }
 
     it { should be(input) }
 

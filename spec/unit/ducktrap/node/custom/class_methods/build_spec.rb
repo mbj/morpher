@@ -7,12 +7,12 @@ describe Ducktrap::Node::Custom, '.build' do
 
   let(:block) { proc {} }
 
-  let(:result) { mock('Result') }
+  let(:result) { double('Result') }
 
   it 'should call custom builder and return its object' do
     Ducktrap::Node::Custom::Builder.should_receive(:new) do |&block|
       block.should be(self.block)
-      mock(:object => result)
+      double(:object => result)
     end
     should be(result)
   end
