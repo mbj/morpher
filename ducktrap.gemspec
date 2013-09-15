@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'ducktrap'
-  gem.version     = '0.0.1'
+  gem.version     = '0.0.2'
   gem.authors     = [ 'Markus Schirp' ]
   gem.email       = [ 'mbj@schir-dso.com' ]
   gem.description = 'Invertible data filter/mutator on data structures'
