@@ -14,7 +14,7 @@ module Ducktrap
     #
     def register(name, ducktrap)
       if @index.key?(name)
-        raise "name: #{name.inspect} does already exist" 
+        raise "name: #{name.inspect} does already exist"
       end
 
       @index[name] = ducktrap
@@ -32,7 +32,7 @@ module Ducktrap
     # @return [self]
     #   otherwise
     #
-    # @yield 
+    # @yield
     #   if no ducktrap found for name
     #
     # @api private

@@ -24,7 +24,7 @@ module Ducktrap
     memoize :message
 
   end
-  
+
   # Build ducktrap
   #
   # @return [Node]

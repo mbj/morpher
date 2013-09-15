@@ -44,7 +44,7 @@ module Ducktrap
         output.name(self)
         output.attribute(:primitive, primitive)
       end
-      
+
       class << self
 
         # Build node

@@ -1,10 +1,10 @@
 module Ducktrap
   # Mixin for Nary ducktraps
-  module Nary 
+  module Nary
 
     # Builder for nary ducktraps
     class Builder < Ducktrap::Builder
-      
+
       # Add ducktrap argument
       #
       # @param [Ducktrap] ducktrap
