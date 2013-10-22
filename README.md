@@ -106,12 +106,7 @@ class Person
     end
     anima_load(Person)
   end
-
-  def initialize(attributes)
-    super(DEFAULTS.merge(attributes))
-  end
 end
-
 
 t_hash = {id: 1, name: 'DOIT'}
 a_hash = {id: 1, city: 'Linz', zip: 4040}
