@@ -113,8 +113,18 @@ p_hash = {id: 1, name: 'John', address: a_hash, tasks: [t_hash]}
 evaluator = Person::TRAP.call(p_hash)
 
 if evaluator.success?
-  puts evaluator.output.inspect
+  person = evaluator.output
+  puts person.inspect
   # => #<Person id=1 name="John" address=#<Address id=1 city="Linz" zip=4040> tasks=[#<Task id=1 name="DOIT">]>
+
+  evaluator = Person::TRAP.inverse.call(person)
+  if evaluator.success?
+    p_hash = evaluator.output
+    puts p_hash.inspect
+    # => {:id=>1, :name=>"John", :address=>{:id=>1, :city=>"Linz", :zip=>4040}, :tasks=>[{:id=>1, :name=>"DOIT"}]}
+  else
+    puts evaluator.pretty_dump
+  end
 else
   puts evaluator.pretty_dump
 end
