@@ -5,7 +5,7 @@ ducktrap
 [![Dependency Status](https://gemnasium.com/mbj/ducktrap.png)](https://gemnasium.com/mbj/ducktrap)
 [![Code Climate](https://codeclimate.com/github/mbj/ducktrap.png)](https://codeclimate.com/github/mbj/ducktrap)
 
-Ducktrap is a spike for a data transformation algebra. The main idea is to define the transformations with 
+Ducktrap is a spike for a data transformation algebra. The main idea is to define the transformations with
 composable blocks that allow to generate an inverse transformation.
 
 It can be used at various places:
@@ -23,7 +23,109 @@ There is no gem release.
 Examples
 --------
 
-Sorry, API is stupid, so no examples for now. See specs.
+For slightly more details, have a look at this [gist](https://gist.github.com/mbj/6938357) for now.
+
+A simple real world scenario would probably look something like this:
+
+```ruby
+require 'anima'
+require 'ducktrap'
+
+class Address
+  include Anima.new(:id, :city, :zip)
+
+  TRAP = Ducktrap.build do
+    primitive(Hash)
+    hash_transform do
+      fetch_key(:id) do
+        primitive(Integer)
+        dump_key(:id)
+      end
+
+      fetch_key(:city) do
+        primitive(String)
+        dump_key(:city)
+      end
+
+      fetch_key(:zip) do
+        primitive(Integer)
+        dump_key(:zip)
+      end
+    end
+    anima_load(Address)
+  end
+end
+
+class Task
+  include Anima.new(:id, :name)
+
+  TRAP = Ducktrap.build do
+    primitive(Hash)
+    hash_transform do
+      fetch_key(:id) do
+        primitive(Integer)
+        dump_key(:id)
+      end
+
+      fetch_key(:name) do
+        primitive(String)
+        dump_key(:name)
+      end
+    end
+    anima_load(Task)
+  end
+end
+
+class Person
+  include Anima.new(:id, :name, :address, :tasks)
+
+  DEFAULTS = {address: nil, tasks: []}
+
+  TRAP = Ducktrap.build do
+    primitive(Hash)
+    hash_transform do
+      fetch_key(:id) do
+        primitive(Integer)
+        dump_key(:id)
+      end
+
+      fetch_key(:name) do
+        primitive(String)
+        dump_key(:name)
+      end
+
+      fetch_key(:address) do
+        add(Address::TRAP)
+        dump_key(:address)
+      end
+
+      fetch_key(:tasks) do
+        map { add(Task::TRAP) }
+        dump_key(:tasks)
+      end
+    end
+    anima_load(Person)
+  end
+
+  def initialize(attributes)
+    super(DEFAULTS.merge(attributes))
+  end
+end
+
+
+t_hash = {id: 1, name: 'DOIT'}
+a_hash = {id: 1, city: 'Linz', zip: 4040}
+p_hash = {id: 1, name: 'John', address: a_hash, tasks: [t_hash]}
+
+evaluator = Person::TRAP.call(p_hash)
+
+if evaluator.success?
+  puts evaluator.output.inspect
+  # => #<Person id=1 name="John" address=#<Address id=1 city="Linz" zip=4040> tasks=[#<Task id=1 name="DOIT">]>
+else
+  puts evaluator.pretty_dump
+end
+```
 
 Credits
 -------
