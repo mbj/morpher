@@ -79,8 +79,6 @@ end
 class Person
   include Anima.new(:id, :name, :address, :tasks)
 
-  DEFAULTS = {address: nil, tasks: []}
-
   TRAP = Ducktrap.build do
     primitive(Hash)
     hash_transform do
