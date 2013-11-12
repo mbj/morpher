@@ -3,6 +3,7 @@ module Ducktrap
 
     # Identity check
     class Identity < self
+      include Singleton
       include Equalizer.new
 
       register :identity
