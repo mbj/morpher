@@ -29,11 +29,11 @@ module Ducktrap
           # @api private
           #
           def process
-            model.attributes_hash(input)
+            input.to_h
           end
 
         end
-      end 
+      end
     end
   end
 end
