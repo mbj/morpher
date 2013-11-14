@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Ducktrap::Node::Identity do
 
-  let(:object) { described_class.new }
+  let(:object) { described_class.instance }
 
   describe '#call' do
     subject { object.call(input) }
