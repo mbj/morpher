@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Ducktrap::Node::Custom, '.build' do
+
   let(:object) { described_class }
 
   subject { object.build(&block) }
