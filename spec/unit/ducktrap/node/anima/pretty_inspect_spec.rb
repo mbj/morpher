@@ -1,1 +1,0 @@
-dump/pretty_inspect_spec.rb

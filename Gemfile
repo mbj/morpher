@@ -1,8 +1,12 @@
+# encoding: utf-8
+
 source 'https://rubygems.org'
 
 gemspec
 
-gem 'anima', '~> 0.1.1', git: 'https://github.com/mbj/anima.git'
+gem 'morpher', path: '.'
 
-gem 'devtools', :git => 'https://github.com/rom-rb/devtools.git'
-eval File.read('Gemfile.devtools')
+group :development, :test do
+  gem 'triage',      git: 'https://github.com/rom-rb/devtools.git', branch: 'triage-rename'
+  gem 'triage-deps', git: 'https://github.com/rom-rb/devtools.git', branch: 'triage-rename'
+end

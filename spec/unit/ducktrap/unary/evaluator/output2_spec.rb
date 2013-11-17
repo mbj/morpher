@@ -1,1 +1,0 @@
-../../node/key/fetch/evaluator/output_spec.rb
