@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Ducktrap do
+describe Morpher do
   include Mutant::NodeHelpers
 
-  def self.strip(text)
+  def strip(text)
     return text if text.empty?
     lines = text.lines
     match = /\A[ ]*/.match(lines.first)
@@ -11,7 +11,7 @@ describe Ducktrap do
     source = lines.map do |line|
       line[range]
     end.join
-    source.chomp
+    source.chomp << "\n"
   end
 
   class Foo
@@ -37,31 +37,44 @@ describe Ducktrap do
   end
 
   let(:predicate_sexp) do
-    s(:attribute, :attribute_a, s(:eql, 'foo'))
+    s(:block,
+      s(:key_fetch, :attribute_a),
+      s(:eql, 'foo')
+    )
   end
 
   specify 'allows predicates to be run from sexp' do
 
-    valid = double(attribute_a: 'foo')
-    invalid = double(attribute_a: 'bar')
+    valid = { attribute_a: 'foo' }
+    invalid = { attribute_a: 'bar' }
 
-    evaluator = Ducktrap.evaluator(predicate_sexp)
+    evaluator = Morpher.evaluator(predicate_sexp)
 
     expect(evaluator.call(valid)).to be(true)
     expect(evaluator.call(invalid)).to be(false)
 
-    tracker = Ducktrap.tracker(predicate_sexp)
+    evaluation = evaluator.evaluation(valid)
 
-    result = tracker.call(valid)
-
-    expect(result.success?).to be(true)
-    expect(result.output).to be(true)
-
-    result = tracker.call(invalid)
-
-    expect(result.success?).to be(false)
-
-    expect(result.error.description).to eql(<<-TEXT)
+    expect(evaluation.output).to be(true)
+    expect(evaluation.input).to be(valid)
+    expect(evaluation.description).to eql(strip(<<-TEXT))
+      Morpher::Evaluation::Nary
+        evaluator: Morpher::Evaluator::NAry::Block
+        input: {:attribute_a=>"foo"}
+        output: true
+        evaluations:
+          Morpher::Evaluation
+            input: {:attribute_a=>"foo"}
+            output: "foo"
+            evaluator:
+              Morpher::Evaluator::Nullary::Parameterized::KeyFetch
+                param: :attribute_a
+          Morpher::Evaluation
+            input: "foo"
+            output: true
+            evaluator:
+              Morpher::Evaluator::Nullary::Parameterized::EQL
+                param: "foo"
     TEXT
   end
 end

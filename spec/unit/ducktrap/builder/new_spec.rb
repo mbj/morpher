@@ -1,1 +1,0 @@
-class_methods/new_spec.rb

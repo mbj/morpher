@@ -22,7 +22,7 @@ if ENV['COVERAGE'] == 'true'
 end
 
 require 'triage/spec_helper'
-require 'ducktrap'
+require 'morpher'
 require 'mutant' # for the node helpers
 
 RSpec.configure do |config|

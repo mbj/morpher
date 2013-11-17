@@ -1,1 +1,0 @@
-../../node/block/inverse_spec.rb
