@@ -75,8 +75,8 @@ module Morpher
         # @api private
         #
         def self.build(compiler, node)
-          body = node.children.map do |node|
-            compiler.call(node)
+          body = node.children.map do |child|
+            compiler.call(child)
           end
           new(body)
         end
