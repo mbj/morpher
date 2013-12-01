@@ -40,13 +40,11 @@ module Morpher
       # @api private
       #
       def self.included(descendant)
-        super
         descendant.class_eval do
           include CONCORD
           extend ClassMethods
           printer(&PRINTER)
         end
-        self
       end
       private_class_method :included
 
