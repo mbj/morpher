@@ -3,45 +3,17 @@ require 'spec_helper'
 describe Morpher::Evaluator::Predicate::Primitive::Exact do
   let(:object) { described_class.new(Morpher::Evaluator) }
 
-  describe '#call' do
-    subject { object.call(input) }
+  let(:valid_input)   { Morpher::Evaluator.allocate }
+  let(:invalid_input) { Morpher::Evaluator::Predicate.allocate }
 
-    context 'with input of exactly the same type' do
-      let(:input) { Morpher::Evaluator.allocate }
-      it { should be(true) }
-    end
-
-    context 'with input of nearly the same type' do
-      let(:input) { Morpher::Evaluator::Predicate.allocate }
-      it { should be(false) }
-    end
-
-    context 'with input of totally another type' do
-      let(:input) { "foo" }
-      it { should be(false) }
-    end
-  end
+  it_should_behave_like 'a predicate evaluator'
 end
 
 describe Morpher::Evaluator::Predicate::Primitive::Permissive do
   let(:object) { described_class.new(Morpher::Evaluator) }
 
-  describe '#call' do
-    subject { object.call(input) }
+  let(:valid_input)   { Morpher::Evaluator::Predicate.allocate }
+  let(:invalid_input) { '' }
 
-    context 'with input of exactly the same type' do
-      let(:input) { Morpher::Evaluator.allocate }
-      it { should be(true) }
-    end
-
-    context 'with input of nearly the same type' do
-      let(:input) { Morpher::Evaluator::Predicate.allocate }
-      it { should be(true) }
-    end
-
-    context 'with input of totally another type' do
-      let(:input) { "foo" }
-      it { should be(false) }
-    end
-  end
+  it_should_behave_like 'a predicate evaluator'
 end

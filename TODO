@@ -5,3 +5,7 @@
 * Add the ability to stop tracking evaluators in case of error.
 
   Currntly only non tracking evaluators allow this via the TransformError exception.
+
+* Add the ability to return ASTs from evaluators. 
+
+  AST based optimization *could* be more easy.

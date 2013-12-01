@@ -39,5 +39,13 @@ module Morpher
     #
     abstract_method :evaluation
 
+    # Return inverse evaluator
+    #
+    # @return [Evaluator]
+    #
+    # @api private
+    #
+    abstract_method :inverse
+
   end # Evaluator
 end # Morpher

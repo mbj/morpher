@@ -1,9 +1,29 @@
 # encoding: utf-8
 
-shared_examples_for 'a transforming evaluator' do
+shared_examples_for 'an evaluator' do
   it 'round trips evaluators' do
     object.inverse.inverse.should eql(object)
   end
+end
+
+shared_examples_for 'a predicate evaluator' do
+  it_should_behave_like 'an evaluator'
+
+  context 'with valid input' do
+    subject { object.call(valid_input) }
+
+    it { should be(true) }
+  end
+
+  context 'with invalid input' do
+    subject { object.call(invalid_input) }
+
+    it { should be(false) }
+  end
+end
+
+shared_examples_for 'a transforming evaluator' do
+  it_should_behave_like 'an evaluator'
 
   context 'valid input' do
     it 'round trips representations via #call' do
