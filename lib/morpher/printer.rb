@@ -247,6 +247,8 @@ module Morpher
     # @param [String] label
     # @param [Object] value
     #
+    # @return [undefined]
+    #
     # @api private
     #
     def label_value(label, value)

@@ -17,6 +17,8 @@ module Morpher
     # @raise [Exception]
     #   otherwise
     #
+    # @api private
+    #
     def call(object)
       current = target = object.class
       while current != Object

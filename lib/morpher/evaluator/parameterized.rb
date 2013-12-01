@@ -12,10 +12,6 @@ module Morpher
         end
       end
 
-      def self.build(_compiler, node)
-        new(node.children.first)
-      end
-
       module ClassMethods
 
         # Build nary nodes
@@ -25,7 +21,7 @@ module Morpher
         #
         # @return [Evaluator::Nary]
         #
-        # @api privateo
+        # @api private
         #
         def build(_compiler, node)
           new(node.children.first)

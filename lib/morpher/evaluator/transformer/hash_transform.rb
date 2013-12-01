@@ -4,7 +4,7 @@ module Morpher
 
       # Too complex hash transformation evaluator
       #
-      # FIXME: Shold be broken up in better primitives
+      # FIXME: Shold be broken up in better primitives a decompose, compose pair
       #
       # @api private
       #
@@ -13,6 +13,14 @@ module Morpher
 
         register :hash_transform
 
+        # Call evaluator
+        #
+        # @param [Object] input
+        #
+        # @return [Object]
+        #
+        # @api private
+        #
         def call(input)
           content = body.map do |node|
             node.call(input)
@@ -20,6 +28,12 @@ module Morpher
           Hash[content]
         end
 
+        # Return inverse evaluator
+        #
+        # @return [HashTransform]
+        #
+        # @api private
+        #
         def inverse
           inverse_body = body.map do |evaluator|
             evaluator.inverse
@@ -28,6 +42,14 @@ module Morpher
           self.class.new(inverse_body)
         end
 
+        # Return evaluation
+        #
+        # @param [Input]
+        #
+        # @return [Evaluation::Nary]
+        #
+        # @api private
+        #
         def evaluation(input)
           evaluations = body.map do |evaluator|
             evaluator.evaluation(input)
@@ -43,6 +65,15 @@ module Morpher
           )
         end
 
+        # Build evaluator from node
+        #
+        # @param [Compiler] compiler
+        # @param [Node] node
+        #
+        # @return [Evaluator]
+        #
+        # @api private
+        #
         def self.build(compiler, node)
           body = node.children.map do |node|
             compiler.call(node)

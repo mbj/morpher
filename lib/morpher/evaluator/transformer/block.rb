@@ -15,6 +15,8 @@ module Morpher
         #
         # @return [Object]
         #
+        # @api private
+        #
         def call(input)
           body.inject(input) do |state, evaluator|
             evaluator.call(state)

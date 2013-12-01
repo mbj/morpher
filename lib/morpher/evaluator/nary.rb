@@ -22,7 +22,7 @@ module Morpher
         #
         # @return [Evaluator::Nary]
         #
-        # @api privateo
+        # @api private
         #
         def build(compiler, node)
           body = node.children.map do |node|

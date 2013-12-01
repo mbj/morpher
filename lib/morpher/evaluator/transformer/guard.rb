@@ -8,6 +8,18 @@ module Morpher
 
         register :guard
 
+        # Call evaluator
+        #
+        # @parma [Object] input
+        #
+        # @return [Object]
+        #   if input evaluates true under predicate
+        #
+        # @raise [TransformError]
+        #   otherwise
+        #
+        # @api private
+        #
         def call(input)
           if predicate.call(input)
             input
@@ -16,6 +28,14 @@ module Morpher
           end
         end
 
+        # Return evaluation
+        #
+        # @param [Object] input
+        #
+        # @return [Evaluation::Guard]
+        #
+        # @api private
+        #
         def evaluation(input)
           Evaluation::Guard.new(
             :input     => input,
@@ -25,10 +45,25 @@ module Morpher
           )
         end
 
+        # Return inverse evaluator
+        #
+        # @return [self]
+        #
+        # @api private
+        #
         def inverse
           self
         end
 
+        # Build evaluator from node
+        #
+        # @param [Compiler] compiler
+        # @param [Node] node
+        #
+        # @api private
+        #
+        # @return [Evaluator]
+        #
         def self.build(compiler, node)
           new(compiler.call(node.children.first))
         end

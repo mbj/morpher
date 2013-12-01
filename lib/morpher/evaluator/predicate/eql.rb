@@ -11,6 +11,14 @@ module Morpher
         #
         # @param [Object] input
         #
+        # @return [true]
+        #   if input is semantically equivalent to expectation
+        #
+        # @return [false]
+        #   otherwise
+        #
+        # @api private
+        #
         def call(input)
           param.eql?(input)
         end
