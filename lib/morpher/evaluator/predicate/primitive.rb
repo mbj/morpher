@@ -39,7 +39,7 @@ module Morpher
           # @api private
           #
           def call(object)
-            object.is_a?(primitive)
+            object.is_a?(param)
           end
 
         end # Permissive
