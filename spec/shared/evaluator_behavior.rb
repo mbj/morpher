@@ -10,22 +10,33 @@ shared_examples_for 'a predicate evaluator' do
   it_should_behave_like 'an evaluator'
 
   context 'with valid input' do
-    subject { object.call(valid_input) }
 
-    it { should be(true) }
+    it 'evaluates to true' do
+      expect(object.call(valid_input)).to be(true)
+    end
+
+    it 'evaluates to false on inverse' do
+      expect(object.inverse.call(valid_input)).to be(false)
+    end
+
   end
 
   context 'with invalid input' do
-    subject { object.call(invalid_input) }
 
-    it { should be(false) }
+    it 'evaluates to false' do
+      expect(object.call(invalid_input)).to be(false)
+    end
+
+    it 'evaluates to true on inverse' do
+      expect(object.inverse.call(invalid_input)).to be(true)
+    end
   end
 end
 
 shared_examples_for 'a transforming evaluator' do
   it_should_behave_like 'an evaluator'
 
-  context 'valid input' do
+  context 'with valid input' do
     it 'round trips representations via #call' do
       forward = object.call(valid_input)
       expect(object.inverse.call(forward)).to eql(valid_input)
@@ -38,7 +49,7 @@ shared_examples_for 'a transforming evaluator' do
     end
   end
 
-  context 'invalid input' do
+  context 'with invalid input' do
     it 'raises error for #call' do
       expect { object.call(invalid_input) }.to raise_error(Morpher::TransformError)
     end
