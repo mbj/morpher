@@ -31,18 +31,16 @@ module Morpher
 
       # Hook called when module gets included
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       #
       def self.included(descendant)
-        super
         descendant.class_eval do
           include CONCORD
           extend ClassMethods
           printer(&PRINTER)
         end
-        self
       end
       private_class_method :included
 
