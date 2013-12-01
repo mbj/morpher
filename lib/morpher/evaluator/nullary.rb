@@ -14,9 +14,9 @@ module Morpher
       def evaluation(input)
         output = call(input)
         Evaluation.new(
-          :evaluator => self,
-          :input     => input,
-          :output    => output
+          evaluator: self,
+          input:     input,
+          output:    output
         )
       end
 

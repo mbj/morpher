@@ -38,10 +38,10 @@ module Morpher
         #
         def evaluation(input)
           Evaluation::Guard.new(
-            :input     => input,
-            :output    => input,
-            :evaluator => self,
-            :predicate => predicate.call(input)
+            input:     input,
+            output:    input,
+            evaluator: self,
+            predicate: predicate.call(input)
           )
         end
 
@@ -62,7 +62,7 @@ module Morpher
         #
         # @api private
         #
-        # @return [Evaluator]
+        # @return [Evaluator  ]
         #
         def self.build(compiler, node)
           new(compiler.call(node.children.first))

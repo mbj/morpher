@@ -64,13 +64,13 @@ describe Morpher do
     }
 
     expect(evaluator.call(valid)).to eql(
-      Foo.new(:attribute_a => 'a string', :attribute_b => 8015)
+      Foo.new(attribute_a: 'a string', attribute_b: 8015)
     )
 
     evaluation = evaluator.evaluation(valid)
 
     expect(evaluator.evaluation(valid).output).to eql(
-      Foo.new(:attribute_a => 'a string', :attribute_b => 8015)
+      Foo.new(attribute_a: 'a string', attribute_b: 8015)
     )
 
     invalid = {

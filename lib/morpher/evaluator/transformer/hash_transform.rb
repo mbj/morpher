@@ -58,10 +58,10 @@ module Morpher
           output = Hash[evaluations.map(&:output)]
 
           Evaluation::Nary.new(
-            :evaluator   => self,
-            :input       => input,
-            :evaluations => evaluations,
-            :output      => output
+            evaluator:   self,
+            input:       input,
+            evaluations: evaluations,
+            output:      output
           )
         end
 

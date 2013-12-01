@@ -51,10 +51,10 @@ module Morpher
           end
 
           Evaluation::Nary.new(
-            :evaluator   => self,
-            :input       => input,
-            :output      => output,
-            :evaluations => evaluations
+            evaluator:   self,
+            input:       input,
+            output:      output,
+            evaluations: evaluations
           )
         end
 
