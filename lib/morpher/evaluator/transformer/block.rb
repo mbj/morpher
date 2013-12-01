@@ -18,7 +18,7 @@ module Morpher
         # @api private
         #
         def call(input)
-          body.inject(input) do |state, evaluator|
+          body.reduce(input) do |state, evaluator|
             evaluator.call(state)
           end
         end
