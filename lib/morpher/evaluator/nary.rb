@@ -35,7 +35,7 @@ module Morpher
 
       # Hook called when module gets included
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       #
