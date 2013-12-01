@@ -25,6 +25,31 @@ require 'triage/spec_helper'
 require 'morpher'
 require 'mutant' # for the node helpers
 
+# Monkeypatch to mutant .rc3 fixing double diffs error.
+#
+# TODO: Use master once it supports configurable implicit coverage.
+#
+module Mutant
+  class Subject
+    class Method
+      class Instance
+
+        # Return source
+        #
+        # @return [String]
+        #
+        # @api private
+        #
+        def source
+          Unparser.unparse(memoizer_node(node))
+        end
+        memoize :source
+
+      end
+    end
+  end
+end
+
 RSpec.configure do |config|
   config.expect_with :rspec do |rspec|
     rspec.syntax = [:expect, :should]
