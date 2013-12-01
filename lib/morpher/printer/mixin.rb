@@ -50,7 +50,6 @@ module Morpher
         descendant.class_eval do
           extend ClassMethods
           include InstanceMethods
-          memoize :description
           private_class_method :printer
         end
         self
