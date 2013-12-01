@@ -15,6 +15,7 @@ Gem::Specification.new do |gem|
   gem.test_files       = `git ls-files -- spec/{unit,integration}`.split("\n")
   gem.extra_rdoc_files = %w[TODO LICENSE]
   gem.executables      = %w[mutant]
+  gem.license          = 'MIT'
 
   gem.add_runtime_dependency('abstract_type', '~> 0.0.7')
   gem.add_runtime_dependency('ast',           '~> 1.1.0')
