@@ -71,6 +71,8 @@ module Mutant
 end # Mutant
 
 RSpec.configure do |config|
+  config.include(StripHelper)
+  config.include(Morpher::NodeHelpers)
   config.expect_with :rspec do |rspec|
     rspec.syntax = [:expect, :should]
   end
