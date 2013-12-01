@@ -42,5 +42,20 @@ module Morpher
       end
 
     end # Evaluation
+
+    # Evaluation state for unary evaluators
+    class Unary < self
+      include anima.add(:operand_output)
+
+      printer do
+        name
+        indent do
+          attributes :input, :output, :operand_output
+          visit :evaluator
+        end
+      end
+
+    end # Unary
+
   end # Evaluation
 end # Morpher

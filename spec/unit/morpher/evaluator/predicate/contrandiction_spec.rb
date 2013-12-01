@@ -5,10 +5,11 @@ describe Morpher::Evaluator::Predicate::Contradiction do
 
   it_should_behave_like 'an evaluator'
 
-  context '#call' do
-    subject { object.call(input) }
 
-    let(:input) { double }
+  let(:valid_input) { double }
+
+  context '#call' do
+    subject { object.call(valid_input) }
 
     it { should be(false) }
   end

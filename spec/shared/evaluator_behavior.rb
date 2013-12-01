@@ -4,6 +4,12 @@ shared_examples_for 'an evaluator' do
   it 'round trips evaluators' do
     object.inverse.inverse.should eql(object)
   end
+
+  it 'returns semantically correct evaluations on #evaluation' do
+    evaluation = object.evaluation(valid_input)
+    expect(evaluation.evaluator).to eql(object)
+    expect(evaluation.input).to eql(valid_input)
+  end
 end
 
 shared_examples_for 'a predicate evaluator' do
@@ -19,6 +25,10 @@ shared_examples_for 'a predicate evaluator' do
       expect(object.inverse.call(valid_input)).to be(false)
     end
 
+    it 'evaluates to the same output under #evaluation' do
+      expect(object.evaluation(valid_input).output).to be(true)
+    end
+
   end
 
   context 'with invalid input' do
@@ -29,6 +39,10 @@ shared_examples_for 'a predicate evaluator' do
 
     it 'evaluates to true on inverse' do
       expect(object.inverse.call(invalid_input)).to be(true)
+    end
+
+    it 'evaluates to the same output under #evaluation' do
+      expect(object.evaluation(invalid_input).output).to be(false)
     end
   end
 end

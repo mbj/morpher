@@ -5,6 +5,9 @@ module Morpher
 
       # Return inverse evaluator
       #
+      # This is a very naive implementation.
+      # Subclasses can do a more elaborated choice.
+      #
       # @return [Evaluator]
       #
       # @api private
