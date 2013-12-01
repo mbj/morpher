@@ -5,7 +5,23 @@ module Morpher
   # TODO: Cache results.
   #
   class TypeLookup
-    include Adamantium::Flat, Concord.new(:registry, :exception)
+    include Adamantium::Flat, Concord.new(:registry)
+
+    # Error raised on compiling unknown nodes
+    class TypeNotFoundError < RuntimeError
+      include Concord.new(:type)
+
+      # Return exception error message
+      #
+      # @return [String]
+      #
+      # @api private
+      #
+      def message
+        "Node type: #{type.inspect} is unknown"
+      end
+
+    end # TypeNotFoundError
 
     # Perform type lookup
     #
@@ -14,7 +30,7 @@ module Morpher
     # @return [Object]
     #   if found
     #
-    # @raise [Exception]
+    # @raise [TypeNotFoundError]
     #   otherwise
     #
     # @api private
@@ -28,7 +44,7 @@ module Morpher
         current = current.superclass
       end
 
-      raise exception.new(target)
+      raise TypeNotFoundError, target
     end
 
   end # TypeLookup

@@ -8,22 +8,6 @@ module Morpher
 
     REGISTRY = {}
 
-    # Exception raised when no printer configuration could be found
-    class PrinterMissingException
-      include Concord.new(:target)
-
-      # Return exception message
-      #
-      # @return [String]
-      #
-      # @api private
-      #
-      def message
-        "No printer found for: #{target}"
-      end
-
-    end # PrinterMissingException
-
     # Run pretty printer on object
     #
     # @param [Object] object
@@ -59,7 +43,7 @@ module Morpher
     # @api private
     #
     def self.lookup(object)
-      TypeLookup.new(REGISTRY, PrinterMissingException).call(object)
+      TypeLookup.new(REGISTRY).call(object)
     end
 
   private
