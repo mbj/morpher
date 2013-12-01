@@ -14,6 +14,16 @@ It can be used at various places:
 * Form processing
 * ...
 
+Status
+------
+
+This library is in spike mode.
+
+### Mutation coverage
+
+I use so called "implicit coverage". A term that was invented by the [rom](https://github.com/rom-rb)-team
+during mutation testing. Later when this library is not under steady flux anymore I'll switch to explicit coverage.
+
 Installation
 ------------
 
