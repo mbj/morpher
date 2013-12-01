@@ -47,7 +47,7 @@ module Morpher
     def lookup(node)
       type = node.type
       registry.fetch(type) do
-        raise UnknownNodeError.new(type)
+        raise UnknownNodeError, type
       end
     end
 
