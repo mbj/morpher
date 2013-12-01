@@ -37,18 +37,20 @@ module Mutant
   class Subject
     class Method
       class Instance
+        class Memoized
 
-        # Return source
-        #
-        # @return [String]
-        #
-        # @api private
-        #
-        def source
-          Unparser.unparse(memoizer_node(node))
+          # Return source
+          #
+          # @return [String]
+          #
+          # @api private
+          #
+          def source
+            Unparser.unparse(memoizer_node(node))
+          end
+          memoize :source
+
         end
-        memoize :source
-
       end
     end
   end
