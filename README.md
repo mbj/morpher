@@ -1,5 +1,5 @@
-morhpher
-========
+morpher
+=======
 
 [![Build Status](https://secure.travis-ci.org/mbj/morpher.png?branch=master)](http://travis-ci.org/mbj/morpher)
 [![Dependency Status](https://gemnasium.com/mbj/morpher.png)](https://gemnasium.com/mbj/morpher)
