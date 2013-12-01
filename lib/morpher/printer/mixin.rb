@@ -31,7 +31,7 @@ module Morpher
         #
         def description
           io = StringIO.new
-          printer = Printer.run(self, io)
+          Printer.run(self, io)
           io.rewind
           io.read
         end
