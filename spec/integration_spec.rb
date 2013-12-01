@@ -69,7 +69,7 @@ describe Morpher do
 
     evaluation = evaluator.evaluation(valid)
 
-    expect(evaluator.evaluation(valid).output).to eql(
+    expect(evaluation.output).to eql(
       Foo.new(attribute_a: 'a string', attribute_b: 8015)
     )
 
