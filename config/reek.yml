@@ -26,11 +26,7 @@ LongParameterList:
   enabled: true
   overrides: {}
 FeatureEnvy:
-  exclude:
-  - Ducktrap::PrettyDump#pretty_inspect
-  - Ducktrap::Node#run
-  - Ducktrap::Error#dump
-  - Ducktrap::Error::Exception#dump
+  exclude: []
   enabled: true
 ClassVariable:
   exclude: []
@@ -40,7 +36,7 @@ BooleanParameter:
   enabled: true
 IrresponsibleModule:
   exclude: []
-  enabled: true 
+  enabled: true
 UncommunicativeModuleName:
   accept: []
   exclude: []
@@ -94,5 +90,4 @@ LongYieldList:
   exclude: []
   enabled: true
 NilCheck:
-  exclude:
-  - Ducktrap::Node::GuardNil::Evaluator#process
+  exclude: []

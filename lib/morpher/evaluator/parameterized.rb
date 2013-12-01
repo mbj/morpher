@@ -1,34 +1,34 @@
 module Morpher
-
   class Evaluator
+    # Mixin to define parameterized nullary evaluatos
+    module Parameterized
 
-    # Mixin for nary evaluators
-    module Nary
-      CONCORD = Concord::Public.new(:body)
+      CONCORD = Concord::Public.new(:param)
 
       PRINTER = lambda do |_|
         name
         indent do
-          visit_many(:body)
+          attribute :param
         end
+      end
+
+      def self.build(_compiler, node)
+        new(node.children.first)
       end
 
       module ClassMethods
 
         # Build nary nodes
         #
-        # @param [Compiler] compiler
+        # @param [Compiler] _compiler
         # @param [Morpher::Node] node
         #
         # @return [Evaluator::Nary]
         #
         # @api privateo
         #
-        def build(compiler, node)
-          body = node.children.map do |node|
-            compiler.call(node)
-          end
-          new(body)
+        def build(_compiler, node)
+          new(node.children.first)
         end
 
       end # ClassMethods
@@ -50,7 +50,6 @@ module Morpher
       end
       private_class_method :included
 
-    end # Nary
-
+    end # Parameterized
   end # Evaluator
 end # Morpher

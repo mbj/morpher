@@ -1,0 +1,32 @@
+# encoding: utf-8
+
+shared_examples_for 'a transforming evaluator' do
+  it 'round trips evaluators' do
+    object.inverse.inverse.should eql(object)
+  end
+
+  context 'valid input' do
+    it 'round trips representations via #call' do
+      forward = object.call(valid_input)
+      expect(object.inverse.call(forward)).to eql(valid_input)
+    end
+
+    it 'round trips representations via #evaluation' do
+      forward = object.evaluation(valid_input).output
+      expect(evaluation.success?).to be(true)
+      expect(object.inverse.call(forward).output).to eql(valid_input)
+    end
+  end
+
+  context 'invalid input' do
+    it 'raises error for #call' do
+      expect { object.call(invalid_input) }.to raise_error(Morpher::TransformError)
+    end
+
+    it 'returns error evaluator for #evaluation' do
+      evaluation = object.evaluation(invalid_input)
+      expect(evaluation.success?).to be(false)
+      expect(evaluation.output).to be(Morpher::Undefined)
+    end
+  end
+end

@@ -14,5 +14,5 @@ guard :rspec, :all_after_pass => false, :all_on_start => false do
   watch("lib/#{File.basename(File.expand_path('../', __FILE__))}.rb") { 'spec'                       }
 
   # run a spec if it is modified
-  watch(%r{\Aspec/(?:unit|integration)/.+_spec\.rb\z})
+  watch(%r{\Aspec/.+_spec\.rb\z})
 end

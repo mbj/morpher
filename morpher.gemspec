@@ -7,7 +7,7 @@ Gem::Specification.new do |gem|
   gem.email       = ['mbj@schirp-dso.com']
   gem.description = 'Composeable predicates on POROs'
   gem.summary     = gem.description
-  gem.homepage    = 'https://github.com/mbj/predicate'
+  gem.homepage    = 'https://github.com/mbj/morpher'
   gem.license     = 'MIT'
 
   gem.require_paths    = %w[lib]

@@ -1,4 +1,7 @@
-* Remove input attr in Ducktrap::Error?
-* Remove Node.build
-* Finally stop spiking
-* Implement Node::GuardNil via XOR node.
+* Write a more narrow replacement for whitequark/ast.
+
+  Our node class could reduce the public interface of nodes a lot.
+
+* Add the ability to stop tracking evaluators in case of error.
+
+  Currntly only non tracking evaluators allow this via the TransformError exception.

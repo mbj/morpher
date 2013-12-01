@@ -2,24 +2,54 @@ module Morpher
 
   # Abstract base class for compilers
   class Compiler
-    include AbstractType, Concord.new(:registry)
+    include Concord.new(:registry)
 
-    abstract_method :call
+    # Error raised on compiling unknown nodes
+    class UnknownNodeError < RuntimeError
+      include Concord.new(:type)
+
+      # Return exception error message
+      #
+      # @return [String]
+      #
+      # @api private
+      #
+      def message
+        "Node type: #{type.inspect} is unknown"
+      end
+
+    end # UnknownNodeError
+
+    # Return evaluator tree for node
+    #
+    # @param [Node] node
+    #
+    # @return [Evalautor]
+    #
+    # @api private
+    #
+    def call(node)
+      lookup(node).build(self, node)
+    end
 
   private
 
+    # Lookup evaluator builder
+    #
+    # @return [#build]
+    #   if found
+    #
+    # @raise UnknownNodeTypeError
+    #   otherwise
+    #
+    # @api private
+    #
     def lookup(node)
-      registry.fetch(node.type)
-    end
-
-    # Compiler plain evaluators
-    class Evaluating < self
-
-      def call(node)
-        lookup(node).build(self, node)
+      type = node.type
+      registry.fetch(type) do
+        raise UnknownNodeError.new(type)
       end
-
-    end # Evaluating
+    end
 
   end # Compiler
 end # Morpher

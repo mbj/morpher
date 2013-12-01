@@ -1,55 +1,45 @@
 module Morpher
   # Abstract namespace class for evaluation states
   class Evaluation
-
-    include Adamantium::Flat, Anima.new(
+    include Printer::Mixin, Adamantium::Flat, Anima.new(
       :evaluator,
       :input,
       :output
     )
 
-    # Return description
-    #
-    # @return [String]
-    #
-    # @api private
-    #
-    def description
-      io = StringIO.new
-      Printer.new(io).visit(self)
-      io.rewind
-      io.read
-    end
-    memoize :description
-
-    def pretty_dump(printer)
-      printer.name(self)
-      printer.attributes(self, :input, :output)
-      printer.indented do
-        printer.puts 'evaluator:'
-        printer.visit_indented(evaluator)
+    printer do
+      name
+      indent do
+        attributes :input, :output
+        visit :evaluator
       end
-      self
     end
 
+    # Evaluation state for guard evaluators
+    class Guard < self
+      include anima.add(:predicate)
+
+      printer do
+        name
+        indent do
+          attributes :input, :output, :predicate
+          visit :evaluator
+        end
+      end
+    end
+
+    # Evaluation state for nary evaluators
     class Nary < self
       include anima.add(:evaluations)
 
-      def pretty_dump(printer)
-        printer.name(self)
-        printer.indented do
-          printer.puts "evaluator: #{evaluator.class}"
+      printer do
+        name
+        indent do
+          attributes :input, :output
+          attribute_class :evaluator
+          visit_many :evaluations
         end
-        printer.attributes(self, :input, :output)
-        printer.indented do
-          printer.puts 'evaluations:'
-          evaluations.each do |evaluation|
-            printer.visit_indented(evaluation)
-          end
-        end
-        self
       end
-
 
     end # Evaluation
   end # Evaluation
