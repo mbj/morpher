@@ -14,7 +14,7 @@ module Morpher
         # @api private
         #
         def printer(&block)
-          REGISTRY[self]=block
+          REGISTRY[self] = block
           self
         end
 
