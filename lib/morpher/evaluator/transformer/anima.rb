@@ -29,7 +29,7 @@ module Morpher
           # @api private
           #
           def inverse
-            Anima::Load.new(param)
+            Load.new(param)
           end
 
         end # Dump
@@ -58,7 +58,7 @@ module Morpher
           # @api private
           #
           def inverse
-            Anima::Dump.new(param)
+            Dump.new(param)
           end
 
         end # Load
