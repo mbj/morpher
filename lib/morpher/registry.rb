@@ -36,7 +36,5 @@ module Morpher
 
     end # ClassMethods
 
-
   end # Registry
 end # Morpher
-
