@@ -25,7 +25,6 @@ module Morpher
       printer = new(object, output, indent_level)
       block = lookup(object)
       printer.instance_eval(&block)
-      self
     end
 
     # Perform type lookup
