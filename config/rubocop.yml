@@ -104,3 +104,7 @@ ClassLength:
 # I align private keywords with class body
 IndentationWidth:
   Enabled: false
+
+# I like postconditions when it is more clean
+Loop:
+  Enabled: false
