@@ -41,7 +41,7 @@ module Morpher
       #
       # @param [Class, Module] descendant
       #
-      # @return [self]
+      # @return [undefined]
       #
       # @api private
       #
@@ -49,9 +49,7 @@ module Morpher
         descendant.class_eval do
           extend ClassMethods
           include InstanceMethods
-          private_class_method :printer
         end
-        self
       end
       private_class_method :included
 
