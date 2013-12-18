@@ -2,22 +2,7 @@ module Morpher
 
   # Abstract namespace class for non tracking evaluators
   class Evaluator
-    include AbstractType, Printer::Mixin, Adamantium::Flat
-
-    # Register evaluator under name
-    #
-    # TODO: Disallow duplicate registration under same name
-    #
-    # @param [Symbol] name
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def self.register(name)
-      REGISTRY[name] = self
-    end
-    private_class_method :register
+    include Adamantium::Flat, Registry, AbstractType, Printer::Mixin
 
     # Call evaluator in non tracking mode
     #

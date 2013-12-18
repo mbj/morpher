@@ -1,6 +1,6 @@
 module Morpher
 
-  # Abstract base class for compilers
+  # The AST to evaluator tree compiler
   class Compiler
     include Concord.new(:registry)
 

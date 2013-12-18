@@ -11,7 +11,7 @@ describe Morpher::Evaluator do
     subject { object.register(:foo) }
 
     it 'registers evaluator' do
-      expect { subject }.to change { Morpher::REGISTRY[:foo] }.from(nil).to(object)
+      expect { subject }.to change { Morpher::Evaluator::REGISTRY[:foo] }.from(nil).to(object)
     end
   end
 end

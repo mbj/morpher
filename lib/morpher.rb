@@ -6,14 +6,7 @@ require 'ast'
 # Library namespace module
 module Morpher
 
-  # The node registry
-  REGISTRY = {}
-
   EMPTY_ARRAY = [].freeze
-
-  module Undefined
-    freeze
-  end
 
   # Return evaluator from node
   #
@@ -24,13 +17,15 @@ module Morpher
   # @api private
   #
   def self.evaluator(node)
-    Compiler.new(REGISTRY).call(node)
+    node = Preprocessor.new(Emitter::REGISTRY).call(node)
+    Compiler.new(Evaluator::REGISTRY).call(node)
   end
 
 end # Morpher
 
 require 'morpher/node'
 require 'morpher/node_helpers'
+require 'morpher/registry'
 require 'morpher/printer'
 require 'morpher/printer/mixin'
 require 'morpher/evaluator'
@@ -53,4 +48,4 @@ require 'morpher/evaluation'
 require 'morpher/evaluation'
 require 'morpher/type_lookup'
 require 'morpher/compiler'
-require 'morpher/compiler/preprocessor'
+require 'morpher/preprocessor'
