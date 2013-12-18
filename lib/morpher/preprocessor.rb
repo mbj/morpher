@@ -1,5 +1,6 @@
 module Morpher
 
+  # AST preprocessor
   class Preprocessor
     include Concord.new(:registry)
 
@@ -68,6 +69,7 @@ module Morpher
       preprocessor.call(node)
     end
 
+    # Noop emitter just descending into children
     class Noop < self
 
       def output
@@ -97,7 +99,7 @@ module Morpher
       #
       def output
         key, operand = *node
-        s(:key_transform, key.to_s, key.to_sym, operand)
+        s(:key_transform, key.to_s, key.to_sym, visit(operand))
       end
 
     end
@@ -118,7 +120,7 @@ module Morpher
         from, to, operand = *node
         s(:block,
           s(:key_fetch, from),
-          operand,
+          visit(operand),
           s(:key_dump, to)
         )
       end
