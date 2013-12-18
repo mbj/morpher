@@ -76,6 +76,15 @@ describe Morpher do
     evaluator = Morpher.evaluator(transformer_ast)
 
     expect(evaluator.inverse.inverse).to eql(evaluator)
+
+    input = Foo.new(attribute_a: 'a string', attribute_b: 8015)
+
+    valid = {
+      'attribute_a' => 'a string',
+      'attribute_b' => 8015
+    }
+
+    expect(evaluator.inverse.call(input)).to eql(valid)
   end
 
   specify 'allows predicates to be run from sexp' do
