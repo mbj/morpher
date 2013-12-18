@@ -15,7 +15,6 @@ module Morpher
         #
         def printer(&block)
           REGISTRY[self] = block
-          self
         end
 
       end # ClassMethods
