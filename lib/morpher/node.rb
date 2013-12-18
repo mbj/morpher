@@ -15,7 +15,7 @@ module Morpher
     #
     # @api private
     #
-    def initialize(type, children = [])
+    def initialize(_type, _children)
       super
     end
 
