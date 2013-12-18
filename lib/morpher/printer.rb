@@ -170,16 +170,6 @@ module Morpher
       output.puts(indented(string))
     end
 
-    # Close line
-    #
-    # @return [undefined]
-    #
-    # @api private
-    #
-    def nl
-      output.puts
-    end
-
     # Write content to output at current indentation
     #
     # @param [String] content
