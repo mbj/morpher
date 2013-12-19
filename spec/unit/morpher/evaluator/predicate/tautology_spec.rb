@@ -6,10 +6,5 @@ describe Morpher::Evaluator::Predicate::Tautology do
   include_examples 'evaluator'
 
   let(:valid_input) { double }
-
-  context '#call' do
-    subject { object.call(valid_input) }
-
-    it { should be(true) }
-  end
+  let(:expected_output) { true }
 end

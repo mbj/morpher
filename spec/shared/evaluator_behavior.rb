@@ -5,15 +5,23 @@ shared_examples_for 'evaluator' do
     object.inverse.inverse.should eql(object)
   end
 
+  it 'returns correct output on #call' do
+    output = object.call(valid_input)
+    expect(output).to eql(expected_output)
+  end
+
   it 'returns semantically correct evaluations on #evaluation' do
     evaluation = object.evaluation(valid_input)
     expect(evaluation.evaluator).to eql(object)
     expect(evaluation.input).to eql(valid_input)
+    expect(evaluation.output).to eql(expected_output)
   end
 end
 
 shared_examples_for 'predicate evaluator' do
   include_examples 'evaluator'
+
+  let(:expected_output) { true }
 
   context 'with valid input' do
 

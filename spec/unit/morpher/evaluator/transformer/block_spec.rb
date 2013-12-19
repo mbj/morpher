@@ -19,6 +19,21 @@ describe Morpher::Evaluator::Transformer::Block do
     Morpher.evaluator(body_b)
   end
 
+  context 'transitive' do
+    include_examples 'transitive evaluator'
+
+    let(:body_a) do
+      s(:guard, s(:primitive, String))
+    end
+
+    let(:body_b) do
+      s(:guard, s(:primitive, String))
+    end
+
+    let(:valid_input)     { 'foo' }
+    let(:expected_output) { 'foo' }
+  end
+
   context 'intransitive' do
     include_examples 'intransitive evaluator'
 
