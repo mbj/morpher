@@ -26,7 +26,31 @@ module Morpher
         # @api private
         #
         def transitive?
-          true
+          body.all? do |evaluator|
+            self.class.is_transitive_keypair?(evaluator)
+          end
+        end
+
+        # Test if evaluator is a keypair
+        #
+        # FIXME:
+        #   This is a side effect from this class is generally to big in sense of SRP.
+        #   Must be refactorable away. But dunno now. Still exploring.
+        #
+        # @param [Evaluator]
+        #
+        # @api private
+        #
+        def self.is_transitive_keypair?(evaluator)
+          return false unless evaluator.kind_of?(Block)
+
+          body = evaluator.body
+
+          return false unless body.length == 3
+
+          fetch, operator, dump = body
+
+          fetch.kind_of?(Key::Fetch) && dump.kind_of?(Key::Dump) && operator.transitive?
         end
 
         # Call evaluator

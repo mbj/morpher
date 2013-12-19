@@ -48,6 +48,7 @@ shared_examples_for 'predicate evaluator' do
 end
 
 shared_examples_for 'transitive evaluator' do
+  include_examples 'evaluator'
 
   it 'signals transitivity via #transitive?' do
     expect(object.transitive?).to be(true)
@@ -68,6 +69,7 @@ shared_examples_for 'transitive evaluator' do
 end
 
 shared_examples_for 'intransitive evaluator' do
+  include_examples 'evaluator'
 
   it 'signals intransitivity via #transitive?' do
     expect(object.transitive?).to be(false)

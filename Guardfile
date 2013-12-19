@@ -9,9 +9,7 @@ guard :rspec, :all_after_pass => false, :all_on_start => false, :cli => %w(--fai
   watch('spec/spec_helper.rb')                      { 'spec' }
   watch(%r{\Aspec/(?:lib|support|shared)/.+\.rb\z}) { 'spec' }
 
-  # run unit specs if associated lib code is modified
-  watch(%r{\Alib/(.+)\.rb\z})                                         { |m| Dir["spec/unit/#{m[1]}"] }
-  watch("lib/#{File.basename(File.expand_path('../', __FILE__))}.rb") { 'spec'                       }
+  watch(%r{lib/.*.rb})                              { 'spec' }
 
   # run a spec if it is modified
   watch(%r{\Aspec/.+_spec\.rb\z})
