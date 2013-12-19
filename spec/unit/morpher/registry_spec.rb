@@ -8,6 +8,6 @@ describe Morpher::Registry do
       register :foo
     end
 
-    expect(klass::REGISTRY).to eql({:foo => klass})
+    expect(klass::REGISTRY).to eql(foo: klass)
   end
 end
