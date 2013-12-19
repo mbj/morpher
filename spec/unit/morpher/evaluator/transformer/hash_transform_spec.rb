@@ -21,6 +21,12 @@ describe Morpher::Evaluator::Transformer::HashTransform do
   let(:input)  { { 'foo' => 'bar' } }
   let(:output) { { foo: 'bar'     } }
 
+  describe '#inverse' do
+    subject { object.inverse }
+
+    it { should eql(described_class.new([evaluator_a.inverse])) }
+  end
+
   describe '#call' do
     context 'with valid input' do
       subject { object.call(input) }
