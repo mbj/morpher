@@ -2,13 +2,6 @@ require 'spec_helper'
 
 describe Morpher::Evaluator::Transformer::Block do
 
-  let(:body_a) do
-    s(:key_fetch, 'foo')
-  end
-
-  let(:body_b) do
-    s(:primitive, String)
-  end
 
   let(:ast) do
     s(:block, body_a, body_b)
@@ -26,43 +19,39 @@ describe Morpher::Evaluator::Transformer::Block do
     Morpher.evaluator(body_b)
   end
 
-  let(:input)  { { 'foo' => 'bar' } }
-  let(:output) { true               }
+  context 'intransitive' do
+    include_examples 'intransitive evaluator'
 
-  describe '#inverse' do
-    subject { object.inverse }
+    let(:valid_input)     { { 'foo' => 'bar' } }
+    let(:expected_output) { true               }
 
-    it { should eql(described_class.new([evaluator_b.inverse, evaluator_a.inverse])) }
-  end
+    let(:body_a) do
+      s(:key_fetch, 'foo')
+    end
 
-  describe '#call' do
-    context 'with valid input' do
-      subject { object.call(input) }
+    let(:body_b) do
+      s(:primitive, String)
+    end
 
-      it 'returns output' do
-        should eql(output)
+    context '#evaluation' do
+      subject { object.evaluation(valid_input) }
+
+      let(:evaluations) do
+        [
+          evaluator_a.evaluation(valid_input),
+          evaluator_b.evaluation('bar')
+        ]
       end
-    end
-  end
 
-  describe '#evaluation' do
-    subject { object.evaluation(input) }
-
-    let(:evaluations) do
-      [
-        evaluator_a.evaluation(input),
-        evaluator_b.evaluation('bar')
-      ]
-    end
-
-    context 'with valid input' do
-      it 'returns evaluation' do
-        should eql(Morpher::Evaluation::Nary.new(
-          input:       input,
-          evaluator:   object,
-          evaluations: evaluations,
-          output:      output
-        ))
+      context 'with valid input' do
+        it 'returns evaluation' do
+          should eql(Morpher::Evaluation::Nary.new(
+            input:       valid_input,
+            evaluator:   object,
+            evaluations: evaluations,
+            output:      expected_output
+          ))
+        end
       end
     end
   end

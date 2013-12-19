@@ -4,7 +4,7 @@ module Morpher
 
       # Evaluator for trautology
       class Tautology < self
-        include Nullary
+        include Nullary, Transitive
 
         register :true
 
@@ -18,6 +18,10 @@ module Morpher
         #
         def call(_input)
           true
+        end
+
+        def self.build(_compiler, _node)
+          new
         end
 
       end # Tautology

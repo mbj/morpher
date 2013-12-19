@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-shared_examples_for 'an evaluator' do
+shared_examples_for 'evaluator' do
   it 'round trips evaluators' do
     object.inverse.inverse.should eql(object)
   end
@@ -12,8 +12,8 @@ shared_examples_for 'an evaluator' do
   end
 end
 
-shared_examples_for 'a predicate evaluator' do
-  it_should_behave_like 'an evaluator'
+shared_examples_for 'predicate evaluator' do
+  include_examples 'evaluator'
 
   context 'with valid input' do
 
@@ -47,25 +47,57 @@ shared_examples_for 'a predicate evaluator' do
   end
 end
 
-shared_examples_for 'a transforming evaluator' do
-  it_should_behave_like 'an evaluator'
+shared_examples_for 'transitive evaluator' do
+
+  it 'signals transitivity via #transitive?' do
+    expect(object.transitive?).to be(true)
+  end
+
+  it 'round trips via #evaluation' do
+    evaluation = object.evaluation(valid_input)
+    # expect(evaluation.success?).to be(true)
+    evaluation = object.inverse.evaluation(evaluation.output)
+    expect(evaluation.output).to eql(valid_input)
+  end
+
+  it 'round trips via #call' do
+    forward = object.call(valid_input)
+    expect(object.inverse.call(forward)).to eql(valid_input)
+  end
+
+end
+
+shared_examples_for 'intransitive evaluator' do
+
+  it 'signals intransitivity via #transitive?' do
+    expect(object.transitive?).to be(false)
+  end
+
+  it 'round trips via #call' do
+    forward = object.call(valid_input)
+    expect(object.inverse.call(forward)).not_to eql(valid_input)
+  end
+
+end
+
+shared_examples_for 'transforming evaluator' do
+  include_examples 'evaluator'
 
   context 'with valid input' do
-    it 'round trips representations via #call' do
-      forward = object.call(valid_input)
-      expect(object.inverse.call(forward)).to eql(valid_input)
+    it 'transforms to expected output via #call' do
+      result = object.call(valid_input)
+      expect(result).to eql(expected_output)
     end
 
-    it 'round trips representations via #evaluation' do
-      forward = object.evaluation(valid_input).output
-      expect(evaluation.success?).to be(true)
-      expect(object.inverse.call(forward).output).to eql(valid_input)
+    it 'transforms to expected output via #evaluation' do
+      evaluation = object.evaluation(valid_input)
+      expect(evaluation.output).to eql(expected_output)
     end
   end
 
-  context 'with invalid input' do
+  pending 'with invalid input' do
     it 'raises error for #call' do
-      expect { object.call(invalid_input) }.to raise_error(Morpher::TransformError)
+      expect { object.call(invalid_input) }.to raise_error(Morpher::Evaluator::Transformer::TransformError)
     end
 
     it 'returns error evaluator for #evaluation' do

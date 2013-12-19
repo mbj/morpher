@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Morpher::Evaluator::Predicate::Contradiction do
   let(:object) { described_class.new }
 
-  it_should_behave_like 'an evaluator'
+  include_examples 'evaluator'
 
   let(:valid_input) { double }
 

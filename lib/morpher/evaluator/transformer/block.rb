@@ -9,6 +9,20 @@ module Morpher
 
         register :block
 
+        # Test if evaluator is transitive
+        #
+        # @return [true]
+        #   if block is transitive
+        #
+        # @return [false]
+        #   otherwise
+        #
+        # @api private
+        #
+        def transitive?
+          body.all? { |evaluator| evaluator.transitive? }
+        end
+
         # Call transformer
         #
         # @param [Object] input

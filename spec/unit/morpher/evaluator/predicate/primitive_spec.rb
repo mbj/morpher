@@ -6,7 +6,7 @@ describe Morpher::Evaluator::Predicate::Primitive::Exact do
   let(:valid_input)   { Morpher::Evaluator.allocate }
   let(:invalid_input) { Morpher::Evaluator::Predicate.allocate }
 
-  it_should_behave_like 'a predicate evaluator'
+  include_examples 'predicate evaluator'
 end
 
 describe Morpher::Evaluator::Predicate::Primitive::Permissive do
@@ -15,5 +15,5 @@ describe Morpher::Evaluator::Predicate::Primitive::Permissive do
   let(:valid_input)   { Morpher::Evaluator::Predicate.allocate }
   let(:invalid_input) { '' }
 
-  it_should_behave_like 'a predicate evaluator'
+  include_examples 'predicate evaluator'
 end

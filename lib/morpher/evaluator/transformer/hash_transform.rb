@@ -13,6 +13,22 @@ module Morpher
 
         register :hash_transform
 
+        # Test if evaluator is transitive
+        #
+        # FIXME: Needs to be calculated dynamically
+        #
+        # @return [true]
+        #   if evaluator is transitive
+        #
+        # @return [false]
+        #   otherwise
+        #
+        # @api private
+        #
+        def transitive?
+          true
+        end
+
         # Call evaluator
         #
         # @param [Object] input

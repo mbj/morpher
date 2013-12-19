@@ -6,5 +6,5 @@ describe Morpher::Evaluator::Predicate::EQL do
   let(:valid_input)   { 1.0 }
   let(:invalid_input) { 1   }
 
-  it_should_behave_like 'a predicate evaluator'
+  include_examples 'predicate evaluator'
 end

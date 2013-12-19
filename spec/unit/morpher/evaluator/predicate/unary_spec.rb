@@ -6,7 +6,7 @@ describe Morpher::Evaluator::Predicate::Unary::Negation do
   let(:valid_input)   { 'bar' }
   let(:invalid_input) { 'foo' }
 
-  it_should_behave_like 'a predicate evaluator'
+  include_examples 'predicate evaluator'
 
   context '#evaluation' do
     subject { object.evaluation('foo') }

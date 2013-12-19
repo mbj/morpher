@@ -4,7 +4,7 @@ module Morpher
 
       # Transformer that allows to guard transformation process with a predicate on input
       class Guard < self
-        include Concord.new(:predicate)
+        include Concord.new(:predicate), Transitive
 
         register :guard
 
