@@ -58,10 +58,10 @@ module Morpher
         def evaluation(input)
           state = input
 
-          evaluations = body.each_with_object([]) do |evaluator, evaluations|
+          evaluations = body.each_with_object([]) do |evaluator, aggregate|
             evaluation = evaluator.evaluation(state)
-            evaluations << evaluation
-            return evaluation_error(input, evaluations) unless evaluation.success?
+            aggregate << evaluation
+            return evaluation_error(input, aggregate) unless evaluation.success?
             state = evaluation.output
           end
 
