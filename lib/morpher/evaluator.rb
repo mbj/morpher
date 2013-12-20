@@ -76,6 +76,5 @@ module Morpher
     #
     abstract_method :inverse
 
-
   end # Evaluator
 end # Morpher

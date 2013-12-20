@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Morpher::Evaluator::Transformer::Block do
 
-
   let(:ast) do
     s(:block, body_a, body_b)
   end
