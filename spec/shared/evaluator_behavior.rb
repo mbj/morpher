@@ -12,6 +12,7 @@ shared_examples_for 'evaluator' do
 
   it 'returns semantically correct evaluations on #evaluation' do
     evaluation = object.evaluation(valid_input)
+    expect(evaluation.success?).to be(true)
     expect(evaluation.evaluator).to eql(object)
     expect(evaluation.input).to eql(valid_input)
     expect(evaluation.output).to eql(expected_output)
@@ -23,7 +24,7 @@ shared_examples_for 'predicate evaluator' do
 
   let(:expected_output) { true }
 
-  context 'with valid input' do
+  context 'with positive input' do
 
     it 'evaluates to true' do
       expect(object.call(valid_input)).to be(true)
@@ -34,12 +35,16 @@ shared_examples_for 'predicate evaluator' do
     end
 
     it 'evaluates to the same output under #evaluation' do
-      expect(object.evaluation(valid_input).output).to be(true)
+      evaluation = object.evaluation(valid_input)
+      expect(evaluation.success?).to be(true)
+      expect(evaluation.output).to be(true)
+
+      evaluation = object.inverse.evaluation(valid_input)
     end
 
   end
 
-  context 'with invalid input' do
+  pending 'with invalid input' do
 
     it 'evaluates to false' do
       expect(object.call(invalid_input)).to be(false)
@@ -64,9 +69,10 @@ shared_examples_for 'transitive evaluator' do
 
   it 'round trips via #evaluation' do
     evaluation = object.evaluation(valid_input)
-    # expect(evaluation.success?).to be(true)
+    expect(evaluation.success?).to be(true)
     evaluation = object.inverse.evaluation(evaluation.output)
     expect(evaluation.output).to eql(valid_input)
+    expect(evaluation.success?).to be(true)
   end
 
   it 'round trips via #call' do
@@ -101,6 +107,7 @@ shared_examples_for 'transforming evaluator' do
 
     it 'transforms to expected output via #evaluation' do
       evaluation = object.evaluation(valid_input)
+      expect(evaluation.success?).to eql(true)
       expect(evaluation.output).to eql(expected_output)
     end
   end
@@ -112,7 +119,7 @@ shared_examples_for 'transforming evaluator' do
 
     it 'returns error evaluator for #evaluation' do
       evaluation = object.evaluation(invalid_input)
-      expect(evaluation.success?).to be(false)
+      expect(evaluation.success?).to eql(false)
       expect(evaluation.output).to be(Morpher::Undefined)
     end
   end

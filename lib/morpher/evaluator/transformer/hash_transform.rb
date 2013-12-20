@@ -91,8 +91,10 @@ module Morpher
         # @api private
         #
         def evaluation(input)
-          evaluations = body.map do |evaluator|
-            evaluator.evaluation(input)
+          evaluations = body.each_with_object([]) do |evaluator, evaluations|
+            evaluation = evaluator.evaluation(input)
+            return evaluation_error(input, evaluations) unless evaluation.success?
+            evaluations << evaluation
           end
 
           output = Hash[evaluations.map(&:output)]
@@ -101,7 +103,8 @@ module Morpher
             evaluator:   self,
             input:       input,
             evaluations: evaluations,
-            output:      output
+            output:      output,
+            success:     true
           )
         end
 

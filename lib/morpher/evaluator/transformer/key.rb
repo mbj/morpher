@@ -48,7 +48,25 @@ module Morpher
           # @api private
           #
           def call(object)
-            object.fetch(param)
+            object.fetch(param) do
+              raise TransformError.new(self, object)
+            end
+          end
+
+          # Return evaluation
+          #
+          # @parma [Object] input
+          #
+          # @return [Evaluation]
+          #
+          # @api private
+          #
+          def evaluation(input)
+            output = input.fetch(param) do
+              return evaluation_error(input)
+            end
+
+            evaluation_success(input, output)
           end
 
           # Return inverse evaluator

@@ -56,22 +56,23 @@ module Morpher
         # @api private
         #
         def evaluation(input)
-          evaluations = []
+          state = input
 
-          output = body.reduce(input) do |state, evaluator|
+          evaluations = body.each_with_object([]) do |evaluator, evaluations|
             evaluation = evaluator.evaluation(state)
             evaluations << evaluation
-            evaluation.output
+            return evaluation_error(input, evaluations) unless evaluation.success?
+            state = evaluation.output
           end
 
           Evaluation::Nary.new(
             evaluator:   self,
             input:       input,
-            output:      output,
-            evaluations: evaluations
+            output:      state,
+            evaluations: evaluations,
+            success:     true
           )
         end
-
       end # Block
     end # Transformer
   end # Evaluato

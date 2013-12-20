@@ -8,6 +8,8 @@ module Morpher
 
   EMPTY_ARRAY = [].freeze
 
+  Undefined = Module.new.freeze
+
   # Return evaluator from node
   #
   # @param [Node]

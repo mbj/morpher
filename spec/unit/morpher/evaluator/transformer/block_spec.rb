@@ -64,7 +64,8 @@ describe Morpher::Evaluator::Transformer::Block do
             input:       valid_input,
             evaluator:   object,
             evaluations: evaluations,
-            output:      expected_output
+            output:      expected_output,
+            success:     true
           ))
         end
       end

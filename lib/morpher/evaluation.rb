@@ -4,8 +4,24 @@ module Morpher
     include Printer::Mixin, Adamantium::Flat, Anima.new(
       :evaluator,
       :input,
-      :output
+      :output,
+      :success
     )
+
+    private :success
+
+    # Test if evaluation was successful
+    #
+    # @return [true]
+    #   if evaluation was successful
+    #
+    # @return [false]
+    #   otherwise
+    #
+    # @api private
+    #
+    alias_method :success?, :success
+    public :success?
 
     printer do
       name
@@ -17,7 +33,19 @@ module Morpher
 
     # Evaluation state for guard evaluators
     class Guard < self
-      include anima.add(:predicate)
+      include anima.add(:predicate).remove(:success)
+
+      # Test if guard predicate is sucessful
+      #
+      # @return [true]
+      #   if guard is successful
+      #
+      # @return [false]
+      #   otherwise
+      #
+      # @api private
+      #
+      alias_method :success?, :output
 
       printer do
         name

@@ -13,6 +13,27 @@ module Morpher
         end
       end
 
+    private
+
+      # Return evaluation error
+      #
+      # @param [Object] input
+      # @param [Array<Evaluation>] evaluations
+      #
+      # @return [Evaluation]
+      #
+      # @api private
+      #
+      def evaluation_error(input, evaluations)
+        Evaluation::Nary.new(
+          evaluator:   self,
+          input:       input,
+          output:      Undefined,
+          evaluations: evaluations,
+          success:     false
+        )
+      end
+
       module ClassMethods
 
         # Build nary nodes

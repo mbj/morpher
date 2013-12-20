@@ -28,12 +28,13 @@ module Morpher
         #
         # @api private
         #
-        def build_evaluation(input, operand_output, output)
+        def evaluation_success(input, operand_output, output)
           Evaluation::Unary.new(
             evaluator:      self,
             input:          input,
             operand_output: operand_output,
-            output:         output
+            output:         output,
+            success:        true
           )
         end
 
@@ -50,7 +51,7 @@ module Morpher
           #
           def evaluation(input)
             operand_output = operand.call(input)
-            build_evaluation(input, operand_output, !operand_output)
+            evaluation_success(input, operand_output, !operand_output)
           end
 
           # Call evaluator

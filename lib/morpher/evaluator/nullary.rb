@@ -3,7 +3,7 @@ module Morpher
     # Mixin to define nullary evaluators
     module Nullary
 
-      # Return evaluation for input
+      # Return default successful evaluation
       #
       # @param [Object] input
       #
@@ -12,11 +12,43 @@ module Morpher
       # @api private
       #
       def evaluation(input)
-        output = call(input)
+        evaluation_success(input, call(input))
+      end
+
+    private
+
+      # Return evaluation error for input
+      #
+      # @param [Object] input
+      #
+      # @return [Evaluation]
+      #
+      # @api private
+      #
+      def evaluation_error(input)
         Evaluation.new(
           evaluator: self,
           input:     input,
-          output:    output
+          output:    Undefined,
+          success:   false
+        )
+      end
+
+      # Return evaluation success for input and output
+      #
+      # @param [Object] input
+      # @param [Object] output
+      #
+      # @return [Evaluation]
+      #
+      # @api private
+      #
+      def evaluation_success(input, output)
+        Evaluation.new(
+          evaluator: self,
+          input:     input,
+          output:    output,
+          success:   true
         )
       end
 
