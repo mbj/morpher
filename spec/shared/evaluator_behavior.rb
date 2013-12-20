@@ -40,6 +40,9 @@ shared_examples_for 'predicate evaluator' do
       expect(evaluation.output).to be(true)
 
       evaluation = object.inverse.evaluation(valid_input)
+
+      expect(evaluation.success?).to be(true)
+      expect(evaluation.output).to be(false)
     end
 
   end
