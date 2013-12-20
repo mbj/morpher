@@ -33,7 +33,8 @@ module Morpher
 
         # Test if evaluator is a keypair
         #
-        # FIXME:
+        # FIXME: Refactor the need for this away.
+        #
         #   This is a side effect from this class is generally to big in sense of SRP.
         #   Must be refactorable away. But dunno now. Still exploring.
         #
