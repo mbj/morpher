@@ -18,7 +18,7 @@ describe Morpher::Evaluator::Transformer::HashTransform do
     include_examples 'intransitive evaluator'
 
     let(:valid_input)     { { 'foo' => 'bar' } }
-    let(:expected_output) { { :foo => true }   }
+    let(:expected_output) { { foo: true      } }
 
     let(:body_a) do
       s(:symbolize_key, 'foo', s(:primitive, String))
