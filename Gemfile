@@ -6,7 +6,5 @@ gemspec
 
 gem 'morpher', path: '.'
 
-group :development, :test do
-  gem 'triage',      git: 'https://github.com/rom-rb/devtools.git', branch: 'triage-rename'
-  gem 'triage-deps', git: 'https://github.com/rom-rb/devtools.git', branch: 'triage-rename'
-end
+gem 'devtools', git: 'https://github.com/rom-rb/devtools.git'
+eval_gemfile 'Gemfile.devtools'

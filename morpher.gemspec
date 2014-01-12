@@ -14,7 +14,6 @@ Gem::Specification.new do |gem|
   gem.files            = `git ls-files`.split("\n")
   gem.test_files       = `git ls-files -- spec/{unit,integration}`.split("\n")
   gem.extra_rdoc_files = %w[TODO LICENSE]
-  gem.executables      = %w[mutant]
   gem.license          = 'MIT'
 
   gem.add_runtime_dependency('abstract_type', '~> 0.0.7')
@@ -23,6 +22,4 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('equalizer',     '~> 0.0.7')
   gem.add_runtime_dependency('anima',         '~> 0.1.1')
   gem.add_runtime_dependency('concord',       '~> 0.1.4')
-
-  gem.add_development_dependency('triage', '~> 0.2')
 end
