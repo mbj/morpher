@@ -27,7 +27,7 @@ module Morpher
         #
         def transitive?
           body.all? do |evaluator|
-            self.class.is_transitive_keypair?(evaluator)
+            self.class.transitive_keypair?(evaluator)
           end
         end
 
@@ -42,7 +42,7 @@ module Morpher
         #
         # @api private
         #
-        def self.is_transitive_keypair?(evaluator)
+        def self.transitive_keypair?(evaluator)
           return false unless evaluator.kind_of?(Block)
 
           body = evaluator.body
