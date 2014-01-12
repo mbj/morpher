@@ -29,7 +29,10 @@ describe Morpher::Evaluator::Nary do
     end
 
     it 'sets up .build' do
-      expect(object.build(Morpher::Compiler.new(Morpher::Evaluator::REGISTRY), s(:foo, s(:eql, 'foo')))).to eql(instance)
+      compiler = Morpher::Compiler.new(Morpher::Evaluator::REGISTRY)
+      node     = s(:foo, s(:eql, 'foo'))
+
+      expect(object.build(compiler, node)).to eql(instance)
     end
   end
 end
