@@ -4,35 +4,13 @@ require 'devtools/spec_helper'
 require 'morpher'
 require 'mutant' # for the node helpers
 
-# Monkeypatch to mutant .rc3 fixing double diffs error.
-#
-# Also does run all mutations.
+# Monkeypatch to mutant all specs per mutation.
 #
 # TODO: Use master once it supports configurable implicit coverage.
 #
 # Morpher predicates are needed to finally make this configurable in mutant.
 #
 module Mutant
-  class Subject
-    class Method
-      class Instance
-        class Memoized
-
-          # Return source
-          #
-          # @return [String]
-          #
-          # @api private
-          #
-          def source
-            Unparser.unparse(memoizer_node(node))
-          end
-          memoize :source
-
-        end
-      end
-    end
-  end
 
   class Killer
     class Rspec
