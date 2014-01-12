@@ -15,10 +15,11 @@ module Morpher
     # @api private
     #
     def call(node)
-      begin
+      loop do
         emitter = registry.fetch(node.type, Emitter::Noop)
         node = emitter.call(self, node)
-      end until emitter == Emitter::Noop
+        break if emitter == Emitter::Noop
+      end
 
       node
     end
