@@ -19,7 +19,7 @@ module Morpher
           # @api private
           #
           def call(input)
-            param.attributes_hash(input)
+            input.to_h
           end
 
           # Return inverse evaluator
