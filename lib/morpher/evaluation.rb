@@ -31,6 +31,39 @@ module Morpher
       end
     end
 
+    ERROR_DEFAULTS = IceNine.deep_freeze(
+      output: Undefined,
+      success: false
+    )
+
+    SUCCESS_DEFAULTS = IceNine.deep_freeze(
+      success: true
+    )
+
+    # Return error instance
+    #
+    # @param [Hash<Symbol, Object>] attributes
+    #
+    # @return [Evaluation]
+    #
+    # @api private
+    #
+    def self.error(attributes)
+      new(ERROR_DEFAULTS.merge(attributes))
+    end
+
+    # Return successful instance
+    #
+    # @param [Hash<Symbol, Object>] attributes
+    #
+    # @return [Evaluation]
+    #
+    # @api private
+    #
+    def self.success(attributes)
+      new(SUCCESS_DEFAULTS.merge(attributes))
+    end
+
     # Evaluation state for guard evaluators
     class Guard < self
       include anima.add(:predicate).remove(:success)

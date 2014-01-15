@@ -100,12 +100,11 @@ module Morpher
 
           output = Hash[evaluations.map(&:output)]
 
-          Evaluation::Nary.new(
+          Evaluation::Nary.success(
             evaluator:   self,
             input:       input,
             evaluations: evaluations,
             output:      output,
-            success:     true
           )
         end
 

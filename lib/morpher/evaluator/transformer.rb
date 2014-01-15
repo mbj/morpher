@@ -9,6 +9,20 @@ module Morpher
         include Concord.new(:transformer, :input)
       end
 
+    private
+
+      # Raise transform error
+      #
+      # @param [Object] input
+      #
+      # @raise [TransformError]
+      #
+      # @api private
+      #
+      def raise_transform_error(input)
+        raise TransformError.new(self, input)
+      end
+
     end # Transform
   end # Evaluator
 end # Morpher

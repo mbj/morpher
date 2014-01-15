@@ -29,12 +29,11 @@ module Morpher
         # @api private
         #
         def evaluation_success(input, operand_output, output)
-          Evaluation::Unary.new(
+          Evaluation::Unary.success(
             evaluator:      self,
             input:          input,
             operand_output: operand_output,
-            output:         output,
-            success:        true
+            output:         output
           )
         end
 

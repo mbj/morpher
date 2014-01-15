@@ -70,17 +70,21 @@ shared_examples_for 'transitive evaluator' do
     expect(object.transitive?).to be(true)
   end
 
-  it 'round trips via #evaluation' do
-    evaluation = object.evaluation(valid_input)
-    expect(evaluation.success?).to be(true)
-    evaluation = object.inverse.evaluation(evaluation.output)
-    expect(evaluation.output).to eql(valid_input)
-    expect(evaluation.success?).to be(true)
-  end
+  context 'with valid inputs' do
 
-  it 'round trips via #call' do
-    forward = object.call(valid_input)
-    expect(object.inverse.call(forward)).to eql(valid_input)
+    it 'round trips valid inputs via #evaluation' do
+      evaluation = object.evaluation(valid_input)
+      expect(evaluation.success?).to be(true)
+      evaluation = object.inverse.evaluation(evaluation.output)
+      expect(evaluation.output).to eql(valid_input)
+      expect(evaluation.success?).to be(true)
+    end
+
+    it 'round trips valid inputs via #call' do
+      forward = object.call(valid_input)
+      expect(object.inverse.call(forward)).to eql(valid_input)
+    end
+
   end
 
 end
@@ -92,15 +96,21 @@ shared_examples_for 'intransitive evaluator' do
     expect(object.transitive?).to be(false)
   end
 
-  it 'round trips via #call' do
+  it 'does not round trips valid inputs via #call' do
     forward = object.call(valid_input)
     expect(object.inverse.call(forward)).not_to eql(valid_input)
   end
 
 end
 
+shared_examples_for 'no invalid transform' do
+  let(:invalid_transform_example?) { false }
+end
+
 shared_examples_for 'transforming evaluator' do
   include_examples 'evaluator'
+
+  let(:invalid_transform_example?) { true }
 
   context 'with valid input' do
     it 'transforms to expected output via #call' do
@@ -115,15 +125,19 @@ shared_examples_for 'transforming evaluator' do
     end
   end
 
-  pending 'with invalid input' do
+  context 'with invalid input' do
     it 'raises error for #call' do
-      expect { object.call(invalid_input) }.to raise_error(Morpher::Evaluator::Transformer::TransformError)
+      if invalid_transform_example?
+        expect { object.call(invalid_input) }.to raise_error(Morpher::Evaluator::Transformer::TransformError)
+      end
     end
 
     it 'returns error evaluator for #evaluation' do
-      evaluation = object.evaluation(invalid_input)
-      expect(evaluation.success?).to eql(false)
-      expect(evaluation.output).to be(Morpher::Undefined)
+      if invalid_transform_example?
+        evaluation = object.evaluation(invalid_input)
+        expect(evaluation.success?).to eql(false)
+        expect(evaluation.output).to be(Morpher::Undefined)
+      end
     end
   end
 end

@@ -25,12 +25,10 @@ module Morpher
       # @api private
       #
       def evaluation_error(input, evaluations)
-        Evaluation::Nary.new(
+        Evaluation::Nary.error(
           evaluator:   self,
           input:       input,
-          output:      Undefined,
-          evaluations: evaluations,
-          success:     false
+          evaluations: evaluations
         )
       end
 
