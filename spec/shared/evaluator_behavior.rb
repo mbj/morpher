@@ -19,46 +19,60 @@ shared_examples_for 'evaluator' do
   end
 end
 
+shared_examples_for 'no negative example' do
+  let(:negative_example?) { false }
+end
+
 shared_examples_for 'predicate evaluator' do
   include_examples 'evaluator'
 
-  let(:expected_output) { true }
+  let(:negative_example?) { true           }
+  let(:expected_output)   { true           }
+  let(:valid_input)       { positive_input }
+
+  unless instance_methods.include?(:expected_positive_output)
+    let(:expected_positive_output) { true }
+  end
+
+  unless instance_methods.include?(:expected_negative_output)
+    let(:expected_negative_output) { false }
+  end
 
   context 'with positive input' do
 
-    it 'evaluates to true' do
-      expect(object.call(valid_input)).to be(true)
+    it 'evaluates to positive output' do
+      expect(object.call(positive_input)).to be(expected_positive_output)
     end
 
-    it 'evaluates to false on inverse' do
-      expect(object.inverse.call(valid_input)).to be(false)
+    it 'evaluates to inverted positive output' do
+      expect(object.inverse.call(positive_input)).to be(!expected_positive_output)
     end
 
     it 'evaluates to the same output under #evaluation' do
-      evaluation = object.evaluation(valid_input)
+      evaluation = object.evaluation(positive_input)
       expect(evaluation.success?).to be(true)
-      expect(evaluation.output).to be(true)
-
-      evaluation = object.inverse.evaluation(valid_input)
-
-      expect(evaluation.success?).to be(true)
-      expect(evaluation.output).to be(false)
+      expect(evaluation.output).to be(expected_positive_output)
     end
-
   end
 
-  pending 'with invalid input' do
+  context 'with negative input' do
 
     it 'evaluates to false' do
-      expect(object.call(invalid_input)).to be(false)
+      if negative_example?
+        expect(object.call(negative_input)).to be(false)
+      end
     end
 
     it 'evaluates to true on inverse' do
-      expect(object.inverse.call(invalid_input)).to be(true)
+      if negative_example?
+        expect(object.inverse.call(negative_input)).to be(true)
+      end
     end
 
     it 'evaluates to the same output under #evaluation' do
-      expect(object.evaluation(invalid_input).output).to be(false)
+      if negative_example?
+        expect(object.evaluation(negative_input).output).to be(false)
+      end
     end
   end
 end
@@ -103,7 +117,7 @@ shared_examples_for 'intransitive evaluator' do
 
 end
 
-shared_examples_for 'no invalid transform' do
+shared_examples_for 'no invalid input' do
   let(:invalid_transform_example?) { false }
 end
 

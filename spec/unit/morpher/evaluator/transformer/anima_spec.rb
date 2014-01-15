@@ -14,7 +14,7 @@ describe Morpher::Evaluator::Transformer::Anima::Dump do
 
   include_examples 'transforming evaluator'
   include_examples 'transitive evaluator'
-  include_examples 'no invalid transform'
+  include_examples 'no invalid input'
 end
 
 describe Morpher::Evaluator::Transformer::Anima::Load do

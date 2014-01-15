@@ -20,6 +20,16 @@ module Morpher
           false
         end
 
+        # Return inverse evaluator
+        #
+        # @return [Evaluator]
+        #
+        # @api private
+        #
+        def inverse
+          Tautology.new
+        end
+
       end # Contradiction
     end # Predicate
   end # Evaluator

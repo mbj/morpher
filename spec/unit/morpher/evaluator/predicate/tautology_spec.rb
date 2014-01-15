@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Morpher::Evaluator::Predicate::Tautology do
   let(:object) { described_class.new }
 
-  include_examples 'evaluator'
+  include_examples 'predicate evaluator'
+  include_examples 'no negative example'
 
-  let(:valid_input) { double }
-  let(:expected_output) { true }
+  let(:positive_input)  { double }
 end

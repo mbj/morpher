@@ -15,6 +15,20 @@ module Morpher
         evaluation_success(input, call(input))
       end
 
+      # Hook called when mudule gets included
+      #
+      # @param [Class, Module] host
+      #
+      # @return [undefined]
+      #
+      # @api private
+      #
+      def self.included(host)
+        host.class_eval do
+          include Equalizer.new
+        end
+      end
+
     private
 
       # Return evaluation error for input
