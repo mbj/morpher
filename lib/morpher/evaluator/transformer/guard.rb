@@ -4,14 +4,9 @@ module Morpher
 
       # Transformer that allows to guard transformation process with a predicate on input
       class Guard < self
-        include Concord::Public.new(:predicate), Transitive
+        include Unary, Transitive
 
         register :guard
-
-        printer do
-          name
-          visit(:predicate)
-        end
 
         # Call evaluator
         #
@@ -26,7 +21,7 @@ module Morpher
         # @api private
         #
         def call(input)
-          if predicate.call(input)
+          if operand.call(input)
             input
           else
             raise TransformError.new(self, input)
@@ -42,12 +37,21 @@ module Morpher
         # @api private
         #
         def evaluation(input)
-          Evaluation::Guard.new(
-            input:     input,
-            output:    input,
-            evaluator: self,
-            predicate: predicate.call(input)
-          )
+          operand_evaluation = operand.evaluation(input)
+          if operand_evaluation.output
+            Evaluation::Unary.success(
+              input:              input,
+              output:             input,
+              operand_evaluation: operand_evaluation,
+              evaluator:          self
+            )
+          else
+            Evaluation::Unary.error(
+              input:              input,
+              operand_evaluation: operand_evaluation,
+              evaluator:          self
+            )
+          end
         end
 
         # Return inverse evaluator
@@ -58,19 +62,6 @@ module Morpher
         #
         def inverse
           self
-        end
-
-        # Build evaluator from node
-        #
-        # @param [Compiler] compiler
-        # @param [Node] node
-        #
-        # @api private
-        #
-        # @return [Evaluator  ]
-        #
-        def self.build(compiler, node)
-          new(compiler.call(node.children.first))
         end
 
       end # Guard

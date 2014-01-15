@@ -118,13 +118,15 @@ shared_examples_for 'intransitive evaluator' do
 end
 
 shared_examples_for 'no invalid input' do
-  let(:invalid_transform_example?) { false }
+  let(:invalid_input_example?) { false }
 end
 
 shared_examples_for 'transforming evaluator' do
   include_examples 'evaluator'
 
-  let(:invalid_transform_example?) { true }
+  unless instance_methods.include?(:invalid_input_example)
+    let(:invalid_input_example?) { true }
+  end
 
   context 'with valid input' do
     it 'transforms to expected output via #call' do
@@ -141,13 +143,13 @@ shared_examples_for 'transforming evaluator' do
 
   context 'with invalid input' do
     it 'raises error for #call' do
-      if invalid_transform_example?
+      if invalid_input_example?
         expect { object.call(invalid_input) }.to raise_error(Morpher::Evaluator::Transformer::TransformError)
       end
     end
 
     it 'returns error evaluator for #evaluation' do
-      if invalid_transform_example?
+      if invalid_input_example?
         evaluation = object.evaluation(invalid_input)
         expect(evaluation.success?).to eql(false)
         expect(evaluation.output).to be(Morpher::Undefined)

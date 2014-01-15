@@ -68,8 +68,8 @@ describe Morpher do
 
     expect { evaluator.call(invalid) }.to raise_error(Morpher::Evaluator::Transformer::TransformError)
 
-    # FIXME: Evaluations should be able to signal error also
-    # evaluation = evaluator.evaluation(invalid)
+    evaluation = evaluator.evaluation(invalid)
+    expect(evaluation.success?).to be(false)
   end
 
   specify 'allows to inverse a transformations' do

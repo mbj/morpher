@@ -14,7 +14,7 @@ module Morpher
       # @api private
       #
       def inverse
-        Unary::Negation.new(self)
+        Negation.new(self)
       end
 
     end # Predicate
