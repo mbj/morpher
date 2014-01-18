@@ -26,7 +26,7 @@ module Morpher
     printer do
       name
       indent do
-        attributes :input, :output
+        attributes :input, :output, :success?
         visit :evaluator
       end
     end
@@ -71,7 +71,7 @@ module Morpher
       printer do
         name
         indent do
-          attributes :input, :output
+          attributes :input, :output, :success?
           attribute_class :evaluator
           visit_many :evaluations
         end
@@ -86,7 +86,7 @@ module Morpher
       printer do
         name
         indent do
-          attributes :input, :output
+          attributes :input, :output, :success?
           visit :evaluator
         end
       end

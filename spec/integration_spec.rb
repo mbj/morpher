@@ -105,17 +105,20 @@ describe Morpher do
       Morpher::Evaluation::Nary
         input: {:attribute_a=>"foo"}
         output: true
+        success?: true
         evaluator: Morpher::Evaluator::Transformer::Block
         evaluations:
           Morpher::Evaluation
             input: {:attribute_a=>"foo"}
             output: "foo"
+            success?: true
             evaluator:
               Morpher::Evaluator::Transformer::Key::Fetch
                 param: :attribute_a
           Morpher::Evaluation
             input: "foo"
             output: true
+            success?: true
             evaluator:
               Morpher::Evaluator::Predicate::EQL
                 param: "foo"
