@@ -37,6 +37,13 @@ describe Morpher::Evaluator::Transformer::Block do
     end
 
     include_examples 'transitive evaluator'
+
+    context 'with invalid input' do
+      specify '#evaluation' do
+        evaluation = object.evaluation(invalid_input)
+        expect(evaluation.evaluations.length).to eql(1)
+      end
+    end
   end
 
   context 'intransitive' do
