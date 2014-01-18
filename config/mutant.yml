@@ -1,2 +1,6 @@
 name: morpher
 namespace: Morpher
+ignore:
+# Infinite runtime here
+- Morpher::TypeLookup
+- Morpher::Preprocessor
