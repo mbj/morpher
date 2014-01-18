@@ -5,17 +5,43 @@ shared_examples_for 'evaluator' do
     object.inverse.inverse.should eql(object)
   end
 
-  it 'returns correct output on #call' do
-    output = object.call(valid_input)
-    expect(output).to eql(expected_output)
+  context 'with invalid input' do
+
+    unless instance_methods.include?(:expected_exception)
+      let(:expected_exception) do
+        Morpher::Evaluator::Transformer::TransformError.new(object, invalid_input)
+      end
+    end
+
+    specify '#call' do
+      if invalid_input_example?
+        expect { object.call(invalid_input) }.to raise_error(expected_exception)
+      end
+    end
+
+    specify '#evaluation' do
+      if invalid_input_example?
+        evaluation = object.evaluation(invalid_input)
+        expect(evaluation.success?).to be(false)
+        expect(evaluation.evaluator).to eql(object)
+        expect(evaluation.input).to eql(invalid_input)
+        expect(evaluation.output).to eql(Morpher::Undefined)
+      end
+    end
   end
 
-  it 'returns semantically correct evaluations on #evaluation' do
-    evaluation = object.evaluation(valid_input)
-    expect(evaluation.success?).to be(true)
-    expect(evaluation.evaluator).to eql(object)
-    expect(evaluation.input).to eql(valid_input)
-    expect(evaluation.output).to eql(expected_output)
+  context 'with valid input' do
+    specify '#evaluation' do
+      evaluation = object.evaluation(valid_input)
+      expect(evaluation.success?).to be(true)
+      expect(evaluation.evaluator).to eql(object)
+      expect(evaluation.input).to eql(valid_input)
+      expect(evaluation.output).to eql(expected_output)
+    end
+
+    specify '#call' do
+      expect(object.call(valid_input)).to eql(expected_output)
+    end
   end
 end
 
@@ -25,10 +51,11 @@ end
 
 shared_examples_for 'predicate evaluator' do
   include_examples 'evaluator'
+  include_examples 'no invalid input'
 
-  let(:negative_example?) { true           }
-  let(:expected_output)   { true           }
-  let(:valid_input)       { positive_input }
+  let(:negative_example?)      { true           }
+  let(:expected_output)        { true           }
+  let(:valid_input)            { positive_input }
 
   unless instance_methods.include?(:expected_positive_output)
     let(:expected_positive_output) { true }
@@ -80,6 +107,8 @@ end
 shared_examples_for 'transitive evaluator' do
   include_examples 'evaluator'
 
+  let(:invalid_input_example?) { true }
+
   it 'signals transitivity via #transitive?' do
     expect(object.transitive?).to be(true)
   end
@@ -105,6 +134,8 @@ end
 
 shared_examples_for 'intransitive evaluator' do
   include_examples 'evaluator'
+
+  let(:invalid_input_example?) { true }
 
   it 'signals intransitivity via #transitive?' do
     expect(object.transitive?).to be(false)

@@ -15,25 +15,35 @@ describe Morpher::Evaluator::Transformer::HashTransform do
   end
 
   context 'intransitive' do
-    include_examples 'intransitive evaluator'
 
     let(:valid_input)     { { 'foo' => 'bar' } }
+    let(:invalid_input)   { {}                 }
     let(:expected_output) { { foo: true      } }
 
     let(:body_a) do
       s(:symbolize_key, 'foo', s(:primitive, String))
     end
+
+    let(:expected_exception) do
+      Morpher::Evaluator::Transformer::TransformError.new(object.body.first.body.first, invalid_input)
+    end
+
+    include_examples 'intransitive evaluator'
   end
 
   context 'transitive' do
-    include_examples 'transitive evaluator'
-
     let(:body_a) do
       s(:symbolize_key, 'foo', s(:guard, s(:primitive, String)))
     end
 
     let(:valid_input)     { { 'foo' => 'bar' } }
+    let(:invalid_input)   { {}                 }
     let(:expected_output) { { foo: 'bar'     } }
 
+    let(:expected_exception) do
+      Morpher::Evaluator::Transformer::TransformError.new(object.body.first.body.first, invalid_input)
+    end
+
+    include_examples 'transitive evaluator'
   end
 end

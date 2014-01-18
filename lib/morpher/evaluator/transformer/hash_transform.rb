@@ -4,12 +4,12 @@ module Morpher
 
       # Too complex hash transformation evaluator
       #
-      # FIXME: Shold be broken up in better primitives a decompose, compose pair
+      # FIXME: Should be broken up in better primitives a decompose, compose pair
       #
       # @api private
       #
       class HashTransform < self
-        include Concord.new(:body)
+        include Concord::Public.new(:body)
 
         register :hash_transform
 

@@ -19,7 +19,6 @@ describe Morpher::Evaluator::Transformer::Block do
   end
 
   context 'transitive' do
-    include_examples 'transitive evaluator'
 
     let(:body_a) do
       s(:guard, s(:primitive, String))
@@ -31,12 +30,19 @@ describe Morpher::Evaluator::Transformer::Block do
 
     let(:valid_input)     { 'foo' }
     let(:expected_output) { 'foo' }
+    let(:invalid_input)   { :foo  }
+
+    let(:expected_exception) do
+      Morpher::Evaluator::Transformer::TransformError.new(object.body.first, invalid_input)
+    end
+
+    include_examples 'transitive evaluator'
   end
 
   context 'intransitive' do
-    include_examples 'intransitive evaluator'
 
     let(:valid_input)     { { 'foo' => 'bar' } }
+    let(:invalid_input)   { {}                 }
     let(:expected_output) { true               }
 
     let(:body_a) do
@@ -46,6 +52,12 @@ describe Morpher::Evaluator::Transformer::Block do
     let(:body_b) do
       s(:primitive, String)
     end
+
+    let(:expected_exception) do
+      Morpher::Evaluator::Transformer::TransformError.new(object.body.first, invalid_input)
+    end
+
+    include_examples 'intransitive evaluator'
 
     context '#evaluation' do
       subject { object.evaluation(valid_input) }
