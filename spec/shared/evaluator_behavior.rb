@@ -2,7 +2,7 @@
 
 shared_examples_for 'evaluator' do
   it 'round trips evaluators' do
-    if object.transitive?
+    if object.kind_of?(Morpher::Evaluator::Transformer) && object.transitive?
       object.inverse.inverse.should eql(object)
     end
   end

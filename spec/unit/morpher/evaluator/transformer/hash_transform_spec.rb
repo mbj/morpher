@@ -18,10 +18,10 @@ describe Morpher::Evaluator::Transformer::HashTransform do
 
     let(:valid_input)     { { 'foo' => 'bar' } }
     let(:invalid_input)   { {}                 }
-    let(:expected_output) { { foo: true      } }
+    let(:expected_output) { { foo: String    } }
 
     let(:body_a) do
-      s(:symbolize_key, 'foo', s(:primitive, String))
+      s(:symbolize_key, 'foo', s(:attribute, :class))
     end
 
     let(:expected_exception) do

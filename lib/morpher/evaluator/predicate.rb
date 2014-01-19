@@ -2,7 +2,6 @@ module Morpher
   class Evaluator
     # Abstract namespace class for predicate evaluators
     class Predicate < self
-      include Intransitive
 
       # Return inverse evaluator
       #

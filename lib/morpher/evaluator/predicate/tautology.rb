@@ -4,7 +4,7 @@ module Morpher
 
       # Evaluator for trautology
       class Tautology < self
-        include Nullary, Transitive
+        include Nullary
 
         register :true
 
