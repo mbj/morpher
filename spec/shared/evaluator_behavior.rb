@@ -80,6 +80,7 @@ shared_examples_for 'predicate evaluator' do
     it 'evaluates to the same output under #evaluation' do
       evaluation = object.evaluation(positive_input)
       expect(evaluation.success?).to be(true)
+      expect(evaluation.input).to be(positive_input)
       expect(evaluation.output).to be(expected_positive_output)
     end
   end
@@ -100,7 +101,10 @@ shared_examples_for 'predicate evaluator' do
 
     it 'evaluates to the same output under #evaluation' do
       if negative_example?
-        expect(object.evaluation(negative_input).output).to be(false)
+        evaluation = object.evaluation(negative_input)
+        expect(evaluation.input).to be(negative_input)
+        expect(evaluation.success?).to be(true)
+        expect(evaluation.output).to be(false)
       end
     end
   end

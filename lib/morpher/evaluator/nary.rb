@@ -15,6 +15,42 @@ module Morpher
 
     private
 
+      # Return positive evaluation
+      #
+      # @param [Object] input
+      # @param [Array<Evaluation>] evaluations
+      #
+      # @return [Evaluation]
+      #
+      # @api private
+      #
+      def evaluation_positive(input, evaluations)
+        Evaluation::Nary.success(
+          evaluator:   self,
+          input:       input,
+          output:      true,
+          evaluations: evaluations
+        )
+      end
+
+      # Return negative evaluation
+      #
+      # @param [Object] input
+      # @param [Array<Evaluation>] evaluations
+      #
+      # @return [Evaluation]
+      #
+      # @api private
+      #
+      def evaluation_negative(input, evaluations)
+        Evaluation::Nary.success(
+          evaluator:   self,
+          input:       input,
+          output:      false,
+          evaluations: evaluations
+        )
+      end
+
       # Return evaluation error
       #
       # @param [Object] input

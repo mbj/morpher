@@ -65,12 +65,11 @@ module Morpher
             state = evaluation.output
           end
 
-          Evaluation::Nary.new(
+          Evaluation::Nary.success(
             evaluator:   self,
             input:       input,
             output:      state,
-            evaluations: evaluations,
-            success:     true
+            evaluations: evaluations
           )
         end
       end # Block
