@@ -2,7 +2,9 @@
 
 shared_examples_for 'evaluator' do
   it 'round trips evaluators' do
-    object.inverse.inverse.should eql(object)
+    if object.transitive?
+      object.inverse.inverse.should eql(object)
+    end
   end
 
   context 'with invalid input' do
@@ -139,11 +141,6 @@ shared_examples_for 'intransitive evaluator' do
 
   it 'signals intransitivity via #transitive?' do
     expect(object.transitive?).to be(false)
-  end
-
-  it 'does not round trips valid inputs via #call' do
-    forward = object.call(valid_input)
-    expect(object.inverse.call(forward)).not_to eql(valid_input)
   end
 
 end
