@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Morpher
 
   # The AST to evaluator tree compiler

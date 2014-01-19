@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Morpher
   # Abstract namespace class for evaluation states
   class Evaluation

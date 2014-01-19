@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'abstract_type'
 require 'concord'
 require 'anima'

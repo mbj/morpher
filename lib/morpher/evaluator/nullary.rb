@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Morpher
   class Evaluator
     # Mixin to define nullary evaluators

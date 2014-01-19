@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module Morpher
 
   # Morpher specific AST node

@@ -1,4 +1,4 @@
-# encoding: utf-8
+# encoding: UTF-8
 
 shared_examples_for 'evaluator' do
   it 'round trips evaluators' do

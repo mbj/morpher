@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 module StripHelper
   def strip(text)
     return text if text.empty?
