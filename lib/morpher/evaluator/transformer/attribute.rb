@@ -1,6 +1,7 @@
 module Morpher
   class Evaluator
     class Transformer
+      # Transformer to return a specific attribute of input
       class Attribute < self
         include Parameterized, Nullary, Intransitive
 

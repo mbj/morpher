@@ -1,6 +1,7 @@
 module Morpher
   class Evaluator
     class Predicate
+      # Evaluator for nary or predicates
       class Or < self
         include Nary
 
