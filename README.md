@@ -17,7 +17,7 @@ It can be used at various places:
 Status
 ------
 
-This library is in spike mode.
+This library is in "moving to MDD from spike mode".
 
 ### Mutation coverage
 
@@ -32,7 +32,7 @@ There is no gem release.
 Examples
 --------
 
-See specs, API is under flux!
+See specs, API is stable and there'll be a 0.1 release soon.
 
 Credits
 -------
