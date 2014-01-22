@@ -1,3 +1,3 @@
 ---
-threshold: 30 # Sadly some DSL got recognized
-total_score: 330
+threshold: 45 # Inverse predicates trigger this
+total_score: 371

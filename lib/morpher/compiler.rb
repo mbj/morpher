@@ -6,6 +6,40 @@ module Morpher
   class Compiler
     include Concord.new(:registry)
 
+    # Error raised when node children have incorrect amount
+    class NodeChildrenError < RuntimeError
+      include Concord.new(:expected_amount, :actual_amount)
+
+      # Return exception message
+      #
+      # @return [String]
+      #
+      # @api private
+      #
+      def message
+        "Expected: #{expected_amount.inspect} children got #{actual_amount.inspect}"
+      end
+    end
+
+    # Assert number of child nodes
+    #
+    # @param [Morpher::Node] nodes
+    #
+    # @return [self]
+    #   if assertion is fullfilled
+    #
+    # @raise [NodeError]
+    #   otherwise
+    #
+    # @api private
+    #
+    def self.assert_child_nodes(node, expected_amount)
+      actual_amount = node.children.length
+      unless actual_amount == expected_amount
+        raise NodeChildrenError.new(expected_amount, actual_amount)
+      end
+    end
+
     # Error raised on compiling unknown nodes
     class UnknownNodeError < RuntimeError
       include Concord.new(:type)

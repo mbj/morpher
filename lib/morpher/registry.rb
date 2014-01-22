@@ -19,6 +19,16 @@ module Morpher
       end
     end
 
+    # Return node type
+    #
+    # @return [Symbol]
+    #
+    # @api private
+    #
+    def type
+      self.class::TYPE
+    end
+
     # Methods to get mixed in at singleton level
     module ClassMethods
 
@@ -33,6 +43,7 @@ module Morpher
       # @api private
       #
       def register(name)
+        const_set(:TYPE, name)
         self::REGISTRY[name] = self
       end
 

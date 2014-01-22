@@ -5,6 +5,12 @@ module Morpher
     # Mixin to define nullary evaluators
     module Nullary
 
+      CONCORD = Concord::Public.new
+
+      PRINTER = lambda do |_|
+        name
+      end
+
       # Return default successful evaluation
       #
       # @param [Object] input
@@ -17,19 +23,48 @@ module Morpher
         evaluation_success(input, call(input))
       end
 
-      # Hook called when mudule gets included
+      # Return node
       #
-      # @param [Class, Module] host
+      # @return [Morpher::Node]
+      #
+      # @api private
+      #
+      def node
+        s(type)
+      end
+
+      # Hook called when module gets included
       #
       # @return [undefined]
       #
       # @api private
       #
-      def self.included(host)
-        host.class_eval do
-          include Equalizer.new
+      def self.included(descendant)
+        descendant.class_eval do
+          include CONCORD
+          extend ClassMethods
+          printer(&PRINTER)
         end
       end
+      private_class_method :included
+
+      module ClassMethods
+
+        # Build nary nodes
+        #
+        # @param [Compiler] _compiler
+        # @param [Morpher::Node] node
+        #
+        # @return [Evaluator::Nary]
+        #
+        # @api private
+        #
+        def build(_compiler, node)
+          Compiler.assert_child_nodes(node, 0)
+          new
+        end
+
+      end # ClassMethods
 
     private
 
@@ -42,7 +77,7 @@ module Morpher
       # @api private
       #
       def evaluation_error(input)
-        Evaluation.new(
+        Evaluation::Nullary.new(
           evaluator: self,
           input:     input,
           output:    Undefined,
@@ -60,7 +95,7 @@ module Morpher
       # @api private
       #
       def evaluation_success(input, output)
-        Evaluation.new(
+        Evaluation::Nullary.new(
           evaluator: self,
           input:     input,
           output:    output,

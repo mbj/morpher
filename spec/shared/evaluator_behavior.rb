@@ -1,10 +1,14 @@
 # encoding: UTF-8
 
 shared_examples_for 'evaluator' do
-  it 'round trips evaluators' do
+  it 'round trips transtivie evaluators via #inverse' do
     if object.kind_of?(Morpher::Evaluator::Transformer) && object.transitive?
       object.inverse.inverse.should eql(object)
     end
+  end
+
+  it 'round trips evaluators via #node' do
+    Morpher.evaluator(object.node).should eql(object)
   end
 
   context 'with invalid input' do

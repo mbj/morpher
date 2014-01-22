@@ -7,6 +7,8 @@ module Morpher
       class Negation < self
         include Unary
 
+        register :negate
+
         # Return evaluation for input
         #
         # @param [Object] input

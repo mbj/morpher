@@ -15,6 +15,16 @@ module Morpher
         end
       end
 
+      # Return AST
+      #
+      # @return [Morpher::Node]
+      #
+      # @api private
+      #
+      def node
+        s(type, *body.map(&:node))
+      end
+
     private
 
       # Return positive evaluation

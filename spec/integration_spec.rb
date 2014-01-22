@@ -41,7 +41,7 @@ describe Morpher do
   let(:predicate_ast) do
     s(:block,
       s(:key_fetch, :attribute_a),
-      s(:eql, 'foo')
+      s(:eql, s(:static, 'foo'), s(:input))
     )
   end
 
@@ -110,20 +110,32 @@ describe Morpher do
         success?: true
         evaluator: Morpher::Evaluator::Transformer::Block
         evaluations:
-          Morpher::Evaluation
+          Morpher::Evaluation::Nullary
             input: {:attribute_a=>"foo"}
             output: "foo"
             success?: true
             evaluator:
               Morpher::Evaluator::Transformer::Key::Fetch
                 param: :attribute_a
-          Morpher::Evaluation
+          Morpher::Evaluation::Binary
             input: "foo"
             output: true
             success?: true
-            evaluator:
-              Morpher::Evaluator::Predicate::EQL
-                param: "foo"
+            left_evaluation:
+              Morpher::Evaluation::Nullary
+                input: "foo"
+                output: "foo"
+                success?: true
+                evaluator:
+                  Morpher::Evaluator::Transformer::Static
+                    param: "foo"
+            right_evaluation:
+              Morpher::Evaluation::Nullary
+                input: "foo"
+                output: "foo"
+                success?: true
+                evaluator:
+                  Morpher::Evaluator::Transformer::Input
     TEXT
   end
 end

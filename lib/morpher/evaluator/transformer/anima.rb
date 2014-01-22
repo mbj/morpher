@@ -65,13 +65,13 @@ module Morpher
           # @api private
           #
           def evaluation(input)
-            Evaluation.success(
+            Evaluation::Nullary.success(
               evaluator: self,
               input:     input,
               output:    param.new(input),
             )
           rescue ::Anima::Error
-            Evaluation.error(
+            Evaluation::Nullary.error(
               evaluator: self,
               input:     input,
             )

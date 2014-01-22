@@ -11,7 +11,7 @@ module Morpher
       # @api private
       #
       class HashTransform < self
-        include Concord::Public.new(:body)
+        include Nary
 
         register :hash_transform
 

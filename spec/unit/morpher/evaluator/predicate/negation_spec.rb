@@ -3,10 +3,12 @@
 require 'spec_helper'
 
 describe Morpher::Evaluator::Predicate::Negation do
-  let(:object) { described_class.new(Morpher::Evaluator::Predicate::EQL.new('foo')) }
+  let(:object) { described_class.new(operand) }
 
-  let(:positive_input) { 'bar' }
-  let(:negative_input) { 'foo' }
+  let(:operand) { Morpher.evaluator(s(:input)) }
+
+  let(:positive_input) { false }
+  let(:negative_input) { true  }
 
   include_examples 'predicate evaluator'
 end

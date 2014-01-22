@@ -4,7 +4,7 @@ module Morpher
 
   class Evaluator
 
-    # Mixin for nary evaluators
+    # Mixin for unary evaluators
     module Unary
       CONCORD = Concord::Public.new(:operand)
 
@@ -13,6 +13,16 @@ module Morpher
         indent do
           visit(:operand)
         end
+      end
+
+      # Return node
+      #
+      # @return [Morpher::Node]
+      #
+      # @api private
+      #
+      def node
+        s(type, operand.node)
       end
 
     private
@@ -48,6 +58,7 @@ module Morpher
         # @api private
         #
         def build(compiler, node)
+          Compiler.assert_child_nodes(node, 1)
           operand = compiler.call(node.children.first)
           new(operand)
         end
@@ -69,7 +80,7 @@ module Morpher
       end
       private_class_method :included
 
-    end # Nary
+    end # Unary
 
   end # Evaluator
 end # Morpher

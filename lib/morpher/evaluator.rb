@@ -4,7 +4,7 @@ module Morpher
 
   # Abstract namespace class for non tracking evaluators
   class Evaluator
-    include Adamantium::Flat, Registry, AbstractType, Printer::Mixin
+    include Adamantium::Flat, Registry, AbstractType, Printer::Mixin, NodeHelpers
 
     # Call evaluator in non tracking mode
     #
