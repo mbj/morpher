@@ -89,6 +89,13 @@ describe Morpher do
     expect(evaluator.inverse.call(input)).to eql(valid)
   end
 
+  specify 'allows to merge inputs' do
+    evaluator = Morpher.evaluator(s(:merge, { :foo => :bar }))
+
+    expect(evaluator.call(:foo => :bar)).to eql({:foo => :bar})
+    expect(evaluator.call(:bar => :baz)).to eql({:foo => :bar, :bar => :baz})
+  end
+
   specify 'allows predicates to be run from sexp' do
 
     valid = { attribute_a: 'foo' }
