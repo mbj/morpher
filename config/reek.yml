@@ -29,6 +29,7 @@ LongParameterList:
 FeatureEnvy:
   exclude:
   # False positives:
+  - Morpher::Evaluator::Binary::ClassMethods#build
   - Morpher::Printer::Mixin::InstanceMethods#description
   - Morpher::Evaluator::Transformer::Anima::Dump#call
   enabled: true
