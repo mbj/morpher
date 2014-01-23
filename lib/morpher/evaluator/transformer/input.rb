@@ -3,6 +3,8 @@
 module Morpher
   class Evaluator
     class Transformer
+
+      # Identity transformer which always returns +input+
       class Input < self
         include Nullary, Intransitive
 
