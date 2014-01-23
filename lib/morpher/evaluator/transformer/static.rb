@@ -3,6 +3,8 @@
 module Morpher
   class Evaluator
     class Transformer
+
+      # Transformer that always returns the passed +param+
       class Static < self
         include Parameterized, Nullary, Intransitive
 
