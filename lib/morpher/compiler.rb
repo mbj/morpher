@@ -8,7 +8,7 @@ module Morpher
 
     # Error raised when node children have incorrect amount
     class NodeChildrenError < RuntimeError
-      include Concord.new(:expected_amount, :actual_amount)
+      include Concord.new(:node, :expected_amount)
 
       # Return exception message
       #
@@ -17,7 +17,25 @@ module Morpher
       # @api private
       #
       def message
-        "Expected: #{expected_amount.inspect} children got #{actual_amount.inspect}"
+        "Expected #{expected_amount} #{_children} for #{type}, got #{actual_amount}: #{children}"
+      end
+
+      private
+
+      def type
+        node.type.inspect
+      end
+
+      def actual_amount
+        children.length
+      end
+
+      def children
+        node.children
+      end
+
+      def _children
+        expected_amount == 1 ? 'child' : 'children'
       end
     end
 
@@ -36,7 +54,8 @@ module Morpher
     def self.assert_child_nodes(node, expected_amount)
       actual_amount = node.children.length
       unless actual_amount == expected_amount
-        raise NodeChildrenError.new(expected_amount, actual_amount)
+        puts node.type.inspect
+        raise NodeChildrenError.new(node, expected_amount)
       end
     end
 
