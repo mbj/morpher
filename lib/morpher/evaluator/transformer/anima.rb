@@ -51,7 +51,7 @@ module Morpher
           # @api private
           #
           def call(input)
-            param.new(input)
+            invoke(input)
           rescue ::Anima::Error
             raise_transform_error(input)
           end
@@ -68,7 +68,7 @@ module Morpher
             Evaluation::Nullary.success(
               evaluator: self,
               input:     input,
-              output:    param.new(input),
+              output:    invoke(input),
             )
           rescue ::Anima::Error
             Evaluation::Nullary.error(
@@ -85,6 +85,18 @@ module Morpher
           #
           def inverse
             Dump.new(param)
+          end
+
+          private
+
+          # Invoke the transformation
+          #
+          # @return [Object]
+          #
+          # @api private
+          #
+          def invoke(input)
+            param.new(input)
           end
 
         end # Load
