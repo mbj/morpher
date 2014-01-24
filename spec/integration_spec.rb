@@ -96,6 +96,18 @@ describe Morpher do
     expect(evaluator.call(bar: :baz)).to eql(foo: :bar, bar: :baz)
   end
 
+  specify 'allows to coerce inputs from string to int and back' do
+    evaluator = Morpher.evaluator(s(:parse_int, 10))
+
+    expect(evaluator.call('42')).to be(42)
+    expect(evaluator.inverse.call(42)).to eql('42')
+
+    evaluator = Morpher.evaluator(s(:int_to_string, 10))
+
+    expect(evaluator.call(42)).to eql('42')
+    expect(evaluator.inverse.call('42')).to be(42)
+  end
+
   specify 'allows predicates to be run from sexp' do
 
     valid = { attribute_a: 'foo' }
