@@ -80,7 +80,7 @@ module Morpher
             Dump.new(param)
           end
 
-          private
+        private
 
           # Invoke the transformation
           #
