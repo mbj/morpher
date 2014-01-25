@@ -65,16 +65,9 @@ module Morpher
           # @api private
           #
           def evaluation(input)
-            Evaluation::Nullary.success(
-              evaluator: self,
-              input:     input,
-              output:    invoke(input),
-            )
+            evaluation_success(input, invoke(input))
           rescue ::Anima::Error
-            Evaluation::Nullary.error(
-              evaluator: self,
-              input:     input,
-            )
+            evaluation_error(input)
           end
 
           # Return inverse evaluator
