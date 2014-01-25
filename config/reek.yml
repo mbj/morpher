@@ -32,6 +32,7 @@ FeatureEnvy:
   - Morpher::Evaluator::Binary::ClassMethods#build
   - Morpher::Printer::Mixin::InstanceMethods#description
   - Morpher::Evaluator::Transformer::Anima::Dump#call
+  - Morpher::Evaluator::Transformer::Coerce::IntToString#call
   enabled: true
 ClassVariable:
   exclude: []
