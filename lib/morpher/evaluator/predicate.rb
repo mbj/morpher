@@ -4,6 +4,7 @@ module Morpher
   class Evaluator
     # Abstract namespace class for predicate evaluators
     class Predicate < self
+      include Transformer::Intransitive
 
       # Return inverse evaluator
       #
