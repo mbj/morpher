@@ -5,7 +5,7 @@ module Morpher
     class Transformer
       # Abstract namespace class for anima transformer evaluators
       class Anima < self
-        include Parameterized, Transitive, Nullary
+        include AbstractType, Parameterized, Transitive, Nullary
 
         # Evaluator for dumping anima state
         class Dump < self
