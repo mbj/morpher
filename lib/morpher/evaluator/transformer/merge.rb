@@ -3,6 +3,7 @@
 module Morpher
   class Evaluator
     class Transformer
+      # Transformer to merge input into defaults
       class Merge < self
         include Intransitive, Parameterized, Nullary
 
