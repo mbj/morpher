@@ -44,6 +44,22 @@ module Morpher
         )
       end
 
+      # Return error evaluation for input
+      #
+      # @param [Object] input
+      #
+      # @return [Evalation::Unary]
+      #
+      # @api private
+      #
+      def evaluation_error(input, operand_evaluation)
+        Evaluation::Unary.error(
+          evaluator:          self,
+          input:              input,
+          operand_evaluation: operand_evaluation,
+        )
+      end
+
     private
 
       module ClassMethods

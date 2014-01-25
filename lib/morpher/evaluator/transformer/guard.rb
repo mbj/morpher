@@ -41,18 +41,9 @@ module Morpher
         def evaluation(input)
           operand_evaluation = operand.evaluation(input)
           if operand_evaluation.output
-            Evaluation::Unary.success(
-              input:              input,
-              output:             input,
-              operand_evaluation: operand_evaluation,
-              evaluator:          self
-            )
+            evaluation_success(input, operand_evaluation, input)
           else
-            Evaluation::Unary.error(
-              input:              input,
-              operand_evaluation: operand_evaluation,
-              evaluator:          self
-            )
+            evaluation_error(input, operand_evaluation)
           end
         end
 
