@@ -32,10 +32,6 @@ module Morpher
           Contradiction.new
         end
 
-        def self.build(_compiler, _node)
-          new
-        end
-
       end # Tautology
     end # Predicate
   end # Evaluator
