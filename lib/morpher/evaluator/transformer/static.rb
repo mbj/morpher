@@ -17,6 +17,8 @@ module Morpher
         # @return [Object]
         #   alwasys returns the param
         #
+        # @api private
+        #
         def call(_input)
           param
         end

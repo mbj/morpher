@@ -17,6 +17,8 @@ module Morpher
         # @return [Object]
         #   always returns input
         #
+        # @api private
+        #
         def call(input)
           input
         end
