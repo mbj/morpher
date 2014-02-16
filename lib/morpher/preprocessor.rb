@@ -75,6 +75,12 @@ module Morpher
     # Noop emitter just descending into children
     class Noop < self
 
+      # Return output
+      #
+      # @return [Node]
+      #
+      # @api private
+      #
       def output
         mapped_children = node.children.map do |child|
           if child.kind_of?(node.class)
@@ -85,7 +91,8 @@ module Morpher
         end
         s(node.type, *mapped_children)
       end
-    end
+
+    end # Noop
 
     # Key symbolization preprocessor
     class SymbolizeKey < self
