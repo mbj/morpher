@@ -56,7 +56,7 @@ module Morpher
         Evaluation::Unary.error(
           evaluator:          self,
           input:              input,
-          operand_evaluation: operand_evaluation,
+          operand_evaluation: operand_evaluation
         )
       end
 

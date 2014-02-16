@@ -106,7 +106,7 @@ module Morpher
             evaluator:   self,
             input:       input,
             evaluations: evaluations,
-            output:      output,
+            output:      output
           )
         end
 
