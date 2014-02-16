@@ -19,6 +19,8 @@ module Morpher
         # @return [false]
         #   otherwise
         #
+        # @api private
+        #
         def call(input)
           body.all? { |evaluator| evaluator.call(input) }
         end
@@ -29,6 +31,7 @@ module Morpher
         #
         # @return [Evaluation::Nary]
         #
+        # @api private
         #
         def evaluation(input)
           evaluations = body.each_with_object([]) do |evaluator, aggregate|
