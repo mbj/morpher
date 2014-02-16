@@ -22,22 +22,47 @@ module Morpher
 
       private
 
+      # Return inspected type
+      #
+      # @return [String]
+      #
+      # @api private
+      #
       def type
         node.type.inspect
       end
 
+      # Return actual amount of children
+      #
+      # @return [String]
+      #
+      # @api private
+      #
       def actual_amount
         children.length
       end
 
+      # Return children
+      #
+      # @return [Array]
+      #
+      # @api private
+      #
       def children
         node.children
       end
 
+      # Return user firendly children message
+      #
+      # @return [String]
+      #
+      # @api private
+      #
       def _children
         expected_amount == 1 ? 'child' : 'children'
       end
-    end
+
+    end # NodeChildrenError
 
     # Assert number of child nodes
     #
