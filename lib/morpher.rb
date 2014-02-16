@@ -25,6 +25,16 @@ module Morpher
     Compiler.new(Evaluator::REGISTRY).call(node)
   end
 
+  # Return evaluate block to produce an AST node
+  #
+  # @return [Morpher::Node]
+  #
+  # @api private
+  #
+  def self.sexp(&block)
+    NodeHelpers.module_eval(&block)
+  end
+
 end # Morpher
 
 require 'morpher/node'
