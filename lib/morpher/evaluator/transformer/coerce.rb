@@ -53,11 +53,20 @@ module Morpher
 
           private
 
+          # Invoke coercion
+          #
+          # @return [Integer]
+          #
+          # @raise [ArgumentError, TypeError]
+          #   if coercion does not succeed
+          #
+          # @api private
+          #
           def invoke(input)
             Integer(input, param)
           end
 
-        end # Load
+        end # ParseInt
 
         # Evaluator for dumping fixnums to strings
         class IntToString < self
@@ -86,7 +95,7 @@ module Morpher
             ParseInt.new(param)
           end
 
-        end # Dump
+        end # IntToString
 
       end # Fixnum
     end # Transformer

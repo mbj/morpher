@@ -63,6 +63,8 @@ module Morpher
       #
       # @raise [TransformError]
       #
+      # @return [undefined]
+      #
       # @api private
       #
       def raise_transform_error(input)
