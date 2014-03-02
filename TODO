@@ -1,7 +1,3 @@
 * Write a more narrow replacement for whitequark/ast.
 
   Our node class could reduce the public interface of nodes a lot.
-
-* Add the ability to return ASTs from evaluators.
-
-  AST based optimization *could* be more easy.
