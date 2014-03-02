@@ -32,7 +32,7 @@ There is no gem release.
 Examples
 --------
 
-See specs, API is stable and there'll be a 0.1 release soon.
+See specs, Public Evaluator API is stable and there is a 0.0.1 release soon.
 
 Credits
 -------
