@@ -82,7 +82,7 @@ module Morpher
           # @api private
           #
           def call(input)
-            input.to_s
+            input.to_s(param)
           end
 
           # Return inverse evaluator
