@@ -12,8 +12,8 @@ describe Morpher::Evaluator::Transformer::Map do
     include_examples 'intransitive evaluator'
     include_examples 'no invalid input'
 
-    let(:valid_input)     { [ 'foo' ] }
-    let(:expected_output) { [ 3 ]     }
+    let(:valid_input)     { ['foo'] }
+    let(:expected_output) { [3]     }
   end
 
   context '#transitive' do
@@ -23,9 +23,9 @@ describe Morpher::Evaluator::Transformer::Map do
     include_examples 'transitive evaluator'
     include_examples 'no invalid input'
 
-    let(:valid_input)     { [ 'foo' ] }
-    let(:invalid_input)   { [ nil   ] }
-    let(:expected_output) { [ 'foo' ] }
+    let(:valid_input)     { ['foo'] }
+    let(:invalid_input)   { [nil]   }
+    let(:expected_output) { ['foo'] }
   end
 
 end
