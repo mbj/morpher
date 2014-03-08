@@ -22,8 +22,8 @@ module Morpher
   # @api private
   #
   def self.compile(node)
-    node = Compiler::Preprocessor.new(Compiler::Preprocessor::Emitter::REGISTRY).call(node)
-    Compiler::Evaluator.new(Evaluator::REGISTRY, Compiler::Evaluator::Emitter::REGISTRY).call(node)
+    node = Compiler::Preprocessor::DEFAULT.call(node)
+    Compiler::Evaluator::DEFAULT.call(node)
   end
 
   # Return evaluate block to produce an AST node
@@ -79,3 +79,19 @@ require 'morpher/compiler/preprocessor'
 require 'morpher/compiler/preprocessor/emitter'
 require 'morpher/compiler/preprocessor/emitter/noop'
 require 'morpher/compiler/preprocessor/emitter/key'
+
+module Morpher
+  class Compiler
+
+    class Preprocessor
+      # Default preprocessor compiler
+      DEFAULT = new(Emitter::REGISTRY)
+    end # Preprocessor
+
+    class Evaluator
+      # Default evaluator compiler
+      DEFAULT = new(Morpher::Evaluator::REGISTRY, Emitter::REGISTRY)
+    end # Evaluator
+
+  end # Compiler
+end # Morpher
