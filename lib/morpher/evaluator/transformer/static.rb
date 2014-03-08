@@ -6,7 +6,7 @@ module Morpher
 
       # Transformer that always returns the passed +param+
       class Static < self
-        include Parameterized, Nullary, Intransitive
+        include Nullary::Parameterized, Intransitive
 
         register :static
 

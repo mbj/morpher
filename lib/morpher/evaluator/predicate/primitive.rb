@@ -5,7 +5,7 @@ module Morpher
     class Predicate
       # Abstract namespace class for predicate evaluators on primitives
       class Primitive < self
-        include Parameterized, Nullary
+        include Nullary::Parameterized
 
         # Evaluator for exact primitive match
         class Exact < self

@@ -5,7 +5,7 @@ module Morpher
     class Transformer
       # Transformer to return a specific attribute of input
       class Attribute < self
-        include Parameterized, Nullary, Intransitive
+        include Nullary::Parameterized, Intransitive
 
         register :attribute
 

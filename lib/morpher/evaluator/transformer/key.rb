@@ -5,7 +5,7 @@ module Morpher
     class Transformer
       # Abstract namespace class for evaluators operating on hash keys
       class Key < self
-        include AbstractType, Parameterized, Intransitive, Nullary
+        include AbstractType, Nullary::Parameterized, Intransitive
 
         # Evaluator for dumping hash keys
         class Dump < self

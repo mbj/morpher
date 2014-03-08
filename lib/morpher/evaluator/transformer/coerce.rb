@@ -5,7 +5,7 @@ module Morpher
     class Transformer
       # Abstract namespace class for coercing transformers
       class Coerce < self
-        include AbstractType, Parameterized, Transitive, Nullary
+        include AbstractType, Nullary::Parameterized, Transitive
 
         # Evaluator for parsing an integer
         class ParseInt < self

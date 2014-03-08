@@ -5,7 +5,7 @@ module Morpher
     class Transformer
       # Transformer to merge input into defaults
       class Merge < self
-        include Intransitive, Parameterized, Nullary
+        include Intransitive, Nullary::Parameterized
 
         register :merge
 
