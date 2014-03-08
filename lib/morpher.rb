@@ -83,12 +83,12 @@ module Morpher
 
     class Preprocessor
       # Default preprocessor compiler
-      DEFAULT = new(Emitter::REGISTRY)
+      DEFAULT = new(Emitter::REGISTRY.freeze)
     end # Preprocessor
 
     class Evaluator
       # Default evaluator compiler
-      DEFAULT = new(Morpher::Evaluator::REGISTRY, Emitter::REGISTRY)
+      DEFAULT = new(Morpher::Evaluator::REGISTRY, Emitter::REGISTRY.freeze)
     end # Evaluator
 
   end # Compiler
