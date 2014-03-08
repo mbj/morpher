@@ -27,7 +27,7 @@ during mutation testing. Later when this library is not under steady flux anymor
 Installation
 ------------
 
-There is no gem release.
+Install the gem `morpher` via your preferred method.
 
 Examples
 --------
