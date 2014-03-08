@@ -6,8 +6,6 @@ class Input
   include Anima.new(:foo)
 end # Input
 
-# Input.new(:foo => 'bar')
-
 node =
   s(:block,
     s(:guard, s(:primitive, Hash)),
