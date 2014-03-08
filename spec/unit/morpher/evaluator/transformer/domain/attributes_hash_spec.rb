@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Morpher::Evaluator::Transformer::Anima::Dump do
+describe Morpher::Evaluator::Transformer::Domain::AttributesHash::Dump do
   let(:model) do
     Class.new do
       include Anima.new(:foo)
@@ -19,7 +19,7 @@ describe Morpher::Evaluator::Transformer::Anima::Dump do
   include_examples 'no invalid input'
 end
 
-describe Morpher::Evaluator::Transformer::Anima::Load do
+describe Morpher::Evaluator::Transformer::Domain::AttributesHash::Load do
   let(:model) do
     Class.new do
       include Anima.new(:foo)
@@ -30,8 +30,8 @@ describe Morpher::Evaluator::Transformer::Anima::Load do
 
   let(:valid_input)     { { foo: :bar }          }
   let(:expected_output) { model.new(valid_input) }
-  let(:invalid_input)   { { bar: :baz }          }
 
   include_examples 'transforming evaluator'
   include_examples 'transitive evaluator'
+  include_examples 'no invalid input'
 end

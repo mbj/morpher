@@ -34,7 +34,7 @@ describe Morpher do
           s(:guard, s(:primitive, Fixnum))
         )
       ),
-      s(:anima_load, Foo)
+      s(:load_attributes_hash, Foo)
     )
   end
 
