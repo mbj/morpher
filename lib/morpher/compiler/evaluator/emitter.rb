@@ -17,7 +17,7 @@ module Morpher
         end
         memoize :output
 
-        # Validate ast node
+        # Validate node
         #
         # @return [undefined]
         #   if successful

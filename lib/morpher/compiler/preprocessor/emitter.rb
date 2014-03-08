@@ -5,6 +5,19 @@ module Morpher
       class Emitter < Compiler::Emitter
         include Registry, Concord.new(:preprocessor, :node)
 
+        # Return output
+        #
+        # @return [AST::Node]
+        #
+        # @api private
+        #
+        def output
+          validate_node
+          processed_node
+        end
+        memoize :output
+
+
       private
 
         # Visit node
@@ -19,6 +32,20 @@ module Morpher
         #
         def visit(node)
           preprocessor.call(node)
+        end
+
+        # Validate node
+        #
+        # @return [undefined]
+        #   if successful
+        #
+        # @raise [Error]
+        #   otherwise
+        #
+        # @api private
+        #
+        def validate_node
+          assert_children_amount(named_children.length)
         end
 
       end # Emitter

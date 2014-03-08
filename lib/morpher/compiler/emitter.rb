@@ -61,6 +61,12 @@ module Morpher
           define_method(name) do
             children.at(index)
           end
+          private name
+
+          define_method(:named_children) do
+            names
+          end
+          private :named_children
         end
       end
       private_class_method :children

@@ -14,6 +14,8 @@ module Morpher
 
             children :key, :operand
 
+          private
+
             # Return transformed node
             #
             # @param [Node] node
@@ -22,7 +24,7 @@ module Morpher
             #
             # @api private
             #
-            def output
+            def processed_node
               s(:key_transform, key.to_s, key.to_sym, operand)
             end
 
@@ -35,6 +37,8 @@ module Morpher
 
             children :key, :operand
 
+          private
+
             # Return transformed node
             #
             # @param [Node] node
@@ -43,7 +47,7 @@ module Morpher
             #
             # @api private
             #
-            def output
+            def processed_node
               s(:key_transform, key, key, operand)
             end
 
@@ -55,6 +59,8 @@ module Morpher
 
             children :from, :to, :operand
 
+          private
+
             # Return transformed node
             #
             # @param [Node] node
@@ -63,7 +69,7 @@ module Morpher
             #
             # @api private
             #
-            def output
+            def processed_node
               s(:block,
                 s(:key_fetch, from),
                 visit(operand),
