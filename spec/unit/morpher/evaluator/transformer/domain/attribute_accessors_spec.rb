@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Morpher::Evaluator::Transformer::Domain::InstanceVariables do
+describe Morpher::Evaluator::Transformer::Domain::AttributeAccessors do
 
   let(:model) do
     Class.new do
@@ -16,7 +16,7 @@ describe Morpher::Evaluator::Transformer::Domain::InstanceVariables do
     described_class::Param.new(model, [:foo, :bar])
   end
 
-  describe Morpher::Evaluator::Transformer::Domain::InstanceVariables::Dump do
+  describe Morpher::Evaluator::Transformer::Domain::AttributeAccessors::Dump do
 
     let(:object) { described_class::Dump.new(param) }
 
@@ -35,7 +35,7 @@ describe Morpher::Evaluator::Transformer::Domain::InstanceVariables do
 
   end
 
-  describe Morpher::Evaluator::Transformer::Domain::InstanceVariables::Load do
+  describe Morpher::Evaluator::Transformer::Domain::AttributeAccessors::Load do
     let(:object) { described_class::Load.new(param) }
 
     let(:valid_input)     { { foo: :foo, bar: :bar } }

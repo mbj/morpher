@@ -3,15 +3,15 @@
 module Morpher
   class Evaluator
     class Transformer
-      class Domain < self
-        # Abstract namespace class for domain objects via instance variables
-        class InstanceVariables < self
+      class Domain
+        # Abstract namespace class for domain objects via attribute accessors
+        class AttributeAccessors < self
           include AbstractType
 
           # Evaluator for dumping domain objects via instance variables
           class Dump < self
 
-            register :dump_instance_variables
+            register :dump_attribute_accessors
 
             # Call evaluator
             #
@@ -22,9 +22,9 @@ module Morpher
             # @api private
             #
             def call(input)
-              param.instance_variable_names.each_with_object({}) do |name, aggregate|
-                value = input.instance_variable_get(name)
-                aggregate[name.to_s[1..-1].to_sym] = value
+              param.attribute_names.each_with_object({}) do |name, aggregate|
+                value = input.public_send(name)
+                aggregate[name] = value
               end
             end
 
@@ -43,7 +43,7 @@ module Morpher
           # Evaluator for loading domain objects via attributes hash
           class Load < self
 
-            register :load_instance_variables
+            register :load_attribute_accessors
 
             # Call evaluator
             #
@@ -90,8 +90,8 @@ module Morpher
             #
             def invoke(input)
               object = param.model.allocate
-              param.attribute_names.zip(param.instance_variable_names).each do |attribute_name, ivar_name|
-                object.instance_variable_set(ivar_name, input.fetch(attribute_name))
+              param.attribute_names.each do |name|
+                object.public_send(:"#{name}=", input.fetch(name))
               end
               object
             end
