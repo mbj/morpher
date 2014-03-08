@@ -19,7 +19,6 @@ module Morpher
         end
         memoize :output
 
-
       private
 
         # Visit node
