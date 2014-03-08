@@ -1,6 +1,6 @@
 module Morpher
   class Compiler
-    # Compiler to evaluato
+    # Compiler with evaluators as output
     class Evaluator < self
 
       # Return evaluator tree for node
@@ -39,6 +39,5 @@ module Morpher
       end
 
     end # Evaluator
-
   end # Compiler
 end # Morpher

@@ -12,6 +12,8 @@ module Morpher
 
             register :key_symbolize
 
+            children :key, :operand
+
             # Return transformed node
             #
             # @param [Node] node
@@ -21,7 +23,6 @@ module Morpher
             # @api private
             #
             def output
-              key, operand = *node
               s(:key_transform, key.to_s, key.to_sym, operand)
             end
 
@@ -32,6 +33,8 @@ module Morpher
 
             register :key
 
+            children :key, :operand
+
             # Return transformed node
             #
             # @param [Node] node
@@ -41,7 +44,6 @@ module Morpher
             # @api private
             #
             def output
-              key, operand = *node
               s(:key_transform, key, key, operand)
             end
 
@@ -51,6 +53,8 @@ module Morpher
           class Transform < self
             register :key_transform
 
+            children :from, :to, :operand
+
             # Return transformed node
             #
             # @param [Node] node
@@ -60,7 +64,6 @@ module Morpher
             # @api private
             #
             def output
-              from, to, operand = *node
               s(:block,
                 s(:key_fetch, from),
                 visit(operand),

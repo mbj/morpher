@@ -4,6 +4,7 @@ require 'abstract_type'
 require 'concord'
 require 'anima'
 require 'ast'
+require 'procto'
 
 # Library namespace module
 module Morpher
