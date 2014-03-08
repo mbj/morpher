@@ -6,7 +6,7 @@ describe Morpher::Evaluator::Transformer::Map do
   let(:object) { described_class.new(operand) }
 
   context '#intransitive' do
-    let(:operand) { Morpher.evaluator(s(:attribute, :length)) }
+    let(:operand) { Morpher.compile(s(:attribute, :length)) }
 
     include_examples 'transforming evaluator'
     include_examples 'intransitive evaluator'
@@ -17,7 +17,7 @@ describe Morpher::Evaluator::Transformer::Map do
   end
 
   context '#transitive' do
-    let(:operand) { Morpher.evaluator(s(:guard, s(:primitive, String))) }
+    let(:operand) { Morpher.compile(s(:guard, s(:primitive, String))) }
 
     include_examples 'transforming evaluator'
     include_examples 'transitive evaluator'

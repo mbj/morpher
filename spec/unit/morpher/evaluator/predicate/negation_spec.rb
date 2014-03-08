@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Morpher::Evaluator::Predicate::Negation do
   let(:object) { described_class.new(operand) }
 
-  let(:operand) { Morpher.evaluator(s(:input)) }
+  let(:operand) { Morpher.compile(s(:input)) }
 
   let(:positive_input) { false }
   let(:negative_input) { true  }

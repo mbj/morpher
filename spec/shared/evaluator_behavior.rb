@@ -8,7 +8,7 @@ shared_examples_for 'evaluator' do
   end
 
   it 'round trips evaluators via #node' do
-    Morpher.evaluator(object.node).should eql(object)
+    Morpher.compile(object.node).should eql(object)
   end
 
   context 'with invalid input' do

@@ -1,6 +1,7 @@
 # encoding: UTF-8
 
 require 'morpher'
+
 extend Morpher::NodeHelpers
 
 class Address
@@ -21,7 +22,7 @@ node = s(:block,
   s(:anima_load, Address)
 )
 
-ADDRESS_EVALUATOR = Morpher.evaluator(node)
+ADDRESS_EVALUATOR = Morpher.compile(node)
 
 node = s(:block,
   s(:guard, s(:primitive, Hash)),
@@ -33,4 +34,4 @@ node = s(:block,
   s(:anima_load, Person)
 )
 
-PERSON_EVALUATOR = Morpher.evaluator(node)
+PERSON_EVALUATOR = Morpher.compile(node)

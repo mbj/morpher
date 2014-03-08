@@ -20,7 +20,7 @@ module Morpher
   #
   # @api private
   #
-  def self.evaluator(node)
+  def self.compile(node)
     node = Preprocessor.new(Emitter::REGISTRY).call(node)
     Compiler.new(Evaluator::REGISTRY).call(node)
   end

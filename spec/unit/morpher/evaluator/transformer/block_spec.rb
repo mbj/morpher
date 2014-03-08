@@ -9,15 +9,15 @@ describe Morpher::Evaluator::Transformer::Block do
   end
 
   let(:object) do
-    Morpher.evaluator(ast)
+    Morpher.compile(ast)
   end
 
   let(:evaluator_a) do
-    Morpher.evaluator(body_a)
+    Morpher.compile(body_a)
   end
 
   let(:evaluator_b) do
-    Morpher.evaluator(body_b)
+    Morpher.compile(body_b)
   end
 
   context 'transitive' do

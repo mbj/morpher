@@ -5,8 +5,8 @@ require 'spec_helper'
 describe Morpher::Evaluator::Predicate::Or do
   let(:object) { described_class.new([body_a, body_b]) }
 
-  let(:body_a) { Morpher.evaluator(s(:primitive, String)) }
-  let(:body_b) { Morpher.evaluator(s(:primitive, Symbol)) }
+  let(:body_a) { Morpher.compile(s(:primitive, String)) }
+  let(:body_b) { Morpher.compile(s(:primitive, Symbol)) }
 
   let(:negative_input) { Object.new }
   let(:positive_input) { ''         }

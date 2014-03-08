@@ -24,4 +24,4 @@ node =
     s(:anima_load, Input)
   )
 
-EVALUATOR = Morpher.evaluator(node)
+EVALUATOR = Morpher.compile(node)

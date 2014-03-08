@@ -9,11 +9,11 @@ describe Morpher::Evaluator::Transformer::HashTransform do
   end
 
   let(:object) do
-    Morpher.evaluator(ast)
+    Morpher.compile(ast)
   end
 
   let(:evaluator_a) do
-    Morpher.evaluator(body_a)
+    Morpher.compile(body_a)
   end
 
   context 'intransitive' do

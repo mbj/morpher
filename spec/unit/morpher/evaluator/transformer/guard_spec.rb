@@ -5,7 +5,7 @@ require 'spec_helper'
 describe Morpher::Evaluator::Transformer::Guard do
   let(:object) { described_class.new(predicate) }
 
-  let(:predicate) { Morpher.evaluator(s(:primitive, String)) }
+  let(:predicate) { Morpher.compile(s(:primitive, String)) }
 
   let(:valid_input)     { 'foo'       }
   let(:invalid_input)   { :foo        }
