@@ -95,9 +95,9 @@ module Morpher
     end # Noop
 
     # Key symbolization preprocessor
-    class SymbolizeKey < self
+    class KeySymbolize < self
 
-      register :symbolize_key
+      register :key_symbolize
 
       # Return transformed node
       #

@@ -10,7 +10,7 @@ node =
   s(:block,
     s(:guard, s(:primitive, Hash)),
     s(:hash_transform,
-      s(:symbolize_key, :foo,
+      s(:key_symbolize, :foo,
         s(:guard,
           s(:or,
             s(:primitive, String),

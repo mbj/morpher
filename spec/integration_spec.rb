@@ -27,10 +27,10 @@ describe Morpher do
     s(:block,
       s(:guard, s(:primitive, Hash)),
       s(:hash_transform,
-        s(:symbolize_key, :attribute_a,
+        s(:key_symbolize, :attribute_a,
           s(:guard, s(:primitive, String))
         ),
-        s(:symbolize_key, :attribute_b,
+        s(:key_symbolize, :attribute_b,
           s(:guard, s(:primitive, Fixnum))
         )
       ),

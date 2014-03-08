@@ -23,7 +23,7 @@ describe Morpher::Evaluator::Transformer::HashTransform do
     let(:expected_output) { { foo: String    } }
 
     let(:body_a) do
-      s(:symbolize_key, 'foo', s(:attribute, :class))
+      s(:key_symbolize, 'foo', s(:attribute, :class))
     end
 
     let(:expected_exception) do
@@ -35,7 +35,7 @@ describe Morpher::Evaluator::Transformer::HashTransform do
 
   context 'transitive' do
     let(:body_a) do
-      s(:symbolize_key, 'foo', s(:guard, s(:primitive, String)))
+      s(:key_symbolize, 'foo', s(:guard, s(:primitive, String)))
     end
 
     let(:valid_input)     { { 'foo' => 'bar' } }

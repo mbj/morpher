@@ -15,7 +15,7 @@ end
 node = s(:block,
   s(:guard, s(:primitive, Hash)),
   s(:hash_transform,
-    s(:symbolize_key, 'street',
+    s(:key_symbolize, 'street',
       s(:guard, s(:primitive, String))
     )
   ),
@@ -27,7 +27,7 @@ ADDRESS_EVALUATOR = Morpher.compile(node)
 node = s(:block,
   s(:guard, s(:primitive, Hash)),
   s(:hash_transform,
-    s(:symbolize_key, 'address',
+    s(:key_symbolize, 'address',
       ADDRESS_EVALUATOR.node
     )
   ),
