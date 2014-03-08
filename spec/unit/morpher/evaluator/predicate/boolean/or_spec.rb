@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-describe Morpher::Evaluator::Predicate::Or do
+describe Morpher::Evaluator::Predicate::Boolean::Or do
   let(:object) { described_class.new([body_a, body_b]) }
 
   let(:body_a) { Morpher.compile(s(:primitive, String)) }
