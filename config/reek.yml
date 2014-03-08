@@ -41,7 +41,11 @@ BooleanParameter:
   exclude: []
   enabled: true
 IrresponsibleModule:
-  exclude: []
+  exclude:
+  # False positives
+  - Morpher::Compiler
+  - Morpher::Compiler::Preprocessor
+  - Morpher::Compiler::Evaluator
   enabled: true
 UncommunicativeModuleName:
   accept: []
