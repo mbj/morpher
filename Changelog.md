@@ -10,6 +10,11 @@ Breaking-Changes:
 * Rename node: `anima_dump` to `dump_attributes_hash`
 * The ability to rescue/report anima specific exceptions has been dropped
 
+Changes:
+
+* Add {dump,load}_{attribute_accessors,instance_variables} as additional strategies to
+  transform from / to domain objects.
+
 # v0.0.1 2014-03-02
 
 First public release.
