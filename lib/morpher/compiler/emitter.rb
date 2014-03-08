@@ -43,7 +43,7 @@ module Morpher
       #
       # @api private
       #
-      def assert_child_nodes(expected_amount)
+      def assert_children_amount(expected_amount)
         actual_amount = children.length
         unless actual_amount == expected_amount
           raise Error::NodeChildren.new(node, expected_amount)

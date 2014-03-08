@@ -12,9 +12,23 @@ module Morpher
         # @api private
         #
         def output
+          validate_node
           evaluator
         end
         memoize :output
+
+        # Validate ast node
+        #
+        # @return [undefined]
+        #   if successful
+        #
+        # @raise [Error]
+        #   otherwise
+        #
+        # @api private
+        #
+        abstract_method :validate_node
+        private :validate_node
 
         # Return evaluator
         #
@@ -43,6 +57,18 @@ module Morpher
             evaluator_klass.new
           end
 
+          # Validate node
+          #
+          # @return [undefined]
+          #   if successful
+          #
+          # @raise [Error]
+          #   otherwise
+          #
+          def validate_node
+            assert_children_amount(0)
+          end
+
           # Emitter for nullary parameterized evaluators
           class Parameterized < self
             register Morpher::Evaluator::Nullary::Parameterized
@@ -59,6 +85,18 @@ module Morpher
             #
             def evaluator
               evaluator_klass.new(param)
+            end
+
+            # Validate node
+            #
+            # @return [undefined]
+            #   if successful
+            #
+            # @raise [Error]
+            #   otherwise
+            #
+            def validate_node
+              assert_children_amount(1)
             end
 
           end # Paramterized
@@ -79,6 +117,18 @@ module Morpher
           #
           def evaluator
             evaluator_klass.new(compiler.call(operand))
+          end
+
+          # Validate node
+          #
+          # @return [undefined]
+          #   if successful
+          #
+          # @raise [Error]
+          #   otherwise
+          #
+          def validate_node
+            assert_children_amount(1)
           end
 
         end # Unary
@@ -103,6 +153,18 @@ module Morpher
             )
           end
 
+          # Validate node
+          #
+          # @return [undefined]
+          #   if successful
+          #
+          # @raise [Error]
+          #   otherwise
+          #
+          def validate_node
+            assert_children_amount(2)
+          end
+
         end # Unary
 
         # Emitter for nary evaluators
@@ -119,6 +181,17 @@ module Morpher
           #
           def evaluator
             evaluator_klass.new(children.map(&compiler.method(:call)))
+          end
+
+          # Validate node
+          #
+          # @return [undefined]
+          #   if successful
+          #
+          # @raise [Error]
+          #   otherwise
+          #
+          def validate_node
           end
 
         end # Nary
