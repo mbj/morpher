@@ -23,7 +23,7 @@ module Morpher
   #
   def self.compile(node)
     node = Compiler::Preprocessor.new(Compiler::Preprocessor::Emitter::REGISTRY).call(node)
-    Compiler::Evaluator.new(Evaluator::REGISTRY).call(node)
+    Compiler::Evaluator.new(Evaluator::REGISTRY, Compiler::Evaluator::Emitter::REGISTRY).call(node)
   end
 
   # Return evaluate block to produce an AST node
@@ -72,8 +72,9 @@ require 'morpher/evaluation'
 require 'morpher/type_lookup'
 require 'morpher/compiler'
 require 'morpher/compiler/error'
-require 'morpher/compiler/evaluator'
 require 'morpher/compiler/emitter'
+require 'morpher/compiler/evaluator'
+require 'morpher/compiler/evaluator/emitter'
 require 'morpher/compiler/preprocessor'
 require 'morpher/compiler/preprocessor/emitter'
 require 'morpher/compiler/preprocessor/emitter/noop'

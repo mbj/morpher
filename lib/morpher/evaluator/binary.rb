@@ -28,26 +28,6 @@ module Morpher
 
     private
 
-      # Methods mixed in into class level
-      module ClassMethods
-
-        # Build nary nodes
-        #
-        # @param [Compiler] compiler
-        # @param [Morpher::Node] node
-        #
-        # @return [Evaluator::Nary]
-        #
-        # @api private
-        #
-        def build(compiler, node)
-          Compiler.assert_child_nodes(node, 2)
-          left, right = *node
-          new(compiler.call(left), compiler.call(right))
-        end
-
-      end # ClassMethods
-
       # Hook called when module gets included
       #
       # @return [undefined]
@@ -57,7 +37,6 @@ module Morpher
       def self.included(descendant)
         descendant.class_eval do
           include CONCORD
-          extend ClassMethods
           printer(&PRINTER)
         end
       end

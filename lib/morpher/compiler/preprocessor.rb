@@ -2,6 +2,7 @@ module Morpher
   class Compiler
     # AST preprocessor
     class Preprocessor < self
+      include Concord.new(:emitters)
 
       # Call preprocessor
       #
@@ -15,7 +16,7 @@ module Morpher
       #
       def call(node)
         loop do
-          emitter = registry.fetch(node.type, Emitter::Noop)
+          emitter = emitters.fetch(node.type, Emitter::Noop)
           node = emitter.call(self, node)
           break if emitter == Emitter::Noop
         end

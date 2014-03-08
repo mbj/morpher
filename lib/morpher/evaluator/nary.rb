@@ -1,7 +1,6 @@
 # encoding: UTF-8
 
 module Morpher
-
   class Evaluator
 
     # Mixin for nary evaluators
@@ -80,26 +79,6 @@ module Morpher
         )
       end
 
-      module ClassMethods
-
-        # Build nary nodes
-        #
-        # @param [Compiler] compiler
-        # @param [Morpher::Node] node
-        #
-        # @return [Evaluator::Nary]
-        #
-        # @api private
-        #
-        def build(compiler, node)
-          body = node.children.map do |child|
-            compiler.call(child)
-          end
-          new(body)
-        end
-
-      end # ClassMethods
-
       # Hook called when module gets included
       #
       # @return [undefined]
@@ -109,7 +88,6 @@ module Morpher
       def self.included(descendant)
         descendant.class_eval do
           include CONCORD
-          extend ClassMethods
           printer(&PRINTER)
         end
       end

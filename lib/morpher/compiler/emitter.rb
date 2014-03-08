@@ -33,6 +33,23 @@ module Morpher
         node.children
       end
 
+      # Assert number of child nodes
+      #
+      # @return [self]
+      #   if assertion is fullfilled
+      #
+      # @raise [NodeError]
+      #   otherwise
+      #
+      # @api private
+      #
+      def assert_child_nodes(expected_amount)
+        actual_amount = children.length
+        unless actual_amount == expected_amount
+          raise Error::NodeChildren.new(node, expected_amount)
+        end
+      end
+
       # Name children
       #
       # @return [undefined]
@@ -46,6 +63,7 @@ module Morpher
           end
         end
       end
+      private_class_method :children
 
     end # Emitter
   end # Compiler

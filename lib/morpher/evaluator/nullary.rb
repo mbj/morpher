@@ -84,29 +84,10 @@ module Morpher
       def self.included(descendant)
         descendant.class_eval do
           include InstanceMethods, CONCORD
-          extend ClassMethods
           printer(&PRINTER)
         end
       end
       private_class_method :included
-
-      module ClassMethods
-
-        # Build nary nodes
-        #
-        # @param [Compiler] _compiler
-        # @param [Morpher::Node] node
-        #
-        # @return [Evaluator::Nary]
-        #
-        # @api private
-        #
-        def build(_compiler, node)
-          Compiler.assert_child_nodes(node, 0)
-          new
-        end
-
-      end # ClassMethods
 
     end # Nullary
   end # Evaluator

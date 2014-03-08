@@ -25,9 +25,5 @@ describe Morpher::Evaluator::Nullary::Parameterized do
           param: "foo"
       TEXT
     end
-
-    it 'sets up .build' do
-      expect(object.build(Morpher::Compiler::Evaluator.new(Morpher::Evaluator::REGISTRY), s(:foo, 'foo'))).to eql(instance)
-    end
   end
 end
