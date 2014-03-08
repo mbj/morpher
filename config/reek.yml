@@ -30,7 +30,7 @@ FeatureEnvy:
   exclude:
   # False positives:
   - Morpher::Printer::Mixin::InstanceMethods#description
-  - Morpher::Evaluator::Transformer::Anima::Dump#call
+  - Morpher::Evaluator::Transformer::Domain::AttributesHash::Dump#call
   enabled: true
 ClassVariable:
   exclude: []
