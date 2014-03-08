@@ -26,6 +26,26 @@ module Morpher
 
         end # Symbolize
 
+        # Neutral key preprocessor
+        class Neutral < self
+
+          register :key
+
+          # Return transformed node
+          #
+          # @param [Node] node
+          #
+          # @return [Node]
+          #
+          # @api private
+          #
+          def output
+            key, operand = *node
+            s(:key_transform, key, key, operand)
+          end
+
+        end # Neutral
+
         # Key transformation preprocessor
         class Transform < self
           register :key_transform
