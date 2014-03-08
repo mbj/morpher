@@ -9,8 +9,6 @@ require 'procto'
 # Library namespace module
 module Morpher
 
-  EMPTY_ARRAY = [].freeze
-
   Undefined = Module.new.freeze
 
   # Return evaluator from node
