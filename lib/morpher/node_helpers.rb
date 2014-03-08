@@ -13,7 +13,7 @@ module Morpher
     # @api private
     #
     def s(type, *children)
-      Node.new(type, children)
+      AST::Node.new(type, children)
     end
     module_function :s
 

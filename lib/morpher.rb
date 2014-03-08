@@ -37,7 +37,6 @@ module Morpher
 
 end # Morpher
 
-require 'morpher/node'
 require 'morpher/node_helpers'
 require 'morpher/registry'
 require 'morpher/printer'
