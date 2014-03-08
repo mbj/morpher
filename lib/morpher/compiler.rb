@@ -2,9 +2,9 @@
 
 module Morpher
 
-  # The AST to evaluator tree compiler
+  # Abstract compiler base class
   class Compiler
-    include Concord.new(:registry)
+    include AbstractType, Concord.new(:registry)
 
     # Assert number of child nodes
     #
@@ -26,36 +26,13 @@ module Morpher
       end
     end
 
-    # Return evaluator tree for node
+    # Call compiler
     #
     # @param [Node] node
     #
-    # @return [Evalautor]
+    # @return [Object]
     #
-    # @api private
-    #
-    def call(node)
-      lookup(node).build(self, node)
-    end
-
-  private
-
-    # Lookup evaluator builder
-    #
-    # @return [#build]
-    #   if found
-    #
-    # @raise UnknownNodeTypeError
-    #   otherwise
-    #
-    # @api private
-    #
-    def lookup(node)
-      type = node.type
-      registry.fetch(type) do
-        raise Error::UnknownNode, type
-      end
-    end
+    abstract_method :call
 
   end # Compiler
 end # Morpher
