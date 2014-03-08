@@ -21,7 +21,7 @@ module Morpher
   # @api private
   #
   def self.compile(node)
-    node = Preprocessor.new(Emitter::REGISTRY).call(node)
+    node = Preprocessor.new(Preprocessor::Emitter::REGISTRY).call(node)
     Compiler.new(Evaluator::REGISTRY).call(node)
   end
 
@@ -73,3 +73,4 @@ require 'morpher/evaluation'
 require 'morpher/type_lookup'
 require 'morpher/compiler'
 require 'morpher/preprocessor'
+require 'morpher/preprocessor/emitter'
