@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 require 'morpher'
 
 extend Morpher::NodeHelpers
