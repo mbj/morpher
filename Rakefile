@@ -72,7 +72,7 @@ namespace :morpher do
 
     puts 'Evaluators:'
     EVALUATOR_FIELDS = [:name, :arity, :transitivity, :role]
-    EVALUATOR_FORMAT = '%-23s - %-20s - %-20s - %-20s'.freeze
+    EVALUATOR_FORMAT = '%-24s - %-15s - %-15s - %-20s'.freeze
 
     puts EVALUATOR_FORMAT % EVALUATOR_FIELDS
     Morpher::Evaluator::REGISTRY.each do |name, evaluator|
