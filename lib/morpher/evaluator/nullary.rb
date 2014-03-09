@@ -28,7 +28,7 @@ module Morpher
 
         # Return node
         #
-        # @return [Morpher::Node]
+        # @return [AST::Node]
         #
         # @api private
         #

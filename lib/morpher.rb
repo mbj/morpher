@@ -26,7 +26,7 @@ module Morpher
 
   # Return evaluate block to produce an AST node
   #
-  # @return [Morpher::Node]
+  # @return [AST::Node]
   #
   # @api private
   #
