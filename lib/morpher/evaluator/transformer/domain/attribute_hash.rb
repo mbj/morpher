@@ -5,14 +5,14 @@ module Morpher
     class Transformer
       class Domain < self
         # Abstract namespace class for domain objects on attributes hash
-        class AttributesHash < self
+        class AttributeHash < self
           include AbstractType
 
           # Evaluator for dumping domain objects via attributes hash
           class Dump < self
             include Domain::Dump
 
-            register :dump_attributes_hash
+            register :dump_attribute_hash
 
             # Call evaluator
             #
@@ -32,7 +32,7 @@ module Morpher
           class Load < self
             include Domain::Load
 
-            register :load_attributes_hash
+            register :load_attribute_hash
 
             # Call evaluator
             #
