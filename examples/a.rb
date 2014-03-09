@@ -21,7 +21,7 @@ node =
         )
       )
     ),
-    s(:anima_load, Input)
+    s(:load_attribute_hash, s(:param, Input))
   )
 
 EVALUATOR = Morpher.compile(node)

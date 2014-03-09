@@ -19,7 +19,7 @@ node = s(:block,
       s(:guard, s(:primitive, String))
     )
   ),
-  s(:anima_load, Address)
+  s(:load_attribute_hash, s(:param, Address))
 )
 
 ADDRESS_EVALUATOR = Morpher.compile(node)
@@ -31,7 +31,7 @@ node = s(:block,
       ADDRESS_EVALUATOR.node
     )
   ),
-  s(:anima_load, Person)
+  s(:load_attribute_hash, s(:param, Person))
 )
 
 PERSON_EVALUATOR = Morpher.compile(node)
