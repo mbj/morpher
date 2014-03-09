@@ -32,7 +32,7 @@ Install the gem `morpher` via your preferred method.
 Examples
 --------
 
-See specs, Public Evaluator API is stable and there is a 0.0.1 release soon.
+See specs, Public Evaluator API is stable and there are ongoing 0.x.y releases for early adopters.
 
 Credits
 -------
