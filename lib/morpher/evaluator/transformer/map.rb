@@ -37,9 +37,7 @@ module Morpher
         # @api private
         #
         def call(input)
-          input.map do |item|
-            operand.call(item)
-          end
+          input.map(&operand.method(:call))
         end
 
         # Return evaluation
