@@ -81,6 +81,7 @@ require 'morpher/compiler/preprocessor'
 require 'morpher/compiler/preprocessor/emitter'
 require 'morpher/compiler/preprocessor/emitter/noop'
 require 'morpher/compiler/preprocessor/emitter/key'
+require 'morpher/compiler/preprocessor/emitter/param'
 
 module Morpher
   class Compiler

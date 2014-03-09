@@ -34,7 +34,7 @@ describe Morpher do
           s(:guard, s(:primitive, Fixnum))
         )
       ),
-      s(:load_attribute_hash, Morpher::Evaluator::Transformer::Domain::Param.new(Foo, []))
+      s(:load_attribute_hash, s(:param, Foo))
     )
   end
 

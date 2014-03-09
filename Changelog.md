@@ -2,10 +2,14 @@
 
 [Compare v0.1.0..v0.2.0](https://github.com/mbj/morpher/compare/v0.1.0...v0.2.0)
 
+Changes:
+
+* Add param node s(:param, Model, :some, :attributes) to build Transformer::Domain::Param
+
 Breaking-Changes:
 
 * Rename {load,dump}_attributes_hash to {load,dump}_attribute_hash
-* Require {load,dump}_attribute_hash param to be an instance of Transformer::Domain::param
+* Require {load,dump}_attribute_hash param to be an instance of Transformer::Domain::Param
 
 # v0.1.0 2014-03-08
 

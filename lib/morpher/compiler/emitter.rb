@@ -69,6 +69,11 @@ module Morpher
             names
           end
           private :named_children
+
+          define_method(:remaining_children) do
+            children.drop(names.length)
+          end
+          private :remaining_children
         end
       end
       private_class_method :children

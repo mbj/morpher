@@ -88,7 +88,21 @@ module Morpher
             # @api private
             #
             def evaluator
-              evaluator_klass.new(param)
+              evaluator_klass.new(effective_param)
+            end
+
+            # Return effective param
+            #
+            # @return [Object]
+            #
+            # @api private
+            #
+            def effective_param
+              if param.kind_of?(AST::Node) && param.type == :raw && param.children.length == 1
+                param.children.first
+              else
+                param
+              end
             end
 
             # Validate node
