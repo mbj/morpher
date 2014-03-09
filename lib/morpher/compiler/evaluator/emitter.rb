@@ -67,6 +67,8 @@ module Morpher
           # @raise [Error]
           #   otherwise
           #
+          # @api private
+          #
           def validate_node
             assert_children_amount(0)
           end
@@ -96,6 +98,8 @@ module Morpher
             #
             # @raise [Error]
             #   otherwise
+            #
+            # @api private
             #
             def validate_node
               assert_children_amount(1)
@@ -128,6 +132,8 @@ module Morpher
           #
           # @raise [Error]
           #   otherwise
+          #
+          # @api private
           #
           def validate_node
             assert_children_amount(1)
@@ -163,6 +169,8 @@ module Morpher
           # @raise [Error]
           #   otherwise
           #
+          # @api private
+          #
           def validate_node
             assert_children_amount(2)
           end
@@ -192,6 +200,8 @@ module Morpher
           #
           # @raise [Error]
           #   otherwise
+          #
+          # @api private
           #
           def validate_node
           end

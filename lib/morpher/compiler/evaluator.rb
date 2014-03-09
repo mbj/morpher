@@ -51,6 +51,8 @@ module Morpher
       #
       # @return [#call]
       #
+      # @api private
+      #
       def emitter(evaluator)
         emitters.each do |arity, emitter|
           return emitter if evaluator.ancestors.include?(arity)

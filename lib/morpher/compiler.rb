@@ -11,6 +11,8 @@ module Morpher
     #
     # @return [Object]
     #
+    # @api private
+    #
     abstract_method :call
 
   end # Compiler

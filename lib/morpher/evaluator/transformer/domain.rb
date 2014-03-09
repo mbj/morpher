@@ -15,6 +15,8 @@ module Morpher
         #
         # @return [Object]
         #
+        # @api private
+        #
         def transform(aggregate, &block)
           param.attributes.each_with_object(aggregate, &block)
         end
