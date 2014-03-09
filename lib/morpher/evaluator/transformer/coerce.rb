@@ -17,7 +17,6 @@ module Morpher
           # @param [Object] input
           #
           # @return [Object]
-          #   an instance of an anima infected class
           #
           # @api private
           #

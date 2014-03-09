@@ -10,6 +10,7 @@ module Morpher
 
           # Evaluator for dumping domain objects via attributes hash
           class Dump < self
+            include Domain::Dump
 
             register :dump_attributes_hash
 
@@ -25,20 +26,11 @@ module Morpher
               input.to_h
             end
 
-            # Return inverse evaluator
-            #
-            # @return [Evaluator]
-            #
-            # @api private
-            #
-            def inverse
-              Load.new(param)
-            end
-
           end # Dump
 
           # Evaluator for loading domain objects via attributes hash
           class Load < self
+            include Domain::Load
 
             register :load_attributes_hash
 
@@ -47,46 +39,11 @@ module Morpher
             # @param [Object] input
             #
             # @return [Object]
-            #   an instance of an anima infected class
             #
             # @api private
             #
             def call(input)
-              invoke(input)
-            end
-
-            # Return evaluation
-            #
-            # @param [Object] input
-            #
-            # @return [Evaluation]
-            #
-            # @api private
-            #
-            def evaluation(input)
-              evaluation_success(input, invoke(input))
-            end
-
-            # Return inverse evaluator
-            #
-            # @return [Evaluator]
-            #
-            # @api private
-            #
-            def inverse
-              Dump.new(param)
-            end
-
-          private
-
-            # Invoke the transformation
-            #
-            # @return [Object]
-            #
-            # @api private
-            #
-            def invoke(input)
-              param.new(input)
+              param.model.new(input)
             end
 
           end # Load

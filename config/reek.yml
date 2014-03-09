@@ -31,6 +31,9 @@ FeatureEnvy:
   # False positives:
   - Morpher::Printer::Mixin::InstanceMethods#description
   - Morpher::Evaluator::Transformer::Domain::AttributesHash::Dump#call
+  - Morpher::Evaluator::Transformer::Domain::AttributeAccessors::Load#call
+  - Morpher::Evaluator::Transformer::Domain::InstanceVariables::Load#call
+  - Morpher::Evaluator::Transformer::Domain::InstanceVariables::Dump#call
   enabled: true
 ClassVariable:
   exclude: []

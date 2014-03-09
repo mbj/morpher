@@ -1,6 +1,12 @@
 [Compare v0.0.1..v0.1.0](https://github.com/mbj/morpher/compare/v0.0.1...v0.1.0)
 
-# v0.1.0 2014-03-04
+# v0.2.0 2014-03-09
+
+Breaking-Changes:
+
+* Require {load,dump}_attributes_hash param to be an instance of Transformer::Domain::param
+
+# v0.1.0 2014-03-08
 
 Breaking-Changes:
 

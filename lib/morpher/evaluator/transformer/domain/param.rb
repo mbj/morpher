@@ -9,18 +9,44 @@ module Morpher
         class Param
           include Adamantium, Concord::Public.new(:model, :attribute_names)
 
-          # Return instance variable names
+          # Return attributes
           #
-          # @return [Enumerable<Symbol>]
+          # @return [Enumerable<Attribute>]
           #
           # @api private
           #
-          def instance_variable_names
-            attribute_names.map do |name|
+          def attributes
+            attribute_names.map(&Attribute.method(:new))
+          end
+          memoize :attributes
+
+          # Attribute on a domain transformer param
+          class Attribute
+            include Adamantium, Concord::Public.new(:name)
+
+            # Return instance variable name
+            #
+            # @return [Symbol]
+            #
+            # @api private
+            #
+            def ivar_name
               :"@#{name}"
             end
-          end
-          memoize :instance_variable_names
+            memoize :ivar_name
+
+            # Return writer name
+            #
+            # @return [Symbol]
+            #
+            # @api private
+            #
+            def writer
+              :"#{name}="
+            end
+            memoize :writer
+
+          end # Attribute
 
         end # Param
 

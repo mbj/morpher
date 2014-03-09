@@ -2,36 +2,47 @@
 
 require 'spec_helper'
 
-describe Morpher::Evaluator::Transformer::Domain::AttributesHash::Dump do
+describe Morpher::Evaluator::Transformer::Domain::AttributesHash do
+
   let(:model) do
     Class.new do
-      include Anima.new(:foo)
+      include Anima.new(:foo, :bar)
+
+      attr_accessor :foo, :bar
     end
   end
 
-  let(:object) { described_class.new(model) }
-
-  let(:expected_output) { { foo: :bar }              }
-  let(:valid_input)     { model.new(expected_output) }
-
-  include_examples 'transforming evaluator'
-  include_examples 'transitive evaluator'
-  include_examples 'no invalid input'
-end
-
-describe Morpher::Evaluator::Transformer::Domain::AttributesHash::Load do
-  let(:model) do
-    Class.new do
-      include Anima.new(:foo)
-    end
+  let(:param) do
+    described_class::Param.new(model, [:foo, :bar])
   end
 
-  let(:object) { described_class.new(model) }
+  describe Morpher::Evaluator::Transformer::Domain::AttributesHash::Dump do
 
-  let(:valid_input)     { { foo: :bar }          }
-  let(:expected_output) { model.new(valid_input) }
+    let(:object) { described_class::Dump.new(param) }
 
-  include_examples 'transforming evaluator'
-  include_examples 'transitive evaluator'
-  include_examples 'no invalid input'
+    let(:expected_output) { { foo: :foo, bar: :bar } }
+
+    let(:valid_input) do
+      model.new(foo: :foo, bar: :bar)
+    end
+
+    include_examples 'transforming evaluator'
+    include_examples 'transitive evaluator'
+    include_examples 'no invalid input'
+
+  end
+
+  describe Morpher::Evaluator::Transformer::Domain::AttributesHash::Load do
+    let(:object) { described_class::Load.new(param) }
+
+    let(:valid_input)     { { foo: :foo, bar: :bar } }
+
+    let(:expected_output) do
+      model.new(foo: :foo, bar: :bar)
+    end
+
+    include_examples 'transforming evaluator'
+    include_examples 'transitive evaluator'
+    include_examples 'no invalid input'
+  end
 end
