@@ -22,7 +22,7 @@ module Morpher
         # @api private
         #
         def transitive?
-          body.all? { |evaluator| evaluator.transitive? }
+          body.all?(&:transitive?)
         end
 
         # Call transformer
