@@ -28,9 +28,7 @@ module Morpher
         # @api private
         #
         def transitive?
-          body.all? do |evaluator|
-            self.class.transitive_keypair?(evaluator)
-          end
+          body.all?(&self.class.method(:transitive_keypair?))
         end
 
         # Test if evaluator is a keypair
