@@ -62,7 +62,8 @@ NestedIterators:
   max_allowed_nesting: 2
 TooManyStatements:
   max_statements: 7  # TODO: decrease max_statements to 5 or less
-  exclude: []
+  exclude:
+    - Morpher::Compiler::Emitter#self.children
   enabled: true
 DuplicateMethodCall:
   allow_calls: []
