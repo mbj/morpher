@@ -64,17 +64,17 @@ module Morpher
             children.at(index)
           end
           private name
-
-          define_method(:named_children) do
-            names
-          end
-          private :named_children
-
-          define_method(:remaining_children) do
-            children.drop(names.length)
-          end
-          private :remaining_children
         end
+
+        define_method(:named_children) do
+          names
+        end
+        private :named_children
+
+        define_method(:remaining_children) do
+          children.drop(names.length)
+        end
+        private :remaining_children
       end
       private_class_method :children
 
