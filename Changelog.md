@@ -1,3 +1,11 @@
+# v0.2.1 2014-03-29
+
+[Compare v0.2.0..v0.2.1](https://github.com/mbj/morpher/compare/v0.2.0...v0.2.1)
+
+Changes: 
+
+* Fix warnings on multiple method definition
+
 # v0.2.0 2014-03-09
 
 [Compare v0.1.0..v0.2.0](https://github.com/mbj/morpher/compare/v0.1.0...v0.2.0)
