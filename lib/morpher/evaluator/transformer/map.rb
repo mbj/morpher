@@ -44,7 +44,7 @@ module Morpher
         #
         # @param [Enumerable#map] input
         #
-        # @return [Evaluation::Guard]
+        # @return [Evaluation]
         #
         # @api private
         #
@@ -52,7 +52,7 @@ module Morpher
           evaluations = input.each_with_object([]) do |item, aggregate|
             evaluation = operand.evaluation(item)
             aggregate << evaluation
-            return evaluation_error(item, aggregate) unless evaluation.success?
+            return evaluation_error(input, aggregate) unless evaluation.success?
           end
 
           Evaluation::Nary.success(
@@ -71,6 +71,25 @@ module Morpher
         #
         def inverse
           self.class.new(operand.inverse)
+        end
+
+      private
+
+        # Return evaluation error
+        #
+        # @param [Object] input
+        # @param [Array<Evaluation>] evaluations
+        #
+        # @return [Evaluation]
+        #
+        # @api private
+        #
+        def evaluation_error(input, evaluations)
+          Evaluation::Nary.error(
+            evaluator: self,
+            input:     input,
+            evaluations: evaluations
+          )
         end
 
       end # Guard
