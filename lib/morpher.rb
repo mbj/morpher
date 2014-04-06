@@ -34,6 +34,16 @@ module Morpher
     NodeHelpers.module_eval(&block)
   end
 
+  # Build morpher from yielding sexp blog
+  #
+  # @return [Evaluator]
+  #
+  # @api private
+  #
+  def self.build(&block)
+    compile(sexp(&block))
+  end
+
 end # Morpher
 
 require 'morpher/node_helpers'
