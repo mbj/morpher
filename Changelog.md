@@ -7,6 +7,7 @@ Changes:
 * Add Mutant.sexp returning a morpher AST node via evaluating a block with sexp node API available.
 * Add Mutant.build returning a morpher evaluator via evaluating a block with sexp node API available.
 * Fix evaluation errors on Transformer::Map node.
+* Ensure mutant coverage scores on CI
 
 # v0.2.1 2014-03-29
 
