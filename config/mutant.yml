@@ -1,6 +1,7 @@
 name: morpher
 namespace: Morpher
-ignore:
-# Infinite runtime here
+zombie: true
+ignore_subjects:
+# Infinite runtime mutations here
 - Morpher::TypeLookup
-- Morpher::Preprocessor
+- Morpher::Compiler::Preprocessor

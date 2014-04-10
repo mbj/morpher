@@ -6,15 +6,6 @@ namespace :metrics do
   end
 end
 
-Rake.application.load_imports
-task('metrics:mutant').clear
-
-namespace :metrics do
-  task :mutant => :coverage do
-    $stderr.puts 'Mutant on CI is curently disable for this repo'
-  end
-end
-
 # NOTICE: This uses private interface of morpher that can change at any time.
 # Its just a placeholder for a better reflection technique!!!
 namespace :morpher do
