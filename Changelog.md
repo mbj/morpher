@@ -1,3 +1,13 @@
+# v0.2.2 2014-04-10
+
+[Compare v0.2.1..v0.2.2](https://github.com/mbj/morpher/compare/v0.2.1...v0.2.2)
+
+Changes: 
+
+* Add Mutant.sexp returning a morpher AST node via evaluating a block with sexp node API available.
+* Add Mutant.build returning a morpher evaluator via evaluating a block with sexp node API available.
+* Fix evaluation errors on Transformer::Map node.
+
 # v0.2.1 2014-03-29
 
 [Compare v0.2.0..v0.2.1](https://github.com/mbj/morpher/compare/v0.2.0...v0.2.1)
