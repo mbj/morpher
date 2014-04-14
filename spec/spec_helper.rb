@@ -12,8 +12,8 @@ require 'mutant' # for the node helpers
 #
 module Mutant
 
-  class Killer
-    class Rspec
+  module Rspec
+    class Killer
 
       # Return all example groups
       #
