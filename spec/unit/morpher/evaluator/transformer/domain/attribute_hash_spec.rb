@@ -8,7 +8,7 @@ describe Morpher::Evaluator::Transformer::Domain::AttributeHash do
     Class.new do
       include Anima.new(:foo, :bar)
 
-      attr_accessor :foo, :bar
+      attr_writer :foo, :bar
     end
   end
 
