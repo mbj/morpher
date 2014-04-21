@@ -60,7 +60,7 @@ module Morpher
         # @api private
         #
         def _children
-          expected_amount == 1 ? 'child' : 'children'
+          expected_amount.equal?(1) ? 'child' : 'children'
         end
 
       end # NodeChildren

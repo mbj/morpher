@@ -20,7 +20,7 @@ module Morpher
         loop do
           emitter = emitters.fetch(node.type, Emitter::Noop)
           node = emitter.call(self, node)
-          break if emitter == Emitter::Noop
+          break if emitter.equal?(Emitter::Noop)
         end
 
         node

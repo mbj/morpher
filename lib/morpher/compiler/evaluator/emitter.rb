@@ -98,7 +98,7 @@ module Morpher
             # @api private
             #
             def effective_param
-              if param.kind_of?(AST::Node) && param.type == :raw && param.children.length == 1
+              if param.kind_of?(AST::Node) && param.type.equal?(:raw) && param.children.length.equal?(1)
                 param.children.first
               else
                 param

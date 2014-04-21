@@ -47,7 +47,7 @@ module Morpher
 
           body = evaluator.body
 
-          fetch, operator, dump = body if body.length == 3
+          fetch, operator, dump = body if body.length.equal?(3)
 
           fetch.kind_of?(Key::Fetch) && dump.kind_of?(Key::Dump) && operator.transitive?
         end
