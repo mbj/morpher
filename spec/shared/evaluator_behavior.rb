@@ -160,7 +160,7 @@ end
 shared_examples_for 'transforming evaluator' do
   include_examples 'evaluator'
 
-  unless instance_methods.include?(:invalid_input_example)
+  unless instance_methods.include?(:invalid_input_example?)
     let(:invalid_input_example?) { true }
   end
 
