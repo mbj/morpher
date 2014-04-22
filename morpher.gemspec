@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'morpher'
-  gem.version     = '0.2.2'
+  gem.version     = '0.2.3'
   gem.authors     = ['Markus Schirp']
   gem.email       = ['mbj@schirp-dso.com']
   gem.description = 'Composeable predicates on POROs'
