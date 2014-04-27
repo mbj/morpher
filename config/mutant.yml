@@ -1,7 +1,7 @@
 name: morpher
 namespace: Morpher
 zombie: true
-expect_coverage: 84.14
+expect_coverage: 84.65
 ignore_subjects:
 # Infinite runtime mutations here
 - Morpher::TypeLookup
