@@ -5,7 +5,7 @@ morpher
 [![Dependency Status](https://gemnasium.com/mbj/morpher.png)](https://gemnasium.com/mbj/morpher)
 [![Code Climate](https://codeclimate.com/github/mbj/morpher.png)](https://codeclimate.com/github/mbj/morpher)
 
-Morhper is a data transformation algebra with optional tracked evaluation.
+Morpher is a data transformation algebra with optional tracked evaluation.
 
 It can be used at various places:
 
