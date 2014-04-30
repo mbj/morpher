@@ -10,7 +10,7 @@ Morpher is a data transformation algebra with optional tracked evaluation.
 It can be used at various places:
 
 * Domain to JSON and vice versa, for building rest style APIS
-* Domain to document db and vice versa, for buidling mappers
+* Domain to document db and vice versa, for building mappers
 * Form processing
 * ...
 
