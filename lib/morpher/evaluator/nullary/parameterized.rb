@@ -3,7 +3,7 @@
 module Morpher
   class Evaluator
     module Nullary
-      # Mixin to define parameterized nullary evaluatos
+      # Mixin to define parameterized nullary evaluators
       module Parameterized
 
         CONCORD = Concord::Public.new(:param)
