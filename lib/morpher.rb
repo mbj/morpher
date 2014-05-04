@@ -67,6 +67,7 @@ require 'morpher/evaluator/transformer/static'
 require 'morpher/evaluator/transformer/input'
 require 'morpher/evaluator/transformer/merge'
 require 'morpher/evaluator/transformer/coerce'
+require 'morpher/evaluator/transformer/wrap'
 require 'morpher/evaluator/transformer/domain'
 require 'morpher/evaluator/transformer/domain/param'
 require 'morpher/evaluator/transformer/domain/attribute_hash'
@@ -92,6 +93,7 @@ require 'morpher/compiler/preprocessor/emitter'
 require 'morpher/compiler/preprocessor/emitter/noop'
 require 'morpher/compiler/preprocessor/emitter/key'
 require 'morpher/compiler/preprocessor/emitter/param'
+require 'morpher/compiler/preprocessor/emitter/wrap'
 
 module Morpher
   class Compiler

@@ -108,6 +108,49 @@ describe Morpher do
     expect(evaluator.inverse.call('42')).to be(42)
   end
 
+  specify 'allows to wrap and unwrap attributes' do
+
+    evaluator = Morpher.compile(
+      s(:block,
+        s(:wrap, :d, [:a, :b]),
+        s(:wrap, :f, [:c, :d]))
+    )
+
+    input = {
+      a: 1,
+      b: 1,
+      c: 1,
+      x: 1
+    }
+
+    output = {
+      x: 1,
+      f: {
+        c: 1,
+        d: {
+          a: 1,
+          b: 1
+        }
+      }
+    }
+
+    expect(evaluator.call(input)).to eql(output)
+    expect(evaluator.inverse.call(output)).to eql(input)
+
+    evaluator = Morpher.compile(
+      s(:block,
+        s(:unwrap, :f),
+        s(:unwrap, :d))
+    )
+
+    expect(evaluator.call(output)).to eql(input)
+
+    expect {
+      evaluator.inverse.call(input)
+    }.to raise_error(NotImplementedError)
+
+  end
+
   specify 'allows predicates to be run from sexp' do
 
     valid = { attribute_a: 'foo' }
