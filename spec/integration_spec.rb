@@ -110,10 +110,12 @@ describe Morpher do
 
   specify 'allows to wrap and unwrap attributes' do
 
+    # renamed wrap
+
     evaluator = Morpher.compile(
       s(:block,
-        s(:wrap, :d, [:a, :b]),
-        s(:wrap, :f, [:c, :d]))
+        s(:wrap, :d, {a: :A, b: :B }),
+        s(:wrap, :f, {c: :C, d: :D }))
     )
 
     input = {
@@ -122,6 +124,39 @@ describe Morpher do
       c: 1,
       x: 1
     }
+
+    output = {
+      x: 1,
+      f: {
+        C: 1,
+        D: {
+          A: 1,
+          B: 1
+        }
+      }
+    }
+
+    expect(evaluator.call(input)).to eql(output)
+    expect(evaluator.inverse.call(output)).to eql(input)
+
+    # renamed unwrap
+
+    evaluator = Morpher.compile(
+      s(:block,
+        s(:unwrap, :f, {C: :c, D: :d}),
+        s(:unwrap, :d, {A: :a, B: :b}))
+    )
+
+    expect(evaluator.call(output)).to eql(input)
+    expect(evaluator.inverse.call(input)).to eql(output)
+
+    # simple wrap
+
+    evaluator = Morpher.compile(
+      s(:block,
+        s(:wrap, :d, [:a, :b]),
+        s(:wrap, :f, [:c, :d]))
+    )
 
     output = {
       x: 1,
@@ -136,6 +171,8 @@ describe Morpher do
 
     expect(evaluator.call(input)).to eql(output)
     expect(evaluator.inverse.call(output)).to eql(input)
+
+    # simple unwrap
 
     evaluator = Morpher.compile(
       s(:block,

@@ -23,7 +23,13 @@ module Morpher
           # @api private
           #
           def processed_node
-            s(:_wrap, s(:static, name), s(:static, attributes))
+            attrs = if attributes.is_a?(Hash)
+              attributes
+            else
+              Hash[attributes.zip(attributes)]
+            end
+
+            s(:_wrap, s(:static, name), s(:static, attrs))
           end
 
         end # Wrap
@@ -32,8 +38,6 @@ module Morpher
         class Unwrap < self
 
           register :unwrap
-
-          children :name
 
         private
 
@@ -46,7 +50,18 @@ module Morpher
           # @api private
           #
           def processed_node
-            s(:_unwrap, s(:static, name))
+            if children.size > 1
+              name, attributes = children.first, children.last
+              s(:renamed_unwrap, s(:static, name), s(:static, attributes))
+            else
+              s(:simple_unwrap, s(:static, children.first))
+            end
+          end
+
+          def validate_node
+            unless [1, 2].include?(children.size)
+              raise Error::NodeChildren.new(node, "1 or 2")
+            end
           end
 
         end # Unwrap
