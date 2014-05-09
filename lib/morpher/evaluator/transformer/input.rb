@@ -6,7 +6,7 @@ module Morpher
 
       # Identity transformer which always returns +input+
       class Input < self
-        include Nullary, Intransitive
+        include Nullary, Transitive
 
         register :input
 
@@ -21,6 +21,12 @@ module Morpher
         #
         def call(input)
           input
+        end
+
+        INSTANCE = new
+
+        def inverse
+          INSTANCE
         end
 
       end # Static
