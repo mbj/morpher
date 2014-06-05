@@ -108,6 +108,12 @@ describe Morpher do
     expect(evaluator.inverse.call('42')).to be(42)
   end
 
+  specify 'allows custom transformations' do
+    evaluator = Morpher.compile(s(:custom, [->(v) { "changed_#{v}" }]))
+
+    expect(evaluator.call("test")).to eql("changed_test")
+  end
+
   specify 'allows predicates to be run from sexp' do
 
     valid = { attribute_a: 'foo' }
