@@ -1,13 +1,18 @@
 language: ruby
 script: "bundle exec rake ci"
+env:
+  - TRAVIS=true
 rvm:
   - 1.9.3
   - 2.0.0
-  - 2.1.1
-  - rbx
+  - 2.1.2
+  - rbx-2
 matrix:
-  allow_failures:
-    - rvm: rbx
+  include:
+    - rvm: jruby
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug --1.9"  # for simplecov
+    - rvm: jruby
+      env: JRUBY_OPTS="$JRUBY_OPTS --debug --2.0"  # for simplecov
 notifications:
   irc:
     channels:
