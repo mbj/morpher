@@ -3,6 +3,6 @@ AllCops:
     - 'Gemfile'
   Exclude:
     - 'Gemfile.devtools'
-    - 'vendor/**'
-    - 'examples/**'
-    - 'benchmarks/**'
+    - 'vendor/**/*'
+    - 'examples/**/*'
+    - 'benchmarks/**/*'
