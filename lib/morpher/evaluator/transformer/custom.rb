@@ -10,7 +10,7 @@ module Morpher
 
         # Call evaluator
         #
-        # @parma [Object] input
+        # @param [Object] input
         #
         # @return [Object]
         #   if custom transformation was successful

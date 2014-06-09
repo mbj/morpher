@@ -57,7 +57,7 @@ module Morpher
 
           # Return evaluation
           #
-          # @parma [Object] input
+          # @param [Object] input
           #
           # @return [Evaluation]
           #

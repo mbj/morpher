@@ -26,7 +26,7 @@ module Morpher
 
         # Call evaluator
         #
-        # @parma [Enumerable#map] input
+        # @param [Enumerable#map] input
         #
         # @return [Enumerable]
         #   if input evaluates true under predicate
