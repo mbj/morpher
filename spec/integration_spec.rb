@@ -111,7 +111,7 @@ describe Morpher do
   specify 'allows custom transformations' do
     evaluator = Morpher.compile(s(:custom, [->(v) { "changed_#{v}" }]))
 
-    expect(evaluator.call("test")).to eql("changed_test")
+    expect(evaluator.call('test')).to eql('changed_test')
   end
 
   specify 'allows predicates to be run from sexp' do

@@ -33,9 +33,8 @@ module Morpher
           evaluations = body.each_with_object([]) do |evaluator, aggregate|
             evaluation = evaluator.evaluation(input)
             aggregate << evaluation
-            unless evaluation.output.equal?(klass::OUTPUT_EXPECTATION)
-              return send(klass::ERROR_METHOD, input, aggregate)
-            end
+            next if evaluation.output.equal?(klass::OUTPUT_EXPECTATION)
+            return send(klass::ERROR_METHOD, input, aggregate)
           end
 
           send(klass::SUCCESS_METHOD, input, evaluations)

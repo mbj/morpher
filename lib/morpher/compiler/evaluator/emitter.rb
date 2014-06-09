@@ -41,8 +41,6 @@ module Morpher
         abstract_method :evaluator
         private :evaluator
 
-      private
-
         # Emitter for nullary non parameterized evaluators
         class Nullary < self
           register Morpher::Evaluator::Nullary

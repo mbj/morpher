@@ -15,7 +15,12 @@ describe Morpher do
     end
 
     context 'with block given' do
-      let(:block) { proc { s(:foo); s(:bar) } }
+      let(:block) do
+        proc do
+          s(:foo)
+          s(:bar)
+        end
+      end
 
       it 'allows to use sexp dsl and returns last value' do
         should == AST::Node.new(:bar)
@@ -35,7 +40,12 @@ describe Morpher do
     end
 
     context 'with block given' do
-      let(:block) { proc { s(:foo); s(:true) } }
+      let(:block) do
+        proc do
+          s(:foo)
+          s(:true)
+        end
+      end
 
       it 'allows to use sexp dsl and returns last value compiled' do
         should eql(Morpher.compile(s(:true)))
