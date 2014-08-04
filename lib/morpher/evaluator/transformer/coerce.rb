@@ -101,6 +101,7 @@ module Morpher
 
         end # IntToString
 
+        # Evaluator for parsing an ISO8601 String into a DateTime
         class ParseIso8601DateTime < self
 
           include Parse
@@ -133,6 +134,7 @@ module Morpher
           end
         end # ParseIso8601DateTime
 
+        # Evaluator for dumping a DateTime to an ISO8601 string
         class DateTimeToIso8601String < self
           register :date_time_to_iso8601_string
 
