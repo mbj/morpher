@@ -111,7 +111,7 @@ describe Morpher do
   specify 'allows to coerce inputs from ISO8601 string to DateTime and back' do
     evaluator = Morpher.compile(s(:parse_iso8601_date_time, 0))
 
-    iso8601_string = "2014-08-04T00:00:00+00:00"
+    iso8601_string = '2014-08-04T00:00:00+00:00'
     date_time      = DateTime.new(2014, 8, 4)
 
     expect(evaluator.call(iso8601_string)).to eq(date_time)
