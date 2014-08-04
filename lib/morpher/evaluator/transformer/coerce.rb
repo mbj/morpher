@@ -7,10 +7,7 @@ module Morpher
       class Coerce < self
         include AbstractType, Nullary::Parameterized, Transitive
 
-        # Evaluator for parsing an integer
-        class ParseInt < self
-
-          register :parse_int
+        module Parse
 
           # Call evaluator
           #
@@ -39,6 +36,14 @@ module Morpher
           rescue ArgumentError, TypeError
             evaluation_error(input)
           end
+        end # Parse
+
+        # Evaluator for parsing an integer
+        class ParseInt < self
+
+          include Parse
+
+          register :parse_int
 
           # Return inverse evaluator
           #
@@ -96,6 +101,63 @@ module Morpher
 
         end # IntToString
 
+        class ParseIso8601DateTime < self
+
+          include Parse
+
+          register :parse_iso8601_date_time
+
+          # Return inverse evaluator
+          #
+          # @return [Evaluator]
+          #
+          # @api private
+          #
+          def inverse
+            DateTimeToIso8601String.new(param)
+          end
+
+          private
+
+          # Invoke coercion
+          #
+          # @return [DateTime]
+          #
+          # @raise [ArgumentError, TypeError]
+          #   if coercion does not succeed
+          #
+          # @api private
+          #
+          def invoke(input)
+            DateTime.iso8601(input)
+          end
+        end # ParseIso8601DateTime
+
+        class DateTimeToIso8601String < self
+          register :date_time_to_iso8601_string
+
+          # Call evaluator
+          #
+          # @param [Object] input
+          #
+          # @return [Object]
+          #
+          # @api private
+          #
+          def call(input)
+            input.iso8601(param)
+          end
+
+          # Return inverse evaluator
+          #
+          # @return [Evaluator]
+          #
+          # @api private
+          #
+          def inverse
+            ParseIso8601DateTime.new(param)
+          end
+        end # DateTimeToIso8601String
       end # Fixnum
     end # Transformer
   end # Evaluator

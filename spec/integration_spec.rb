@@ -108,6 +108,21 @@ describe Morpher do
     expect(evaluator.inverse.call('42')).to be(42)
   end
 
+  specify 'allows to coerce inputs from ISO8601 string to DateTime and back' do
+    evaluator = Morpher.compile(s(:parse_iso8601_date_time, 0))
+
+    iso8601_string = "2014-08-04T00:00:00+00:00"
+    date_time      = DateTime.new(2014, 8, 4)
+
+    expect(evaluator.call(iso8601_string)).to eq(date_time)
+    expect(evaluator.inverse.call(date_time)).to eq(iso8601_string)
+
+    evaluator = Morpher.compile(s(:date_time_to_iso8601_string, 0))
+
+    expect(evaluator.call(date_time)).to eq(iso8601_string)
+    expect(evaluator.inverse.call(iso8601_string)).to eq(date_time)
+  end
+
   specify 'allows custom transformations' do
     evaluator = Morpher.compile(s(:custom, [->(v) { "changed_#{v}" }]))
 
