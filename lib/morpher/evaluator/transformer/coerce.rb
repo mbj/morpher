@@ -55,7 +55,7 @@ module Morpher
             IntToString.new(param)
           end
 
-          private
+        private
 
           # Invoke coercion
           #
@@ -118,7 +118,7 @@ module Morpher
             DateTimeToIso8601String.new(param)
           end
 
-          private
+        private
 
           # Invoke coercion
           #
