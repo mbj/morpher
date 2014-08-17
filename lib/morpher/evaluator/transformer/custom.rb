@@ -1,48 +1,26 @@
-# encoding: UTF-8
-
 module Morpher
   class Evaluator
     class Transformer < self
-
-      # Custom transformer
+      # Custom transformer with external injected behavior
       class Custom < self
         include Nullary::Parameterized, Transitive
-
         register :custom
 
-        # Call evaluator
+        # Call transformer with input
         #
-        # @param [Object] input
+        # @param [Object]
         #
-        # @return [Object]
-        #   if custom transformation was successful
-        #
-        # @raise [TransformError]
-        #   otherwise
+        # @return [undefinedo]
         #
         # @api private
         #
         def call(input)
-          invoke(input)
+          param.first.call(input)
         end
 
-        # Return evaluation
+        # Return inverse transformer
         #
-        # @param [Object] input
-        #
-        # @return [Evaluation]
-        #
-        # @api private
-        #
-        def evaluation(input)
-          evaluation_success(input, invoke(input))
-        rescue TransformError
-          evaluation_error(input)
-        end
-
-        # Return inverse evaluator with reversed +params+
-        #
-        # @return [self]
+        # @return [Evaluator::Transformer]
         #
         # @api private
         #
@@ -50,19 +28,6 @@ module Morpher
           self.class.new(param.reverse)
         end
 
-        private
-
-        # Invoke the transformation
-        #
-        # @param [Object] input
-        #
-        # @return [Object]
-        #
-        # @api private
-        #
-        def invoke(input)
-          param.first.call(input)
-        end
       end # Custom
     end # Transformer
   end # Evaluator
