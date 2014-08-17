@@ -19,4 +19,26 @@ describe Morpher::Compiler::Preprocessor do
     end
 
   end
+
+  class Example
+    include Anima.new(:foo, :bar)
+  end
+
+  context 'with s(:anima_load)' do
+
+    it_should_behave_like 'a preprocessor' do
+      let(:input)    { s(:anima_load, Example) }
+      let(:expected) { s(:load_attribute_hash, Morpher::Evaluator::Transformer::Domain::Param.new(Example, [:foo, :bar])) }
+    end
+
+  end
+
+  context 'with s(:anima_dump)' do
+
+    it_should_behave_like 'a preprocessor' do
+      let(:input)    { s(:anima_dump, Example) }
+      let(:expected) { s(:dump_attribute_hash, Morpher::Evaluator::Transformer::Domain::Param.new(Example, [:foo, :bar])) }
+    end
+
+  end
 end
