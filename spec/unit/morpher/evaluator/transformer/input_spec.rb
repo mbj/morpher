@@ -10,4 +10,7 @@ describe Morpher::Evaluator::Transformer::Input do
 
   include_examples 'transforming evaluator'
   include_examples 'no invalid input'
+  include_examples 'inverse evaluator' do
+    let(:expected_inverse) { object }
+  end
 end

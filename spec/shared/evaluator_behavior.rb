@@ -1,5 +1,15 @@
 # encoding: UTF-8
 
+shared_examples_for 'inverse evaluator' do
+  context '#inverse' do
+    subject { object.inverse }
+
+    it 'returns the expected inverse evaluator' do
+      should eql(expected_inverse)
+    end
+  end
+end
+
 shared_examples_for 'evaluator' do
   it 'round trips transtivie evaluators via #inverse' do
     if object.kind_of?(Morpher::Evaluator::Transformer) && object.transitive?

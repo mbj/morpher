@@ -23,10 +23,14 @@ module Morpher
           input
         end
 
-        INSTANCE = new
-
+        # Return inverse evaluator
+        #
+        # @return [Evaluator::Transformer]
+        #
+        # @api private
+        #
         def inverse
-          INSTANCE
+          self
         end
 
       end # Static
