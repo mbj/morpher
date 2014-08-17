@@ -93,6 +93,7 @@ require 'morpher/compiler/preprocessor/emitter'
 require 'morpher/compiler/preprocessor/emitter/noop'
 require 'morpher/compiler/preprocessor/emitter/key'
 require 'morpher/compiler/preprocessor/emitter/param'
+require 'morpher/compiler/preprocessor/emitter/boolean'
 
 module Morpher
   class Compiler

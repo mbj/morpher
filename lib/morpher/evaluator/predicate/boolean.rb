@@ -60,6 +60,16 @@ module Morpher
           SUCCESS_METHOD     = :evaluation_negative
         end # Or
 
+        # Evaluator for nary xor predicates
+        class Xor < self
+          register :xor
+
+          ENUMERABLE_METHOD  = :one?
+          OUTPUT_EXPECTATION = false
+          ERROR_METHOD       = :evaluation_positive
+          SUCCESS_METHOD     = :evaluation_negative
+        end # Or
+
       end # Boolean
     end # Predicate
   end # Evaluator

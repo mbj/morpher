@@ -5,6 +5,7 @@ module Morpher
     # Abstract target indepentand emitter
     class Emitter
       include AbstractType, Adamantium::Flat, NodeHelpers, Procto.call(:output)
+      extend NodeHelpers
 
       # Return output of emitter
       #
