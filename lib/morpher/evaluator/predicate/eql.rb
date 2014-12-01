@@ -34,7 +34,7 @@ module Morpher
         # @api private
         #
         def evaluation(input)
-          left_evaluation = left.evaluation(input)
+          left_evaluation  = left.evaluation(input)
           right_evaluation = right.evaluation(input)
 
           Evaluation::Binary.success(
@@ -46,7 +46,7 @@ module Morpher
           )
         end
 
-      end # BinaryEQL
+      end # EQL
     end # Predicate
   end # Evaluator
 end # Morpher

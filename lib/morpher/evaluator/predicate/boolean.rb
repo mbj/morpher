@@ -68,7 +68,7 @@ module Morpher
           OUTPUT_EXPECTATION = false
           ERROR_METHOD       = :evaluation_positive
           SUCCESS_METHOD     = :evaluation_negative
-        end # Or
+        end # Xor
 
       end # Boolean
     end # Predicate
