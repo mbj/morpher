@@ -12,12 +12,12 @@ module Morpher
 
           register :primitive
 
-          # Call evalutor
+          # Call evaluator
           #
           # @param [Object] object
           #
           # @return [true]
-          #   if objects type equals exactly
+          #   if object's type is #equal?
           #
           # @api private
           #
@@ -31,7 +31,7 @@ module Morpher
         class Permissive < self
           register :is_a
 
-          # Call evalutor
+          # Call evaluator
           #
           # @param [Object] object
           #

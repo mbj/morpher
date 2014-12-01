@@ -49,6 +49,6 @@ module Morpher
         end
 
       end # Negation
-    end # Unary
-  end # Predicate
+    end # Predicate
+  end # Evaluator
 end # Morpher
