@@ -33,7 +33,7 @@ module Morpher
           self
         end
 
-      end # Static
+      end # Input
     end # Transformer
   end # Evaluator
 end # Morpher
