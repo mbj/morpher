@@ -151,6 +151,37 @@ module Morpher
             assert_children_amount(1)
           end
 
+          # Emitter for unary parameterized evaluators
+          class Parameterized < self
+            register Morpher::Evaluator::Unary::Parameterized
+            children :param, :operand
+
+          private
+
+            # Return evaluator
+            #
+            # @return [Evaluator]
+            #
+            # @api private
+            #
+            def evaluator
+              evaluator_klass.new(param, compiler.call(operand))
+            end
+
+            # Validate node
+            #
+            # @return [undefined]
+            #   if successful
+            #
+            # @raise [Error]
+            #   otherwise
+            #
+            # @api private
+            #
+            def validate_node
+              assert_children_amount(2)
+            end
+          end # Parameterized
         end # Unary
 
         # Emitter for unary evaluators

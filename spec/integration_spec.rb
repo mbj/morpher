@@ -178,4 +178,53 @@ describe Morpher do
                   Morpher::Evaluator::Transformer::Input
     TEXT
   end
+
+  specify 'allows to place named marks in the AST' do
+    evaluator = Morpher.compile(s(:name, :test, s(:eql, s(:input), s(:static, :valid))))
+
+    expect(evaluator.call(:valid)).to eql(true)
+
+    evaluation = evaluator.evaluation(:valid)
+    expect(evaluation.success?).to be(true)
+    expect(evaluation.output).to be(true)
+    expect(evaluation.evaluator.param).to eql(:test)
+
+    expect(evaluation.description).to eql(strip(<<-TEXT))
+      Morpher::Evaluation::Unary
+        input: :valid
+        output: true
+        success?: true
+        operand_evaluation:
+          Morpher::Evaluation::Binary
+            input: :valid
+            output: true
+            success?: true
+            left_evaluation:
+              Morpher::Evaluation::Nullary
+                input: :valid
+                output: :valid
+                success?: true
+                evaluator:
+                  Morpher::Evaluator::Transformer::Input
+            right_evaluation:
+              Morpher::Evaluation::Nullary
+                input: :valid
+                output: :valid
+                success?: true
+                evaluator:
+                  Morpher::Evaluator::Transformer::Static
+                    param: :valid
+        evaluator:
+          Morpher::Evaluator::Transformer::Name
+            param: :test
+            operand:
+              Morpher::Evaluator::Predicate::EQL
+                left:
+                  Morpher::Evaluator::Transformer::Input
+                right:
+                  Morpher::Evaluator::Transformer::Static
+                    param: :valid
+    TEXT
+  end
+
 end
