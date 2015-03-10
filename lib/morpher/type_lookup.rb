@@ -46,7 +46,7 @@ module Morpher
         current = current.superclass
       end
 
-      raise TypeNotFoundError, target
+      fail TypeNotFoundError, target
     end
 
   end # TypeLookup

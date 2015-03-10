@@ -13,7 +13,7 @@ describe Morpher::Evaluator::Transformer::Domain::AttributeAccessors do
   end
 
   let(:param) do
-    described_class::Param.new(model, [:foo, :bar])
+    described_class::Param.new(model, %i[foo bar])
   end
 
   describe Morpher::Evaluator::Transformer::Domain::AttributeAccessors::Dump do

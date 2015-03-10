@@ -57,6 +57,8 @@ module Morpher
         #
         # @api private
         #
+        # rubocop:disable MethodLength
+        #
         def evaluation(input)
           state = input
 
