@@ -25,7 +25,7 @@ describe Morpher::Compiler::Preprocessor do
   end
 
   let(:param) do
-    Morpher::Evaluator::Transformer::Domain::Param.new(Example, [:foo, :bar])
+    Morpher::Evaluator::Transformer::Domain::Param.new(Example, %i[foo bar])
   end
 
   context 'with s(:anima_load)' do

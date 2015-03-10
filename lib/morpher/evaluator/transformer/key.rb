@@ -51,7 +51,7 @@ module Morpher
           #
           def call(object)
             object.fetch(param) do
-              raise TransformError.new(self, object)
+              fail TransformError.new(self, object)
             end
           end
 

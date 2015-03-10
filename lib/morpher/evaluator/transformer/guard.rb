@@ -26,7 +26,7 @@ module Morpher
           if operand.call(input)
             input
           else
-            raise TransformError.new(self, input)
+            fail TransformError.new(self, input)
           end
         end
 

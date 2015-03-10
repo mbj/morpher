@@ -74,11 +74,7 @@ module Morpher
         # @api private
         #
         def inverse
-          inverse_body = body.map do |evaluator|
-            evaluator.inverse
-          end
-
-          self.class.new(inverse_body)
+          self.class.new(body.map(&:inverse))
         end
 
         # Return evaluation
@@ -88,6 +84,8 @@ module Morpher
         # @return [Evaluation::Nary]
         #
         # @api private
+        #
+        # rubocop:disable MethodLength
         #
         def evaluation(input)
           evaluations = body.each_with_object([]) do |evaluator, aggregate|

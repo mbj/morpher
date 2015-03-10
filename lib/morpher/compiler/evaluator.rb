@@ -41,7 +41,7 @@ module Morpher
       def evaluator(node)
         type = node.type
         evaluators.fetch(type) do
-          raise Error::UnknownNode, type
+          fail Error::UnknownNode, type
         end
       end
 
@@ -57,7 +57,7 @@ module Morpher
         emitters.each do |arity, emitter|
           return emitter if evaluator.ancestors.include?(arity)
         end
-        raise Error::UnknownNode, evaluator
+        fail Error::UnknownNode, evaluator
       end
 
     end # Evaluator

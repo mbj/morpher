@@ -190,7 +190,9 @@ shared_examples_for 'transforming evaluator' do
   context 'with invalid input' do
     it 'raises error for #call' do
       if invalid_input_example?
-        expect { object.call(invalid_input) }.to raise_error(Morpher::Evaluator::Transformer::TransformError)
+        expect { object.call(invalid_input) }.to raise_error(
+          Morpher::Evaluator::Transformer::TransformError
+        )
       end
     end
 

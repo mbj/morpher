@@ -48,7 +48,7 @@ module Morpher
       #
       def assert_children_amount(expected_amount)
         actual_amount = children.length
-        raise Error::NodeChildren.new(node, expected_amount) unless actual_amount.equal?(expected_amount)
+        fail Error::NodeChildren.new(node, expected_amount) unless actual_amount.equal?(expected_amount)
       end
 
       # Name children
@@ -56,6 +56,8 @@ module Morpher
       # @return [undefined]
       #
       # @api private
+      #
+      # rubocop:disable MethodLength
       #
       def self.children(*names)
         names.each_with_index do |name, index|

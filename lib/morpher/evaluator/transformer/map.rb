@@ -48,6 +48,8 @@ module Morpher
         #
         # @api private
         #
+        # rubocop:disable MethodLength
+        #
         def evaluation(input)
           evaluations = input.each_with_object([]) do |item, aggregate|
             evaluation = operand.evaluation(item)

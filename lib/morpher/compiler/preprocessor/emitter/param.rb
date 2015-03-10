@@ -41,7 +41,7 @@ module Morpher
           def validate_node
             remaining_children.each_with_index do |child, index|
               next if child.kind_of?(Symbol)
-              raise Error::ChildType, Symbol, child, index
+              fail Error::ChildType, Symbol, child, index
             end
           end
 

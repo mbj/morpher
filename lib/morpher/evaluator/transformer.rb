@@ -68,7 +68,7 @@ module Morpher
       # @api private
       #
       def raise_transform_error(input)
-        raise TransformError.new(self, input)
+        fail TransformError.new(self, input)
       end
 
     end # Transform
