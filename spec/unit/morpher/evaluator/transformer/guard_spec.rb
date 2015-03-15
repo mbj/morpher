@@ -11,6 +11,6 @@ describe Morpher::Evaluator::Transformer::Guard do
   let(:invalid_input)   { :foo        }
   let(:expected_output) { valid_input }
 
+  include_examples 'transforming evaluator on valid input'
   include_examples 'transitive evaluator'
-  include_examples 'transforming evaluator'
 end

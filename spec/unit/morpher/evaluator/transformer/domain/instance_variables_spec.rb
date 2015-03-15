@@ -29,10 +29,8 @@ describe Morpher::Evaluator::Transformer::Domain::InstanceVariables do
       object
     end
 
-    include_examples 'transforming evaluator'
+    include_examples 'transforming evaluator on valid input'
     include_examples 'transitive evaluator'
-    include_examples 'no invalid input'
-
   end
 
   describe Morpher::Evaluator::Transformer::Domain::InstanceVariables::Load do
@@ -47,8 +45,7 @@ describe Morpher::Evaluator::Transformer::Domain::InstanceVariables do
       object
     end
 
-    include_examples 'transforming evaluator'
+    include_examples 'transforming evaluator on valid input'
     include_examples 'transitive evaluator'
-    include_examples 'no invalid input'
   end
 end

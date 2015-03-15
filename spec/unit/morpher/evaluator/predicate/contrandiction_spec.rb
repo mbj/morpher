@@ -3,13 +3,9 @@
 require 'spec_helper'
 
 describe Morpher::Evaluator::Predicate::Contradiction do
-  let(:object) { described_class.new }
+  let(:object)          { described_class.new }
+  let(:valid_input)     { double('Input')     }
+  let(:expected_output) { false               }
 
-  include_examples 'predicate evaluator'
-  include_examples 'no negative example'
-
-  let(:expected_positive_output) { false }
-
-  let(:positive_input)  { double }
-  let(:expected_output) { false }
+  include_examples 'transforming evaluator on valid input'
 end

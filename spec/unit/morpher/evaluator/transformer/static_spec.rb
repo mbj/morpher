@@ -10,6 +10,5 @@ describe Morpher::Evaluator::Transformer::Static do
   let(:valid_input)     { double('Input') }
   let(:expected_output) { value           }
 
-  include_examples 'transforming evaluator'
-  include_examples 'no invalid input'
+  include_examples 'transforming evaluator on valid input'
 end

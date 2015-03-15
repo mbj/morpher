@@ -24,9 +24,8 @@ describe Morpher::Evaluator::Transformer::Domain::AttributeHash do
       model.new(foo: :foo, bar: :bar)
     end
 
-    include_examples 'transforming evaluator'
+    include_examples 'transforming evaluator on valid input'
     include_examples 'transitive evaluator'
-    include_examples 'no invalid input'
 
   end
 
@@ -39,8 +38,7 @@ describe Morpher::Evaluator::Transformer::Domain::AttributeHash do
       model.new(foo: :foo, bar: :bar)
     end
 
-    include_examples 'transforming evaluator'
+    include_examples 'transforming evaluator on valid input'
     include_examples 'transitive evaluator'
-    include_examples 'no invalid input'
   end
 end
