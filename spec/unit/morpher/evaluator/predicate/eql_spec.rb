@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Predicate::EQL do
   let(:object) { described_class.new(left, right) }
 

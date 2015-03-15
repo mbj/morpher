@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Transformer::Domain::AttributeHash do
 
   let(:model) do

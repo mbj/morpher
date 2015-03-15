@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Transformer::Block do
 
   let(:ast) do

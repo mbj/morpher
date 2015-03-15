@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Transformer::HashTransform do
 
   let(:ast) do

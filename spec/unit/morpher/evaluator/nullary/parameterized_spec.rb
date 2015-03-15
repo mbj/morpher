@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Nullary::Parameterized do
 
   describe '.include' do

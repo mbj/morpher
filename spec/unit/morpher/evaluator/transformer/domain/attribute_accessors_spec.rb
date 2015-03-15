@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Transformer::Domain::AttributeAccessors do
 
   let(:model) do

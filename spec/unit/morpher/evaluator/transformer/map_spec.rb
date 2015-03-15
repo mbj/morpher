@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Transformer::Map do
   let(:object) { described_class.new(operand) }
 

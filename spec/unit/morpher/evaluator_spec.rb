@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator do
   describe '.register' do
     let(:object) do

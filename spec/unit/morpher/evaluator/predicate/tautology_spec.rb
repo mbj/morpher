@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Predicate::Tautology do
   let(:object)          { described_class.new }
   let(:valid_input)     { double('Input')     }

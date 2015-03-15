@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher do
   let(:object) { described_class }
 

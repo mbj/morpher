@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Compiler::Preprocessor do
   subject { Morpher::Compiler::Preprocessor::DEFAULT.call(input) }
 

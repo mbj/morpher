@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Predicate::Boolean::Or do
   let(:object) { described_class.new([body_a, body_b]) }
 

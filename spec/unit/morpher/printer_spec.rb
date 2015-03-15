@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Printer::Mixin do
   describe '#description' do
     let(:object) do

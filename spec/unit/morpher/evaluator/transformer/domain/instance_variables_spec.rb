@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Transformer::Domain::InstanceVariables do
 
   let(:model) do

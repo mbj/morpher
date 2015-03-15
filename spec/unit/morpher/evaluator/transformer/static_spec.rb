@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe Morpher::Evaluator::Transformer::Static do
   let(:object) { described_class.new(value) }
 
