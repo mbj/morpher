@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 shared_examples_for 'inverse evaluator' do
   context '#inverse' do
     subject { object.inverse }

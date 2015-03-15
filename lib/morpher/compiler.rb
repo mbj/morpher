@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Morpher
   # Abstract compiler base class
   class Compiler

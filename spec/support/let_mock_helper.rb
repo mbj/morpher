@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module LetMockHelper
   def let_mock(name, &block)
     let(name) do

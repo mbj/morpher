@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 require 'devtools/spec_helper'
 require 'morpher'
 require 'mutant' # for the node helpers

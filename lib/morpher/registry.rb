@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Morpher
   # Mixin for to provide a node registry
   module Registry

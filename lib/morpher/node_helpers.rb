@@ -1,7 +1,4 @@
-# encoding: UTF-8
-
 module Morpher
-
   module NodeHelpers
 
     # Build node

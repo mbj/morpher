@@ -1,7 +1,4 @@
-# encoding: UTF-8
-
 module Morpher
-
   class Evaluator
     class Transformer
 

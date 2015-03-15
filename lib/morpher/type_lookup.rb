@@ -1,5 +1,3 @@
-# encoding: UTF-8
-
 module Morpher
 
   # Type lookup via registry and superclass chaining
