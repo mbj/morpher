@@ -2,7 +2,8 @@ module Morpher
   class Evaluator
     class Transformer
 
-      # Transformer that allows to guard transformation process with a predicate on input
+      # Transformer that allows to guard transformation process
+      # with a predicate on input
       class Guard < self
         include Unary, Transitive
 

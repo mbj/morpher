@@ -45,7 +45,10 @@ module Morpher
             #
             def call(input)
               load do |attribute, object|
-                object.public_send(attribute.writer, input.fetch(attribute.name))
+                object.public_send(
+                  attribute.writer,
+                  input.fetch(attribute.name)
+                )
               end
             end
 

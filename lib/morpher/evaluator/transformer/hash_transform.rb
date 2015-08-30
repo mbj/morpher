@@ -4,7 +4,8 @@ module Morpher
 
       # Too complex hash transformation evaluator
       #
-      # FIXME: Should be broken up in better primitives a decompose, compose pair
+      # FIXME: Should be broken up in better
+      # primitives a decompose, compose pair
       #
       # @api private
       #
@@ -33,8 +34,10 @@ module Morpher
         #
         # FIXME: Refactor the need for this away.
         #
-        #   This is a side effect from this class is generally to big in sense of SRP.
-        #   Must be refactorable away. But dunno now. Still exploring.
+        #   This is a side effect from this class is
+        #   generally to big in sense of SRP.
+        #   Must be refactorable away. But dunno now.
+        #   Still exploring.
         #
         # @param [Evaluator]
         #
@@ -45,9 +48,11 @@ module Morpher
 
           body = evaluator.body
 
-          fetch, operator, dump = body if body.length.equal?(3)
+          left, operator, right = body if body.length.equal?(3)
 
-          fetch.kind_of?(Key::Fetch) && dump.kind_of?(Key::Dump) && operator.transitive?
+          left.kind_of?(Key::Fetch) &&
+          right.kind_of?(Key::Dump) &&
+          operator.transitive?
         end
 
         # Call evaluator
@@ -89,7 +94,9 @@ module Morpher
           evaluations = body.each_with_object([]) do |evaluator, aggregate|
             evaluation = evaluator.evaluation(input)
             aggregate << evaluation
-            return evaluation_error(input, aggregate) unless evaluation.success?
+            unless evaluation.success?
+              return evaluation_error(input, aggregate)
+            end
           end
 
           output = Hash[evaluations.map(&:output)]

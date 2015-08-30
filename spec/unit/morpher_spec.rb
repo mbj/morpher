@@ -8,7 +8,7 @@ describe Morpher do
       let(:block) { nil }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error
+        expect { subject }.to raise_error(ArgumentError)
       end
     end
 
@@ -33,7 +33,7 @@ describe Morpher do
       let(:block) { nil }
 
       it 'raises an exception' do
-        expect { subject }.to raise_error
+        expect { subject }.to raise_error(ArgumentError)
       end
     end
 

@@ -14,7 +14,9 @@ module Morpher
         # @api private
         #
         def call(input)
-          body.public_send(self.class::ENUMERABLE_METHOD) { |evaluator| evaluator.call(input) }
+          body .public_send(
+            self.class::ENUMERABLE_METHOD
+          ) { |evaluator| evaluator.call(input) }
         end
 
         # Return evaluation for input
