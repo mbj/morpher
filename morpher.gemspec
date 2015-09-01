@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = ['>= 2.2.3']
 
   gem.add_runtime_dependency('abstract_type', '~> 0.0.7')
-  gem.add_runtime_dependency('ast',           '~> 2.0.0')
+  gem.add_runtime_dependency('ast',           '~> 2.1.0')
   gem.add_runtime_dependency('adamantium',    '~> 0.2.0')
   gem.add_runtime_dependency('ice_nine',      '~> 0.11.0')
   gem.add_runtime_dependency('equalizer',     '~> 0.0.9')
