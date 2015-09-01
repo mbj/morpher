@@ -22,7 +22,8 @@ module Morpher
             #
             def call(input)
               dump do |attribute, attributes|
-                attributes[attribute.name] = input.instance_variable_get(attribute.ivar_name)
+                attributes[attribute.name] =
+                  input.instance_variable_get(attribute.ivar_name)
               end
             end
 
@@ -44,7 +45,10 @@ module Morpher
             #
             def call(input)
               load do |attribute, object|
-                object.instance_variable_set(attribute.ivar_name, input.fetch(attribute.name))
+                object.instance_variable_set(
+                  attribute.ivar_name,
+                  input.fetch(attribute.name)
+                )
               end
             end
 

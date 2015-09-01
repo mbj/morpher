@@ -1,4 +1,5 @@
 module Morpher
+  # Node helpers
   module NodeHelpers
 
     # Build node

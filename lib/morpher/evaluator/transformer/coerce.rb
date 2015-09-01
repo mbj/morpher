@@ -5,6 +5,8 @@ module Morpher
       class Coerce < self
         include AbstractType, Nullary::Parameterized, Transitive
 
+        # Parse mixin for cases the parsing possibly results
+        # in Argument and Type errors.
         module Parse
 
           # Call evaluator

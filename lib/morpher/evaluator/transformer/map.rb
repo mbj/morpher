@@ -52,7 +52,9 @@ module Morpher
           evaluations = input.each_with_object([]) do |item, aggregate|
             evaluation = operand.evaluation(item)
             aggregate << evaluation
-            return evaluation_error(input, aggregate) unless evaluation.success?
+            unless evaluation.success?
+              return evaluation_error(input, aggregate)
+            end
           end
 
           Evaluation::Nary.success(

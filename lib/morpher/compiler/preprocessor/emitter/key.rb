@@ -70,7 +70,8 @@ module Morpher
             # @api private
             #
             def processed_node
-              s(:block,
+              s(
+                :block,
                 s(:key_fetch, from),
                 visit(operand),
                 s(:key_dump, to)

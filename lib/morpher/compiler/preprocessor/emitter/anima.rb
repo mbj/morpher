@@ -17,7 +17,10 @@ module Morpher
           # @api private
           #
           def param
-            Morpher::Evaluator::Transformer::Domain::Param.new(model, model.anima.attribute_names)
+            Morpher::Evaluator::Transformer::Domain::Param.new(
+              model,
+              model.anima.attribute_names
+            )
           end
 
           class Dump < self

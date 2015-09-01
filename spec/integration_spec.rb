@@ -20,13 +20,19 @@ describe Morpher do
   end
 
   let(:transformer_ast) do
-    s(:block,
+    s(
+      :block,
       s(:guard, s(:primitive, Hash)),
-      s(:hash_transform,
-        s(:key_symbolize, :attribute_a,
+      s(
+        :hash_transform,
+        s(
+          :key_symbolize,
+          :attribute_a,
           s(:guard, s(:primitive, String))
         ),
-        s(:key_symbolize, :attribute_b,
+        s(
+          :key_symbolize,
+          :attribute_b,
           s(:guard, s(:primitive, Fixnum))
         )
       ),
@@ -35,7 +41,8 @@ describe Morpher do
   end
 
   let(:predicate_ast) do
-    s(:block,
+    s(
+      :block,
       s(:key_fetch, :attribute_a),
       s(:eql, s(:static, 'foo'), s(:input))
     )

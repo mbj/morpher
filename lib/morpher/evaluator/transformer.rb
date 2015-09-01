@@ -11,7 +11,8 @@ module Morpher
 
       # Test evaluator transformer is transitive
       #
-      # A transitive evaluator allows to inverse an operation via its #inverse evaluator.
+      # A transitive evaluator allows to inverse an operation
+      # via its #inverse evaluator.
       #
       # @return [true]
       #   if transformer is transitive

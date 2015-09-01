@@ -76,13 +76,15 @@ describe Morpher::Evaluator::Transformer::Block do
 
       context 'with valid input' do
         it 'returns evaluation' do
-          should eql(Morpher::Evaluation::Nary.new(
-            input:       valid_input,
-            evaluator:   object,
-            evaluations: evaluations,
-            output:      expected_output,
-            success:     true
-          ))
+          should eql(
+            Morpher::Evaluation::Nary.new(
+              input:       valid_input,
+              evaluator:   object,
+              evaluations: evaluations,
+              output:      expected_output,
+              success:     true
+            )
+          )
         end
       end
     end
