@@ -132,3 +132,7 @@ SpaceAroundOperators:
 # We use parallel assignments with great success
 ParallelAssignment:
   Enabled: false
+
+# Allow additional specs
+ExtraSpacing:
+  Enabled: false

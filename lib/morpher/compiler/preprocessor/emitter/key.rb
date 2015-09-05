@@ -80,7 +80,7 @@ module Morpher
 
           end # Transform
 
-        end  # Key
+        end # Key
       end # Emitter
     end # Preprocessor
   end # Compiler
