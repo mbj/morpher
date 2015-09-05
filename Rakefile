@@ -4,8 +4,17 @@ Devtools.init_rake_tasks
 Rake.application.load_imports
 task('metrics:mutant').clear
 namespace :metrics do
-  task :mutant => :coverage do
-    $stderr.puts 'Morpher self test via zombie not active on CI'
+  task mutant: :coverage do
+    success = Kernel.system(*%w[
+      bundle exec mutant
+      --zombie
+      --use rspec
+      --include lib
+      --require morpher
+      --since HEAD~1
+      --
+      Morpher*
+    ]) or fail 'Mutant task is not successful'
   end
 end
 
