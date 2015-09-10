@@ -24,4 +24,6 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency('equalizer',     '~> 0.0.9')
   gem.add_runtime_dependency('ice_nine',      '~> 0.11.0')
   gem.add_runtime_dependency('procto',        '~> 0.0.2')
+
+  gem.add_development_dependency('devtools', '~> 0.1.1')
 end
