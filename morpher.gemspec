@@ -11,7 +11,7 @@ Gem::Specification.new do |gem|
   gem.require_paths    = %w[lib]
   gem.files            = `git ls-files`.split("\n")
   gem.test_files       = `git ls-files -- spec/{unit,integration}`.split("\n")
-  gem.extra_rdoc_files = %w[TODO LICENSE]
+  gem.extra_rdoc_files = %w[LICENSE]
   gem.license          = 'MIT'
 
   gem.required_ruby_version = ['>= 2.1']
