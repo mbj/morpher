@@ -1,3 +1,7 @@
+# v0.3.0 2021-02-22
+
+* Re-implement as extraction from Morpher::Transform
+
 # v0.2.3 2014-04-22
 
 [Compare v0.2.2..v0.2.3](https://github.com/mbj/morpher/compare/v0.2.2...v0.2.3)
@@ -12,8 +16,8 @@ Changes:
 
 Changes: 
 
-* Add Mutant.sexp returning a morpher AST node via evaluating a block with sexp node API available.
-* Add Mutant.build returning a morpher evaluator via evaluating a block with sexp node API available.
+* Add Morpher.sexp returning a morpher AST node via evaluating a block with sexp node API available.
+* Add Morpher.build returning a morpher evaluator via evaluating a block with sexp node API available.
 * Fix evaluation errors on Transformer::Map node.
 * Ensure mutant coverage scores on CI
 
