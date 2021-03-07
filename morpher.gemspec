@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Gem::Specification.new do |gem|
   gem.name        = 'morpher'
   gem.version     = '0.3.0'
@@ -6,7 +8,6 @@ Gem::Specification.new do |gem|
   gem.description = 'Domain Transformation Algebra'
   gem.summary     = gem.description
   gem.homepage    = 'https://github.com/mbj/morpher'
-  gem.license     = 'MIT'
 
   gem.require_paths    = %w[lib]
   gem.files            = Dir.glob('lib/**/*')
@@ -30,4 +31,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency('rspec',        '~> 3.10')
   gem.add_development_dependency('rspec-core',   '~> 3.10')
   gem.add_development_dependency('rspec-its',    '~> 1.3.0')
+  gem.add_development_dependency('rubocop',      '~> 1.11')
 end
