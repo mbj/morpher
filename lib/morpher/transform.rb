@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 module Morpher
+  # Composable transform declaration and execution
   class Transform
-    include Adamantium, AbstractType
+    include AbstractType
+    include Adamantium
 
     # Default slug
     #
@@ -20,12 +22,13 @@ module Morpher
 
     # Deep error data structure
     class Error
-      include Adamantium, Anima.new(
+      include Anima.new(
         :cause,
         :input,
         :message,
         :transform
       )
+      include Adamantium
 
       COMPACT = '%<path>s: %<message>s'
 
@@ -73,6 +76,7 @@ module Morpher
       end
     end # Named
 
+    # Transform based on a (captured) block with added name
     class Block < self
       include Anima.new(:block, :name)
 
@@ -100,7 +104,7 @@ module Morpher
 
   private
 
-    def error(cause: nil, input:, message: nil)
+    def error(input:, cause: nil, message: nil)
       Error.new(
         cause:     cause,
         input:     input,
@@ -129,7 +133,7 @@ module Morpher
     class Index < self
       include Anima.new(:index, :transform)
 
-      private(*anima.attribute_names)
+      private(*anima.attribute_names) # rubocop:disable Style/AccessModifierDeclarations
 
       # Create error at specified index
       #

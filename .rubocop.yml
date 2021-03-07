@@ -1,8 +1,26 @@
 AllCops:
-  Include:
-    - 'Gemfile'
+  NewCops: enable
+
+Layout/ExtraSpacing:
+  Enabled: false
+
+Layout/HashAlignment:
+  EnforcedHashRocketStyle: table
+  EnforcedColonStyle:      table
+
+Layout/AccessModifierIndentation:
+  EnforcedStyle: outdent
+
+Style/CommentedKeyword:
+  Enabled: false
+
+Style/FormatString:
+  EnforcedStyle: percent
+
+Style/SignalException:
+  EnforcedStyle: semantic
+
+Metrics/BlockLength:
   Exclude:
-    - 'Gemfile.devtools'
-    - 'vendor/**/*'
-    - 'examples/**/*'
-    - 'benchmarks/**/*'
+  - '*.gemspec'
+  - spec/**/*_spec.rb
