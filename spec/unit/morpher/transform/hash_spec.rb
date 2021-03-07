@@ -171,10 +171,39 @@ RSpec.describe Morpher::Transform::Hash::Symbolize do
       subject.call(input)
     end
 
-    let(:input) { { 'foo' => 'bar' } }
+    context 'on all string keys' do
+      let(:input) { { 'foo' => 'bar' } }
 
-    it 'returns success' do
-      expect(apply).to eql(right(foo: 'bar'))
+      it 'returns success' do
+        expect(apply).to eql(right(foo: 'bar'))
+      end
+    end
+
+    context 'on non string keys' do
+      let(:error) do
+        Morpher::Transform::Error.new(
+          cause:     nil,
+          input:     input,
+          message:   'Found non string key in input',
+          transform: subject
+        )
+      end
+
+      context 'one non string key' do
+        let(:input) { { 1 => 'bar' } }
+
+        it 'returns error' do
+          expect(apply).to eql(left(error))
+        end
+      end
+
+      context 'one non string key next to string key' do
+        let(:input) { { 1 => 'bar', 'foo' => 'baz' } }
+
+        it 'returns error' do
+          expect(apply).to eql(left(error))
+        end
+      end
     end
   end
 end

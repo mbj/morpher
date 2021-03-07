@@ -285,12 +285,18 @@ module Morpher
 
       # Transform to symbolize array keys
       class Symbolize < Transform
+        include Equalizer.new
+
         # Apply transformation to input
         #
         # @param [Hash{String => Object}]
         #
         # @return [Hash{Symbol => Object}]
         def call(input)
+          unless input.keys.all? { |key| key.instance_of?(String) }
+            return failure(error(input: input, message: 'Found non string key in input'))
+          end
+
           success(input.transform_keys(&:to_sym))
         end
       end # Symbolize
@@ -441,6 +447,20 @@ module Morpher
           .lmap { |exception| error(input: input, message: exception.to_s) }
       end
     end # Exception
+
+    # Transform sucessfully
+    class Success < self
+      include Concord.new(:block)
+
+      # Apply transformation to input
+      #
+      # @param [Object]
+      #
+      # @return [Either<Error, Object>]
+      def call(input)
+        success(block.call(input))
+      end
+    end # Success
 
     BOOLEAN      = Transform::Boolean.new
     FLOAT        = Transform::Primitive.new(Float)
