@@ -79,7 +79,7 @@ RSpec.describe Morpher::Transform::Hash do
           let(:input) { {} }
 
           it 'returns success' do
-            expect(apply).to eql(right(input))
+            expect(apply).to eql(right(foo: nil))
           end
         end
 
