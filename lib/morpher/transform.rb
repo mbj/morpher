@@ -350,11 +350,16 @@ module Morpher
         transform_keys(required, input)
       end
 
+      def defaults
+        optional.map(&:value).product([nil]).to_h
+      end
+      memoize :defaults
+
       def transform_optional(input)
         transform_keys(
           optional.select { |key| input.key?(key.value) },
           input
-        )
+        ).fmap(&defaults.public_method(:merge))
       end
 
       # rubocop:disable Metrics/MethodLength

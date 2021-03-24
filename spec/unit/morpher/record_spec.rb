@@ -8,22 +8,40 @@ RSpec.describe Morpher::Record do
       host.class_eval { include instance }
     end
 
-    let(:host)           { Class.new                                 }
-    let(:host_instance)  { host.new(attributes)                      }
-    let(:instance)       { described_class.new(attributes_transform) }
-    let(:attributes)     { { a: 'foo', b: 10 }                       }
+    let(:attributes)     { { a: 'foo', b: 10, c: nil } }
+    let(:host)           { Class.new                   }
+    let(:host_instance)  { host.new(attributes)        }
 
-    let(:attributes_transform) do
+    let(:instance) do
+      described_class.new(
+        required: required_transform,
+        optional: optional_transform
+      )
+    end
+
+    let(:required_transform) do
       {
         a: Morpher::Transform::Primitive.new(String),
         b: Morpher::Transform::Primitive.new(Integer)
       }
     end
 
-    let(:expected_keys_transform) do
+    let(:optional_transform) do
+      {
+        c: Morpher::Transform::Boolean.new
+      }
+    end
+
+    let(:expected_required_keys_transform) do
       [
-        Morpher::Transform::Hash::Key.new(:a, attributes_transform.fetch(:a)),
-        Morpher::Transform::Hash::Key.new(:b, attributes_transform.fetch(:b))
+        Morpher::Transform::Hash::Key.new(:a, required_transform.fetch(:a)),
+        Morpher::Transform::Hash::Key.new(:b, required_transform.fetch(:b))
+      ]
+    end
+
+    let(:expected_optional_keys_transform) do
+      [
+        Morpher::Transform::Hash::Key.new(:c, optional_transform.fetch(:c))
       ]
     end
 
@@ -55,7 +73,10 @@ RSpec.describe Morpher::Record do
           [
             Morpher::Transform::Primitive.new(Hash),
             Morpher::Transform::Hash::Symbolize.new,
-            Morpher::Transform::Hash.new(required: expected_keys_transform, optional: []),
+            Morpher::Transform::Hash.new(
+              required: expected_required_keys_transform,
+              optional: expected_optional_keys_transform
+            ),
             Morpher::Transform::Success.new(host.method(:new))
           ]
         )
