@@ -5,10 +5,8 @@ PATH
       abstract_type (~> 0.0.7)
       adamantium (~> 0.2.0)
       anima (~> 0.3.0)
-      ast (~> 2.2)
       concord (~> 0.1.5)
       equalizer (~> 0.0.9)
-      ice_nine (~> 0.11.0)
       mprelude (~> 0.1.0)
       procto (~> 0.0.2)
 
