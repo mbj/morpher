@@ -20,6 +20,15 @@ module Morpher
     # @return [Either<Error, Object>]
     abstract_method :call
 
+    # Build sequence
+    #
+    # @param [Transform] transform
+    #
+    # @return [Transform]
+    def seq(transform)
+      Sequence.new([self, transform])
+    end
+
     # Deep error data structure
     class Error
       include Anima.new(
@@ -418,6 +427,15 @@ module Morpher
     # Sequence of transformations
     class Sequence < self
       include Concord.new(:steps)
+
+      # Build sequence
+      #
+      # @param [Transform] transform
+      #
+      # @return [Transform]
+      def seq(transform)
+        self.class.new(steps + [transform])
+      end
 
       # Apply transformation to input
       #
