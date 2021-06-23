@@ -1,3 +1,8 @@
+# v0.4.1 2021-06-23
+
+* Add various builder methods `Morpher::Transform#{array,seq,maybe}`
+* Add Morpher::Transform::Maybe
+
 # v0.4.0 2021-03-07
 
 * Change semantics of optional hash keys to aways fill `nil` valued keys.
