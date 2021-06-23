@@ -82,13 +82,13 @@ module Morpher
 
     # Wrapper adding a name to a transformation
     class Named < self
-      include Concord.new(:name, :transformer)
+      include Concord.new(:name, :transform)
 
       # Apply transformation to input
       #
       # @return [Either<Error, Object>]
       def call(input)
-        transformer.call(input).lmap(&method(:wrap_error))
+        transform.call(input).lmap(&method(:wrap_error))
       end
 
       # Named slug
@@ -469,7 +469,7 @@ module Morpher
       end
     end # Sequence
 
-    # Generic exception transformer
+    # Generic exception transform
     class Exception < self
       include Concord.new(:error_class, :block)
 
