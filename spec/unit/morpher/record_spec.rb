@@ -1,6 +1,49 @@
 # frozen_string_literal: true
 
 RSpec.describe Morpher::Record do
+  describe '.new' do
+    def apply
+      described_class.new(**attributes)
+    end
+
+    let(:fields) { { foo: Morpher::Transform::STRING } }
+
+    context 'on absent :optional' do
+      let(:attributes) { { required: fields } }
+
+      it 'defaults to empty optional' do
+        expect(apply.to_h).to eql(
+          optional: {},
+          required: fields
+        )
+      end
+    end
+
+    context 'on absent :required' do
+      let(:attributes) { { optional: fields } }
+
+      it 'defaults to empty optional' do
+        expect(apply.to_h).to eql(
+          optional: fields,
+          required: {}
+        )
+      end
+    end
+
+    context 'on present :required and :optional' do
+      let(:attributes) do
+        {
+          optional: { foo: Morpher::Transform::STRING },
+          required: { bar: Morpher::Transform::STRING }
+        }
+      end
+
+      it 'does not apply defaults' do
+        expect(apply.to_h).to eql(attributes)
+      end
+    end
+  end
+
   describe '#included' do
     define_method(:apply) do
       instance = instance()
