@@ -1,3 +1,7 @@
+# v0.4.0 2021-03-07
+
+* Change semantics of optional hash keys to aways fill `nil` valued keys.
+
 # v0.3.0 2021-02-22
 
 * Re-implement as extraction from Morpher::Transform
@@ -14,7 +18,7 @@ Changes:
 
 [Compare v0.2.1..v0.2.2](https://github.com/mbj/morpher/compare/v0.2.1...v0.2.2)
 
-Changes: 
+Changes:
 
 * Add Morpher.sexp returning a morpher AST node via evaluating a block with sexp node API available.
 * Add Morpher.build returning a morpher evaluator via evaluating a block with sexp node API available.
@@ -25,7 +29,7 @@ Changes:
 
 [Compare v0.2.0..v0.2.1](https://github.com/mbj/morpher/compare/v0.2.0...v0.2.1)
 
-Changes: 
+Changes:
 
 * Fix warnings on multiple method definition
 
