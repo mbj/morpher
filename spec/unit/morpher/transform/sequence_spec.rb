@@ -95,4 +95,25 @@ RSpec.describe Morpher::Transform::Sequence do
       end
     end
   end
+
+  describe '#seq' do
+    subject do
+      described_class.new([Morpher::Transform::STRING])
+    end
+
+    let(:other) do
+      Morpher::Transform::Success.new(:upcase.to_proc)
+    end
+
+    it 'build flat sequence' do
+      expect(subject.seq(other)).to eql(
+        described_class.new(
+          [
+            Morpher::Transform::STRING,
+            other
+          ]
+        )
+      )
+    end
+  end
 end
