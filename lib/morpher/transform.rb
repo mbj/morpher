@@ -36,6 +36,13 @@ module Morpher
       Array.new(self)
     end
 
+    # Build maybe transform
+    #
+    # @return [Transform]
+    def maybe
+      Maybe.new(self)
+    end
+
     # Deep error data structure
     class Error
       include Anima.new(
@@ -491,6 +498,19 @@ module Morpher
         success(block.call(input))
       end
     end # Success
+
+    # Transform accepting nil values
+    class Maybe < Transform
+      include Concord.new(:transform)
+
+      def call(input)
+        if input.nil?
+          success(nil)
+        else
+          transform.call(input).lmap(&method(:wrap_error))
+        end
+      end
+    end # Maybe
 
     BOOLEAN      = Transform::Boolean.new
     FLOAT        = Transform::Primitive.new(Float)
