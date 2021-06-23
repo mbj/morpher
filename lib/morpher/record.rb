@@ -3,7 +3,16 @@
 module Morpher
   # Generator for struct a-like wrappers
   class Record < Module
+    DEFAULTS = {
+      required: EMPTY_HASH,
+      optional: EMPTY_HASH
+    }.freeze
+
     include Anima.new(:required, :optional)
+
+    def self.new(**attributes)
+      super(DEFAULTS.merge(attributes))
+    end
 
     # rubocop:disable Metrics/AbcSize
     # rubocop:disable Metrics/MethodLength

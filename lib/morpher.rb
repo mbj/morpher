@@ -8,6 +8,8 @@ require 'mprelude'
 
 module Morpher
   Either = MPrelude::Either
+
+  EMPTY_HASH = {}.freeze
 end
 
 require 'morpher/newtype'
