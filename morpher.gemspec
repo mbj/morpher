@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'morpher'
-  gem.version     = '0.4.0'
+  gem.version     = '0.4.1'
   gem.authors     = ['Markus Schirp']
   gem.email       = 'mbj@schirp-dso.com'
   gem.description = 'Domain Transformation Algebra'
