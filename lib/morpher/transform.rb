@@ -29,6 +29,20 @@ module Morpher
       Sequence.new([self, transform])
     end
 
+    # Build array transform
+    #
+    # @return [Transform]
+    def array
+      Array.new(self)
+    end
+
+    # Build maybe transform
+    #
+    # @return [Transform]
+    def maybe
+      Maybe.new(self)
+    end
+
     # Deep error data structure
     class Error
       include Anima.new(
@@ -68,13 +82,13 @@ module Morpher
 
     # Wrapper adding a name to a transformation
     class Named < self
-      include Concord.new(:name, :transformer)
+      include Concord.new(:name, :transform)
 
       # Apply transformation to input
       #
       # @return [Either<Error, Object>]
       def call(input)
-        transformer.call(input).lmap(&method(:wrap_error))
+        transform.call(input).lmap(&method(:wrap_error))
       end
 
       # Named slug
@@ -455,7 +469,7 @@ module Morpher
       end
     end # Sequence
 
-    # Generic exception transformer
+    # Generic exception transform
     class Exception < self
       include Concord.new(:error_class, :block)
 
@@ -484,6 +498,19 @@ module Morpher
         success(block.call(input))
       end
     end # Success
+
+    # Transform accepting nil values
+    class Maybe < Transform
+      include Concord.new(:transform)
+
+      def call(input)
+        if input.nil?
+          success(nil)
+        else
+          transform.call(input).lmap(&method(:wrap_error))
+        end
+      end
+    end # Maybe
 
     BOOLEAN      = Transform::Boolean.new
     FLOAT        = Transform::Primitive.new(Float)
