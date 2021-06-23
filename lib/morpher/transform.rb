@@ -29,6 +29,13 @@ module Morpher
       Sequence.new([self, transform])
     end
 
+    # Build array transform
+    #
+    # @return [Transform]
+    def array
+      Array.new(self)
+    end
+
     # Deep error data structure
     class Error
       include Anima.new(
