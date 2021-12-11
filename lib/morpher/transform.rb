@@ -43,6 +43,13 @@ module Morpher
       Maybe.new(self)
     end
 
+    # Build Proc to transform input
+    #
+    # @return [Proc]
+    def to_proc
+      public_method(:call).to_proc
+    end
+
     # Deep error data structure
     class Error
       include Anima.new(
