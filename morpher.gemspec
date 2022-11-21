@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name        = 'morpher'
-  gem.version     = '0.4.1'
+  gem.version     = '0.4.2'
   gem.authors     = ['Markus Schirp']
   gem.email       = 'mbj@schirp-dso.com'
   gem.description = 'Domain Transformation Algebra'
@@ -15,6 +15,8 @@ Gem::Specification.new do |gem|
   gem.license          = 'MIT'
 
   gem.required_ruby_version = '>= 2.6'
+
+  gem.metadata['rubygems_mfa_required'] = 'true'
 
   gem.add_runtime_dependency('abstract_type', '~> 0.0.7')
   gem.add_runtime_dependency('adamantium',    '~> 0.2.0')

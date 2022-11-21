@@ -1,3 +1,7 @@
+# v0.4.1 2022-10-28
+
+* Require MFA to push gems.
+
 # v0.4.1 2021-06-23
 
 * Add various builder methods `Morpher::Transform#{array,seq,maybe}`
