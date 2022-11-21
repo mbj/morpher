@@ -396,7 +396,7 @@ module Morpher
       def transform_keys(keys, input)
         success(
           keys
-            .map do |key|
+            .to_h do |key|
               [
                 key.value,
                 coerce_key(key, input).from_right do |error|
@@ -404,7 +404,6 @@ module Morpher
                 end
               ]
             end
-            .to_h
         )
       end
       # rubocop:enable Metrics/MethodLength
