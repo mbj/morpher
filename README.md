@@ -4,7 +4,7 @@ morpher
 [![CI](https://github.com/mbj/morpher/actions/workflows/ci.yml/badge.svg)](https://github.com/mbj/morpher/actions/workflows/ci.yml)
 [![Build Status](https://secure.travis-ci.org/mbj/morpher.png?branch=master)](http://travis-ci.org/mbj/morpher)
 
-Morpher is a compsoable data transformation algebra with data trace based error reporting.
+Morpher is a composable data transformation algebra with data trace based error reporting.
 
 It can be used at various places:
 
